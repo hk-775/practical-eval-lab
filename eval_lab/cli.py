@@ -12,6 +12,12 @@ from .suites import CATALOG
 
 
 def main(argv=None) -> int:
+    # Redirected Windows output may use a legacy encoding. Keep evaluation and
+    # UTF-8 report exports working even when case IDs cannot be printed literally.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(description="Practical Eval Lab")
     commands = parser.add_subparsers(dest="command", required=True)
     for name in ("run", "compare"):

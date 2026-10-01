@@ -1,5 +1,7 @@
 import copy
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -146,6 +148,31 @@ def test_cli_distinguishes_quality_config_and_execution_failures(tmp_path, monke
         raise RuntimeError("secret message")
     monkeypatch.setattr("eval_lab.core.make_candidate", lambda *a, **k: (raises, {"name": "failed", "kind": "test"}))
     assert main(["run", "--min-score", "0"]) == 3
+
+
+@pytest.mark.parametrize("encoding", ["ascii", "cp1252"])
+def test_cli_exports_unicode_cases_with_legacy_console_encoding(tmp_path, encoding):
+    cases = load_cases("classification")[:1]
+    cases[0].update(id="café-東京", tags=["révision"])
+    cases_path, report_path = tmp_path / "cases.jsonl", tmp_path / "report.json"
+    cases_path.write_text(json.dumps(cases[0], ensure_ascii=False) + "\n", encoding="utf-8")
+    env = {**os.environ, "PYTHONIOENCODING": encoding}
+    result = subprocess.run(
+        [sys.executable, "-m", "eval_lab", "compare", "--cases", str(cases_path),
+         "--critical-tag", "révision", "--report", str(report_path)],
+        env=env, capture_output=True,
+    )
+    assert result.returncode == 0, result.stderr.decode(encoding)
+    assert "\\u2192" in result.stdout.decode(encoding)
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["after"]["results"][0]["id"] == "café-東京"
+    assert report["passed_gate"]
+    invalid = subprocess.run(
+        [sys.executable, "-m", "eval_lab", "run", "--min-slice", "東京=1"],
+        env=env, capture_output=True,
+    )
+    assert invalid.returncode == 2
+    assert "tags must exist" in invalid.stderr.decode(encoding)
 
 
 def test_named_python_candidates_are_available_without_runner_changes():
