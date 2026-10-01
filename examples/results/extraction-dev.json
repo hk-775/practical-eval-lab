@@ -1,0 +1,5177 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "extraction",
+    "split": "dev",
+    "created_at": "2026-10-01T20:51:14.674292+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "da1d0001abfa4a1785184b15be60e4fc42227742c719d413fb59bbba3f8f7fbb",
+    "grader_hash": "7f4a79e5cafae9bdeef6d464191795315b45e142b4ddfb450f758a0b919e8d4c",
+    "settings": {
+      "allow_extra_fields": false
+    },
+    "threshold": 0.8,
+    "score": 0.5,
+    "passed": 10,
+    "failed": 10,
+    "total": 20,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "case": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "missing": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "negation": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "plural": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "priority": {
+        "passed": 3,
+        "total": 8,
+        "accuracy": 0.375
+      },
+      "typical": {
+        "passed": 7,
+        "total": 7,
+        "accuracy": 1.0
+      },
+      "word-number": {
+        "passed": 0,
+        "total": 4,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "extract-dev-01",
+        "input": "Order A-104: 3 keyboards.",
+        "expected": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-104\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.15,
+        "grader_latency_ms": 0.013,
+        "latency_ms": 0.178
+      },
+      {
+        "id": "extract-dev-02",
+        "input": "Order B-205: 2 monitors, high priority.",
+        "expected": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"B-205\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.023
+      },
+      {
+        "id": "extract-dev-03",
+        "input": "Order C-306: 1 mouse.",
+        "expected": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"C-306\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-04",
+        "input": "Order D-407: 5 cables.",
+        "expected": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"D-407\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-05",
+        "input": "Order E-508: 4 headsets, urgent.",
+        "expected": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"E-508\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-06",
+        "input": "Order F-609: 2 webcams.",
+        "expected": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"F-609\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-07",
+        "input": "Order G-710: three keyboards.",
+        "expected": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "G-710",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"G-710\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-08",
+        "input": "Order H-811: two mice.",
+        "expected": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-dev-08",
+        "trial": 1,
+        "actual": {
+          "order_id": "H-811",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"H-811\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-09",
+        "input": "Order i-912: 1 monitor.",
+        "expected": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-09",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": false,
+            "detail": "Expected order_id = \"I-912\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-10",
+        "input": "Order J-013: 2 KEYBOARDS.",
+        "expected": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "J-013",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"J-013\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "extract-dev-11",
+        "input": "Order K-114: 4 cables, no rush.",
+        "expected": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-11",
+        "trial": 1,
+        "actual": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"K-114\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-12",
+        "input": "Order L-215: 2 headsets, not urgent.",
+        "expected": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-12",
+        "trial": 1,
+        "actual": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"L-215\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-13",
+        "input": "Order M-316: 1 webcam, ASAP.",
+        "expected": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-dev-13",
+        "trial": 1,
+        "actual": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"M-316\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-14",
+        "input": "Order N-417: 3 mice, priority low.",
+        "expected": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "plural"
+        ],
+        "case_id": "extract-dev-14",
+        "trial": 1,
+        "actual": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"N-417\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-15",
+        "input": "Order O-518: one keyboard.",
+        "expected": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-15",
+        "trial": 1,
+        "actual": {
+          "order_id": "O-518",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"O-518\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "extract-dev-16",
+        "input": "Please send 2 monitors.",
+        "expected": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-16",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-17",
+        "input": "Order P-619 needs review.",
+        "expected": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-17",
+        "trial": 1,
+        "actual": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"P-619\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-18",
+        "input": "No order has been placed.",
+        "expected": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-18",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-dev-19",
+        "input": "Order Q-720: five cables, low priority.",
+        "expected": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-dev-19",
+        "trial": 1,
+        "actual": {
+          "order_id": "Q-720",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Q-720\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "extract-dev-20",
+        "input": "Order R-821: 12 headsets, priority high.",
+        "expected": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-20",
+        "trial": 1,
+        "actual": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"R-821\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 12"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      }
+    ],
+    "trials": 1,
+    "case_count": 20,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "json_object": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "schema": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "field:order_id": {
+          "passed": 19,
+          "total": 20,
+          "rate": 0.95
+        },
+        "field:quantity": {
+          "passed": 15,
+          "total": 20,
+          "rate": 0.75
+        },
+        "field:item": {
+          "passed": 15,
+          "total": 20,
+          "rate": 0.75
+        },
+        "field:priority": {
+          "passed": 15,
+          "total": 20,
+          "rate": 0.75
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.003,
+        "p95": 0.004
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.5
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "extraction",
+    "split": "dev",
+    "created_at": "2026-10-01T20:51:14.676183+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "da1d0001abfa4a1785184b15be60e4fc42227742c719d413fb59bbba3f8f7fbb",
+    "grader_hash": "7f4a79e5cafae9bdeef6d464191795315b45e142b4ddfb450f758a0b919e8d4c",
+    "settings": {
+      "allow_extra_fields": false
+    },
+    "threshold": 0.8,
+    "score": 1.0,
+    "passed": 20,
+    "failed": 0,
+    "total": 20,
+    "passed_gate": true,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": true,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "case": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "missing": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "negation": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "plural": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "priority": {
+        "passed": 8,
+        "total": 8,
+        "accuracy": 1.0
+      },
+      "typical": {
+        "passed": 7,
+        "total": 7,
+        "accuracy": 1.0
+      },
+      "word-number": {
+        "passed": 4,
+        "total": 4,
+        "accuracy": 1.0
+      }
+    },
+    "results": [
+      {
+        "id": "extract-dev-01",
+        "input": "Order A-104: 3 keyboards.",
+        "expected": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-104\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.399,
+        "grader_latency_ms": 0.013,
+        "latency_ms": 0.427
+      },
+      {
+        "id": "extract-dev-02",
+        "input": "Order B-205: 2 monitors, high priority.",
+        "expected": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"B-205\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.027
+      },
+      {
+        "id": "extract-dev-03",
+        "input": "Order C-306: 1 mouse.",
+        "expected": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"C-306\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      },
+      {
+        "id": "extract-dev-04",
+        "input": "Order D-407: 5 cables.",
+        "expected": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"D-407\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-05",
+        "input": "Order E-508: 4 headsets, urgent.",
+        "expected": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"E-508\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-06",
+        "input": "Order F-609: 2 webcams.",
+        "expected": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"F-609\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-07",
+        "input": "Order G-710: three keyboards.",
+        "expected": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"G-710\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-08",
+        "input": "Order H-811: two mice.",
+        "expected": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-dev-08",
+        "trial": 1,
+        "actual": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"H-811\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-09",
+        "input": "Order i-912: 1 monitor.",
+        "expected": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"I-912\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-10",
+        "input": "Order J-013: 2 KEYBOARDS.",
+        "expected": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"J-013\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-11",
+        "input": "Order K-114: 4 cables, no rush.",
+        "expected": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-11",
+        "trial": 1,
+        "actual": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"K-114\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-12",
+        "input": "Order L-215: 2 headsets, not urgent.",
+        "expected": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-12",
+        "trial": 1,
+        "actual": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"L-215\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-13",
+        "input": "Order M-316: 1 webcam, ASAP.",
+        "expected": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-dev-13",
+        "trial": 1,
+        "actual": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"M-316\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-14",
+        "input": "Order N-417: 3 mice, priority low.",
+        "expected": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "plural"
+        ],
+        "case_id": "extract-dev-14",
+        "trial": 1,
+        "actual": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"N-417\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-15",
+        "input": "Order O-518: one keyboard.",
+        "expected": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-15",
+        "trial": 1,
+        "actual": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"O-518\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-16",
+        "input": "Please send 2 monitors.",
+        "expected": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-16",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-17",
+        "input": "Order P-619 needs review.",
+        "expected": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-17",
+        "trial": 1,
+        "actual": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"P-619\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-18",
+        "input": "No order has been placed.",
+        "expected": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-18",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-dev-19",
+        "input": "Order Q-720: five cables, low priority.",
+        "expected": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-dev-19",
+        "trial": 1,
+        "actual": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Q-720\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-dev-20",
+        "input": "Order R-821: 12 headsets, priority high.",
+        "expected": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-20",
+        "trial": 1,
+        "actual": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"R-821\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 12"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    ],
+    "trials": 1,
+    "case_count": 20,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "json_object": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "schema": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "field:order_id": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "field:quantity": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "field:item": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        },
+        "field:priority": {
+          "passed": 20,
+          "total": 20,
+          "rate": 1.0
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.004,
+        "p95": 0.008
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        1
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.5,
+  "improved": 10,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "extract-dev-01",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-01",
+        "input": "Order A-104: 3 keyboards.",
+        "expected": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-104\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.15,
+        "grader_latency_ms": 0.013,
+        "latency_ms": 0.178
+      },
+      "after": {
+        "id": "extract-dev-01",
+        "input": "Order A-104: 3 keyboards.",
+        "expected": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-104",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-104\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.399,
+        "grader_latency_ms": 0.013,
+        "latency_ms": 0.427
+      }
+    },
+    {
+      "id": "extract-dev-02",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-02",
+        "input": "Order B-205: 2 monitors, high priority.",
+        "expected": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"B-205\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.023
+      },
+      "after": {
+        "id": "extract-dev-02",
+        "input": "Order B-205: 2 monitors, high priority.",
+        "expected": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "B-205",
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"B-205\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.027
+      }
+    },
+    {
+      "id": "extract-dev-03",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-03",
+        "input": "Order C-306: 1 mouse.",
+        "expected": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"C-306\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      "after": {
+        "id": "extract-dev-03",
+        "input": "Order C-306: 1 mouse.",
+        "expected": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "C-306",
+          "quantity": 1,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"C-306\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      }
+    },
+    {
+      "id": "extract-dev-04",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-04",
+        "input": "Order D-407: 5 cables.",
+        "expected": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"D-407\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      "after": {
+        "id": "extract-dev-04",
+        "input": "Order D-407: 5 cables.",
+        "expected": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "D-407",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"D-407\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-05",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-05",
+        "input": "Order E-508: 4 headsets, urgent.",
+        "expected": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"E-508\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      "after": {
+        "id": "extract-dev-05",
+        "input": "Order E-508: 4 headsets, urgent.",
+        "expected": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "E-508",
+          "quantity": 4,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"E-508\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-06",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-06",
+        "input": "Order F-609: 2 webcams.",
+        "expected": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"F-609\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-06",
+        "input": "Order F-609: 2 webcams.",
+        "expected": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-dev-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "F-609",
+          "quantity": 2,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"F-609\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-07",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-07",
+        "input": "Order G-710: three keyboards.",
+        "expected": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "G-710",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"G-710\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-07",
+        "input": "Order G-710: three keyboards.",
+        "expected": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "G-710",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"G-710\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-08",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-08",
+        "input": "Order H-811: two mice.",
+        "expected": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-dev-08",
+        "trial": 1,
+        "actual": {
+          "order_id": "H-811",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"H-811\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-08",
+        "input": "Order H-811: two mice.",
+        "expected": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-dev-08",
+        "trial": 1,
+        "actual": {
+          "order_id": "H-811",
+          "quantity": 2,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"H-811\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-09",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-09",
+        "input": "Order i-912: 1 monitor.",
+        "expected": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-09",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": false,
+            "detail": "Expected order_id = \"I-912\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-09",
+        "input": "Order i-912: 1 monitor.",
+        "expected": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "I-912",
+          "quantity": 1,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"I-912\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-10",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-10",
+        "input": "Order J-013: 2 KEYBOARDS.",
+        "expected": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "J-013",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"J-013\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "extract-dev-10",
+        "input": "Order J-013: 2 KEYBOARDS.",
+        "expected": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "case"
+        ],
+        "case_id": "extract-dev-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "J-013",
+          "quantity": 2,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"J-013\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-11",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-11",
+        "input": "Order K-114: 4 cables, no rush.",
+        "expected": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-11",
+        "trial": 1,
+        "actual": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"K-114\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-11",
+        "input": "Order K-114: 4 cables, no rush.",
+        "expected": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-11",
+        "trial": 1,
+        "actual": {
+          "order_id": "K-114",
+          "quantity": 4,
+          "item": "cable",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"K-114\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-12",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-12",
+        "input": "Order L-215: 2 headsets, not urgent.",
+        "expected": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-12",
+        "trial": 1,
+        "actual": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"L-215\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-12",
+        "input": "Order L-215: 2 headsets, not urgent.",
+        "expected": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "negation"
+        ],
+        "case_id": "extract-dev-12",
+        "trial": 1,
+        "actual": {
+          "order_id": "L-215",
+          "quantity": 2,
+          "item": "headset",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"L-215\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-13",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-13",
+        "input": "Order M-316: 1 webcam, ASAP.",
+        "expected": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-dev-13",
+        "trial": 1,
+        "actual": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"M-316\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-13",
+        "input": "Order M-316: 1 webcam, ASAP.",
+        "expected": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-dev-13",
+        "trial": 1,
+        "actual": {
+          "order_id": "M-316",
+          "quantity": 1,
+          "item": "webcam",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"M-316\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-14",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-14",
+        "input": "Order N-417: 3 mice, priority low.",
+        "expected": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "plural"
+        ],
+        "case_id": "extract-dev-14",
+        "trial": 1,
+        "actual": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"N-417\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-14",
+        "input": "Order N-417: 3 mice, priority low.",
+        "expected": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "tags": [
+          "priority",
+          "plural"
+        ],
+        "case_id": "extract-dev-14",
+        "trial": 1,
+        "actual": {
+          "order_id": "N-417",
+          "quantity": 3,
+          "item": "mouse",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"N-417\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-15",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-15",
+        "input": "Order O-518: one keyboard.",
+        "expected": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-15",
+        "trial": 1,
+        "actual": {
+          "order_id": "O-518",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"O-518\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "extract-dev-15",
+        "input": "Order O-518: one keyboard.",
+        "expected": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number"
+        ],
+        "case_id": "extract-dev-15",
+        "trial": 1,
+        "actual": {
+          "order_id": "O-518",
+          "quantity": 1,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"O-518\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-16",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-16",
+        "input": "Please send 2 monitors.",
+        "expected": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-16",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      "after": {
+        "id": "extract-dev-16",
+        "input": "Please send 2 monitors.",
+        "expected": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-16",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 2,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-17",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-17",
+        "input": "Order P-619 needs review.",
+        "expected": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-17",
+        "trial": 1,
+        "actual": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"P-619\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-17",
+        "input": "Order P-619 needs review.",
+        "expected": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-17",
+        "trial": 1,
+        "actual": {
+          "order_id": "P-619",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"P-619\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-18",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-18",
+        "input": "No order has been placed.",
+        "expected": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-18",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-18",
+        "input": "No order has been placed.",
+        "expected": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-dev-18",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-dev-19",
+      "change": "improved",
+      "before": {
+        "id": "extract-dev-19",
+        "input": "Order Q-720: five cables, low priority.",
+        "expected": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-dev-19",
+        "trial": 1,
+        "actual": {
+          "order_id": "Q-720",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Q-720\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "extract-dev-19",
+        "input": "Order Q-720: five cables, low priority.",
+        "expected": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-dev-19",
+        "trial": 1,
+        "actual": {
+          "order_id": "Q-720",
+          "quantity": 5,
+          "item": "cable",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Q-720\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-dev-20",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-dev-20",
+        "input": "Order R-821: 12 headsets, priority high.",
+        "expected": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-20",
+        "trial": 1,
+        "actual": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"R-821\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 12"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-dev-20",
+        "input": "Order R-821: 12 headsets, priority high.",
+        "expected": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "tags": [
+          "typical",
+          "priority"
+        ],
+        "case_id": "extract-dev-20",
+        "trial": 1,
+        "actual": {
+          "order_id": "R-821",
+          "quantity": 12,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"R-821\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 12"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": true,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": true
+}

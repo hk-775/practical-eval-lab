@@ -4,6 +4,8 @@ const settingLabels = {
   normalize_labels: ["Normalize labels", "Ignore letter case and outer whitespace. Extra explanations still fail."],
   allow_extra_fields: ["Allow extra fields", "Required fields and their values are always checked."],
   check_outcome: ["Verify simulated outcome", "Check the lookup result or simulated ticket creation as well as the call."],
+  require_retrieval: ["Require complete retrieval", "Every reference document must be retrieved. Answer and citation checks remain active."],
+  require_final_state: ["Verify reported final state", "The final claim must match replayed tool state. Goal and trace checks remain active."],
 };
 const percent = (n) => `${(n * 100).toFixed(1).replace(/\.0$/, "")}%`;
 const pretty = (x) => typeof x === "string" ? x : JSON.stringify(x, null, 2);
@@ -20,6 +22,7 @@ function controls() {
   $("editor-fields").hidden = state.split === "holdout";
   $("threshold").disabled = state.busy || state.split === "holdout";
   $("download-report").disabled = !state.report || state.busy;
+  $("download-html").disabled = !state.report || state.busy;
   $("holdout-note").hidden = state.split !== "holdout";
 }
 async function task(action) {
@@ -42,7 +45,8 @@ function drawEditor() {
   state.index = Math.min(state.index, state.config.cases.length - 1);
   list.value = state.index;
   const c = state.config.cases[state.index];
-  $("case-input").value = c.input; $("case-expected").value = pretty(c.expected); $("case-tags").value = c.tags.join(", ");
+  $("case-input").value = pretty(c.input); $("case-expected").value = pretty(c.expected); $("case-tags").value = c.tags.join(", ");
+  $("input-label").textContent = typeof c.input === "string" ? "Input" : "Input · JSON object";
   $("expected-label").textContent = state.suite === "classification" ? "Expected label · Hardware, Software, or Other" : "Expected answer · JSON object";
   state.editorDirty = false;
 }
@@ -57,7 +61,11 @@ function applyEditor() {
   }
   if (!$("case-input").value.trim()) throw new Error("A case needs a nonempty input.");
   const current = state.config.cases[state.index];
-  Object.assign(current, {input: $("case-input").value, expected, tags: [...new Set($("case-tags").value.split(",").map(t => t.trim()).filter(Boolean))]});
+  let input = $("case-input").value;
+  if (typeof current.input !== "string") {
+    try { input = JSON.parse(input); } catch { throw new Error("Input must be valid JSON."); }
+  }
+  Object.assign(current, {input, expected, tags: [...new Set($("case-tags").value.split(",").map(t => t.trim()).filter(Boolean))]});
   state.editorDirty = false; markDirty();
 }
 function drawConfig() {
@@ -86,6 +94,14 @@ async function loadSuite() {
   state.config = data.config; state.revision = data.revision; state.dirty = false; state.report = null; state.index = 0;
   $("save-state").textContent = data.saved ? "Saved local profile" : "Bundled defaults";
   $("results-area").hidden = true; drawConfig();
+  const candidates = (await api(`candidates?suite=${state.suite}`)).candidates;
+  for (const id of ["candidate", "before-candidate"]) {
+    $(id).replaceChildren();
+    for (const c of candidates) {
+      const option = document.createElement("option"); option.value = c.name; option.textContent = `${c.name} · ${c.kind}`; $(id).append(option);
+    }
+  }
+  $("candidate").value = "improved"; $("before-candidate").value = "baseline";
   status("Ready. Compare both candidates on the same dataset, or tune the eval below.");
 }
 function badge(text, kind) { const el = document.createElement("span"); el.className = `result-badge ${kind}`; el.textContent = text; return el; }
@@ -100,7 +116,10 @@ function renderRows() {
   for (const item of visible) {
     const result = item.after, row = document.createElement("tr");
     if (!result.passed) row.className = "failed-row";
-    const inputCell = cell("", "ticket-cell"); const id = document.createElement("strong"); id.textContent = result.id; const text = document.createElement("p"); text.textContent = result.input;
+    const inputCell = cell("", "ticket-cell"); const id = document.createElement("strong"); id.textContent = result.id;
+    const text = document.createElement(typeof result.input === "string" ? "p" : "details");
+    if (typeof result.input === "string") text.textContent = result.input;
+    else { const title = document.createElement("summary"); title.textContent = "Inspect input"; const content = document.createElement("pre"); content.textContent = pretty(result.input); text.append(title, content); }
     const tags = document.createElement("div"); tags.className = "tag-list";
     result.tags.forEach(t => { const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = t; tags.append(tag); });
     inputCell.append(id, text, tags);
@@ -118,28 +137,73 @@ function renderRows() {
 function renderReport(payload) {
   state.report = payload;
   const comparison = Boolean(payload.after), report = payload.after || payload;
-  $("score-label").textContent = comparison ? "Improved candidate pass rate" : "Candidate pass rate";
+  $("score-label").textContent = `${report.candidate.name} · ${report.suite === "response_quality" ? "human agreement" : "pass rate"}`;
   $("score").textContent = percent(report.score); $("score-detail").textContent = `${report.passed}/${report.total} cases pass every check`;
   $("change").textContent = comparison ? `${payload.delta >= 0 ? "+" : ""}${(payload.delta * 100).toFixed(0)} pp` : `${report.failed}`;
   $("change-label").textContent = comparison ? "Change from baseline" : "Failed cases";
   $("change-detail").textContent = comparison ? `${payload.improved} improved · ${payload.regressed} regressed · baseline ${percent(payload.before.score)}` : "Inspect the failed grader checks below";
-  $("gate").textContent = report.passed_gate ? "PASS" : "FAIL"; $("gate").className = report.passed_gate ? "good" : "error";
-  $("gate-detail").textContent = `${percent(report.threshold)} required`;
-  $("report-context").textContent = `${report.split} dataset · ${report.candidate.name} rules · ${new Date(report.created_at).toLocaleTimeString()}`;
-  $("before-heading").textContent = comparison ? "Baseline output" : "Candidate output";
+  const passedGate = payload.passed_gate ?? report.passed_gate;
+  $("gate").textContent = passedGate ? "PASS" : "FAIL"; $("gate").className = passedGate ? "good" : "error";
+  $("gate-detail").textContent = (payload.gates || report.gates).map(g => `${g.name}: ${g.passed ? "pass" : "fail"}`).join(" · ");
+  $("report-context").textContent = `${report.suite} · ${report.split} · ${report.candidate.kind} · ${new Date(report.created_at).toLocaleString()} · ${report.trials} trial(s)`;
+  $("before-heading").textContent = comparison ? `${payload.before.candidate.name} output` : "Candidate output";
+  $("report-origin").hidden = !payload.imported;
+  $("report-origin").textContent = "Imported report: contents and measurements are user-supplied and not authenticated.";
   $("slice-grid").replaceChildren();
   for (const [tag, scores] of Object.entries(report.slices)) {
     const item = document.createElement("div"); item.className = "slice-item"; const label = document.createElement("div"); label.textContent = `${tag} · ${scores.passed}/${scores.total} · ${percent(scores.accuracy)}`; const meter = document.createElement("meter"); meter.min = 0; meter.max = scores.total; meter.value = scores.passed; meter.setAttribute("aria-label", `${tag} pass rate`); item.append(label, meter); $("slice-grid").append(item);
   }
+  const measurements = $("measurements"); measurements.replaceChildren();
+  const addMeasurement = (label, value) => { const p = document.createElement("p"); p.textContent = `${label}: ${value}`; measurements.append(p); };
+  for (const [name, values] of Object.entries(report.metrics.checks)) addMeasurement(name, `${values.passed}/${values.total} · ${percent(values.rate)}`);
+  for (const [name, values] of Object.entries(report.metrics.measurements)) addMeasurement(name, `${values.mean.toFixed(3)} mean · ${values.count} measured outputs`);
+  addMeasurement("Candidate latency", `median ${report.metrics.candidate_latency_ms.median} ms · p95 ${report.metrics.candidate_latency_ms.p95} ms`);
+  addMeasurement("Token usage", `${pretty(report.metrics.usage)} · supplied for ${report.metrics.usage_coverage}/${report.total} executions`);
+  addMeasurement("Trial scores", report.metrics.trial_scores.map(percent).join(", "));
+  addMeasurement("Cases with variable pass/fail", `${report.metrics.unstable_cases}/${report.case_count}`);
+  addMeasurement("Execution errors", report.execution_errors);
+  if (report.metrics.confusion_matrix) {
+    addMeasurement("Macro-F1 (normalized labels)", report.metrics.macro_f1.toFixed(3));
+    const table = document.createElement("table"); const caption = document.createElement("caption"); caption.textContent = "Confusion matrix · expected rows, predicted columns"; table.append(caption);
+    const labels = ["Hardware", "Software", "Other", "invalid"];
+    const header = document.createElement("tr");
+    for (const value of ["Expected", ...labels]) { const th = document.createElement("th"); th.textContent = value; header.append(th); }
+    table.append(header);
+    for (const [label, values] of Object.entries(report.metrics.confusion_matrix)) {
+      const tr = document.createElement("tr"); tr.append(cell(label)); labels.forEach(k => tr.append(cell(values[k]))); table.append(tr);
+    }
+    const wrap = document.createElement("div"); wrap.className = "table-wrap"; wrap.append(table); measurements.append(wrap);
+  }
   renderRows(); $("results-area").hidden = false;
   status(comparison ? `Comparison finished on ${report.total} identical cases. Both candidates used the same grader and threshold.` : `Finished: ${report.passed}/${report.total} cases passed.`);
 }
-function download(name, data) {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2) + "\n"], {type: "application/json"}));
+function download(name, data, type = "application/json") {
+  const url = URL.createObjectURL(new Blob([type === "application/json" ? JSON.stringify(data, null, 2) + "\n" : data], {type}));
   const link = document.createElement("a"); link.href = url; link.download = name; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-$("compare").addEventListener("click", () => task(async () => { applyEditor(); status("Comparing both candidates…"); renderReport(await api("compare", {suite: state.suite, split: state.split, config: state.config})); }));
-$("run").addEventListener("click", () => task(async () => { applyEditor(); status("Running the selected candidate…"); renderReport(await api("run", {suite: state.suite, split: state.split, candidate: $("candidate").value, config: state.config})); }));
+function runOptions() {
+  const slices = {};
+  for (const entry of $("min-slices").value.split(",").map(x => x.trim()).filter(Boolean)) {
+    const match = entry.match(/^(.+)=(0(?:\.\d+)?|1(?:\.0+)?)$/);
+    if (!match) throw new Error("Use slice minimums like retry=1, multilingual=0.8");
+    slices[match[1].trim()] = Number(match[2]);
+  }
+  return {trials: Number($("trials").value), gates: {critical_tags: $("critical-tags").value.split(",").map(x => x.trim()).filter(Boolean), min_slices: slices, fail_on_regression: $("fail-regression").checked}};
+}
+async function refreshHistory() {
+  const runs = (await api("runs")).runs;
+  for (const id of ["history-before", "history-after"]) {
+    const previous = $(id).value; $(id).replaceChildren();
+    for (const run of runs) {
+      const option = document.createElement("option"); option.value = run.id; option.textContent = `${run.suite} · ${run.split} · ${run.candidate} · ${percent(run.score)}${run.imported ? " · imported" : ""} · ${new Date(run.created_at).toLocaleString()}`; $(id).append(option);
+    }
+    if (runs.some(r => r.id === previous)) $(id).value = previous;
+  }
+  if (state.report?.run_id) $("history-after").value = state.report.run_id;
+}
+async function showSaved(payload) { renderReport(payload); await refreshHistory(); }
+$("compare").addEventListener("click", () => task(async () => { applyEditor(); status("Comparing both candidates…"); await showSaved(await api("compare", {suite: state.suite, split: state.split, config: state.config, before: $("before-candidate").value, after: $("candidate").value, ...runOptions()})); }));
+$("run").addEventListener("click", () => task(async () => { applyEditor(); status("Running the selected candidate…"); await showSaved(await api("run", {suite: state.suite, split: state.split, candidate: $("candidate").value, config: state.config, ...runOptions()})); }));
 $("suite").addEventListener("change", () => task(async () => {
   if ((state.dirty || state.editorDirty) && !confirm("Discard this unsaved draft and switch suites? Export or save it first to keep it.")) { $("suite").value = state.suite; return; }
   const previous = state.suite;
@@ -171,10 +235,33 @@ $("import").addEventListener("change", () => task(async () => {
   if (file.size > 1000000) throw new Error("Profile is too large.");
   const config = JSON.parse(await file.text());
   // The shared Python validator checks the entire profile before accepting it.
-  await api("run", {suite: state.suite, split: "dev", candidate: "baseline", config});
-  state.config = config; state.index = 0; markDirty(); drawConfig(); $("import").value = ""; status("Profile imported into the draft. Save tuning to keep it.");
+  state.config = await api("validate-profile", {suite: state.suite, config});
+  state.index = 0; markDirty(); drawConfig(); $("import").value = ""; status("Profile imported into the draft. Save tuning to keep it.");
 }));
 $("filter").addEventListener("change", renderRows);
-$("download-report").addEventListener("click", () => download(`${state.suite}-${state.split}-report.json`, state.report));
+$("download-report").addEventListener("click", () => { const r = state.report.after || state.report; download(`${r.suite}-${r.split}-report.json`, state.report); });
+$("download-html").addEventListener("click", () => task(async () => {
+  const r = state.report.after || state.report;
+  const result = await api("export-html", {report: state.report}); download(`${r.suite}-${r.split}.html`, result.html, "text/html");
+}));
+$("open-run").addEventListener("click", () => task(async () => {
+  if (!$("history-after").value) throw new Error("Run an eval or import a report first.");
+  renderReport(await api(`report?id=${$("history-after").value}`)); $("results-area").scrollIntoView({behavior: "smooth"});
+}));
+$("compare-runs").addEventListener("click", () => task(async () => {
+  await showSaved(await api("compare-runs", {before: $("history-before").value, after: $("history-after").value})); $("results-area").scrollIntoView({behavior: "smooth"});
+}));
+$("import-report").addEventListener("change", () => task(async () => {
+  const file = $("import-report").files[0]; if (!file) return;
+  if (file.size > 20000000) throw new Error("Report exceeds 20 MB.");
+  await showSaved(await api("import-report", {report: JSON.parse(await file.text())}));
+  $("import-report").value = ""; status("Report imported and saved locally.");
+}));
 window.addEventListener("beforeunload", (event) => { if (state.dirty || state.editorDirty) { event.preventDefault(); event.returnValue = ""; } });
-task(async () => { const catalog = await api("suites"); state.catalog = Object.fromEntries(catalog.suites.map(s => [s.id, s])); await loadSuite(); });
+task(async () => {
+  const catalog = await api("suites"); state.catalog = Object.fromEntries(catalog.suites.map(s => [s.id, s]));
+  for (const s of catalog.suites) { const option = document.createElement("option"); option.value = s.id; option.textContent = s.title; $("suite").append(option); }
+  const requestedSuite = new URLSearchParams(location.search).get("suite");
+  if (Object.hasOwn(state.catalog, requestedSuite)) { state.suite = requestedSuite; $("suite").value = requestedSuite; }
+  await loadSuite(); await refreshHistory();
+});

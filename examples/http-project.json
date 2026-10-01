@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "candidates": {
+    "endpoint-v1": {
+      "kind": "http",
+      "url": "http://127.0.0.1:8765/v1/classify",
+      "timeout": 10,
+      "suites": ["classification"]
+    },
+    "endpoint-v2": {
+      "kind": "http",
+      "url": "http://127.0.0.1:8765/v2/classify",
+      "timeout": 10,
+      "suites": ["classification"]
+    }
+  }
+}

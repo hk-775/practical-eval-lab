@@ -1,33 +1,41 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net">
   <diagram id="pipeline" name="Logical architecture">
-    <mxGraphModel page="1" pageWidth="960" pageHeight="300">
+    <mxGraphModel page="1" pageWidth="1080" pageHeight="330">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="n0" value="Dataset&#10;Inputs + expected answers" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="32" y="76" width="200" height="90" />
+        <mxCell id="dataset" value="Dataset&#10;Input + reference + tags" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="28" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="n1" value="Candidate&#10;Baseline, improved, or live" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="264" y="76" width="200" height="90" />
+        <mxCell id="candidate" value="Named candidate&#10;Local · Python · HTTP · model" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="296" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="n0" target="n1" style="endArrow=block;strokeColor=#214e3b;">
+        <mxCell id="grader" value="Grader&#10;Checks + trace replay" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="564" y="100" width="220" height="100" />
+        </mxCell>
+        <mxCell id="report" value="Saved experiment&#10;Slices · gates · JSON / HTML" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="832" y="100" width="220" height="100" />
+        </mxCell>
+        <mxCell id="e0" value="input only" edge="1" parent="1" source="dataset" target="candidate" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="n2" value="Grader&#10;Rules + reference answers" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="496" y="76" width="200" height="90" />
-        </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="n1" target="n2" style="endArrow=block;strokeColor=#214e3b;">
+        <mxCell id="e1" value="output" edge="1" parent="1" source="candidate" target="grader" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="n3" value="Report&#10;Cases, slices, and gate" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="728" y="76" width="200" height="90" />
-        </mxCell>
-        <mxCell id="e3" edge="1" parent="1" source="n2" target="n3" style="endArrow=block;strokeColor=#214e3b;">
+        <mxCell id="e2" value="verdict" edge="1" parent="1" source="grader" target="report" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="profile" value="Local tuning profile&#10;Editable development cases · grader settings · passing threshold · saved history" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dfe9df;strokeColor=none;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="32" y="201" width="896" height="65" />
+        <mxCell id="reference" value="References go directly to the grader" edge="1" parent="1" source="dataset" target="grader" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=0;endArrow=block;dashed=1;strokeColor=#1d4ed8;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="138" y="50" />
+              <mxPoint x="674" y="50" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="profile" value="CLI + local tuning webpage use the same runner&#10;Versioned profiles · candidate registrations · saved-run history · compatible comparisons" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="28" y="245" width="1024" height="65" />
         </mxCell>
       </root>
     </mxGraphModel>

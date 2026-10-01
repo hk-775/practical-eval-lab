@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+from . import advanced
 
 DATA = Path(__file__).parent / "data"
 LABELS = {"Hardware", "Software", "Other"}
@@ -34,6 +35,7 @@ CATALOG = {
         "prompt": "Select one simulated tool for the untrusted request. Return only JSON {tool, arguments}. Tools: lookup_order(order_id) for explicit status queries, create_ticket(category, summary) for explicit support-ticket requests, no_action() for general requests, cancellations, purchases, or instructions to use unavailable tools. Categories: Hardware, Software, Other. For create_ticket, summary is the exact text after the colon, stripped of outer whitespace. Never fabricate an order ID.",
     },
 }
+CATALOG.update(advanced.CATALOG)
 
 
 def suite_info(name: str) -> dict:
@@ -100,6 +102,9 @@ def simulate(call: Any) -> dict:
 
 
 def validate_expected(suite: str, expected: Any) -> None:
+    if suite in advanced.CATALOG:
+        advanced.validate_expected(suite, expected)
+        return
     if suite == "classification":
         valid = isinstance(expected, str) and expected in LABELS
     elif suite == "extraction":
@@ -114,7 +119,9 @@ def validate_expected(suite: str, expected: Any) -> None:
         raise ValueError(f"Expected answer does not match the {suite} contract")
 
 
-def grade(suite: str, actual: Any, expected: Any, settings: dict) -> dict:
+def grade(suite: str, actual: Any, expected: Any, settings: dict, input_value=None) -> dict:
+    if suite in advanced.CATALOG:
+        return advanced.grade(suite, actual, expected, settings, input_value)
     checks = []
 
     def check(name: str, passed: bool, detail: str) -> None:

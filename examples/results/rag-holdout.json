@@ -1,0 +1,1521 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "rag",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.706383+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "58c731d8a6d6625c7d37e293d629e3a398f44551a4a42e7e98d4b6d163bf4175",
+    "grader_hash": "854f711fe803351d3d33de92566b110032a8c8e0864743fbf3bbe8540f6daced",
+    "settings": {
+      "require_retrieval": true
+    },
+    "threshold": 0.8,
+    "score": 0.25,
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "ambiguous-authority": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "answerable": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "critical": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      },
+      "multiple-evidence": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "paraphrase": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "unanswerable": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      }
+    },
+    "results": [
+      {
+        "id": "rag-paraphrase",
+        "input": {
+          "question": "When will my parcel arrive?",
+          "documents": [
+            {
+              "id": "speed",
+              "text": "Shipping takes five days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "speed"
+          ],
+          "answer": "Shipping takes five days."
+        },
+        "tags": [
+          "paraphrase",
+          "answerable"
+        ],
+        "case_id": "rag-paraphrase",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.025,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.051
+      },
+      {
+        "id": "rag-multiple",
+        "input": {
+          "question": "What is the return window?",
+          "documents": [
+            {
+              "id": "a",
+              "text": "The return window is 30 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "b",
+              "text": "The return window is 30 days. Keep the receipt.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "a",
+            "b"
+          ],
+          "answer": "The return window is 30 days."
+        },
+        "tags": [
+          "multiple-evidence"
+        ],
+        "case_id": "rag-multiple",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "a"
+          ],
+          "answer": "The return window is 30 days.",
+          "citations": [
+            "a"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.5
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.023,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.046
+      },
+      {
+        "id": "rag-empty",
+        "input": {
+          "question": "What is the repair hotline?",
+          "documents": [
+            {
+              "id": "hours",
+              "text": "Support hours are 09:00–17:00 UTC.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [],
+          "answer": null
+        },
+        "tags": [
+          "unanswerable",
+          "critical"
+        ],
+        "case_id": "rag-empty",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": true,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.015,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.031
+      },
+      {
+        "id": "rag-conflict",
+        "input": {
+          "question": "What is the exchange window?",
+          "documents": [
+            {
+              "id": "general",
+              "text": "The exchange window is 14 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "specific",
+              "text": "The exchange window is 21 days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "specific"
+          ],
+          "answer": "The exchange window is 21 days."
+        },
+        "tags": [
+          "ambiguous-authority",
+          "critical"
+        ],
+        "case_id": "rag-conflict",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "general"
+          ],
+          "answer": "The exchange window is 14 days.",
+          "citations": [
+            "general"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": false,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.036
+      }
+    ],
+    "trials": 1,
+    "case_count": 4,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "known_documents": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "retrieval": {
+          "passed": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "answer": {
+          "passed": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "citations": {
+          "passed": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "evidence": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        }
+      },
+      "measurements": {
+        "retrieval_recall": {
+          "mean": 0.375,
+          "count": 4
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.02,
+        "p95": 0.025
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.25
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "rag",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.707670+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "58c731d8a6d6625c7d37e293d629e3a398f44551a4a42e7e98d4b6d163bf4175",
+    "grader_hash": "854f711fe803351d3d33de92566b110032a8c8e0864743fbf3bbe8540f6daced",
+    "settings": {
+      "require_retrieval": true
+    },
+    "threshold": 0.8,
+    "score": 0.25,
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "ambiguous-authority": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "answerable": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "critical": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      },
+      "multiple-evidence": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "paraphrase": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "unanswerable": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      }
+    },
+    "results": [
+      {
+        "id": "rag-paraphrase",
+        "input": {
+          "question": "When will my parcel arrive?",
+          "documents": [
+            {
+              "id": "speed",
+              "text": "Shipping takes five days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "speed"
+          ],
+          "answer": "Shipping takes five days."
+        },
+        "tags": [
+          "paraphrase",
+          "answerable"
+        ],
+        "case_id": "rag-paraphrase",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.02,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.042
+      },
+      {
+        "id": "rag-multiple",
+        "input": {
+          "question": "What is the return window?",
+          "documents": [
+            {
+              "id": "a",
+              "text": "The return window is 30 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "b",
+              "text": "The return window is 30 days. Keep the receipt.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "a",
+            "b"
+          ],
+          "answer": "The return window is 30 days."
+        },
+        "tags": [
+          "multiple-evidence"
+        ],
+        "case_id": "rag-multiple",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "a"
+          ],
+          "answer": "The return window is 30 days.",
+          "citations": [
+            "a"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.5
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.027,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.049
+      },
+      {
+        "id": "rag-empty",
+        "input": {
+          "question": "What is the repair hotline?",
+          "documents": [
+            {
+              "id": "hours",
+              "text": "Support hours are 09:00–17:00 UTC.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [],
+          "answer": null
+        },
+        "tags": [
+          "unanswerable",
+          "critical"
+        ],
+        "case_id": "rag-empty",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": true,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.016,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.032
+      },
+      {
+        "id": "rag-conflict",
+        "input": {
+          "question": "What is the exchange window?",
+          "documents": [
+            {
+              "id": "general",
+              "text": "The exchange window is 14 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "specific",
+              "text": "The exchange window is 21 days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "specific"
+          ],
+          "answer": "The exchange window is 21 days."
+        },
+        "tags": [
+          "ambiguous-authority",
+          "critical"
+        ],
+        "case_id": "rag-conflict",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "general"
+          ],
+          "answer": "The exchange window is 14 days.",
+          "citations": [
+            "general"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": false,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.022,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.042
+      }
+    ],
+    "trials": 1,
+    "case_count": 4,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "known_documents": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "retrieval": {
+          "passed": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "answer": {
+          "passed": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "citations": {
+          "passed": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "evidence": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        }
+      },
+      "measurements": {
+        "retrieval_recall": {
+          "mean": 0.375,
+          "count": 4
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.020999999999999998,
+        "p95": 0.027
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.25
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.0,
+  "improved": 0,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "rag-paraphrase",
+      "change": "unchanged",
+      "before": {
+        "id": "rag-paraphrase",
+        "input": {
+          "question": "When will my parcel arrive?",
+          "documents": [
+            {
+              "id": "speed",
+              "text": "Shipping takes five days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "speed"
+          ],
+          "answer": "Shipping takes five days."
+        },
+        "tags": [
+          "paraphrase",
+          "answerable"
+        ],
+        "case_id": "rag-paraphrase",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.025,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.051
+      },
+      "after": {
+        "id": "rag-paraphrase",
+        "input": {
+          "question": "When will my parcel arrive?",
+          "documents": [
+            {
+              "id": "speed",
+              "text": "Shipping takes five days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "speed"
+          ],
+          "answer": "Shipping takes five days."
+        },
+        "tags": [
+          "paraphrase",
+          "answerable"
+        ],
+        "case_id": "rag-paraphrase",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.02,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.042
+      }
+    },
+    {
+      "id": "rag-multiple",
+      "change": "unchanged",
+      "before": {
+        "id": "rag-multiple",
+        "input": {
+          "question": "What is the return window?",
+          "documents": [
+            {
+              "id": "a",
+              "text": "The return window is 30 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "b",
+              "text": "The return window is 30 days. Keep the receipt.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "a",
+            "b"
+          ],
+          "answer": "The return window is 30 days."
+        },
+        "tags": [
+          "multiple-evidence"
+        ],
+        "case_id": "rag-multiple",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "a"
+          ],
+          "answer": "The return window is 30 days.",
+          "citations": [
+            "a"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.5
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.023,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.046
+      },
+      "after": {
+        "id": "rag-multiple",
+        "input": {
+          "question": "What is the return window?",
+          "documents": [
+            {
+              "id": "a",
+              "text": "The return window is 30 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "b",
+              "text": "The return window is 30 days. Keep the receipt.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "a",
+            "b"
+          ],
+          "answer": "The return window is 30 days."
+        },
+        "tags": [
+          "multiple-evidence"
+        ],
+        "case_id": "rag-multiple",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "a"
+          ],
+          "answer": "The return window is 30 days.",
+          "citations": [
+            "a"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.5
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.027,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.049
+      }
+    },
+    {
+      "id": "rag-empty",
+      "change": "unchanged",
+      "before": {
+        "id": "rag-empty",
+        "input": {
+          "question": "What is the repair hotline?",
+          "documents": [
+            {
+              "id": "hours",
+              "text": "Support hours are 09:00–17:00 UTC.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [],
+          "answer": null
+        },
+        "tags": [
+          "unanswerable",
+          "critical"
+        ],
+        "case_id": "rag-empty",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": true,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.015,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.031
+      },
+      "after": {
+        "id": "rag-empty",
+        "input": {
+          "question": "What is the repair hotline?",
+          "documents": [
+            {
+              "id": "hours",
+              "text": "Support hours are 09:00–17:00 UTC.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [],
+          "answer": null
+        },
+        "tags": [
+          "unanswerable",
+          "critical"
+        ],
+        "case_id": "rag-empty",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [],
+          "answer": null,
+          "citations": []
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": true,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": true,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": true,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.016,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.032
+      }
+    },
+    {
+      "id": "rag-conflict",
+      "change": "unchanged",
+      "before": {
+        "id": "rag-conflict",
+        "input": {
+          "question": "What is the exchange window?",
+          "documents": [
+            {
+              "id": "general",
+              "text": "The exchange window is 14 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "specific",
+              "text": "The exchange window is 21 days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "specific"
+          ],
+          "answer": "The exchange window is 21 days."
+        },
+        "tags": [
+          "ambiguous-authority",
+          "critical"
+        ],
+        "case_id": "rag-conflict",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "general"
+          ],
+          "answer": "The exchange window is 14 days.",
+          "citations": [
+            "general"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": false,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.036
+      },
+      "after": {
+        "id": "rag-conflict",
+        "input": {
+          "question": "What is the exchange window?",
+          "documents": [
+            {
+              "id": "general",
+              "text": "The exchange window is 14 days.",
+              "trusted": true,
+              "current": true
+            },
+            {
+              "id": "specific",
+              "text": "The exchange window is 21 days.",
+              "trusted": true,
+              "current": true
+            }
+          ]
+        },
+        "expected": {
+          "relevant_ids": [
+            "specific"
+          ],
+          "answer": "The exchange window is 21 days."
+        },
+        "tags": [
+          "ambiguous-authority",
+          "critical"
+        ],
+        "case_id": "rag-conflict",
+        "trial": 1,
+        "actual": {
+          "retrieved_ids": [
+            "general"
+          ],
+          "answer": "The exchange window is 14 days.",
+          "citations": [
+            "general"
+          ]
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Use retrieved_ids, answer, citations."
+          },
+          {
+            "name": "known_documents",
+            "passed": true,
+            "detail": "Retrieved IDs must exist in the library."
+          },
+          {
+            "name": "retrieval",
+            "passed": false,
+            "detail": "Retrieve every labeled relevant document, or none for an unanswerable question."
+          },
+          {
+            "name": "answer",
+            "passed": false,
+            "detail": "Compare the exact reference sentence or null."
+          },
+          {
+            "name": "citations",
+            "passed": false,
+            "detail": "Every citation must be retrieved and labeled relevant."
+          },
+          {
+            "name": "evidence",
+            "passed": true,
+            "detail": "The complete answer must be an exact span in each trusted, current cited document."
+          }
+        ],
+        "metrics": {
+          "retrieval_recall": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.022,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.042
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": false,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": false
+}

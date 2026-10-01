@@ -1,148 +1,149 @@
 # Practical Eval Lab
 
-Learn evaluation by running a test, inspecting its failures, changing one thing,
-and comparing the results. Three small suites share a Python runner and a local
-webpage where you can tune cases, expected answers, grading rules, and thresholds.
+Six runnable evaluation examples with a local tuning webpage. Learn how to choose
+success criteria, inspect failures, compare application versions, and keep the
+results reproducible. Every example works without an API key.
 
-**Status:** educational starter, licensed under [MIT-0](LICENSE). The default
-candidates are transparent rules, and all bundled data is synthetic. No API key
-is needed for the webpage.
+**Status:** an educational portfolio, staged in a private GitHub repository pending
+publication approval. Original code and synthetic data use [MIT-0](LICENSE).
+The human-preference sample retains its [upstream MIT notice](THIRD_PARTY_NOTICES.md).
 
-## Start the webpage
+## Start in a source checkout
 
-Python 3.10+ and [uv](https://docs.astral.sh/uv/) are required for the locked workflow.
-From the project directory:
+Use Python 3.10+ and [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync --locked
-uv run --locked python server.py
+uv run --locked eval-lab serve
 ```
 
-Open <http://127.0.0.1:8000>. Stop with Ctrl+C. If that port is occupied:
+Open <http://127.0.0.1:8000>. Choose an example and click **Compare candidates**.
+Edit development cases, references, grading settings, or the passing threshold;
+then rerun and save the profile. Stop the server with Ctrl+C.
+
+For an occupied port: `uv run --locked eval-lab serve --port 8766`.
+The dependency-free source workflow also works with `python -m eval_lab serve`.
+The original `server.py` and `eval.py` entry points remain available.
+
+[See the tuning webpage](docs/images/tuning-lab.png).
+
+## Choose a lesson
+
+| Example | Skill demonstrated | Dev / holdout | Walkthrough |
+|---|---|---:|---|
+| Classification | Accuracy, confusion matrix, macro-F1, slice analysis | 20 / 10 | [Classify tickets](examples/classification.md) |
+| Structured extraction | Schema validity versus field correctness | 20 / 10 | [Extract orders](examples/extraction.md) |
+| Tool calling | Tool selection, arguments, outcomes, regressions | 20 / 10 | [Evaluate a tool decision](examples/tool-calling.md) |
+| RAG | Retrieval recall, reference answers, citation evidence, abstention | 8 / 4 | [Retrieve and answer](examples/rag.md) |
+| Response quality | Rubrics, blinded pairwise judging, agreement with human preferences | 6 / 6 | [Calibrate a judge](examples/response-quality.md) |
+| Multi-step agent | Trace replay, authorization, retries, budgets, task completion | 8 / 4 | [Evaluate a workflow](examples/agent.md) |
+
+The 126 cases are teaching material: 114 synthetic cases and 12 attributed human
+preference pairs. Built-in candidates are local rules, not trained models. The
+candidate named `improved` describes an intended change, not a promise of better
+results. Its response-quality holdout score actually regresses.
+
+[Recorded JSON/HTML experiments](examples/results/README.md) ·
+[Learning guide](docs/learning-guide.md) ·
+[Public incidents and proposed evals](docs/incident-case-studies.md)
+
+## Evaluate your application
+
+Compare two named Python candidates without modifying the runner:
 
 ```bash
-uv run --locked python server.py --port 8765
+uv run --locked eval-lab compare --suite classification \
+  --project examples/python-project.json --before app-v1 --after app-v2 \
+  --report reports/application.json --html reports/application.html
 ```
 
-The dependency-free local runner also supports `python3 server.py` and
-`python3 eval.py` for the original starter workflow. Use the locked commands for
-contributions and reproducible checks.
-
-The webpage lets you:
-
-- Run classification, structured extraction, and simulated tool-calling evals.
-- Compare the baseline and improved rules on identical cases.
-- Filter failures, changed results, and regressions; inspect each grader check.
-- Edit, add, and remove development cases; adjust settings and the passing gate.
-- Save profiles locally, restore defaults, and import/export JSON profiles.
-- Download reports with the configuration and dataset/grader fingerprints.
-- Run a separate reserved holdout set with its original configuration.
-
-See the [guided learning exercises](docs/learning-guide.md).
-
-## The three suites
-
-| Suite | Question | Grader | Development cases | Holdout cases |
-|---|---|---|---:|---:|
-| Classification | Is a support ticket Hardware, Software, or Other? | Label match | 20 | 10 |
-| Structured extraction | Did we extract the order fields correctly? | JSON schema and field values | 20 | 10 |
-| Tool calling | Did we select the right tool and arguments? | Call validation and simulated outcome | 20 | 10 |
-
-The improved rules pass all development examples but still fail holdout cases.
-That gap is intentional teaching material, not evidence of general model quality.
-These small authored datasets are not a production benchmark.
-
-## Run from the command line
+Expose those registrations in the webpage:
 
 ```bash
-uv run --locked python -m eval_lab run --suite classification
-uv run --locked python -m eval_lab compare --suite extraction
-uv run --locked python -m eval_lab compare --suite tool_calling --split holdout
-uv run --locked python -m eval_lab run --suite classification \
-  --candidate improved --report reports/classification.json
+uv run --locked eval-lab serve --project examples/python-project.json
 ```
 
-Exit status is `0` when the evaluated candidate clears the gate, `1` when it
-fails, and `2` for invalid configuration. For `compare`, the improved candidate's
-gate determines the exit status; regressions are reported separately.
+A complete local HTTP application and endpoint configurations are included too.
+The [integration guide](docs/integrations.md) covers Python, HTTP, optional OpenAI
+calls, environment-based credentials, and replacing the demonstration application.
+A project file is trusted executable configuration; the browser cannot register
+arbitrary code or endpoints.
 
-Run a profile exported by the webpage:
+## Save and compare evidence
+
+The webpage saves every run and comparison automatically. Reopen saved experiments,
+import JSON reports, compare compatible saved runs, and export standalone HTML.
+Reports include case-level outputs, grader checks, slices, gate decisions, candidate
+identity, fingerprints, candidate/grader timing, and token usage when supplied.
 
 ```bash
-uv run --locked python -m eval_lab compare --suite extraction \
-  --config extraction-profile.json --report reports/comparison.json
+uv run --locked eval-lab compare --suite rag \
+  --report reports/rag.json --html reports/rag.html
+uv run --locked eval-lab export reports/rag.json --html reports/rag.html
+uv run --locked eval-lab run --suite response_quality --candidate improved --trials 3
 ```
 
-Webpage saves live in ignored `local/profiles/`, with older saved versions in
-`local/history/`. The CLI uses bundled data unless you explicitly pass `--config`
-or `--cases`. Restoring defaults preserves saved history but discards unsaved edits.
+Repeated trials expose variability on the same cases; they are not independent
+new test examples. No estimated costs or statistical significance are inferred.
 
-## Evaluate your own function
+Source-checkout state lives in ignored `local/`: `profiles/`, profile `history/`,
+and saved `runs/`. Installed packages use a writable per-user directory. Override
+with `--state-dir PATH` or `EVAL_LAB_HOME`. The CLI uses bundled cases unless given
+`--config` or `--cases`; it never silently loads webpage edits.
 
-```python
-from eval_lab.core import run_eval
-
-
-def my_classifier(ticket):
-    return "Other"  # Replace with your application call.
-
-
-report = run_eval("classification", runner=my_classifier)
-print(report["score"])
-```
-
-Custom cases are lists of `{id, input, expected, tags}` dictionaries. JSONL files
-use one such object per line. The suite validates expected answers before running.
-A candidate error always fails its case, and the remaining cases still run.
-
-## Optional live model evaluation
-
-The existing OpenAI adapter is available through the CLI only. Set
-`OPENAI_API_KEY` through your environment or secret-management workflow; never
-put a key in source, profiles, reports, or the browser. Choose your model explicitly.
-Live runs send case inputs to the provider and may incur API costs.
+## Block a regression in CI
 
 ```bash
-uv sync --locked --extra openai
-uv run --locked --extra openai python -m eval_lab run \
-  --suite extraction --candidate openai --model YOUR_MODEL \
-  --report reports/live-extraction.json
+uv run --locked eval-lab compare --suite tool_calling --split holdout \
+  --fail-on-regression --critical-tag vocabulary --min-slice lookup=1
 ```
 
-Use `--prompt path/to/prompt.txt` to override the suite's instructions. Reports
-record the prompt and requested model. Live model output may vary between runs;
-record repeated measurements when that matters. The adapter has not been exercised
-with paid live calls as part of this milestone. No model quality or cost claims
-are made here.
+This intentionally exits **1** despite the average improving from 50% to 80%:
+one lookup regresses, and critical/slice checks fail. Quality gates apply to the
+candidate after the change; execution failures in either candidate remain errors.
 
-## How it fits together
+| Exit | Meaning |
+|---:|---|
+| 0 | Quality gates pass and candidates executed successfully |
+| 1 | Quality or regression gate failed |
+| 2 | Invalid configuration, incompatible comparison, or file error |
+| 3 | At least one candidate execution failed |
 
-![Dataset, candidate, grader, report, and local tuning profile](docs/architecture/pipeline.svg)
+## Install a built artifact
 
-[Editable diagram](docs/architecture/pipeline.drawio) ·
-[Publication inventory and AWS applicability decision](docs/publication.md)
+```bash
+uv build
+uv tool install ./dist/practical_eval_lab-0.2.0-py3-none-any.whl
+eval-lab serve
+```
 
-Both the CLI and local webpage use the same Python validation, graders, and runner.
-Matched comparisons require the same dataset, grader, split, and threshold.
-The tool simulator has no network or real-world side effects.
+This installs an artifact you build locally. No registry package or GitHub Release
+is claimed. Wheels contain the webpage, datasets, provenance, and license notices.
+Wheel and source-distribution installs are exercised outside the checkout in CI.
 
-## Verify
+## Verify and extend
 
 ```bash
 uv sync --locked
 uv run --locked pytest -q
 uv run --locked playwright install chromium
 uv run --locked python -m scripts.browser_check
+uv run --locked python -m scripts.package_check
+uv run --locked python -m scripts.reproduce_portfolio
 ```
 
-The browser check starts an isolated temporary server and verifies persistence,
-import/export, filters, all suites, holdout regressions, mobile layout, and absence
-of external network requests or WebSockets. CI installs Chromium's Linux dependencies
-with `playwright install --with-deps chromium`.
+CI covers Python 3.10 and 3.14 on Ubuntu and Python 3.13 on Ubuntu, Windows, and macOS, with
+Chromium checks on Ubuntu. Tests exercise grader failure paths, real loopback HTTP
+integration, report persistence/import, gates, packaging, and the six webpage flows.
+The optional OpenAI adapter is tested with a mock response; no paid live call has
+been used to substantiate the bundled results.
 
-[Contributing](CONTRIBUTING.md) · [Support](SUPPORT.md) ·
-[Security](SECURITY.md) · [Community conduct](CODE_OF_CONDUCT.md)
+![Dataset, candidate, grader, report, and local tuning profile](docs/architecture/pipeline.svg)
 
-## License
+[Contracts and extension points](docs/contracts.md) · [Data provenance](docs/data-provenance.md) ·
+[Publication inventory](docs/publication.md) · [Contributing](CONTRIBUTING.md) ·
+[Support](SUPPORT.md) · [Security](SECURITY.md) · [Community conduct](CODE_OF_CONDUCT.md)
 
-[MIT No Attribution (MIT-0)](LICENSE).
+This is a small local toolkit. It does not provide a hosted service, distributed
+execution, general semantic grounding, a validated safety judge, or production
+certification. The walkthroughs state what each grader can and cannot establish.

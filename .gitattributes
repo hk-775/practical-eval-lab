@@ -1,0 +1,3 @@
+examples/results/*.json linguist-generated=true
+examples/results/*.html linguist-generated=true
+eval_lab/web/incidents.html linguist-generated=true

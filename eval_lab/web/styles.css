@@ -850,3 +850,22 @@ h1 span { color:var(--accent); }
 .status-pill { color:var(--ink); border-color:var(--line); }
 select:hover,textarea:hover,input[type=text]:hover { border-color:var(--accent); }
 .grader-editor { border:1px solid var(--line); }
+.experiment-options,.measurement-panel { border-top:1px solid var(--line); padding:12px 0; margin:16px 0; }
+.experiment-options>summary,.measurement-panel>summary { font-size:.88rem; font-weight:700; }
+.experiment-options .control-grid { margin:20px 0; }
+.measurement-panel p { font-size:.85rem; overflow-wrap:anywhere; }
+.history-panel select { max-width:100%; }
+.history-panel { padding:clamp(22px,3.4vw,48px); margin-top:24px; }
+input[type=number],input:not([type]) { font:inherit; color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:12px; width:100%; background:#fff; }
+#case-input { font-family:ui-monospace,SFMono-Regular,monospace; font-size:.86rem; }
+.ticket-cell details { max-width:300px; }
+caption { text-align:left; margin:12px 0; font-weight:700; }
+.case-study-hero { background:#fff; border-top:6px solid var(--accent); padding:26px clamp(22px,6vw,88px) 48px; }
+.case-study-page { margin-top:28px; }
+.incident-card { padding:clamp(22px,3.4vw,48px); margin-bottom:24px; scroll-margin-top:20px; }
+.incident-card h3 { font-size:1.05rem; margin-top:28px; }
+.incident-card p,.incident-card li { max-width:80ch; }
+.incident-card li { margin:10px 0; }
+.incident-card a { overflow-wrap:anywhere; }
+.incident-card .outline-button { display:inline-block; margin-top:20px; text-decoration:none; }
+.incident-card .notice { max-width:none; }

@@ -11,8 +11,8 @@ from eval_lab.store import Conflict, LocalStore
 @pytest.mark.parametrize("suite", CATALOG)
 def test_suites_have_distinct_development_and_holdout_inputs(suite):
     dev, holdout = load_cases(suite), load_cases(suite, "holdout")
-    assert len(dev) == 20 and len(holdout) == 10
-    assert not {c["input"] for c in dev} & {c["input"] for c in holdout}
+    assert len(dev) >= 4 and len(holdout) >= 4
+    assert not {json.dumps(c["input"], sort_keys=True) for c in dev} & {json.dumps(c["input"], sort_keys=True) for c in holdout}
     assert not {c["id"] for c in dev} & {c["id"] for c in holdout}
 
 

@@ -1,0 +1,2335 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "tool_calling",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.694854+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "c83ed18048c9691ed7cf7bf1f88d5705794c324325b5fe72bc2a2a4844af7929",
+    "grader_hash": "1b0a9e36d57f2e6711a2e65c81eb426f18e0e17a341dd186b335f1483e157c87",
+    "settings": {
+      "check_outcome": true
+    },
+    "threshold": 0.8,
+    "score": 0.5,
+    "passed": 5,
+    "failed": 5,
+    "total": 10,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "boundary": {
+        "passed": 0,
+        "total": 3,
+        "accuracy": 0.0
+      },
+      "cancellation": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "lookup": {
+        "passed": 4,
+        "total": 4,
+        "accuracy": 1.0
+      },
+      "missing": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "multilingual": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "negation": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "not-found": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "reference": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "ticket": {
+        "passed": 1,
+        "total": 3,
+        "accuracy": 0.3333333333333333
+      },
+      "typical": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      }
+    },
+    "results": [
+      {
+        "id": "tool-holdout-01",
+        "input": "Track order B-205 please.",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "tags": [
+          "lookup",
+          "typical"
+        ],
+        "case_id": "tool-holdout-01",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.032
+      },
+      {
+        "id": "tool-holdout-02",
+        "input": "What is the status of Z-999?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "tags": [
+          "lookup",
+          "not-found"
+        ],
+        "case_id": "tool-holdout-02",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "tool-holdout-03",
+        "input": "Do not create a ticket: Excel crashes.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "negation"
+        ],
+        "case_id": "tool-holdout-03",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Software",
+            "summary": "Excel crashes."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "tool-holdout-04",
+        "input": "Open a support ticket: The screen is cracked.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "tags": [
+          "ticket",
+          "typical"
+        ],
+        "case_id": "tool-holdout-04",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "tool-holdout-05",
+        "input": "Create a ticket: My headphones have no sound.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "tags": [
+          "ticket",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-05",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.016
+      },
+      {
+        "id": "tool-holdout-06",
+        "input": "Could you locate A-104?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "tags": [
+          "lookup",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-06",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.013
+      },
+      {
+        "id": "tool-holdout-07",
+        "input": "Cancel C-306 please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "cancellation"
+        ],
+        "case_id": "tool-holdout-07",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "C-306"
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.012
+      },
+      {
+        "id": "tool-holdout-08",
+        "input": "Track my order please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "missing",
+          "lookup"
+        ],
+        "case_id": "tool-holdout-08",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.011
+      },
+      {
+        "id": "tool-holdout-09",
+        "input": "A-104 appears in a sample screenshot.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "reference"
+        ],
+        "case_id": "tool-holdout-09",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.001,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.011
+      },
+      {
+        "id": "tool-holdout-10",
+        "input": "File a ticket: Mi teclado no responde.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "tags": [
+          "ticket",
+          "multilingual"
+        ],
+        "case_id": "tool-holdout-10",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.016
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "call_schema": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "tool": {
+          "passed": 7,
+          "total": 10,
+          "rate": 0.7
+        },
+        "arguments": {
+          "passed": 5,
+          "total": 10,
+          "rate": 0.5
+        },
+        "outcome": {
+          "passed": 5,
+          "total": 10,
+          "rate": 0.5
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.0035,
+        "p95": 0.008
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.5
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "tool_calling",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.696093+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "c83ed18048c9691ed7cf7bf1f88d5705794c324325b5fe72bc2a2a4844af7929",
+    "grader_hash": "1b0a9e36d57f2e6711a2e65c81eb426f18e0e17a341dd186b335f1483e157c87",
+    "settings": {
+      "check_outcome": true
+    },
+    "threshold": 0.8,
+    "score": 0.8,
+    "passed": 8,
+    "failed": 2,
+    "total": 10,
+    "passed_gate": true,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": true,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "boundary": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "cancellation": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "lookup": {
+        "passed": 3,
+        "total": 4,
+        "accuracy": 0.75
+      },
+      "missing": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "multilingual": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "negation": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "not-found": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "reference": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "ticket": {
+        "passed": 2,
+        "total": 3,
+        "accuracy": 0.6666666666666666
+      },
+      "typical": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "tool-holdout-01",
+        "input": "Track order B-205 please.",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "tags": [
+          "lookup",
+          "typical"
+        ],
+        "case_id": "tool-holdout-01",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.009,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.028
+      },
+      {
+        "id": "tool-holdout-02",
+        "input": "What is the status of Z-999?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "tags": [
+          "lookup",
+          "not-found"
+        ],
+        "case_id": "tool-holdout-02",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "tool-holdout-03",
+        "input": "Do not create a ticket: Excel crashes.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "negation"
+        ],
+        "case_id": "tool-holdout-03",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.014
+      },
+      {
+        "id": "tool-holdout-04",
+        "input": "Open a support ticket: The screen is cracked.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "tags": [
+          "ticket",
+          "typical"
+        ],
+        "case_id": "tool-holdout-04",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.021
+      },
+      {
+        "id": "tool-holdout-05",
+        "input": "Create a ticket: My headphones have no sound.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "tags": [
+          "ticket",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-05",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "tool-holdout-06",
+        "input": "Could you locate A-104?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "tags": [
+          "lookup",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-06",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.014
+      },
+      {
+        "id": "tool-holdout-07",
+        "input": "Cancel C-306 please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "cancellation"
+        ],
+        "case_id": "tool-holdout-07",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.012
+      },
+      {
+        "id": "tool-holdout-08",
+        "input": "Track my order please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "missing",
+          "lookup"
+        ],
+        "case_id": "tool-holdout-08",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.013
+      },
+      {
+        "id": "tool-holdout-09",
+        "input": "A-104 appears in a sample screenshot.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "reference"
+        ],
+        "case_id": "tool-holdout-09",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.013
+      },
+      {
+        "id": "tool-holdout-10",
+        "input": "File a ticket: Mi teclado no responde.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "tags": [
+          "ticket",
+          "multilingual"
+        ],
+        "case_id": "tool-holdout-10",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.053
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "call_schema": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "tool": {
+          "passed": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "arguments": {
+          "passed": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "outcome": {
+          "passed": 8,
+          "total": 10,
+          "rate": 0.8
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.004,
+        "p95": 0.009
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.8
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.30000000000000004,
+  "improved": 4,
+  "regressed": 1,
+  "changes": [
+    {
+      "id": "tool-holdout-01",
+      "change": "unchanged",
+      "before": {
+        "id": "tool-holdout-01",
+        "input": "Track order B-205 please.",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "tags": [
+          "lookup",
+          "typical"
+        ],
+        "case_id": "tool-holdout-01",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.032
+      },
+      "after": {
+        "id": "tool-holdout-01",
+        "input": "Track order B-205 please.",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "tags": [
+          "lookup",
+          "typical"
+        ],
+        "case_id": "tool-holdout-01",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "B-205"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.009,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.028
+      }
+    },
+    {
+      "id": "tool-holdout-02",
+      "change": "unchanged",
+      "before": {
+        "id": "tool-holdout-02",
+        "input": "What is the status of Z-999?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "tags": [
+          "lookup",
+          "not-found"
+        ],
+        "case_id": "tool-holdout-02",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "tool-holdout-02",
+        "input": "What is the status of Z-999?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "tags": [
+          "lookup",
+          "not-found"
+        ],
+        "case_id": "tool-holdout-02",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "Z-999"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "tool-holdout-03",
+      "change": "improved",
+      "before": {
+        "id": "tool-holdout-03",
+        "input": "Do not create a ticket: Excel crashes.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "negation"
+        ],
+        "case_id": "tool-holdout-03",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Software",
+            "summary": "Excel crashes."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "tool-holdout-03",
+        "input": "Do not create a ticket: Excel crashes.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "negation"
+        ],
+        "case_id": "tool-holdout-03",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.014
+      }
+    },
+    {
+      "id": "tool-holdout-04",
+      "change": "unchanged",
+      "before": {
+        "id": "tool-holdout-04",
+        "input": "Open a support ticket: The screen is cracked.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "tags": [
+          "ticket",
+          "typical"
+        ],
+        "case_id": "tool-holdout-04",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "tool-holdout-04",
+        "input": "Open a support ticket: The screen is cracked.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "tags": [
+          "ticket",
+          "typical"
+        ],
+        "case_id": "tool-holdout-04",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "The screen is cracked."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.021
+      }
+    },
+    {
+      "id": "tool-holdout-05",
+      "change": "unchanged",
+      "before": {
+        "id": "tool-holdout-05",
+        "input": "Create a ticket: My headphones have no sound.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "tags": [
+          "ticket",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-05",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.016
+      },
+      "after": {
+        "id": "tool-holdout-05",
+        "input": "Create a ticket: My headphones have no sound.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "tags": [
+          "ticket",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-05",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "My headphones have no sound."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "tool-holdout-06",
+      "change": "regressed",
+      "before": {
+        "id": "tool-holdout-06",
+        "input": "Could you locate A-104?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "tags": [
+          "lookup",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-06",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.013
+      },
+      "after": {
+        "id": "tool-holdout-06",
+        "input": "Could you locate A-104?",
+        "expected": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "tags": [
+          "lookup",
+          "vocabulary"
+        ],
+        "case_id": "tool-holdout-06",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected lookup_order"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.014
+      }
+    },
+    {
+      "id": "tool-holdout-07",
+      "change": "improved",
+      "before": {
+        "id": "tool-holdout-07",
+        "input": "Cancel C-306 please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "cancellation"
+        ],
+        "case_id": "tool-holdout-07",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "C-306"
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.012
+      },
+      "after": {
+        "id": "tool-holdout-07",
+        "input": "Cancel C-306 please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "cancellation"
+        ],
+        "case_id": "tool-holdout-07",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.012
+      }
+    },
+    {
+      "id": "tool-holdout-08",
+      "change": "unchanged",
+      "before": {
+        "id": "tool-holdout-08",
+        "input": "Track my order please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "missing",
+          "lookup"
+        ],
+        "case_id": "tool-holdout-08",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.011
+      },
+      "after": {
+        "id": "tool-holdout-08",
+        "input": "Track my order please.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "missing",
+          "lookup"
+        ],
+        "case_id": "tool-holdout-08",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.013
+      }
+    },
+    {
+      "id": "tool-holdout-09",
+      "change": "improved",
+      "before": {
+        "id": "tool-holdout-09",
+        "input": "A-104 appears in a sample screenshot.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "reference"
+        ],
+        "case_id": "tool-holdout-09",
+        "trial": 1,
+        "actual": {
+          "tool": "lookup_order",
+          "arguments": {
+            "order_id": "A-104"
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": false,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.001,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.011
+      },
+      "after": {
+        "id": "tool-holdout-09",
+        "input": "A-104 appears in a sample screenshot.",
+        "expected": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "tags": [
+          "boundary",
+          "reference"
+        ],
+        "case_id": "tool-holdout-09",
+        "trial": 1,
+        "actual": {
+          "tool": "no_action",
+          "arguments": {}
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected no_action"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.013
+      }
+    },
+    {
+      "id": "tool-holdout-10",
+      "change": "improved",
+      "before": {
+        "id": "tool-holdout-10",
+        "input": "File a ticket: Mi teclado no responde.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "tags": [
+          "ticket",
+          "multilingual"
+        ],
+        "case_id": "tool-holdout-10",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Other",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": false,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": false,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.016
+      },
+      "after": {
+        "id": "tool-holdout-10",
+        "input": "File a ticket: Mi teclado no responde.",
+        "expected": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "tags": [
+          "ticket",
+          "multilingual"
+        ],
+        "case_id": "tool-holdout-10",
+        "trial": 1,
+        "actual": {
+          "tool": "create_ticket",
+          "arguments": {
+            "category": "Hardware",
+            "summary": "Mi teclado no responde."
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "call_schema",
+            "passed": true,
+            "detail": "The simulated tool accepted the call."
+          },
+          {
+            "name": "tool",
+            "passed": true,
+            "detail": "Expected create_ticket"
+          },
+          {
+            "name": "arguments",
+            "passed": true,
+            "detail": "All argument values must match the reference."
+          },
+          {
+            "name": "outcome",
+            "passed": true,
+            "detail": "Compare simulated side effects or lookup results."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.053
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": true,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": true
+}

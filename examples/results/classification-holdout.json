@@ -1,0 +1,1347 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "classification",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.669492+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "6a702bd60d06f05daf8d1e6495d7b106eeb0e5606b045c35fdac7f2577577fa8",
+    "grader_hash": "4980bf42bfe64d2b690f45b99d749c0d5c7b83de785069758b2846a3f8450ff2",
+    "settings": {
+      "normalize_labels": true
+    },
+    "threshold": 0.8,
+    "score": 0.4,
+    "passed": 4,
+    "failed": 6,
+    "total": 10,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "account": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "business-rule": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "hardware": {
+        "passed": 1,
+        "total": 4,
+        "accuracy": 0.25
+      },
+      "multilingual": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "other": {
+        "passed": 1,
+        "total": 3,
+        "accuracy": 0.3333333333333333
+      },
+      "software": {
+        "passed": 2,
+        "total": 3,
+        "accuracy": 0.6666666666666666
+      },
+      "typical": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "class-holdout-01",
+        "input": "My headset cable is visibly broken.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "typical"
+        ],
+        "case_id": "class-holdout-01",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.022
+      },
+      {
+        "id": "class-holdout-02",
+        "input": "The browser freezes on every page.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "typical"
+        ],
+        "case_id": "class-holdout-02",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.01
+      },
+      {
+        "id": "class-holdout-03",
+        "input": "Please procure a monitor for the new hire.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-03",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.011
+      },
+      {
+        "id": "class-holdout-04",
+        "input": "La pantalla está rota.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-04",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      {
+        "id": "class-holdout-05",
+        "input": "My headphones only play through one ear.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-05",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      {
+        "id": "class-holdout-06",
+        "input": "The operating system cannot boot.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-06",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      {
+        "id": "class-holdout-07",
+        "input": "What is the visitor parking policy?",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "typical"
+        ],
+        "case_id": "class-holdout-07",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      {
+        "id": "class-holdout-08",
+        "input": "The VPN cannot authenticate my account.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "account"
+        ],
+        "case_id": "class-holdout-08",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      {
+        "id": "class-holdout-09",
+        "input": "I want to donate my old laptop.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-09",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      {
+        "id": "class-holdout-10",
+        "input": "Le clavier ne fonctionne plus.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-10",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "label": {
+          "passed": 4,
+          "total": 10,
+          "rate": 0.4
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.002,
+        "p95": 0.006
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.4
+      ],
+      "unstable_cases": 0,
+      "confusion_matrix": {
+        "Hardware": {
+          "Hardware": 1,
+          "Software": 0,
+          "Other": 3,
+          "invalid": 0
+        },
+        "Software": {
+          "Hardware": 0,
+          "Software": 2,
+          "Other": 1,
+          "invalid": 0
+        },
+        "Other": {
+          "Hardware": 2,
+          "Software": 0,
+          "Other": 1,
+          "invalid": 0
+        }
+      },
+      "macro_f1": 0.44523809523809527
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "classification",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.670877+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "6a702bd60d06f05daf8d1e6495d7b106eeb0e5606b045c35fdac7f2577577fa8",
+    "grader_hash": "4980bf42bfe64d2b690f45b99d749c0d5c7b83de785069758b2846a3f8450ff2",
+    "settings": {
+      "normalize_labels": true
+    },
+    "threshold": 0.8,
+    "score": 0.7,
+    "passed": 7,
+    "failed": 3,
+    "total": 10,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "account": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "business-rule": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "hardware": {
+        "passed": 2,
+        "total": 4,
+        "accuracy": 0.5
+      },
+      "multilingual": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      },
+      "other": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "software": {
+        "passed": 2,
+        "total": 3,
+        "accuracy": 0.6666666666666666
+      },
+      "typical": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "class-holdout-01",
+        "input": "My headset cable is visibly broken.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "typical"
+        ],
+        "case_id": "class-holdout-01",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.021
+      },
+      {
+        "id": "class-holdout-02",
+        "input": "The browser freezes on every page.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "typical"
+        ],
+        "case_id": "class-holdout-02",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      },
+      {
+        "id": "class-holdout-03",
+        "input": "Please procure a monitor for the new hire.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-03",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.001,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      {
+        "id": "class-holdout-04",
+        "input": "La pantalla está rota.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-04",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      },
+      {
+        "id": "class-holdout-05",
+        "input": "My headphones only play through one ear.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-05",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      },
+      {
+        "id": "class-holdout-06",
+        "input": "The operating system cannot boot.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-06",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      {
+        "id": "class-holdout-07",
+        "input": "What is the visitor parking policy?",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "typical"
+        ],
+        "case_id": "class-holdout-07",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      {
+        "id": "class-holdout-08",
+        "input": "The VPN cannot authenticate my account.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "account"
+        ],
+        "case_id": "class-holdout-08",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      },
+      {
+        "id": "class-holdout-09",
+        "input": "I want to donate my old laptop.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-09",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      {
+        "id": "class-holdout-10",
+        "input": "Le clavier ne fonctionne plus.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-10",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.011
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "label": {
+          "passed": 7,
+          "total": 10,
+          "rate": 0.7
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.003,
+        "p95": 0.005
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.7
+      ],
+      "unstable_cases": 0,
+      "confusion_matrix": {
+        "Hardware": {
+          "Hardware": 2,
+          "Software": 0,
+          "Other": 2,
+          "invalid": 0
+        },
+        "Software": {
+          "Hardware": 0,
+          "Software": 2,
+          "Other": 1,
+          "invalid": 0
+        },
+        "Other": {
+          "Hardware": 0,
+          "Software": 0,
+          "Other": 3,
+          "invalid": 0
+        }
+      },
+      "macro_f1": 0.7111111111111111
+    }
+  },
+  "delta": 0.29999999999999993,
+  "improved": 3,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "class-holdout-01",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-01",
+        "input": "My headset cable is visibly broken.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "typical"
+        ],
+        "case_id": "class-holdout-01",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.022
+      },
+      "after": {
+        "id": "class-holdout-01",
+        "input": "My headset cable is visibly broken.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "typical"
+        ],
+        "case_id": "class-holdout-01",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.021
+      }
+    },
+    {
+      "id": "class-holdout-02",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-02",
+        "input": "The browser freezes on every page.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "typical"
+        ],
+        "case_id": "class-holdout-02",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.01
+      },
+      "after": {
+        "id": "class-holdout-02",
+        "input": "The browser freezes on every page.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "typical"
+        ],
+        "case_id": "class-holdout-02",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      }
+    },
+    {
+      "id": "class-holdout-03",
+      "change": "improved",
+      "before": {
+        "id": "class-holdout-03",
+        "input": "Please procure a monitor for the new hire.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-03",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.011
+      },
+      "after": {
+        "id": "class-holdout-03",
+        "input": "Please procure a monitor for the new hire.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-03",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.001,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      }
+    },
+    {
+      "id": "class-holdout-04",
+      "change": "improved",
+      "before": {
+        "id": "class-holdout-04",
+        "input": "La pantalla está rota.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-04",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      "after": {
+        "id": "class-holdout-04",
+        "input": "La pantalla está rota.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-04",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      }
+    },
+    {
+      "id": "class-holdout-05",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-05",
+        "input": "My headphones only play through one ear.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-05",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      "after": {
+        "id": "class-holdout-05",
+        "input": "My headphones only play through one ear.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-05",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      }
+    },
+    {
+      "id": "class-holdout-06",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-06",
+        "input": "The operating system cannot boot.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-06",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      "after": {
+        "id": "class-holdout-06",
+        "input": "The operating system cannot boot.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "vocabulary"
+        ],
+        "case_id": "class-holdout-06",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      }
+    },
+    {
+      "id": "class-holdout-07",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-07",
+        "input": "What is the visitor parking policy?",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "typical"
+        ],
+        "case_id": "class-holdout-07",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.008
+      },
+      "after": {
+        "id": "class-holdout-07",
+        "input": "What is the visitor parking policy?",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "typical"
+        ],
+        "case_id": "class-holdout-07",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      }
+    },
+    {
+      "id": "class-holdout-08",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-08",
+        "input": "The VPN cannot authenticate my account.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "account"
+        ],
+        "case_id": "class-holdout-08",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      "after": {
+        "id": "class-holdout-08",
+        "input": "The VPN cannot authenticate my account.",
+        "expected": "Software",
+        "tags": [
+          "software",
+          "account"
+        ],
+        "case_id": "class-holdout-08",
+        "trial": 1,
+        "actual": "Software",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.01
+      }
+    },
+    {
+      "id": "class-holdout-09",
+      "change": "improved",
+      "before": {
+        "id": "class-holdout-09",
+        "input": "I want to donate my old laptop.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-09",
+        "trial": 1,
+        "actual": "Hardware",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      "after": {
+        "id": "class-holdout-09",
+        "input": "I want to donate my old laptop.",
+        "expected": "Other",
+        "tags": [
+          "other",
+          "business-rule"
+        ],
+        "case_id": "class-holdout-09",
+        "trial": 1,
+        "actual": "Other",
+        "passed": true,
+        "checks": [
+          {
+            "name": "label",
+            "passed": true,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      }
+    },
+    {
+      "id": "class-holdout-10",
+      "change": "unchanged",
+      "before": {
+        "id": "class-holdout-10",
+        "input": "Le clavier ne fonctionne plus.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-10",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.009
+      },
+      "after": {
+        "id": "class-holdout-10",
+        "input": "Le clavier ne fonctionne plus.",
+        "expected": "Hardware",
+        "tags": [
+          "hardware",
+          "multilingual"
+        ],
+        "case_id": "class-holdout-10",
+        "trial": 1,
+        "actual": "Other",
+        "passed": false,
+        "checks": [
+          {
+            "name": "label",
+            "passed": false,
+            "detail": "Compare the label; normalization removes outer whitespace and ignores case."
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.011
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": false,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": false
+}

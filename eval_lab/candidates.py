@@ -9,6 +9,8 @@ import re
 from pathlib import Path
 
 from .suites import suite_info
+from .advanced import retrieve, judge_pair, run_agent
+from .integrations import CandidateOutput
 
 
 def classify(text: str, improved: bool = False) -> str:
@@ -87,8 +89,9 @@ def choose_tool(text: str, improved: bool = False) -> dict:
 def make_candidate(suite: str, name: str, *, model: str | None = None, prompt: str | None = None):
     info = suite_info(suite)
     if name in ("baseline", "improved"):
-        fn = {"classification": classify, "extraction": extract, "tool_calling": choose_tool}[suite]
-        fingerprint = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        fn = {"classification": classify, "extraction": extract, "tool_calling": choose_tool,
+              "rag": retrieve, "response_quality": judge_pair, "agent": run_agent}[suite]
+        fingerprint = hashlib.sha256(Path(__file__).read_bytes() + Path(__file__).with_name("advanced.py").read_bytes()).hexdigest()
         return lambda text: fn(text, name == "improved"), {
             "name": name, "kind": "local_rules", "model": None, "source_hash": fingerprint,
         }
@@ -106,8 +109,12 @@ def make_candidate(suite: str, name: str, *, model: str | None = None, prompt: s
     def run(text):
         response = client.responses.create(
             model=model,
-            input=[{"role": "developer", "content": instruction}, {"role": "user", "content": text}],
+            input=[{"role": "developer", "content": instruction}, {"role": "user", "content": text if isinstance(text, str) else json.dumps(text, ensure_ascii=False)}],
         )
-        return response.output_text.strip()
+        usage = response.usage
+        return CandidateOutput(response.output_text.strip(), {
+            "input_tokens": usage.input_tokens, "output_tokens": usage.output_tokens,
+            "total_tokens": usage.total_tokens,
+        } if usage else {}, {"model": response.model, "response_id": response.id})
 
     return run, {"name": name, "kind": "live_model", "model": model, "prompt": instruction}
