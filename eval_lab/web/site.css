@@ -2,12 +2,12 @@
 .site-nav { display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:flex-end; }
 .site-nav a { color:var(--ink); font-size:.82rem; font-weight:700; text-decoration:none; }
 .site-nav a:hover,.site-nav a[aria-current=page] { color:var(--accent); text-decoration:underline; text-underline-offset:5px; }
-.skip-link { position:absolute; left:12px; top:-100px; z-index:10; background:white; padding:12px; }
+.skip-link { position:absolute; left:12px; top:-100px; z-index:10; background:var(--panel); padding:12px; }
 .skip-link:focus { top:12px; }
-.public-notice { margin:0 0 24px; padding:22px 26px; background:var(--ink); color:white; border-radius:16px; }
+.public-notice { margin:0 0 24px; padding:22px 26px; background:var(--cream); color:var(--text-on-light); border-radius:16px; }
 .public-notice h2 { margin:0 0 8px; font-size:1.15rem; }
-.public-notice p { max-width:90ch; margin:0; font-size:.9rem; color:#e2e8f0; }
-.public-notice a { color:#bfdbfe; }
+.public-notice p { max-width:90ch; margin:0; font-size:.9rem; color:var(--text-on-light); }
+.public-notice a { color:var(--navy); text-decoration-color:#00B4D8; text-decoration-thickness:2px; }
 .public-notice p+p { margin-top:10px; }
 html[data-mode=public] .tune-panel,
 html[data-mode=public] .history-panel,
@@ -15,7 +15,7 @@ html[data-mode=public] .experiment-options,
 html[data-mode=public] a[href="#tune-heading"] { display:none; }
 .site-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
 .site-links a { display:inline-flex; text-decoration:none; align-items:center; }
-.docs-hero { background:white; border-top:6px solid var(--accent); padding:26px clamp(22px,6vw,88px) 46px; }
+.docs-hero { background:var(--panel); border-top:6px solid var(--accent); padding:26px clamp(22px,6vw,88px) 46px; }
 .docs-hero .hero-copy { margin-top:42px; }
 .docs-hero h1 { font-size:clamp(2.7rem,5.5vw,4.8rem); max-width:1000px; }
 .docs-shell { margin:28px auto 0; }
@@ -31,12 +31,12 @@ html[data-mode=public] a[href="#tune-heading"] { display:none; }
 .docs-toc a:hover { color:var(--accent); text-decoration:underline; }
 .prose { min-width:0; overflow-wrap:anywhere; }
 .prose p,.prose li { max-width:85ch; }
-.prose h2 { font-family:Georgia,serif; font-weight:500; font-size:2rem; line-height:1.2; margin-top:36px; scroll-margin-top:20px; }
+.prose h2 { font-family:inherit; font-weight:650; font-size:2rem; line-height:1.2; margin-top:36px; scroll-margin-top:20px; }
 .prose h3 { font-size:1.1rem; margin-top:30px; scroll-margin-top:20px; }
 .prose h2:first-child { margin-top:0; }
 .prose li { margin:8px 0; }
 .prose a { color:var(--accent); text-underline-offset:3px; }
-.prose pre { background:#0f172a; color:#e2e8f0; padding:20px; border-radius:12px; line-height:1.7; overflow-x:auto; white-space:pre; font-size:.83rem; }
+.prose pre { background:var(--navy); color:#EAEAEA; padding:20px; border-radius:12px; line-height:1.7; overflow-x:auto; white-space:pre; font-size:.83rem; }
 .prose code { font-family:ui-monospace,SFMono-Regular,monospace; font-size:.87em; }
 .prose p code,.prose li code { background:var(--surface); padding:2px 5px; border-radius:4px; overflow-wrap:anywhere; }
 .prose img { display:block; max-width:100%; height:auto; border:1px solid var(--line); border-radius:12px; }
@@ -51,7 +51,7 @@ html[data-mode=public] a[href="#tune-heading"] { display:none; }
 .lesson-card .site-links a { font-size:.8rem; }
 .docs-footer { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; margin-top:20px; }
 .docs-footer a { color:var(--muted); }
-.architecture-image { width:100%; height:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; background:white; }
+.architecture-image { width:100%; height:auto; border:1px solid var(--line); border-radius:14px; margin:22px 0; background:var(--panel); }
 @media(max-width:1000px) {
   .nav { gap:22px; align-items:flex-start; }
   .site-nav { max-width:510px; }
@@ -69,3 +69,8 @@ html[data-mode=public] a[href="#tune-heading"] { display:none; }
   .prose pre { font-size:.74rem; }
   html[data-mode=public] .hero { min-height:465px; }
 }
+
+/* Reading surfaces use the brand's cream / near-black pair. */
+.docs-panel { --ink:#1A1A1A; --muted:rgba(26,26,26,.74); --panel:#F8F5F0; --surface:rgba(13,27,42,.045); --line:rgba(13,27,42,.22); --accent:#0D1B2A; --accent-hover:#0D1B2A; background:var(--panel); color:var(--ink); color-scheme:light; }
+.docs-panel .prose a,.docs-panel.prose a { text-decoration-color:#00B4D8; text-decoration-thickness:2px; }
+.docs-panel .outline-button { border-color:var(--line); }

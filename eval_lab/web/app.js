@@ -133,7 +133,7 @@ function renderRows() {
     if (comparison) { const before = document.createElement("pre"); before.textContent = pretty(item.before.actual); outputCell.append(badge(item.before.passed ? "PASS" : "FAIL", item.before.passed ? "pass" : "fail"), before); }
     else { const output = document.createElement("pre"); output.textContent = pretty(result.actual); outputCell.append(output); }
     const verdict = cell("", "output-cell"); verdict.append(badge(result.passed ? "PASS" : "FAIL", result.passed ? "pass" : "fail"));
-    if (comparison) { if (item.change !== "unchanged") verdict.append(badge(item.change, item.change === "improved" ? "pass" : "fail")); const actual = document.createElement("pre"); actual.textContent = pretty(result.actual); verdict.append(actual); }
+    if (comparison) { if (item.change !== "unchanged") verdict.append(badge(item.change, item.change === "improved" ? "improved" : "fail")); const actual = document.createElement("pre"); actual.textContent = pretty(result.actual); verdict.append(actual); }
     const details = document.createElement("details"); const summary = document.createElement("summary"); summary.textContent = "Grader checks"; details.append(summary);
     for (const check of result.checks) { const p = document.createElement("p"); p.textContent = `${check.passed ? "✓" : "×"} ${check.name}: ${check.detail}`; details.append(p); }
     verdict.append(details); row.append(inputCell, cell(pretty(result.expected), "expected-cell"), outputCell, verdict); $("results-body").append(row);

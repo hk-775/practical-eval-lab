@@ -5,28 +5,28 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="dataset" value="Dataset&#10;Input + reference + tags" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="dataset" value="Dataset&#10;Input + reference + tags" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F8F5F0;strokeColor=#0D1B2A;fontColor=#1A1A1A;fontSize=16;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="28" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="candidate" value="Named candidate&#10;Local · Python · HTTP · model" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="candidate" value="Named candidate&#10;Local · Python · HTTP · model" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F8F5F0;strokeColor=#0D1B2A;fontColor=#1A1A1A;fontSize=16;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="296" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="grader" value="Grader&#10;Checks + trace replay" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="grader" value="Grader&#10;Checks + trace replay" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F8F5F0;strokeColor=#0D1B2A;fontColor=#1A1A1A;fontSize=16;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="564" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="report" value="Saved experiment&#10;Slices · gates · JSON / HTML" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="report" value="Saved experiment&#10;Slices · gates · JSON / HTML" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F8F5F0;strokeColor=#0D1B2A;fontColor=#1A1A1A;fontSize=16;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="832" y="100" width="220" height="100" />
         </mxCell>
-        <mxCell id="e0" value="input only" edge="1" parent="1" source="dataset" target="candidate" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
+        <mxCell id="e0" value="input only" edge="1" parent="1" source="dataset" target="candidate" style="endArrow=block;strokeColor=#0D1B2A;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="e1" value="output" edge="1" parent="1" source="candidate" target="grader" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
+        <mxCell id="e1" value="output" edge="1" parent="1" source="candidate" target="grader" style="endArrow=block;strokeColor=#0D1B2A;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="e2" value="verdict" edge="1" parent="1" source="grader" target="report" style="endArrow=block;strokeColor=#1d4ed8;fontSize=12;">
+        <mxCell id="e2" value="verdict" edge="1" parent="1" source="grader" target="report" style="endArrow=block;strokeColor=#0D1B2A;fontSize=12;">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="reference" value="References go directly to the grader" edge="1" parent="1" source="dataset" target="grader" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=0;endArrow=block;dashed=1;strokeColor=#1d4ed8;">
+        <mxCell id="reference" value="References go directly to the grader" edge="1" parent="1" source="dataset" target="grader" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=0;endArrow=block;dashed=1;strokeColor=#0D1B2A;">
           <mxGeometry as="geometry" relative="1">
             <Array as="points">
               <mxPoint x="138" y="50" />
@@ -34,7 +34,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="profile" value="CLI + local tuning webpage use the same runner&#10;Versioned profiles · candidate registrations · saved-run history · compatible comparisons" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#1d4ed8;fontColor=#0f172a;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="profile" value="CLI + local tuning webpage use the same runner&#10;Versioned profiles · candidate registrations · saved-run history · compatible comparisons" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F8F5F0;strokeColor=#0D1B2A;fontColor=#1A1A1A;fontSize=16;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="28" y="245" width="1024" height="65" />
         </mxCell>
       </root>

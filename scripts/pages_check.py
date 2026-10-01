@@ -163,6 +163,7 @@ def check_browser(base, screenshots=None):
             expect(page.locator("#suite")).to_have_value("rag")
             page.get_by_role("link", name="Architecture", exact=True).click()
             expect(page.locator("img.architecture-image")).to_be_visible()
+            page.locator("img.architecture-image").evaluate("image => image.decode()")
             assert page.locator("img.architecture-image").evaluate("image => image.complete && image.naturalWidth > 0")
             with page.expect_download() as download:
                 page.get_by_role("link", name="Download editable diagram").click()
