@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>response_quality · baseline → improved — Practical Eval Lab</title><style>
+body{font:16px/1.6 system-ui,sans-serif;color:#14233f;background:#fff;margin:0 auto;padding:32px;max-width:1000px}
+h1,h2,h3{line-height:1.2}h1{color:#075be8}.case{border:1px solid #ccd4e0;padding:20px;margin:20px 0;border-radius:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6fa;padding:16px}summary{cursor:pointer;color:#075be8}
+.score{font-size:24px;font-weight:700}code{overflow-wrap:anywhere}</style>
+<header><p>Practical Eval Lab · saved experiment</p><h1>response_quality · baseline → improved</h1>
+<p class="score">1/6 passed (16.7%) · change -16.7% · 1 regressions</p>
+<p>holdout · 2026-10-01T20:51:14.717393+00:00 · 1 trial(s)</p><p>overall: FAIL</p></header>
+<p>Teaching data; results describe these cases only. Candidate kind: local_rules.
+Imported reports are user-supplied evidence, not authenticated measurements. Review inputs and outputs before sharing.</p>
+<details><summary>Measurements and reproducibility</summary><pre>{
+  &quot;checks&quot;: {
+    &quot;schema&quot;: {
+      &quot;passed&quot;: 6,
+      &quot;total&quot;: 6,
+      &quot;rate&quot;: 1.0
+    },
+    &quot;human_agreement&quot;: {
+      &quot;passed&quot;: 1,
+      &quot;total&quot;: 6,
+      &quot;rate&quot;: 0.16666666666666666
+    }
+  },
+  &quot;measurements&quot;: {
+    &quot;selects_A&quot;: {
+      &quot;mean&quot;: 0.6666666666666666,
+      &quot;count&quot;: 6
+    }
+  },
+  &quot;candidate_latency_ms&quot;: {
+    &quot;median&quot;: 0.0235,
+    &quot;p95&quot;: 0.036
+  },
+  &quot;usage&quot;: {},
+  &quot;usage_coverage&quot;: 0,
+  &quot;trial_scores&quot;: [
+    0.16666666666666666
+  ],
+  &quot;unstable_cases&quot;: 0
+}</pre>
+<p>Dataset <code>0e13bf3590b7a92b81d94ca1415d320b8c74fcc0d78055cb54fa9aee2db903c3</code><br>Grader <code>5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13</code></p>
+<pre>{
+  &quot;name&quot;: &quot;improved&quot;,
+  &quot;kind&quot;: &quot;local_rules&quot;,
+  &quot;model&quot;: null,
+  &quot;source_hash&quot;: &quot;7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20&quot;
+}</pre></details><h2>Case results</h2><article class="case"><h3>hh-535 · FAIL</h3>
+<p>human-preference, multi-turn, noisy-reference</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: Hi, I need to find the area of a circle for math class. Can you help me do that?\n\nAssistant: Sure, it sounds like you’re looking for the circumference. How large is the circle?\n\nHuman: Not the circumference, the area. All I know about the circle is the radius, which is 5.&quot;,
+  &quot;A&quot;: &quot; Alright, that should be easy.  So the area of the circle would be π*r2, right? So I guess you want to know how many square units are in the radius, then just multiply it by two?&quot;,
+  &quot;B&quot;: &quot; Let’s say we use the formula: area= pi * r * r.  The radius is r.  Can you write down what we would need to know to use this formula?&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 178,
+    &quot;B&quot;: 134
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 3.533333333333333,
+    &quot;B&quot;: 4.133333333333333
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-595 · FAIL</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: I&#x27;m going to Poland. Can you help me with the language?&quot;,
+  &quot;A&quot;: &quot; I have access to a dictionary with a bunch of foreign words in Polish, and other words that are related to Polish.&quot;,
+  &quot;B&quot;: &quot; Sure, can you give me an example of something you want to say?&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 115,
+    &quot;B&quot;: 63
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 0.6666666666666666,
+    &quot;B&quot;: -0.5333333333333332
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-603 · FAIL</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: Do you have any suggestions for how I can keep my bread fresh and not stale&quot;,
+  &quot;A&quot;: &quot; You want to know how to keep your bread from becoming stale?&quot;,
+  &quot;B&quot;: &quot; It sounds like the bread you’re making is a sandwich bread, as opposed to a yeast bread. The more common problems are: 1) not allowing the bread to rest long enough before you cut it, which allows for the oxygen inside to escape, and 2) not waiting long enough after it’s cut for the crumbs to be exposed to the air, so they get the same problem with the oxygen escaping.  If you have questions about the science of bread, I’d be happy to help you with that.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 61,
+    &quot;B&quot;: 459
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 5.6,
+    &quot;B&quot;: 11.0
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-53 · FAIL</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: How can I find out who the most popular music artists of 2021 are?&quot;,
+  &quot;A&quot;: &quot; This is something that would be interesting to study.  There are many possible answers.  You could download the numbers of various apps that people use to listen to music, or you could look at the listenership for popular radio stations.  If you do this, I’d recommend comparing them to each other to make sure that their numbers&quot;,
+  &quot;B&quot;: &quot; What country are you in, and what music genre interests you?&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 330,
+    &quot;B&quot;: 61
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 6.466666666666667,
+    &quot;B&quot;: -0.6666666666666665
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-384 · PASS</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: I’m trying to decide what type of couch to buy for the best price&quot;,
+  &quot;A&quot;: &quot; Do you have any idea about what makes a couch good or bad?  I can give you a few pieces of advice about these things.&quot;,
+  &quot;B&quot;: &quot; Do you mean the furniture piece that people use to sit on when watching television or movies, or something else?&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 118,
+    &quot;B&quot;: 113
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 0.06666666666666643,
+    &quot;B&quot;: -6.066666666666666
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-397 · FAIL</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: my child likes sesame street. what are some other similar shows?&quot;,
+  &quot;A&quot;: &quot; Did you know that the TV network Boomerang has a channel devoted entirely to reruns of \&quot;The Simpsons\&quot;?  The Simpsons are a group of animated characters that live in a town called Springfield, who do all sorts of everyday, and not-so-everyday, things.  There are many characters that the kids can get attached to, and kids love singing along with the theme song.  It&#x27;s&quot;,
+  &quot;B&quot;: &quot; Not sure what you mean by “similar shows”.  I can recommend educational videos like the Schoolhouse Rock series?&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 368,
+    &quot;B&quot;: 113
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: -0.6000000000000001,
+    &quot;B&quot;: -2.0666666666666664
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article>
+<details><summary>Data attribution and license</summary><pre>Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:
+
+MIT License
+
+Copyright (c) 2022 Anthropic
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre></details>
+<footer>Standalone report · no scripts, external assets, or model calls</footer></html>

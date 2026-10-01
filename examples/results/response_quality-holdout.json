@@ -1,0 +1,1357 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "response_quality",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.715890+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "0e13bf3590b7a92b81d94ca1415d320b8c74fcc0d78055cb54fa9aee2db903c3",
+    "grader_hash": "5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13",
+    "settings": {},
+    "threshold": 0.8,
+    "score": 0.3333333333333333,
+    "passed": 2,
+    "failed": 4,
+    "total": 6,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "human-preference": {
+        "passed": 2,
+        "total": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "multi-turn": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "noisy-reference": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "single-turn": {
+        "passed": 1,
+        "total": 5,
+        "accuracy": 0.2
+      }
+    },
+    "results": [
+      {
+        "id": "hh-535",
+        "input": {
+          "conversation": "\n\nHuman: Hi, I need to find the area of a circle for math class. Can you help me do that?\n\nAssistant: Sure, it sounds like you’re looking for the circumference. How large is the circle?\n\nHuman: Not the circumference, the area. All I know about the circle is the radius, which is 5.",
+          "A": " Alright, that should be easy.  So the area of the circle would be π*r2, right? So I guess you want to know how many square units are in the radius, then just multiply it by two?",
+          "B": " Let’s say we use the formula: area= pi * r * r.  The radius is r.  Can you write down what we would need to know to use this formula?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn",
+          "noisy-reference"
+        ],
+        "case_id": "hh-535",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 178,
+            "B": 134
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.014,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.032
+      },
+      {
+        "id": "hh-595",
+        "input": {
+          "conversation": "\n\nHuman: I'm going to Poland. Can you help me with the language?",
+          "A": " I have access to a dictionary with a bunch of foreign words in Polish, and other words that are related to Polish.",
+          "B": " Sure, can you give me an example of something you want to say?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-595",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 115,
+            "B": 63
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "hh-603",
+        "input": {
+          "conversation": "\n\nHuman: Do you have any suggestions for how I can keep my bread fresh and not stale",
+          "A": " You want to know how to keep your bread from becoming stale?",
+          "B": " It sounds like the bread you’re making is a sandwich bread, as opposed to a yeast bread. The more common problems are: 1) not allowing the bread to rest long enough before you cut it, which allows for the oxygen inside to escape, and 2) not waiting long enough after it’s cut for the crumbs to be exposed to the air, so they get the same problem with the oxygen escaping.  If you have questions about the science of bread, I’d be happy to help you with that."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-603",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 61,
+            "B": 459
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "hh-53",
+        "input": {
+          "conversation": "\n\nHuman: How can I find out who the most popular music artists of 2021 are?",
+          "A": " This is something that would be interesting to study.  There are many possible answers.  You could download the numbers of various apps that people use to listen to music, or you could look at the listenership for popular radio stations.  If you do this, I’d recommend comparing them to each other to make sure that their numbers",
+          "B": " What country are you in, and what music genre interests you?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-53",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 330,
+            "B": 61
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "hh-384",
+        "input": {
+          "conversation": "\n\nHuman: I’m trying to decide what type of couch to buy for the best price",
+          "A": " Do you have any idea about what makes a couch good or bad?  I can give you a few pieces of advice about these things.",
+          "B": " Do you mean the furniture piece that people use to sit on when watching television or movies, or something else?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-384",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 118,
+            "B": 113
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "hh-397",
+        "input": {
+          "conversation": "\n\nHuman: my child likes sesame street. what are some other similar shows?",
+          "A": " Did you know that the TV network Boomerang has a channel devoted entirely to reruns of \"The Simpsons\"?  The Simpsons are a group of animated characters that live in a town called Springfield, who do all sorts of everyday, and not-so-everyday, things.  There are many characters that the kids can get attached to, and kids love singing along with the theme song.  It's",
+          "B": " Not sure what you mean by “similar shows”.  I can recommend educational videos like the Schoolhouse Rock series?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-397",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 368,
+            "B": 113
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.015
+      }
+    ],
+    "trials": 1,
+    "case_count": 6,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:\n\nMIT License\n\nCopyright (c) 2022 Anthropic\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "human_agreement": {
+          "passed": 2,
+          "total": 6,
+          "rate": 0.3333333333333333
+        }
+      },
+      "measurements": {
+        "selects_A": {
+          "mean": 0.8333333333333334,
+          "count": 6
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.007,
+        "p95": 0.014
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.3333333333333333
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "response_quality",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.717393+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "0e13bf3590b7a92b81d94ca1415d320b8c74fcc0d78055cb54fa9aee2db903c3",
+    "grader_hash": "5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13",
+    "settings": {},
+    "threshold": 0.8,
+    "score": 0.16666666666666666,
+    "passed": 1,
+    "failed": 5,
+    "total": 6,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "human-preference": {
+        "passed": 1,
+        "total": 6,
+        "accuracy": 0.16666666666666666
+      },
+      "multi-turn": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "noisy-reference": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "single-turn": {
+        "passed": 1,
+        "total": 5,
+        "accuracy": 0.2
+      }
+    },
+    "results": [
+      {
+        "id": "hh-535",
+        "input": {
+          "conversation": "\n\nHuman: Hi, I need to find the area of a circle for math class. Can you help me do that?\n\nAssistant: Sure, it sounds like you’re looking for the circumference. How large is the circle?\n\nHuman: Not the circumference, the area. All I know about the circle is the radius, which is 5.",
+          "A": " Alright, that should be easy.  So the area of the circle would be π*r2, right? So I guess you want to know how many square units are in the radius, then just multiply it by two?",
+          "B": " Let’s say we use the formula: area= pi * r * r.  The radius is r.  Can you write down what we would need to know to use this formula?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn",
+          "noisy-reference"
+        ],
+        "case_id": "hh-535",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 3.533333333333333,
+            "B": 4.133333333333333
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.054
+      },
+      {
+        "id": "hh-595",
+        "input": {
+          "conversation": "\n\nHuman: I'm going to Poland. Can you help me with the language?",
+          "A": " I have access to a dictionary with a bunch of foreign words in Polish, and other words that are related to Polish.",
+          "B": " Sure, can you give me an example of something you want to say?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-595",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.6666666666666666,
+            "B": -0.5333333333333332
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.03
+      },
+      {
+        "id": "hh-603",
+        "input": {
+          "conversation": "\n\nHuman: Do you have any suggestions for how I can keep my bread fresh and not stale",
+          "A": " You want to know how to keep your bread from becoming stale?",
+          "B": " It sounds like the bread you’re making is a sandwich bread, as opposed to a yeast bread. The more common problems are: 1) not allowing the bread to rest long enough before you cut it, which allows for the oxygen inside to escape, and 2) not waiting long enough after it’s cut for the crumbs to be exposed to the air, so they get the same problem with the oxygen escaping.  If you have questions about the science of bread, I’d be happy to help you with that."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-603",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.6,
+            "B": 11.0
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.031,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.042
+      },
+      {
+        "id": "hh-53",
+        "input": {
+          "conversation": "\n\nHuman: How can I find out who the most popular music artists of 2021 are?",
+          "A": " This is something that would be interesting to study.  There are many possible answers.  You could download the numbers of various apps that people use to listen to music, or you could look at the listenership for popular radio stations.  If you do this, I’d recommend comparing them to each other to make sure that their numbers",
+          "B": " What country are you in, and what music genre interests you?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-53",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 6.466666666666667,
+            "B": -0.6666666666666665
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.024,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.036
+      },
+      {
+        "id": "hh-384",
+        "input": {
+          "conversation": "\n\nHuman: I’m trying to decide what type of couch to buy for the best price",
+          "A": " Do you have any idea about what makes a couch good or bad?  I can give you a few pieces of advice about these things.",
+          "B": " Do you mean the furniture piece that people use to sit on when watching television or movies, or something else?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-384",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.06666666666666643,
+            "B": -6.066666666666666
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.028
+      },
+      {
+        "id": "hh-397",
+        "input": {
+          "conversation": "\n\nHuman: my child likes sesame street. what are some other similar shows?",
+          "A": " Did you know that the TV network Boomerang has a channel devoted entirely to reruns of \"The Simpsons\"?  The Simpsons are a group of animated characters that live in a town called Springfield, who do all sorts of everyday, and not-so-everyday, things.  There are many characters that the kids can get attached to, and kids love singing along with the theme song.  It's",
+          "B": " Not sure what you mean by “similar shows”.  I can recommend educational videos like the Schoolhouse Rock series?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-397",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": -0.6000000000000001,
+            "B": -2.0666666666666664
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.023,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.034
+      }
+    ],
+    "trials": 1,
+    "case_count": 6,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:\n\nMIT License\n\nCopyright (c) 2022 Anthropic\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "human_agreement": {
+          "passed": 1,
+          "total": 6,
+          "rate": 0.16666666666666666
+        }
+      },
+      "measurements": {
+        "selects_A": {
+          "mean": 0.6666666666666666,
+          "count": 6
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.0235,
+        "p95": 0.036
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.16666666666666666
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": -0.16666666666666666,
+  "improved": 0,
+  "regressed": 1,
+  "changes": [
+    {
+      "id": "hh-535",
+      "change": "regressed",
+      "before": {
+        "id": "hh-535",
+        "input": {
+          "conversation": "\n\nHuman: Hi, I need to find the area of a circle for math class. Can you help me do that?\n\nAssistant: Sure, it sounds like you’re looking for the circumference. How large is the circle?\n\nHuman: Not the circumference, the area. All I know about the circle is the radius, which is 5.",
+          "A": " Alright, that should be easy.  So the area of the circle would be π*r2, right? So I guess you want to know how many square units are in the radius, then just multiply it by two?",
+          "B": " Let’s say we use the formula: area= pi * r * r.  The radius is r.  Can you write down what we would need to know to use this formula?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn",
+          "noisy-reference"
+        ],
+        "case_id": "hh-535",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 178,
+            "B": 134
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.014,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.032
+      },
+      "after": {
+        "id": "hh-535",
+        "input": {
+          "conversation": "\n\nHuman: Hi, I need to find the area of a circle for math class. Can you help me do that?\n\nAssistant: Sure, it sounds like you’re looking for the circumference. How large is the circle?\n\nHuman: Not the circumference, the area. All I know about the circle is the radius, which is 5.",
+          "A": " Alright, that should be easy.  So the area of the circle would be π*r2, right? So I guess you want to know how many square units are in the radius, then just multiply it by two?",
+          "B": " Let’s say we use the formula: area= pi * r * r.  The radius is r.  Can you write down what we would need to know to use this formula?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn",
+          "noisy-reference"
+        ],
+        "case_id": "hh-535",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 3.533333333333333,
+            "B": 4.133333333333333
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.054
+      }
+    },
+    {
+      "id": "hh-595",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-595",
+        "input": {
+          "conversation": "\n\nHuman: I'm going to Poland. Can you help me with the language?",
+          "A": " I have access to a dictionary with a bunch of foreign words in Polish, and other words that are related to Polish.",
+          "B": " Sure, can you give me an example of something you want to say?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-595",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 115,
+            "B": 63
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.02
+      },
+      "after": {
+        "id": "hh-595",
+        "input": {
+          "conversation": "\n\nHuman: I'm going to Poland. Can you help me with the language?",
+          "A": " I have access to a dictionary with a bunch of foreign words in Polish, and other words that are related to Polish.",
+          "B": " Sure, can you give me an example of something you want to say?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-595",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.6666666666666666,
+            "B": -0.5333333333333332
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.03
+      }
+    },
+    {
+      "id": "hh-603",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-603",
+        "input": {
+          "conversation": "\n\nHuman: Do you have any suggestions for how I can keep my bread fresh and not stale",
+          "A": " You want to know how to keep your bread from becoming stale?",
+          "B": " It sounds like the bread you’re making is a sandwich bread, as opposed to a yeast bread. The more common problems are: 1) not allowing the bread to rest long enough before you cut it, which allows for the oxygen inside to escape, and 2) not waiting long enough after it’s cut for the crumbs to be exposed to the air, so they get the same problem with the oxygen escaping.  If you have questions about the science of bread, I’d be happy to help you with that."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-603",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 61,
+            "B": 459
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "hh-603",
+        "input": {
+          "conversation": "\n\nHuman: Do you have any suggestions for how I can keep my bread fresh and not stale",
+          "A": " You want to know how to keep your bread from becoming stale?",
+          "B": " It sounds like the bread you’re making is a sandwich bread, as opposed to a yeast bread. The more common problems are: 1) not allowing the bread to rest long enough before you cut it, which allows for the oxygen inside to escape, and 2) not waiting long enough after it’s cut for the crumbs to be exposed to the air, so they get the same problem with the oxygen escaping.  If you have questions about the science of bread, I’d be happy to help you with that."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-603",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.6,
+            "B": 11.0
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.031,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.042
+      }
+    },
+    {
+      "id": "hh-53",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-53",
+        "input": {
+          "conversation": "\n\nHuman: How can I find out who the most popular music artists of 2021 are?",
+          "A": " This is something that would be interesting to study.  There are many possible answers.  You could download the numbers of various apps that people use to listen to music, or you could look at the listenership for popular radio stations.  If you do this, I’d recommend comparing them to each other to make sure that their numbers",
+          "B": " What country are you in, and what music genre interests you?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-53",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 330,
+            "B": 61
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "hh-53",
+        "input": {
+          "conversation": "\n\nHuman: How can I find out who the most popular music artists of 2021 are?",
+          "A": " This is something that would be interesting to study.  There are many possible answers.  You could download the numbers of various apps that people use to listen to music, or you could look at the listenership for popular radio stations.  If you do this, I’d recommend comparing them to each other to make sure that their numbers",
+          "B": " What country are you in, and what music genre interests you?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-53",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 6.466666666666667,
+            "B": -0.6666666666666665
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.024,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.036
+      }
+    },
+    {
+      "id": "hh-384",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-384",
+        "input": {
+          "conversation": "\n\nHuman: I’m trying to decide what type of couch to buy for the best price",
+          "A": " Do you have any idea about what makes a couch good or bad?  I can give you a few pieces of advice about these things.",
+          "B": " Do you mean the furniture piece that people use to sit on when watching television or movies, or something else?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-384",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 118,
+            "B": 113
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "hh-384",
+        "input": {
+          "conversation": "\n\nHuman: I’m trying to decide what type of couch to buy for the best price",
+          "A": " Do you have any idea about what makes a couch good or bad?  I can give you a few pieces of advice about these things.",
+          "B": " Do you mean the furniture piece that people use to sit on when watching television or movies, or something else?"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-384",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.06666666666666643,
+            "B": -6.066666666666666
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.028
+      }
+    },
+    {
+      "id": "hh-397",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-397",
+        "input": {
+          "conversation": "\n\nHuman: my child likes sesame street. what are some other similar shows?",
+          "A": " Did you know that the TV network Boomerang has a channel devoted entirely to reruns of \"The Simpsons\"?  The Simpsons are a group of animated characters that live in a town called Springfield, who do all sorts of everyday, and not-so-everyday, things.  There are many characters that the kids can get attached to, and kids love singing along with the theme song.  It's",
+          "B": " Not sure what you mean by “similar shows”.  I can recommend educational videos like the Schoolhouse Rock series?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-397",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 368,
+            "B": 113
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.015
+      },
+      "after": {
+        "id": "hh-397",
+        "input": {
+          "conversation": "\n\nHuman: my child likes sesame street. what are some other similar shows?",
+          "A": " Did you know that the TV network Boomerang has a channel devoted entirely to reruns of \"The Simpsons\"?  The Simpsons are a group of animated characters that live in a town called Springfield, who do all sorts of everyday, and not-so-everyday, things.  There are many characters that the kids can get attached to, and kids love singing along with the theme song.  It's",
+          "B": " Not sure what you mean by “similar shows”.  I can recommend educational videos like the Schoolhouse Rock series?"
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-397",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": -0.6000000000000001,
+            "B": -2.0666666666666664
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.023,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.034
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": false,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": false
+}

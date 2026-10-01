@@ -1,0 +1,286 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>extraction · baseline → improved — Practical Eval Lab</title><style>
+body{font:16px/1.6 system-ui,sans-serif;color:#14233f;background:#fff;margin:0 auto;padding:32px;max-width:1000px}
+h1,h2,h3{line-height:1.2}h1{color:#075be8}.case{border:1px solid #ccd4e0;padding:20px;margin:20px 0;border-radius:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6fa;padding:16px}summary{cursor:pointer;color:#075be8}
+.score{font-size:24px;font-weight:700}code{overflow-wrap:anywhere}</style>
+<header><p>Practical Eval Lab · saved experiment</p><h1>extraction · baseline → improved</h1>
+<p class="score">8/10 passed (80.0%) · change +50.0% · 0 regressions</p>
+<p>holdout · 2026-10-01T20:51:14.683451+00:00 · 1 trial(s)</p><p>overall: PASS</p></header>
+<p>Teaching data; results describe these cases only. Candidate kind: local_rules.
+Imported reports are user-supplied evidence, not authenticated measurements. Review inputs and outputs before sharing.</p>
+<details><summary>Measurements and reproducibility</summary><pre>{
+  &quot;checks&quot;: {
+    &quot;json_object&quot;: {
+      &quot;passed&quot;: 10,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 1.0
+    },
+    &quot;schema&quot;: {
+      &quot;passed&quot;: 10,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 1.0
+    },
+    &quot;field:order_id&quot;: {
+      &quot;passed&quot;: 10,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 1.0
+    },
+    &quot;field:quantity&quot;: {
+      &quot;passed&quot;: 8,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 0.8
+    },
+    &quot;field:item&quot;: {
+      &quot;passed&quot;: 8,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 0.8
+    },
+    &quot;field:priority&quot;: {
+      &quot;passed&quot;: 10,
+      &quot;total&quot;: 10,
+      &quot;rate&quot;: 1.0
+    }
+  },
+  &quot;measurements&quot;: {},
+  &quot;candidate_latency_ms&quot;: {
+    &quot;median&quot;: 0.005,
+    &quot;p95&quot;: 0.012
+  },
+  &quot;usage&quot;: {},
+  &quot;usage_coverage&quot;: 0,
+  &quot;trial_scores&quot;: [
+    0.8
+  ],
+  &quot;unstable_cases&quot;: 0
+}</pre>
+<p>Dataset <code>6d0b67864847a451dbbac3bf6491035a711177f22883b6f77d54c2722cb61c03</code><br>Grader <code>7f4a79e5cafae9bdeef6d464191795315b45e142b4ddfb450f758a0b919e8d4c</code></p>
+<pre>{
+  &quot;name&quot;: &quot;improved&quot;,
+  &quot;kind&quot;: &quot;local_rules&quot;,
+  &quot;model&quot;: null,
+  &quot;source_hash&quot;: &quot;7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20&quot;
+}</pre></details><h2>Case results</h2><article class="case"><h3>extract-holdout-01 · PASS</h3>
+<p>typical</p><details><summary>Input and reference</summary><pre>Order S-922: 6 monitors.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;S-922&quot;,
+  &quot;quantity&quot;: 6,
+  &quot;item&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;S-922&quot;,
+  &quot;quantity&quot;: 6,
+  &quot;item&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;S-922&quot;,
+  &quot;quantity&quot;: 6,
+  &quot;item&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;S-922&quot;
+PASS field:quantity: Expected quantity = 6
+PASS field:item: Expected item = &quot;monitor&quot;
+PASS field:priority: Expected priority = &quot;normal&quot;</pre></details></article><article class="case"><h3>extract-holdout-02 · PASS</h3>
+<p>word-number, priority</p><details><summary>Input and reference</summary><pre>Order T-023: four webcams, no rush.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;T-023&quot;,
+  &quot;quantity&quot;: 4,
+  &quot;item&quot;: &quot;webcam&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;T-023&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;T-023&quot;,
+  &quot;quantity&quot;: 4,
+  &quot;item&quot;: &quot;webcam&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;T-023&quot;
+PASS field:quantity: Expected quantity = 4
+PASS field:item: Expected item = &quot;webcam&quot;
+PASS field:priority: Expected priority = &quot;low&quot;</pre></details></article><article class="case"><h3>extract-holdout-03 · FAIL</h3>
+<p>word-number, plural</p><details><summary>Input and reference</summary><pre>Order U-124: six mice.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;U-124&quot;,
+  &quot;quantity&quot;: 6,
+  &quot;item&quot;: &quot;mouse&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;U-124&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;U-124&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;U-124&quot;
+FAIL field:quantity: Expected quantity = 6
+FAIL field:item: Expected item = &quot;mouse&quot;
+PASS field:priority: Expected priority = &quot;normal&quot;</pre></details></article><article class="case"><h3>extract-holdout-04 · PASS</h3>
+<p>case, priority</p><details><summary>Input and reference</summary><pre>Order v-225: 8 CABLES, urgent.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;V-225&quot;,
+  &quot;quantity&quot;: 8,
+  &quot;item&quot;: &quot;cable&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: null,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;V-225&quot;,
+  &quot;quantity&quot;: 8,
+  &quot;item&quot;: &quot;cable&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;V-225&quot;
+PASS field:quantity: Expected quantity = 8
+PASS field:item: Expected item = &quot;cable&quot;
+PASS field:priority: Expected priority = &quot;high&quot;</pre></details></article><article class="case"><h3>extract-holdout-05 · FAIL</h3>
+<p>vocabulary</p><details><summary>Input and reference</summary><pre>Order W-326: 2 printers.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;W-326&quot;,
+  &quot;quantity&quot;: 2,
+  &quot;item&quot;: &quot;printer&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;W-326&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;W-326&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;W-326&quot;
+FAIL field:quantity: Expected quantity = 2
+FAIL field:item: Expected item = &quot;printer&quot;
+PASS field:priority: Expected priority = &quot;normal&quot;</pre></details></article><article class="case"><h3>extract-holdout-06 · PASS</h3>
+<p>priority</p><details><summary>Input and reference</summary><pre>Order X-427: 3 keyboards, low priority.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;X-427&quot;,
+  &quot;quantity&quot;: 3,
+  &quot;item&quot;: &quot;keyboard&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;X-427&quot;,
+  &quot;quantity&quot;: 3,
+  &quot;item&quot;: &quot;keyboard&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;X-427&quot;,
+  &quot;quantity&quot;: 3,
+  &quot;item&quot;: &quot;keyboard&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;X-427&quot;
+PASS field:quantity: Expected quantity = 3
+PASS field:item: Expected item = &quot;keyboard&quot;
+PASS field:priority: Expected priority = &quot;low&quot;</pre></details></article><article class="case"><h3>extract-holdout-07 · PASS</h3>
+<p>negation, priority</p><details><summary>Input and reference</summary><pre>Order Y-528: 1 headset, not urgent.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;Y-528&quot;,
+  &quot;quantity&quot;: 1,
+  &quot;item&quot;: &quot;headset&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;Y-528&quot;,
+  &quot;quantity&quot;: 1,
+  &quot;item&quot;: &quot;headset&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;Y-528&quot;,
+  &quot;quantity&quot;: 1,
+  &quot;item&quot;: &quot;headset&quot;,
+  &quot;priority&quot;: &quot;low&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;Y-528&quot;
+PASS field:quantity: Expected quantity = 1
+PASS field:item: Expected item = &quot;headset&quot;
+PASS field:priority: Expected priority = &quot;low&quot;</pre></details></article><article class="case"><h3>extract-holdout-08 · PASS</h3>
+<p>missing, word-number</p><details><summary>Input and reference</summary><pre>Please send five monitors ASAP.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: null,
+  &quot;quantity&quot;: 5,
+  &quot;item&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: null,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: null,
+  &quot;quantity&quot;: 5,
+  &quot;item&quot;: &quot;monitor&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = null
+PASS field:quantity: Expected quantity = 5
+PASS field:item: Expected item = &quot;monitor&quot;
+PASS field:priority: Expected priority = &quot;high&quot;</pre></details></article><article class="case"><h3>extract-holdout-09 · PASS</h3>
+<p>missing</p><details><summary>Input and reference</summary><pre>Order Z-629 was recorded.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;Z-629&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;Z-629&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;Z-629&quot;,
+  &quot;quantity&quot;: null,
+  &quot;item&quot;: null,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;Z-629&quot;
+PASS field:quantity: Expected quantity = null
+PASS field:item: Expected item = null
+PASS field:priority: Expected priority = &quot;normal&quot;</pre></details></article><article class="case"><h3>extract-holdout-10 · PASS</h3>
+<p>typical</p><details><summary>Input and reference</summary><pre>Order A-730: 7 webcams, normal priority.</pre><h4>Reference</h4><pre>{
+  &quot;order_id&quot;: &quot;A-730&quot;,
+  &quot;quantity&quot;: 7,
+  &quot;item&quot;: &quot;webcam&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;order_id&quot;: &quot;A-730&quot;,
+  &quot;quantity&quot;: 7,
+  &quot;item&quot;: &quot;webcam&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><h4>Output</h4><pre>{
+  &quot;order_id&quot;: &quot;A-730&quot;,
+  &quot;quantity&quot;: 7,
+  &quot;item&quot;: &quot;webcam&quot;,
+  &quot;priority&quot;: &quot;normal&quot;
+}</pre><details><summary>Grader checks</summary><pre>PASS json_object: Output must be a JSON object.
+PASS schema: Check required fields and types; a boolean is not an integer.
+PASS field:order_id: Expected order_id = &quot;A-730&quot;
+PASS field:quantity: Expected quantity = 7
+PASS field:item: Expected item = &quot;webcam&quot;
+PASS field:priority: Expected priority = &quot;normal&quot;</pre></details></article>
+<details><summary>Data attribution and license</summary><pre>Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.</pre></details>
+<footer>Standalone report · no scripts, external assets, or model calls</footer></html>

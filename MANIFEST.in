@@ -1,0 +1,7 @@
+include LICENSE README.md THIRD_PARTY_NOTICES.md uv.lock
+include eval.py server.py cases.jsonl prompt.txt
+include CONTRIBUTING.md SUPPORT.md SECURITY.md CODE_OF_CONDUCT.md
+recursive-include docs *.md *.svg *.drawio *.png
+recursive-include examples *.json *.html *.md
+recursive-include scripts *.py
+recursive-include tests *.py

@@ -8,27 +8,36 @@
 </head>
 <body>
 <header class="hero">
-<nav class="nav"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">E</span>Practical Eval Lab</a><span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Synthetic data · Local rules</span></nav>
-<div class="hero-copy"><p class="eyebrow">An evaluation workshop</p><h1>Make the test.<br><span>Understand the result.</span></h1><p class="hero-description">Explore three kinds of evals. Change a case, inspect the grader, and see exactly where a candidate improves—or fails.</p></div>
+<nav class="nav"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">E</span>Practical Eval Lab</a><span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Six examples · Offline by default</span></nav>
+<div class="hero-copy"><p class="eyebrow">An evaluation workshop</p><h1>Make the test.<br><span>Understand the result.</span></h1><p class="hero-description">Explore six kinds of evals. Change a case, inspect the grader, and see exactly where a candidate improves—or fails.</p><a class="text-button" href="./incidents.html">Learn from public incidents →</a></div>
 </header>
 <main class="page-shell">
 <section class="panel runner-panel" aria-labelledby="suite-heading">
 <div class="section-heading"><div><p class="section-number">01 · EXPERIMENT</p><h2 id="suite-heading">Choose your eval</h2><p id="suite-description"></p></div><span class="tag" id="grader-name"></span></div>
 <div class="control-grid">
-<label>Eval suite<select id="suite" data-lock><option value="classification">Classification</option><option value="extraction">Structured extraction</option><option value="tool_calling">Tool calling</option></select></label>
+<label>Eval suite<select id="suite" data-lock></select></label>
 <label>Dataset<select id="split" data-lock><option value="dev">Development · editable</option><option value="holdout">Holdout · bundled cases</option></select></label>
-<label>Candidate<select id="candidate" data-lock><option value="baseline">Baseline rules</option><option value="improved">Improved rules</option></select></label>
+<label>Candidate<select id="candidate" data-lock></select></label>
 <label class="threshold-control">Passing threshold<span class="range-row"><input id="threshold" data-lock type="range" min="0" max="1" step="0.05" value="0.80"><output id="threshold-value">80%</output></span></label>
 </div>
+<details class="experiment-options"><summary>Comparison, repeated trials, and CI gates</summary><div class="control-grid">
+<label>Compare from<select id="before-candidate" data-lock></select></label>
+<label>Trials per case<input id="trials" data-lock type="number" min="1" max="20" value="1"></label>
+<label>Critical tags<input id="critical-tags" data-lock placeholder="critical, safety"></label>
+<label>Slice minimums<input id="min-slices" data-lock placeholder="retry=1, multilingual=0.8"></label>
+</div><label class="check-control"><input id="fail-regression" data-lock type="checkbox"><span>Fail the comparison if any execution regresses</span></label>
+<p class="muted">Repeated trials show variability on the same cases; they do not add independent test cases. Registered Python/HTTP candidates invoke your application when run.</p></details>
 <p id="dataset-note" class="muted"></p>
-<div class="action-row"><button class="primary-button" id="compare" data-lock>Compare baseline → improved</button><button class="outline-button" id="run" data-lock>Run selected candidate</button><a class="text-button" href="#tune-heading">Tune this eval ↓</a><button class="text-button" id="download-report" disabled>Download report</button></div>
+<div class="action-row"><button class="primary-button" id="compare" data-lock>Compare candidates</button><button class="outline-button" id="run" data-lock>Run selected candidate</button><a class="text-button" href="#tune-heading">Tune this eval ↓</a><button class="text-button" id="download-report" disabled>Download report</button><button class="text-button" id="download-html" disabled>Share as HTML</button></div>
 <p class="run-status" id="status" role="status" aria-live="polite">Loading the local lab…</p>
 <div id="results-area" hidden>
+<p id="report-origin" class="notice" hidden></p>
 <div class="metric-grid"><article class="metric-card score-card"><p id="score-label">Pass rate</p><strong id="score">—</strong><span id="score-detail"></span></article><article class="metric-card"><p id="change-label">Change</p><strong id="change">—</strong><span id="change-detail"></span></article><article class="metric-card"><p>Passing gate</p><strong id="gate">—</strong><span id="gate-detail"></span></article></div>
 <div class="results-toolbar"><div><h3>Read every failure</h3><p id="report-context"></p></div><label>Show cases<select id="filter"><option value="all">All cases</option><option value="failed">Failures</option><option value="changed">Changed results</option><option value="regressed">Regressions</option></select></label></div>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable case results"><table><thead><tr><th scope="col">Case</th><th scope="col">Expected</th><th scope="col" id="before-heading">Baseline</th><th scope="col">Result</th></tr></thead><tbody id="results-body"></tbody></table></div>
 <p id="empty-results" class="muted" hidden>No cases match this filter.</p>
 <div class="slice-section"><div><p class="section-number">LOOK BENEATH THE AVERAGE</p><h3>Scores by tag</h3></div><div id="slice-grid" class="slice-grid"></div></div>
+<details class="measurement-panel"><summary>Measurement details · checks, latency, usage, and repeatability</summary><div id="measurements"></div></details>
 </div>
 </section>
 <section class="panel tune-panel" aria-labelledby="tune-heading">
@@ -37,15 +46,21 @@
 <fieldset id="editor-fields">
 <div class="tuning-grid"><div class="case-editor">
 <div class="action-row"><label class="grow">Edit case<select id="case-picker" data-lock></select></label><button class="outline-button" id="add-case" data-lock>Add case</button></div>
-<label for="case-input">Input</label><textarea id="case-input" data-lock rows="3" maxlength="5000"></textarea>
+<label for="case-input" id="input-label">Input</label><textarea id="case-input" data-lock rows="5" maxlength="20000"></textarea>
 <label for="case-expected" id="expected-label">Expected answer</label><textarea id="case-expected" data-lock rows="4" spellcheck="false"></textarea>
 <label for="case-tags">Tags <span class="muted">· comma separated</span></label><input id="case-tags" data-lock type="text">
 <div class="action-row"><button class="outline-button" id="apply-case" data-lock>Apply case to draft</button><button class="text-button danger" id="delete-case" data-lock>Remove case</button></div>
-</div><aside class="grader-editor"><p class="section-number">GRADING SETTINGS</p><div id="settings"></div><p class="notice">Changing the passing threshold changes the gate, not the score. Changing expected answers or grading rules changes the test itself.</p><h3>What to notice</h3><p id="lesson"></p><p class="muted">The two candidates are deterministic rules. Editing an eval does not train or improve them. Live model runs are available separately through the command line.</p></aside></div>
+</div><aside class="grader-editor"><p class="section-number">GRADING SETTINGS</p><div id="settings"></div><p class="notice">Changing the passing threshold changes the gate, not the score. Changing expected answers or grading rules changes the test itself.</p><h3>What to notice</h3><p id="lesson"></p><p class="muted">The bundled candidates are deterministic rules. Editing an eval does not train them. Registered candidates run your application; direct OpenAI runs use the command line.</p></aside></div>
 <div class="save-bar"><button class="primary-button" id="save" data-lock>Save tuning</button><button class="outline-button" id="export" data-lock>Export profile</button><label class="outline-button file-label">Import profile<input id="import" data-lock type="file" accept=".json,application/json"></label><button class="text-button" id="reset" data-lock>Restore bundled defaults</button></div>
 </fieldset>
-<p class="muted small">Saved profiles stay on this computer. Earlier versions are kept in the local history folder. Run results can be downloaded as JSON.</p>
+<p class="muted small">Saved profiles and experiments stay on this computer. Earlier profiles remain in the history folder.</p>
 </section>
-<footer><p>Run → inspect → change → compare</p><p>All bundled examples are synthetic. The webpage makes no model API calls.</p></footer>
+<section class="panel history-panel" aria-labelledby="history-heading">
+<div class="section-heading"><div><p class="section-number">03 · SAVED EXPERIMENTS</p><h2 id="history-heading">Keep the evidence.</h2><p>Reopen an experiment, import a JSON report, or compare compatible saved runs. For saved comparisons, the candidate after the change is used.</p></div></div>
+<div class="control-grid"><label>Before saved run<select id="history-before" data-lock></select></label><label>Selected saved run<select id="history-after" data-lock></select></label></div>
+<div class="action-row"><button id="open-run" class="outline-button" data-lock>Open selected run</button><button id="compare-runs" class="outline-button" data-lock>Compare saved runs</button><label class="outline-button file-label">Import report<input id="import-report" data-lock type="file" accept=".json,application/json"></label></div>
+<p class="muted small">Latest 200 experiments shown. Imported reports are user-supplied evidence and are not authenticated. Review case content before sharing.</p>
+</section>
+<footer><p>Run → inspect → change → compare</p><p>Five synthetic examples and a small, attributed Anthropic human-preference sample. Built-in candidates run offline.</p></footer>
 </main>
 </body></html>

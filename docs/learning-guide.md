@@ -6,7 +6,7 @@ decision rule. This lab makes each part visible.
 ## 1. Classification: read failures before improving rules
 
 Start the webpage with `uv run --locked python server.py`, choose Classification,
-and click **Compare baseline → improved**.
+and click **Compare candidates**.
 
 The baseline passes 14 of 20 development cases. The improved rules pass 20.
 Filter to **Changed results** and inspect the Spanish ticket and procurement
@@ -114,13 +114,12 @@ Pass rate is the fraction of cases passing **every** enabled check. Slice scores
 show the numerator and denominator because these samples are tiny. Tags overlap;
 their totals should not be added together.
 
-These 90 examples are authored, synthetic teaching data. Both rule candidates
+The original three suites contain 90 synthetic teaching examples. Both rule candidates
 were developed for this lab. Holdout is a reserved teaching split in a public
 repository, not a secret benchmark or a guarantee against contamination.
 The guide discusses its failures openly. For a real product, collect a larger,
 representative dataset and reserve fresh examples before tuning.
 
-Do not judge an open-ended answer using exact text equality just because this
-lab uses deterministic graders. A later response-quality suite would need an
-explicit rubric, human labels, and checks of any model judge's agreement with
-those labels.
+Continue with the [RAG](../examples/rag.md), [response-quality](../examples/response-quality.md), and [agent](../examples/agent.md) walkthroughs. They separate evidence, human agreement, and workflow completion. Inspect saved runs, measurement details, and standalone HTML exports in the webpage.
+
+Do not use exact text equality as a general judge of open-ended quality. The RAG grader is explicitly extractive; the response-quality example uses real human preferences with documented limitations.

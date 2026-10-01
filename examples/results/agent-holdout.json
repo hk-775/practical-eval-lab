@@ -1,0 +1,1727 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "agent",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.726739+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "7733052626a5c754339e5f185de98f09ca88e018db0954cd8b2073e5cfc2c9c5",
+    "grader_hash": "8ed15f453523fc8778082785bbd46add899da329d8e3f6ab69a7edb5c6e5b3f8",
+    "settings": {
+      "require_final_state": true
+    },
+    "threshold": 0.8,
+    "score": 0.25,
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "boundary": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "budget": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "critical": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      },
+      "eligibility": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "retry": {
+        "passed": 0,
+        "total": 2,
+        "accuracy": 0.0
+      },
+      "unsupported": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "agent-boundary",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-boundary",
+            "delivered": true,
+            "age_days": 30,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "create_return": 1
+          },
+          "budget": 5
+        },
+        "expected": {
+          "final": "returned"
+        },
+        "tags": [
+          "retry",
+          "boundary"
+        ],
+        "case_id": "agent-boundary",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": false,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": false,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 3
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.014,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.041
+      },
+      {
+        "id": "agent-nonreturnable",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-nonreturnable",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": false,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "declined"
+        },
+        "tags": [
+          "eligibility",
+          "critical"
+        ],
+        "case_id": "agent-nonreturnable",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "eligible": false
+              }
+            }
+          ],
+          "final": "declined"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 2
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.027
+      },
+      {
+        "id": "agent-purchase",
+        "input": {
+          "request": "purchase",
+          "order": {
+            "id": "R-purchase",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "no_action"
+        },
+        "tags": [
+          "unsupported",
+          "critical"
+        ],
+        "case_id": "agent-purchase",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "error": "rejected"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": false,
+            "detail": "Return is unauthorized, unchecked, or duplicated"
+          },
+          {
+            "name": "goal",
+            "passed": false,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": false,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 3
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.028
+      },
+      {
+        "id": "agent-exhausted",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-exhausted",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "lookup_order": 2,
+            "check_eligibility": 2
+          },
+          "budget": 4
+        },
+        "expected": {
+          "final": "unavailable"
+        },
+        "tags": [
+          "budget",
+          "retry"
+        ],
+        "case_id": "agent-exhausted",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 4 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": false,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 1
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.025
+      }
+    ],
+    "trials": 1,
+    "case_count": 4,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "budget": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "trace": {
+          "passed": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "goal": {
+          "passed": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "termination": {
+          "passed": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "final_state": {
+          "passed": 3,
+          "total": 4,
+          "rate": 0.75
+        }
+      },
+      "measurements": {
+        "tool_calls": {
+          "mean": 2.25,
+          "count": 4
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.008,
+        "p95": 0.014
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.25
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "agent",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.728010+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "7733052626a5c754339e5f185de98f09ca88e018db0954cd8b2073e5cfc2c9c5",
+    "grader_hash": "8ed15f453523fc8778082785bbd46add899da329d8e3f6ab69a7edb5c6e5b3f8",
+    "settings": {
+      "require_final_state": true
+    },
+    "threshold": 0.8,
+    "score": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "passed_gate": true,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": true,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "boundary": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "budget": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "critical": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "eligibility": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "retry": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "unsupported": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      }
+    },
+    "results": [
+      {
+        "id": "agent-boundary",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-boundary",
+            "delivered": true,
+            "age_days": 30,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "create_return": 1
+          },
+          "budget": 5
+        },
+        "expected": {
+          "final": "returned"
+        },
+        "tags": [
+          "retry",
+          "boundary"
+        ],
+        "case_id": "agent-boundary",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "return_created": true
+              }
+            }
+          ],
+          "final": "returned"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 4
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.01,
+        "latency_ms": 0.052
+      },
+      {
+        "id": "agent-nonreturnable",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-nonreturnable",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": false,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "declined"
+        },
+        "tags": [
+          "eligibility",
+          "critical"
+        ],
+        "case_id": "agent-nonreturnable",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "eligible": false
+              }
+            }
+          ],
+          "final": "declined"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 2
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.028
+      },
+      {
+        "id": "agent-purchase",
+        "input": {
+          "request": "purchase",
+          "order": {
+            "id": "R-purchase",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "no_action"
+        },
+        "tags": [
+          "unsupported",
+          "critical"
+        ],
+        "case_id": "agent-purchase",
+        "trial": 1,
+        "actual": {
+          "trace": [],
+          "final": "no_action"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "agent-exhausted",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-exhausted",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "lookup_order": 2,
+            "check_eligibility": 2
+          },
+          "budget": 4
+        },
+        "expected": {
+          "final": "unavailable"
+        },
+        "tags": [
+          "budget",
+          "retry"
+        ],
+        "case_id": "agent-exhausted",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 4 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": true,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 4
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.009,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.032
+      }
+    ],
+    "trials": 1,
+    "case_count": 4,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "budget": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "trace": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "goal": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "final_state": {
+          "passed": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "termination": {
+          "passed": 1,
+          "total": 1,
+          "rate": 1.0
+        }
+      },
+      "measurements": {
+        "tool_calls": {
+          "mean": 2.5,
+          "count": 4
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.0085,
+        "p95": 0.017
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        1
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.75,
+  "improved": 3,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "agent-boundary",
+      "change": "improved",
+      "before": {
+        "id": "agent-boundary",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-boundary",
+            "delivered": true,
+            "age_days": 30,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "create_return": 1
+          },
+          "budget": 5
+        },
+        "expected": {
+          "final": "returned"
+        },
+        "tags": [
+          "retry",
+          "boundary"
+        ],
+        "case_id": "agent-boundary",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": false,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": false,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 3
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.014,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.041
+      },
+      "after": {
+        "id": "agent-boundary",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-boundary",
+            "delivered": true,
+            "age_days": 30,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "create_return": 1
+          },
+          "budget": 5
+        },
+        "expected": {
+          "final": "returned"
+        },
+        "tags": [
+          "retry",
+          "boundary"
+        ],
+        "case_id": "agent-boundary",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-boundary"
+              },
+              "result": {
+                "return_created": true
+              }
+            }
+          ],
+          "final": "returned"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 4
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.017,
+        "grader_latency_ms": 0.01,
+        "latency_ms": 0.052
+      }
+    },
+    {
+      "id": "agent-nonreturnable",
+      "change": "unchanged",
+      "before": {
+        "id": "agent-nonreturnable",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-nonreturnable",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": false,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "declined"
+        },
+        "tags": [
+          "eligibility",
+          "critical"
+        ],
+        "case_id": "agent-nonreturnable",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "eligible": false
+              }
+            }
+          ],
+          "final": "declined"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 2
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.027
+      },
+      "after": {
+        "id": "agent-nonreturnable",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-nonreturnable",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": false,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "declined"
+        },
+        "tags": [
+          "eligibility",
+          "critical"
+        ],
+        "case_id": "agent-nonreturnable",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-nonreturnable"
+              },
+              "result": {
+                "eligible": false
+              }
+            }
+          ],
+          "final": "declined"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 2
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.028
+      }
+    },
+    {
+      "id": "agent-purchase",
+      "change": "improved",
+      "before": {
+        "id": "agent-purchase",
+        "input": {
+          "request": "purchase",
+          "order": {
+            "id": "R-purchase",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "no_action"
+        },
+        "tags": [
+          "unsupported",
+          "critical"
+        ],
+        "case_id": "agent-purchase",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "eligible": true
+              }
+            },
+            {
+              "tool": "create_return",
+              "arguments": {
+                "order_id": "R-purchase"
+              },
+              "result": {
+                "error": "rejected"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": false,
+            "detail": "Return is unauthorized, unchecked, or duplicated"
+          },
+          {
+            "name": "goal",
+            "passed": false,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": false,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 3
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.028
+      },
+      "after": {
+        "id": "agent-purchase",
+        "input": {
+          "request": "purchase",
+          "order": {
+            "id": "R-purchase",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {},
+          "budget": 5
+        },
+        "expected": {
+          "final": "no_action"
+        },
+        "tags": [
+          "unsupported",
+          "critical"
+        ],
+        "case_id": "agent-purchase",
+        "trial": 1,
+        "actual": {
+          "trace": [],
+          "final": "no_action"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 5 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.003,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "agent-exhausted",
+      "change": "improved",
+      "before": {
+        "id": "agent-exhausted",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-exhausted",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "lookup_order": 2,
+            "check_eligibility": 2
+          },
+          "budget": 4
+        },
+        "expected": {
+          "final": "unavailable"
+        },
+        "tags": [
+          "budget",
+          "retry"
+        ],
+        "case_id": "agent-exhausted",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 4 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": false,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 1
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.025
+      },
+      "after": {
+        "id": "agent-exhausted",
+        "input": {
+          "request": "return",
+          "order": {
+            "id": "R-exhausted",
+            "delivered": true,
+            "age_days": 5,
+            "returnable": true,
+            "exists": true
+          },
+          "failures": {
+            "lookup_order": 2,
+            "check_eligibility": 2
+          },
+          "budget": 4
+        },
+        "expected": {
+          "final": "unavailable"
+        },
+        "tags": [
+          "budget",
+          "retry"
+        ],
+        "case_id": "agent-exhausted",
+        "trial": 1,
+        "actual": {
+          "trace": [
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            },
+            {
+              "tool": "lookup_order",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "found": true
+              }
+            },
+            {
+              "tool": "check_eligibility",
+              "arguments": {
+                "order_id": "R-exhausted"
+              },
+              "result": {
+                "error": "temporary"
+              }
+            }
+          ],
+          "final": "unavailable"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return a bounded trace and final status."
+          },
+          {
+            "name": "budget",
+            "passed": true,
+            "detail": "At most 4 tool calls."
+          },
+          {
+            "name": "trace",
+            "passed": true,
+            "detail": "Every recorded result matches independent tool replay."
+          },
+          {
+            "name": "goal",
+            "passed": true,
+            "detail": "The replayed outcome must satisfy the reference goal."
+          },
+          {
+            "name": "termination",
+            "passed": true,
+            "detail": "Unavailable requires a missing-order result or an exhausted retry budget."
+          },
+          {
+            "name": "final_state",
+            "passed": true,
+            "detail": "Reported final state must agree with replay."
+          }
+        ],
+        "metrics": {
+          "tool_calls": 4
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.009,
+        "grader_latency_ms": 0.006,
+        "latency_ms": 0.032
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": true,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": true
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "candidates": {
+    "app-v1": {
+      "kind": "python",
+      "target": "eval_lab.demo_app:classify_ticket",
+      "options": {"version": "v1"},
+      "suites": ["classification"]
+    },
+    "app-v2": {
+      "kind": "python",
+      "target": "eval_lab.demo_app:classify_ticket",
+      "options": {"version": "v2"},
+      "suites": ["classification"]
+    }
+  }
+}

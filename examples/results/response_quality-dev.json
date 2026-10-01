@@ -1,0 +1,1343 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "response_quality",
+    "split": "dev",
+    "created_at": "2026-10-01T20:51:14.710725+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "bb6f3bc9664f22e918212b9a8cb0aab94a51555a17779fcca1ada38c11197e5e",
+    "grader_hash": "5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13",
+    "settings": {},
+    "threshold": 0.8,
+    "score": 0.5,
+    "passed": 3,
+    "failed": 3,
+    "total": 6,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "human-preference": {
+        "passed": 3,
+        "total": 6,
+        "accuracy": 0.5
+      },
+      "multi-turn": {
+        "passed": 3,
+        "total": 5,
+        "accuracy": 0.6
+      },
+      "single-turn": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "hh-18",
+        "input": {
+          "conversation": "\n\nHuman: Explain how fast a hummingbird moves its wings",
+          "A": " At different times, hummingbirds can flap their wings at about 20 to 50 times per second, and they fly as fast as 12 to 15 meters per second.",
+          "B": " I found this info about hummingbird flight in a website about \"animal locomotion\".\n\nThis is a relatively stable and powerful means of flight in\nterms of the muscle power expended, and provides the best\ncombination of energy efficiency, aerodynamic efficiency and\nmaneuverability. By way of comparison, a dove can reach speeds"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-18",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 142,
+            "B": 326
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.013,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.031
+      },
+      {
+        "id": "hh-68",
+        "input": {
+          "conversation": "\n\nHuman: I want to take up baking as a hobby, where should I start?\n\nAssistant: Well, let’s start by learning about the basics of baking and ingredients. What are the sorts of baked goods that you like to eat and/or are interested in learning to make?\n\nHuman: I like bread, cakes and brownies so all of those would be fun to make",
+          "A": " The first thing to learn is that different types of baking have different ways of doing things. Are you familiar with the difference between regular bread and French bread?",
+          "B": " Great! So to make good bread, you’ll need to understand yeast, which is a living, microorganism. If you’re interested in understanding this further, you might want to start by learning about what yeast is, and then what it does in making bread. We’re using yeast because it produces carbon dioxide, which causes dough to rise, which is how it becomes bread."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-68",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 173,
+            "B": 358
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "hh-104",
+        "input": {
+          "conversation": "\n\nHuman: Give me a list of ingredients for fruit cake.\n\nAssistant: The two best-known fruit cakes are Irish fruit cake and Jewish fruit cake.  Both use dried fruit, a small amount of sugar, flour, and spices.  If you want a vegetarian version, substituting applesauce for the dried fruit and making some additional modifications to the spice and flour portions is common.\n\nHuman: What kind of dried fruit?",
+          "A": " Both traditional fruit cakes include dried apples, raisins, currants, and candied peel.  It is possible to make a fruit cake with only one dried fruit, such as just raisins.",
+          "B": " There is quite a variety.  The basic rule is that for fruit cakes it is important that the fruits in the cake retain some of their own moisture so they do not harden in the oven.  If you want a firmer cake, you should use dried apricots."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-104",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 174,
+            "B": 238
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.016
+      },
+      {
+        "id": "hh-137",
+        "input": {
+          "conversation": "\n\nHuman: What would be the best time of the year to plant Black-Eyed Susans?\n\nAssistant: Black-Eyed Susans are a fairly popular flower that can be grown in many climates.  However, if you’re in the northern US or Canada you will probably be better off planting in the late spring, while in southern US or the Mediterranean region they can be planted in late fall.\n\nHuman: How long do they usually take to bloom?",
+          "A": " It will vary depending on how quickly the plant grows, but often the bloom time is about the same as the growing time of the plant.  If the plant gets less than ideal conditions, it may be shorter.",
+          "B": " Black-Eyed Susans usually bloom in early to late summer.  Usually they do best when planted in full sun."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-137",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 198,
+            "B": 105
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.016
+      },
+      {
+        "id": "hh-148",
+        "input": {
+          "conversation": "\n\nHuman: I'm looking for a good book to read. I've been reading a lot of nonfiction lately and I'd like to try something different.\n\nAssistant: What sort of thing are you looking for?\n\nHuman: I would like to read an inspiring science fiction story that's been written recently, is exciting, uplifting and well-written.",
+          "A": " I've actually got a list of ten books I think would fit your criteria. Shall I read a brief synopsis of each to you?",
+          "B": " Hm, that’s quite a lot to ask.  I’m not sure I know of any such books."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-148",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 117,
+            "B": 71
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "hh-354",
+        "input": {
+          "conversation": "\n\nHuman: what duties should a ten year old have with our new family cat?\n\nAssistant: Just to have fun and to play with him. What sorts of activities do you like to do with your cat, can you tell me?\n\nHuman: i want her to take care of the cat as well",
+          "A": " Taking care of the cat would be an awesome responsibility!  How would you like to take care of him?",
+          "B": " Well, I could teach you how to give the cat food and water, and how to help keep his litter box clean, and also how to play with him, as long as you are gentle with him."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-354",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 100,
+            "B": 170
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.015
+      }
+    ],
+    "trials": 1,
+    "case_count": 6,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:\n\nMIT License\n\nCopyright (c) 2022 Anthropic\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "human_agreement": {
+          "passed": 3,
+          "total": 6,
+          "rate": 0.5
+        }
+      },
+      "measurements": {
+        "selects_A": {
+          "mean": 0.3333333333333333,
+          "count": 6
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.006500000000000001,
+        "p95": 0.013
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.5
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "response_quality",
+    "split": "dev",
+    "created_at": "2026-10-01T20:51:14.712295+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "bb6f3bc9664f22e918212b9a8cb0aab94a51555a17779fcca1ada38c11197e5e",
+    "grader_hash": "5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13",
+    "settings": {},
+    "threshold": 0.8,
+    "score": 0.8333333333333334,
+    "passed": 5,
+    "failed": 1,
+    "total": 6,
+    "passed_gate": true,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": true,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "human-preference": {
+        "passed": 5,
+        "total": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "multi-turn": {
+        "passed": 4,
+        "total": 5,
+        "accuracy": 0.8
+      },
+      "single-turn": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      }
+    },
+    "results": [
+      {
+        "id": "hh-18",
+        "input": {
+          "conversation": "\n\nHuman: Explain how fast a hummingbird moves its wings",
+          "A": " At different times, hummingbirds can flap their wings at about 20 to 50 times per second, and they fly as fast as 12 to 15 meters per second.",
+          "B": " I found this info about hummingbird flight in a website about \"animal locomotion\".\n\nThis is a relatively stable and powerful means of flight in\nterms of the muscle power expended, and provides the best\ncombination of energy efficiency, aerodynamic efficiency and\nmaneuverability. By way of comparison, a dove can reach speeds"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-18",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.266666666666667,
+            "B": 4.0
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.06
+      },
+      {
+        "id": "hh-68",
+        "input": {
+          "conversation": "\n\nHuman: I want to take up baking as a hobby, where should I start?\n\nAssistant: Well, let’s start by learning about the basics of baking and ingredients. What are the sorts of baked goods that you like to eat and/or are interested in learning to make?\n\nHuman: I like bread, cakes and brownies so all of those would be fun to make",
+          "A": " The first thing to learn is that different types of baking have different ways of doing things. Are you familiar with the difference between regular bread and French bread?",
+          "B": " Great! So to make good bread, you’ll need to understand yeast, which is a living, microorganism. If you’re interested in understanding this further, you might want to start by learning about what yeast is, and then what it does in making bread. We’re using yeast because it produces carbon dioxide, which causes dough to rise, which is how it becomes bread."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-68",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.20000000000000018,
+            "B": 8.466666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.05
+      },
+      {
+        "id": "hh-104",
+        "input": {
+          "conversation": "\n\nHuman: Give me a list of ingredients for fruit cake.\n\nAssistant: The two best-known fruit cakes are Irish fruit cake and Jewish fruit cake.  Both use dried fruit, a small amount of sugar, flour, and spices.  If you want a vegetarian version, substituting applesauce for the dried fruit and making some additional modifications to the spice and flour portions is common.\n\nHuman: What kind of dried fruit?",
+          "A": " Both traditional fruit cakes include dried apples, raisins, currants, and candied peel.  It is possible to make a fruit cake with only one dried fruit, such as just raisins.",
+          "B": " There is quite a variety.  The basic rule is that for fruit cakes it is important that the fruits in the cake retain some of their own moisture so they do not harden in the oven.  If you want a firmer cake, you should use dried apricots."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-104",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.266666666666667,
+            "B": 5.933333333333334
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.021,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.036
+      },
+      {
+        "id": "hh-137",
+        "input": {
+          "conversation": "\n\nHuman: What would be the best time of the year to plant Black-Eyed Susans?\n\nAssistant: Black-Eyed Susans are a fairly popular flower that can be grown in many climates.  However, if you’re in the northern US or Canada you will probably be better off planting in the late spring, while in southern US or the Mediterranean region they can be planted in late fall.\n\nHuman: How long do they usually take to bloom?",
+          "A": " It will vary depending on how quickly the plant grows, but often the bloom time is about the same as the growing time of the plant.  If the plant gets less than ideal conditions, it may be shorter.",
+          "B": " Black-Eyed Susans usually bloom in early to late summer.  Usually they do best when planted in full sun."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-137",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 3.533333333333333,
+            "B": 6.866666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.02,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.03
+      },
+      {
+        "id": "hh-148",
+        "input": {
+          "conversation": "\n\nHuman: I'm looking for a good book to read. I've been reading a lot of nonfiction lately and I'd like to try something different.\n\nAssistant: What sort of thing are you looking for?\n\nHuman: I would like to read an inspiring science fiction story that's been written recently, is exciting, uplifting and well-written.",
+          "A": " I've actually got a list of ten books I think would fit your criteria. Shall I read a brief synopsis of each to you?",
+          "B": " Hm, that’s quite a lot to ask.  I’m not sure I know of any such books."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-148",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 2.133333333333333,
+            "B": 0.8666666666666671
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.018,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.028
+      },
+      {
+        "id": "hh-354",
+        "input": {
+          "conversation": "\n\nHuman: what duties should a ten year old have with our new family cat?\n\nAssistant: Just to have fun and to play with him. What sorts of activities do you like to do with your cat, can you tell me?\n\nHuman: i want her to take care of the cat as well",
+          "A": " Taking care of the cat would be an awesome responsibility!  How would you like to take care of him?",
+          "B": " Well, I could teach you how to give the cat food and water, and how to help keep his litter box clean, and also how to play with him, as long as you are gentle with him."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-354",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": -0.2666666666666666,
+            "B": 7.266666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.076,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.09
+      }
+    ],
+    "trials": 1,
+    "case_count": 6,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:\n\nMIT License\n\nCopyright (c) 2022 Anthropic\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+    "metrics": {
+      "checks": {
+        "schema": {
+          "passed": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "human_agreement": {
+          "passed": 5,
+          "total": 6,
+          "rate": 0.8333333333333334
+        }
+      },
+      "measurements": {
+        "selects_A": {
+          "mean": 0.3333333333333333,
+          "count": 6
+        }
+      },
+      "candidate_latency_ms": {
+        "median": 0.028499999999999998,
+        "p95": 0.076
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.8333333333333334
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.33333333333333337,
+  "improved": 2,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "hh-18",
+      "change": "improved",
+      "before": {
+        "id": "hh-18",
+        "input": {
+          "conversation": "\n\nHuman: Explain how fast a hummingbird moves its wings",
+          "A": " At different times, hummingbirds can flap their wings at about 20 to 50 times per second, and they fly as fast as 12 to 15 meters per second.",
+          "B": " I found this info about hummingbird flight in a website about \"animal locomotion\".\n\nThis is a relatively stable and powerful means of flight in\nterms of the muscle power expended, and provides the best\ncombination of energy efficiency, aerodynamic efficiency and\nmaneuverability. By way of comparison, a dove can reach speeds"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-18",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 142,
+            "B": 326
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.013,
+        "grader_latency_ms": 0.004,
+        "latency_ms": 0.031
+      },
+      "after": {
+        "id": "hh-18",
+        "input": {
+          "conversation": "\n\nHuman: Explain how fast a hummingbird moves its wings",
+          "A": " At different times, hummingbirds can flap their wings at about 20 to 50 times per second, and they fly as fast as 12 to 15 meters per second.",
+          "B": " I found this info about hummingbird flight in a website about \"animal locomotion\".\n\nThis is a relatively stable and powerful means of flight in\nterms of the muscle power expended, and provides the best\ncombination of energy efficiency, aerodynamic efficiency and\nmaneuverability. By way of comparison, a dove can reach speeds"
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "single-turn"
+        ],
+        "case_id": "hh-18",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.266666666666667,
+            "B": 4.0
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.005,
+        "latency_ms": 0.06
+      }
+    },
+    {
+      "id": "hh-68",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-68",
+        "input": {
+          "conversation": "\n\nHuman: I want to take up baking as a hobby, where should I start?\n\nAssistant: Well, let’s start by learning about the basics of baking and ingredients. What are the sorts of baked goods that you like to eat and/or are interested in learning to make?\n\nHuman: I like bread, cakes and brownies so all of those would be fun to make",
+          "A": " The first thing to learn is that different types of baking have different ways of doing things. Are you familiar with the difference between regular bread and French bread?",
+          "B": " Great! So to make good bread, you’ll need to understand yeast, which is a living, microorganism. If you’re interested in understanding this further, you might want to start by learning about what yeast is, and then what it does in making bread. We’re using yeast because it produces carbon dioxide, which causes dough to rise, which is how it becomes bread."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-68",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 173,
+            "B": 358
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.008,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.02
+      },
+      "after": {
+        "id": "hh-68",
+        "input": {
+          "conversation": "\n\nHuman: I want to take up baking as a hobby, where should I start?\n\nAssistant: Well, let’s start by learning about the basics of baking and ingredients. What are the sorts of baked goods that you like to eat and/or are interested in learning to make?\n\nHuman: I like bread, cakes and brownies so all of those would be fun to make",
+          "A": " The first thing to learn is that different types of baking have different ways of doing things. Are you familiar with the difference between regular bread and French bread?",
+          "B": " Great! So to make good bread, you’ll need to understand yeast, which is a living, microorganism. If you’re interested in understanding this further, you might want to start by learning about what yeast is, and then what it does in making bread. We’re using yeast because it produces carbon dioxide, which causes dough to rise, which is how it becomes bread."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-68",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 0.20000000000000018,
+            "B": 8.466666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.036,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.05
+      }
+    },
+    {
+      "id": "hh-104",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-104",
+        "input": {
+          "conversation": "\n\nHuman: Give me a list of ingredients for fruit cake.\n\nAssistant: The two best-known fruit cakes are Irish fruit cake and Jewish fruit cake.  Both use dried fruit, a small amount of sugar, flour, and spices.  If you want a vegetarian version, substituting applesauce for the dried fruit and making some additional modifications to the spice and flour portions is common.\n\nHuman: What kind of dried fruit?",
+          "A": " Both traditional fruit cakes include dried apples, raisins, currants, and candied peel.  It is possible to make a fruit cake with only one dried fruit, such as just raisins.",
+          "B": " There is quite a variety.  The basic rule is that for fruit cakes it is important that the fruits in the cake retain some of their own moisture so they do not harden in the oven.  If you want a firmer cake, you should use dried apricots."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-104",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 174,
+            "B": 238
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.016
+      },
+      "after": {
+        "id": "hh-104",
+        "input": {
+          "conversation": "\n\nHuman: Give me a list of ingredients for fruit cake.\n\nAssistant: The two best-known fruit cakes are Irish fruit cake and Jewish fruit cake.  Both use dried fruit, a small amount of sugar, flour, and spices.  If you want a vegetarian version, substituting applesauce for the dried fruit and making some additional modifications to the spice and flour portions is common.\n\nHuman: What kind of dried fruit?",
+          "A": " Both traditional fruit cakes include dried apples, raisins, currants, and candied peel.  It is possible to make a fruit cake with only one dried fruit, such as just raisins.",
+          "B": " There is quite a variety.  The basic rule is that for fruit cakes it is important that the fruits in the cake retain some of their own moisture so they do not harden in the oven.  If you want a firmer cake, you should use dried apricots."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-104",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 5.266666666666667,
+            "B": 5.933333333333334
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.021,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.036
+      }
+    },
+    {
+      "id": "hh-137",
+      "change": "improved",
+      "before": {
+        "id": "hh-137",
+        "input": {
+          "conversation": "\n\nHuman: What would be the best time of the year to plant Black-Eyed Susans?\n\nAssistant: Black-Eyed Susans are a fairly popular flower that can be grown in many climates.  However, if you’re in the northern US or Canada you will probably be better off planting in the late spring, while in southern US or the Mediterranean region they can be planted in late fall.\n\nHuman: How long do they usually take to bloom?",
+          "A": " It will vary depending on how quickly the plant grows, but often the bloom time is about the same as the growing time of the plant.  If the plant gets less than ideal conditions, it may be shorter.",
+          "B": " Black-Eyed Susans usually bloom in early to late summer.  Usually they do best when planted in full sun."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-137",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 198,
+            "B": 105
+          }
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": false,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.016
+      },
+      "after": {
+        "id": "hh-137",
+        "input": {
+          "conversation": "\n\nHuman: What would be the best time of the year to plant Black-Eyed Susans?\n\nAssistant: Black-Eyed Susans are a fairly popular flower that can be grown in many climates.  However, if you’re in the northern US or Canada you will probably be better off planting in the late spring, while in southern US or the Mediterranean region they can be planted in late fall.\n\nHuman: How long do they usually take to bloom?",
+          "A": " It will vary depending on how quickly the plant grows, but often the bloom time is about the same as the growing time of the plant.  If the plant gets less than ideal conditions, it may be shorter.",
+          "B": " Black-Eyed Susans usually bloom in early to late summer.  Usually they do best when planted in full sun."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-137",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 3.533333333333333,
+            "B": 6.866666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.02,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.03
+      }
+    },
+    {
+      "id": "hh-148",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-148",
+        "input": {
+          "conversation": "\n\nHuman: I'm looking for a good book to read. I've been reading a lot of nonfiction lately and I'd like to try something different.\n\nAssistant: What sort of thing are you looking for?\n\nHuman: I would like to read an inspiring science fiction story that's been written recently, is exciting, uplifting and well-written.",
+          "A": " I've actually got a list of ten books I think would fit your criteria. Shall I read a brief synopsis of each to you?",
+          "B": " Hm, that’s quite a lot to ask.  I’m not sure I know of any such books."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-148",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 117,
+            "B": 71
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "hh-148",
+        "input": {
+          "conversation": "\n\nHuman: I'm looking for a good book to read. I've been reading a lot of nonfiction lately and I'd like to try something different.\n\nAssistant: What sort of thing are you looking for?\n\nHuman: I would like to read an inspiring science fiction story that's been written recently, is exciting, uplifting and well-written.",
+          "A": " I've actually got a list of ten books I think would fit your criteria. Shall I read a brief synopsis of each to you?",
+          "B": " Hm, that’s quite a lot to ask.  I’m not sure I know of any such books."
+        },
+        "expected": {
+          "winner": "A"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-148",
+        "trial": 1,
+        "actual": {
+          "winner": "A",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": 2.133333333333333,
+            "B": 0.8666666666666671
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 1.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.018,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.028
+      }
+    },
+    {
+      "id": "hh-354",
+      "change": "unchanged",
+      "before": {
+        "id": "hh-354",
+        "input": {
+          "conversation": "\n\nHuman: what duties should a ten year old have with our new family cat?\n\nAssistant: Just to have fun and to play with him. What sorts of activities do you like to do with your cat, can you tell me?\n\nHuman: i want her to take care of the cat as well",
+          "A": " Taking care of the cat would be an awesome responsibility!  How would you like to take care of him?",
+          "B": " Well, I could teach you how to give the cat food and water, and how to help keep his litter box clean, and also how to play with him, as long as you are gentle with him."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-354",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Length-only baseline",
+          "scores": {
+            "A": 100,
+            "B": 170
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.001,
+        "latency_ms": 0.015
+      },
+      "after": {
+        "id": "hh-354",
+        "input": {
+          "conversation": "\n\nHuman: what duties should a ten year old have with our new family cat?\n\nAssistant: Just to have fun and to play with him. What sorts of activities do you like to do with your cat, can you tell me?\n\nHuman: i want her to take care of the cat as well",
+          "A": " Taking care of the cat would be an awesome responsibility!  How would you like to take care of him?",
+          "B": " Well, I could teach you how to give the cat food and water, and how to help keep his litter box clean, and also how to play with him, as long as you are gentle with him."
+        },
+        "expected": {
+          "winner": "B"
+        },
+        "tags": [
+          "human-preference",
+          "multi-turn"
+        ],
+        "case_id": "hh-354",
+        "trial": 1,
+        "actual": {
+          "winner": "B",
+          "reason": "Local rubric proxies",
+          "scores": {
+            "A": -0.2666666666666666,
+            "B": 7.266666666666667
+          }
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Return winner A/B and a nonempty reason."
+          },
+          {
+            "name": "human_agreement",
+            "passed": true,
+            "detail": "Compare with the source's human preference; this is not a factual truth label."
+          }
+        ],
+        "metrics": {
+          "selects_A": 0.0
+        },
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.076,
+        "grader_latency_ms": 0.002,
+        "latency_ms": 0.09
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": true,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": true
+}

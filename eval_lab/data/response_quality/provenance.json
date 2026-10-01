@@ -1,0 +1,94 @@
+{
+  "source": "Anthropic/hh-rlhf",
+  "revision": "c72f5cee8eb7b4d2ea5617657f4430d5e333af07",
+  "file": "helpful-base/test.jsonl.gz",
+  "license": "MIT",
+  "selection": "12 manually inspected, short, everyday-topic pairs. Curated teaching sample, not random or representative. Original preference labels retained, including noisy references.",
+  "transformation": "Split at the last Assistant marker; retain exact conversation and final response substrings; alternate the human-preferred A/B position within each local split. Both local splits derive from the upstream test split.",
+  "records": [
+    {
+      "case_id": "hh-18",
+      "split": "dev",
+      "upstream_line": 18,
+      "human_preferred_position": "A",
+      "source_record_sha256": "190eb3a38bb755249aee3aa78cad53880896820cdbcb85b00f406228960b8281"
+    },
+    {
+      "case_id": "hh-68",
+      "split": "dev",
+      "upstream_line": 68,
+      "human_preferred_position": "B",
+      "source_record_sha256": "dfff818e821726e3eee032947657ce70a0761c523ccb16b4c35c345e417c9273"
+    },
+    {
+      "case_id": "hh-104",
+      "split": "dev",
+      "upstream_line": 104,
+      "human_preferred_position": "A",
+      "source_record_sha256": "b443d25c75349e87df8d115533e505ad36179d3992ed30de9cdc25b34a1de4e5"
+    },
+    {
+      "case_id": "hh-137",
+      "split": "dev",
+      "upstream_line": 137,
+      "human_preferred_position": "B",
+      "source_record_sha256": "df752b19d6f8cf00a728d54093f634b5b9419f6dd6b33f578a087a011d4a68b0"
+    },
+    {
+      "case_id": "hh-148",
+      "split": "dev",
+      "upstream_line": 148,
+      "human_preferred_position": "A",
+      "source_record_sha256": "50c7e576d0d07c3e56611b53f9ee01d93e0b9cf9262f5d19103ee8ea02264cc2"
+    },
+    {
+      "case_id": "hh-354",
+      "split": "dev",
+      "upstream_line": 354,
+      "human_preferred_position": "B",
+      "source_record_sha256": "867d6f6b0be266d0259ab023dd72e9ac4d3122a9613a5f1ea9832319caec4570"
+    },
+    {
+      "case_id": "hh-535",
+      "split": "holdout",
+      "upstream_line": 535,
+      "human_preferred_position": "A",
+      "source_record_sha256": "690957b7dab465d706f48b77b4e39a605a87a1fe649b0be76acab33b4e98ce45"
+    },
+    {
+      "case_id": "hh-595",
+      "split": "holdout",
+      "upstream_line": 595,
+      "human_preferred_position": "B",
+      "source_record_sha256": "bf3ced095b0b3cdef40b1ed45b2cc8f4305cdfcd47de5ddfada4ef26e73cae7b"
+    },
+    {
+      "case_id": "hh-603",
+      "split": "holdout",
+      "upstream_line": 603,
+      "human_preferred_position": "A",
+      "source_record_sha256": "b037149d3642982d8f8e425317ba94c1aafc3dc070d65fa1b471d7dbe5078ae1"
+    },
+    {
+      "case_id": "hh-53",
+      "split": "holdout",
+      "upstream_line": 53,
+      "human_preferred_position": "B",
+      "source_record_sha256": "126a3da1a1de1cbca486432947cf7591593847173b79732b03c7174948f07d1b"
+    },
+    {
+      "case_id": "hh-384",
+      "split": "holdout",
+      "upstream_line": 384,
+      "human_preferred_position": "A",
+      "source_record_sha256": "b089f10b9de8def267f668df1d82c264a98fb65d098cb0e03737694e6512c055"
+    },
+    {
+      "case_id": "hh-397",
+      "split": "holdout",
+      "upstream_line": 397,
+      "human_preferred_position": "B",
+      "source_record_sha256": "31e8d2f6b5d156bb8de41b48b59bb35a0b28180d8e3359fc7e2f69cf8727dde3"
+    }
+  ]
+}

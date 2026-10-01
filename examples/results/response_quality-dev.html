@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'">
+<title>response_quality · baseline → improved — Practical Eval Lab</title><style>
+body{font:16px/1.6 system-ui,sans-serif;color:#14233f;background:#fff;margin:0 auto;padding:32px;max-width:1000px}
+h1,h2,h3{line-height:1.2}h1{color:#075be8}.case{border:1px solid #ccd4e0;padding:20px;margin:20px 0;border-radius:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6fa;padding:16px}summary{cursor:pointer;color:#075be8}
+.score{font-size:24px;font-weight:700}code{overflow-wrap:anywhere}</style>
+<header><p>Practical Eval Lab · saved experiment</p><h1>response_quality · baseline → improved</h1>
+<p class="score">5/6 passed (83.3%) · change +33.3% · 0 regressions</p>
+<p>dev · 2026-10-01T20:51:14.712295+00:00 · 1 trial(s)</p><p>overall: PASS</p></header>
+<p>Teaching data; results describe these cases only. Candidate kind: local_rules.
+Imported reports are user-supplied evidence, not authenticated measurements. Review inputs and outputs before sharing.</p>
+<details><summary>Measurements and reproducibility</summary><pre>{
+  &quot;checks&quot;: {
+    &quot;schema&quot;: {
+      &quot;passed&quot;: 6,
+      &quot;total&quot;: 6,
+      &quot;rate&quot;: 1.0
+    },
+    &quot;human_agreement&quot;: {
+      &quot;passed&quot;: 5,
+      &quot;total&quot;: 6,
+      &quot;rate&quot;: 0.8333333333333334
+    }
+  },
+  &quot;measurements&quot;: {
+    &quot;selects_A&quot;: {
+      &quot;mean&quot;: 0.3333333333333333,
+      &quot;count&quot;: 6
+    }
+  },
+  &quot;candidate_latency_ms&quot;: {
+    &quot;median&quot;: 0.028499999999999998,
+    &quot;p95&quot;: 0.076
+  },
+  &quot;usage&quot;: {},
+  &quot;usage_coverage&quot;: 0,
+  &quot;trial_scores&quot;: [
+    0.8333333333333334
+  ],
+  &quot;unstable_cases&quot;: 0
+}</pre>
+<p>Dataset <code>bb6f3bc9664f22e918212b9a8cb0aab94a51555a17779fcca1ada38c11197e5e</code><br>Grader <code>5fa4a3366c1a8a9fa60a2fd01ec87c5a36f8408150eda3eb5eb48e19c069bf13</code></p>
+<pre>{
+  &quot;name&quot;: &quot;improved&quot;,
+  &quot;kind&quot;: &quot;local_rules&quot;,
+  &quot;model&quot;: null,
+  &quot;source_hash&quot;: &quot;7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20&quot;
+}</pre></details><h2>Case results</h2><article class="case"><h3>hh-18 · PASS</h3>
+<p>human-preference, single-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: Explain how fast a hummingbird moves its wings&quot;,
+  &quot;A&quot;: &quot; At different times, hummingbirds can flap their wings at about 20 to 50 times per second, and they fly as fast as 12 to 15 meters per second.&quot;,
+  &quot;B&quot;: &quot; I found this info about hummingbird flight in a website about \&quot;animal locomotion\&quot;.\n\nThis is a relatively stable and powerful means of flight in\nterms of the muscle power expended, and provides the best\ncombination of energy efficiency, aerodynamic efficiency and\nmaneuverability. By way of comparison, a dove can reach speeds&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 142,
+    &quot;B&quot;: 326
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 5.266666666666667,
+    &quot;B&quot;: 4.0
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-68 · PASS</h3>
+<p>human-preference, multi-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: I want to take up baking as a hobby, where should I start?\n\nAssistant: Well, let’s start by learning about the basics of baking and ingredients. What are the sorts of baked goods that you like to eat and/or are interested in learning to make?\n\nHuman: I like bread, cakes and brownies so all of those would be fun to make&quot;,
+  &quot;A&quot;: &quot; The first thing to learn is that different types of baking have different ways of doing things. Are you familiar with the difference between regular bread and French bread?&quot;,
+  &quot;B&quot;: &quot; Great! So to make good bread, you’ll need to understand yeast, which is a living, microorganism. If you’re interested in understanding this further, you might want to start by learning about what yeast is, and then what it does in making bread. We’re using yeast because it produces carbon dioxide, which causes dough to rise, which is how it becomes bread.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 173,
+    &quot;B&quot;: 358
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 0.20000000000000018,
+    &quot;B&quot;: 8.466666666666667
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-104 · FAIL</h3>
+<p>human-preference, multi-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: Give me a list of ingredients for fruit cake.\n\nAssistant: The two best-known fruit cakes are Irish fruit cake and Jewish fruit cake.  Both use dried fruit, a small amount of sugar, flour, and spices.  If you want a vegetarian version, substituting applesauce for the dried fruit and making some additional modifications to the spice and flour portions is common.\n\nHuman: What kind of dried fruit?&quot;,
+  &quot;A&quot;: &quot; Both traditional fruit cakes include dried apples, raisins, currants, and candied peel.  It is possible to make a fruit cake with only one dried fruit, such as just raisins.&quot;,
+  &quot;B&quot;: &quot; There is quite a variety.  The basic rule is that for fruit cakes it is important that the fruits in the cake retain some of their own moisture so they do not harden in the oven.  If you want a firmer cake, you should use dried apricots.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 174,
+    &quot;B&quot;: 238
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 5.266666666666667,
+    &quot;B&quot;: 5.933333333333334
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+FAIL human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-137 · PASS</h3>
+<p>human-preference, multi-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: What would be the best time of the year to plant Black-Eyed Susans?\n\nAssistant: Black-Eyed Susans are a fairly popular flower that can be grown in many climates.  However, if you’re in the northern US or Canada you will probably be better off planting in the late spring, while in southern US or the Mediterranean region they can be planted in late fall.\n\nHuman: How long do they usually take to bloom?&quot;,
+  &quot;A&quot;: &quot; It will vary depending on how quickly the plant grows, but often the bloom time is about the same as the growing time of the plant.  If the plant gets less than ideal conditions, it may be shorter.&quot;,
+  &quot;B&quot;: &quot; Black-Eyed Susans usually bloom in early to late summer.  Usually they do best when planted in full sun.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 198,
+    &quot;B&quot;: 105
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 3.533333333333333,
+    &quot;B&quot;: 6.866666666666667
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-148 · PASS</h3>
+<p>human-preference, multi-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: I&#x27;m looking for a good book to read. I&#x27;ve been reading a lot of nonfiction lately and I&#x27;d like to try something different.\n\nAssistant: What sort of thing are you looking for?\n\nHuman: I would like to read an inspiring science fiction story that&#x27;s been written recently, is exciting, uplifting and well-written.&quot;,
+  &quot;A&quot;: &quot; I&#x27;ve actually got a list of ten books I think would fit your criteria. Shall I read a brief synopsis of each to you?&quot;,
+  &quot;B&quot;: &quot; Hm, that’s quite a lot to ask.  I’m not sure I know of any such books.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 117,
+    &quot;B&quot;: 71
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 2.133333333333333,
+    &quot;B&quot;: 0.8666666666666671
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article><article class="case"><h3>hh-354 · PASS</h3>
+<p>human-preference, multi-turn</p><details><summary>Input and reference</summary><pre>{
+  &quot;conversation&quot;: &quot;\n\nHuman: what duties should a ten year old have with our new family cat?\n\nAssistant: Just to have fun and to play with him. What sorts of activities do you like to do with your cat, can you tell me?\n\nHuman: i want her to take care of the cat as well&quot;,
+  &quot;A&quot;: &quot; Taking care of the cat would be an awesome responsibility!  How would you like to take care of him?&quot;,
+  &quot;B&quot;: &quot; Well, I could teach you how to give the cat food and water, and how to help keep his litter box clean, and also how to play with him, as long as you are gentle with him.&quot;
+}</pre><h4>Reference</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;
+}</pre></details>
+<h4>Before</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Length-only baseline&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: 100,
+    &quot;B&quot;: 170
+  }
+}</pre><h4>Output</h4><pre>{
+  &quot;winner&quot;: &quot;B&quot;,
+  &quot;reason&quot;: &quot;Local rubric proxies&quot;,
+  &quot;scores&quot;: {
+    &quot;A&quot;: -0.2666666666666666,
+    &quot;B&quot;: 7.266666666666667
+  }
+}</pre><details><summary>Grader checks</summary><pre>PASS schema: Return winner A/B and a nonempty reason.
+PASS human_agreement: Compare with the source&#x27;s human preference; this is not a factual truth label.</pre></details></article>
+<details><summary>Data attribution and license</summary><pre>Bundled human-preference source: Anthropic HH-RLHF, helpful-base/test.jsonl.gz, revision c72f5cee8eb7b4d2ea5617657f4430d5e333af07. Custom cases may have different provenance. Original data and its reproductions retain this notice:
+
+MIT License
+
+Copyright (c) 2022 Anthropic
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre></details>
+<footer>Standalone report · no scripts, external assets, or model calls</footer></html>

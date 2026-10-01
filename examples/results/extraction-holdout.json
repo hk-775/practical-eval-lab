@@ -1,0 +1,2735 @@
+{
+  "before": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "extraction",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.682112+00:00",
+    "candidate": {
+      "name": "baseline",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "6d0b67864847a451dbbac3bf6491035a711177f22883b6f77d54c2722cb61c03",
+    "grader_hash": "7f4a79e5cafae9bdeef6d464191795315b45e142b4ddfb450f758a0b919e8d4c",
+    "settings": {
+      "allow_extra_fields": false
+    },
+    "threshold": 0.8,
+    "score": 0.3,
+    "passed": 3,
+    "failed": 7,
+    "total": 10,
+    "passed_gate": false,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": false,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "case": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "missing": {
+        "passed": 1,
+        "total": 2,
+        "accuracy": 0.5
+      },
+      "negation": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "plural": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "priority": {
+        "passed": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "typical": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "word-number": {
+        "passed": 0,
+        "total": 3,
+        "accuracy": 0.0
+      }
+    },
+    "results": [
+      {
+        "id": "extract-holdout-01",
+        "input": "Order S-922: 6 monitors.",
+        "expected": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"S-922\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.011,
+        "latency_ms": 0.031
+      },
+      {
+        "id": "extract-holdout-02",
+        "input": "Order T-023: four webcams, no rush.",
+        "expected": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-holdout-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "T-023",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"T-023\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      },
+      {
+        "id": "extract-holdout-03",
+        "input": "Order U-124: six mice.",
+        "expected": {
+          "order_id": "U-124",
+          "quantity": 6,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-holdout-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "U-124",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"U-124\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-holdout-04",
+        "input": "Order v-225: 8 CABLES, urgent.",
+        "expected": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "tags": [
+          "case",
+          "priority"
+        ],
+        "case_id": "extract-holdout-04",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": false,
+            "detail": "Expected order_id = \"V-225\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 8"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-holdout-05",
+        "input": "Order W-326: 2 printers.",
+        "expected": {
+          "order_id": "W-326",
+          "quantity": 2,
+          "item": "printer",
+          "priority": "normal"
+        },
+        "tags": [
+          "vocabulary"
+        ],
+        "case_id": "extract-holdout-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "W-326",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"W-326\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"printer\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      {
+        "id": "extract-holdout-06",
+        "input": "Order X-427: 3 keyboards, low priority.",
+        "expected": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-holdout-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"X-427\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-holdout-07",
+        "input": "Order Y-528: 1 headset, not urgent.",
+        "expected": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "negation",
+          "priority"
+        ],
+        "case_id": "extract-holdout-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Y-528\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.044,
+        "latency_ms": 0.056
+      },
+      {
+        "id": "extract-holdout-08",
+        "input": "Please send five monitors ASAP.",
+        "expected": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "missing",
+          "word-number"
+        ],
+        "case_id": "extract-holdout-08",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-holdout-09",
+        "input": "Order Z-629 was recorded.",
+        "expected": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-holdout-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Z-629\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      {
+        "id": "extract-holdout-10",
+        "input": "Order A-730: 7 webcams, normal priority.",
+        "expected": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-730\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 7"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "json_object": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "schema": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "field:order_id": {
+          "passed": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "field:quantity": {
+          "passed": 5,
+          "total": 10,
+          "rate": 0.5
+        },
+        "field:item": {
+          "passed": 5,
+          "total": 10,
+          "rate": 0.5
+        },
+        "field:priority": {
+          "passed": 6,
+          "total": 10,
+          "rate": 0.6
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.003,
+        "p95": 0.007
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.3
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "after": {
+    "schema_version": 2,
+    "lab_version": "0.2.0",
+    "suite": "extraction",
+    "split": "holdout",
+    "created_at": "2026-10-01T20:51:14.683451+00:00",
+    "candidate": {
+      "name": "improved",
+      "kind": "local_rules",
+      "model": null,
+      "source_hash": "7665f5dde4f1c1a9ea008dbca97d9c101a4af0510720b6f00d5da49ad6c12e20"
+    },
+    "dataset_hash": "6d0b67864847a451dbbac3bf6491035a711177f22883b6f77d54c2722cb61c03",
+    "grader_hash": "7f4a79e5cafae9bdeef6d464191795315b45e142b4ddfb450f758a0b919e8d4c",
+    "settings": {
+      "allow_extra_fields": false
+    },
+    "threshold": 0.8,
+    "score": 0.8,
+    "passed": 8,
+    "failed": 2,
+    "total": 10,
+    "passed_gate": true,
+    "gate_policy": {
+      "critical_tags": [],
+      "min_slices": {},
+      "fail_on_regression": false
+    },
+    "gates": [
+      {
+        "name": "overall",
+        "passed": true,
+        "detail": "Overall score >= 80%"
+      }
+    ],
+    "slices": {
+      "case": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "missing": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "negation": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1.0
+      },
+      "plural": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "priority": {
+        "passed": 4,
+        "total": 4,
+        "accuracy": 1.0
+      },
+      "typical": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1.0
+      },
+      "vocabulary": {
+        "passed": 0,
+        "total": 1,
+        "accuracy": 0.0
+      },
+      "word-number": {
+        "passed": 2,
+        "total": 3,
+        "accuracy": 0.6666666666666666
+      }
+    },
+    "results": [
+      {
+        "id": "extract-holdout-01",
+        "input": "Order S-922: 6 monitors.",
+        "expected": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"S-922\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.012,
+        "grader_latency_ms": 0.012,
+        "latency_ms": 0.04
+      },
+      {
+        "id": "extract-holdout-02",
+        "input": "Order T-023: four webcams, no rush.",
+        "expected": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-holdout-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"T-023\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.025
+      },
+      {
+        "id": "extract-holdout-03",
+        "input": "Order U-124: six mice.",
+        "expected": {
+          "order_id": "U-124",
+          "quantity": 6,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-holdout-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "U-124",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"U-124\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.022
+      },
+      {
+        "id": "extract-holdout-04",
+        "input": "Order v-225: 8 CABLES, urgent.",
+        "expected": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "tags": [
+          "case",
+          "priority"
+        ],
+        "case_id": "extract-holdout-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"V-225\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 8"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      },
+      {
+        "id": "extract-holdout-05",
+        "input": "Order W-326: 2 printers.",
+        "expected": {
+          "order_id": "W-326",
+          "quantity": 2,
+          "item": "printer",
+          "priority": "normal"
+        },
+        "tags": [
+          "vocabulary"
+        ],
+        "case_id": "extract-holdout-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "W-326",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"W-326\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"printer\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-holdout-06",
+        "input": "Order X-427: 3 keyboards, low priority.",
+        "expected": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-holdout-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"X-427\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-holdout-07",
+        "input": "Order Y-528: 1 headset, not urgent.",
+        "expected": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "negation",
+          "priority"
+        ],
+        "case_id": "extract-holdout-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Y-528\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      },
+      {
+        "id": "extract-holdout-08",
+        "input": "Please send five monitors ASAP.",
+        "expected": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "missing",
+          "word-number"
+        ],
+        "case_id": "extract-holdout-08",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.022
+      },
+      {
+        "id": "extract-holdout-09",
+        "input": "Order Z-629 was recorded.",
+        "expected": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-holdout-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Z-629\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      },
+      {
+        "id": "extract-holdout-10",
+        "input": "Order A-730: 7 webcams, normal priority.",
+        "expected": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-730\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 7"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    ],
+    "trials": 1,
+    "case_count": 10,
+    "pair_order": "original",
+    "execution_errors": 0,
+    "data_notice": "Bundled cases are synthetic teaching data under MIT-0. Custom cases may have different provenance.",
+    "metrics": {
+      "checks": {
+        "json_object": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "schema": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "field:order_id": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "field:quantity": {
+          "passed": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "field:item": {
+          "passed": 8,
+          "total": 10,
+          "rate": 0.8
+        },
+        "field:priority": {
+          "passed": 10,
+          "total": 10,
+          "rate": 1.0
+        }
+      },
+      "measurements": {},
+      "candidate_latency_ms": {
+        "median": 0.005,
+        "p95": 0.012
+      },
+      "usage": {},
+      "usage_coverage": 0,
+      "trial_scores": [
+        0.8
+      ],
+      "unstable_cases": 0
+    }
+  },
+  "delta": 0.5,
+  "improved": 5,
+  "regressed": 0,
+  "changes": [
+    {
+      "id": "extract-holdout-01",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-holdout-01",
+        "input": "Order S-922: 6 monitors.",
+        "expected": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"S-922\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.007,
+        "grader_latency_ms": 0.011,
+        "latency_ms": 0.031
+      },
+      "after": {
+        "id": "extract-holdout-01",
+        "input": "Order S-922: 6 monitors.",
+        "expected": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-01",
+        "trial": 1,
+        "actual": {
+          "order_id": "S-922",
+          "quantity": 6,
+          "item": "monitor",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"S-922\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.012,
+        "grader_latency_ms": 0.012,
+        "latency_ms": 0.04
+      }
+    },
+    {
+      "id": "extract-holdout-02",
+      "change": "improved",
+      "before": {
+        "id": "extract-holdout-02",
+        "input": "Order T-023: four webcams, no rush.",
+        "expected": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-holdout-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "T-023",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"T-023\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      },
+      "after": {
+        "id": "extract-holdout-02",
+        "input": "Order T-023: four webcams, no rush.",
+        "expected": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "tags": [
+          "word-number",
+          "priority"
+        ],
+        "case_id": "extract-holdout-02",
+        "trial": 1,
+        "actual": {
+          "order_id": "T-023",
+          "quantity": 4,
+          "item": "webcam",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"T-023\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 4"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.006,
+        "grader_latency_ms": 0.009,
+        "latency_ms": 0.025
+      }
+    },
+    {
+      "id": "extract-holdout-03",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-holdout-03",
+        "input": "Order U-124: six mice.",
+        "expected": {
+          "order_id": "U-124",
+          "quantity": 6,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-holdout-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "U-124",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"U-124\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      "after": {
+        "id": "extract-holdout-03",
+        "input": "Order U-124: six mice.",
+        "expected": {
+          "order_id": "U-124",
+          "quantity": 6,
+          "item": "mouse",
+          "priority": "normal"
+        },
+        "tags": [
+          "word-number",
+          "plural"
+        ],
+        "case_id": "extract-holdout-03",
+        "trial": 1,
+        "actual": {
+          "order_id": "U-124",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"U-124\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 6"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"mouse\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.022
+      }
+    },
+    {
+      "id": "extract-holdout-04",
+      "change": "improved",
+      "before": {
+        "id": "extract-holdout-04",
+        "input": "Order v-225: 8 CABLES, urgent.",
+        "expected": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "tags": [
+          "case",
+          "priority"
+        ],
+        "case_id": "extract-holdout-04",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": false,
+            "detail": "Expected order_id = \"V-225\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 8"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-holdout-04",
+        "input": "Order v-225: 8 CABLES, urgent.",
+        "expected": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "tags": [
+          "case",
+          "priority"
+        ],
+        "case_id": "extract-holdout-04",
+        "trial": 1,
+        "actual": {
+          "order_id": "V-225",
+          "quantity": 8,
+          "item": "cable",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"V-225\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 8"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"cable\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.021
+      }
+    },
+    {
+      "id": "extract-holdout-05",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-holdout-05",
+        "input": "Order W-326: 2 printers.",
+        "expected": {
+          "order_id": "W-326",
+          "quantity": 2,
+          "item": "printer",
+          "priority": "normal"
+        },
+        "tags": [
+          "vocabulary"
+        ],
+        "case_id": "extract-holdout-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "W-326",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"W-326\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"printer\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.017
+      },
+      "after": {
+        "id": "extract-holdout-05",
+        "input": "Order W-326: 2 printers.",
+        "expected": {
+          "order_id": "W-326",
+          "quantity": 2,
+          "item": "printer",
+          "priority": "normal"
+        },
+        "tags": [
+          "vocabulary"
+        ],
+        "case_id": "extract-holdout-05",
+        "trial": 1,
+        "actual": {
+          "order_id": "W-326",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"W-326\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 2"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"printer\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-holdout-06",
+      "change": "improved",
+      "before": {
+        "id": "extract-holdout-06",
+        "input": "Order X-427: 3 keyboards, low priority.",
+        "expected": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-holdout-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"X-427\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-holdout-06",
+        "input": "Order X-427: 3 keyboards, low priority.",
+        "expected": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "tags": [
+          "priority"
+        ],
+        "case_id": "extract-holdout-06",
+        "trial": 1,
+        "actual": {
+          "order_id": "X-427",
+          "quantity": 3,
+          "item": "keyboard",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"X-427\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 3"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"keyboard\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-holdout-07",
+      "change": "improved",
+      "before": {
+        "id": "extract-holdout-07",
+        "input": "Order Y-528: 1 headset, not urgent.",
+        "expected": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "negation",
+          "priority"
+        ],
+        "case_id": "extract-holdout-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "high"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Y-528\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.044,
+        "latency_ms": 0.056
+      },
+      "after": {
+        "id": "extract-holdout-07",
+        "input": "Order Y-528: 1 headset, not urgent.",
+        "expected": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "tags": [
+          "negation",
+          "priority"
+        ],
+        "case_id": "extract-holdout-07",
+        "trial": 1,
+        "actual": {
+          "order_id": "Y-528",
+          "quantity": 1,
+          "item": "headset",
+          "priority": "low"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Y-528\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 1"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"headset\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"low\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.019
+      }
+    },
+    {
+      "id": "extract-holdout-08",
+      "change": "improved",
+      "before": {
+        "id": "extract-holdout-08",
+        "input": "Please send five monitors ASAP.",
+        "expected": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "missing",
+          "word-number"
+        ],
+        "case_id": "extract-holdout-08",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": false,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": false,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": false,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": false,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.019
+      },
+      "after": {
+        "id": "extract-holdout-08",
+        "input": "Please send five monitors ASAP.",
+        "expected": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "tags": [
+          "missing",
+          "word-number"
+        ],
+        "case_id": "extract-holdout-08",
+        "trial": 1,
+        "actual": {
+          "order_id": null,
+          "quantity": 5,
+          "item": "monitor",
+          "priority": "high"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = null"
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 5"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"monitor\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"high\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.022
+      }
+    },
+    {
+      "id": "extract-holdout-09",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-holdout-09",
+        "input": "Order Z-629 was recorded.",
+        "expected": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-holdout-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Z-629\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.002,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-holdout-09",
+        "input": "Order Z-629 was recorded.",
+        "expected": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "tags": [
+          "missing"
+        ],
+        "case_id": "extract-holdout-09",
+        "trial": 1,
+        "actual": {
+          "order_id": "Z-629",
+          "quantity": null,
+          "item": null,
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"Z-629\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = null"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = null"
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.004,
+        "grader_latency_ms": 0.008,
+        "latency_ms": 0.02
+      }
+    },
+    {
+      "id": "extract-holdout-10",
+      "change": "unchanged",
+      "before": {
+        "id": "extract-holdout-10",
+        "input": "Order A-730: 7 webcams, normal priority.",
+        "expected": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-730\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 7"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.003,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.018
+      },
+      "after": {
+        "id": "extract-holdout-10",
+        "input": "Order A-730: 7 webcams, normal priority.",
+        "expected": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "tags": [
+          "typical"
+        ],
+        "case_id": "extract-holdout-10",
+        "trial": 1,
+        "actual": {
+          "order_id": "A-730",
+          "quantity": 7,
+          "item": "webcam",
+          "priority": "normal"
+        },
+        "passed": true,
+        "checks": [
+          {
+            "name": "json_object",
+            "passed": true,
+            "detail": "Output must be a JSON object."
+          },
+          {
+            "name": "schema",
+            "passed": true,
+            "detail": "Check required fields and types; a boolean is not an integer."
+          },
+          {
+            "name": "field:order_id",
+            "passed": true,
+            "detail": "Expected order_id = \"A-730\""
+          },
+          {
+            "name": "field:quantity",
+            "passed": true,
+            "detail": "Expected quantity = 7"
+          },
+          {
+            "name": "field:item",
+            "passed": true,
+            "detail": "Expected item = \"webcam\""
+          },
+          {
+            "name": "field:priority",
+            "passed": true,
+            "detail": "Expected priority = \"normal\""
+          }
+        ],
+        "error": null,
+        "usage": {},
+        "metadata": {},
+        "candidate_latency_ms": 0.005,
+        "grader_latency_ms": 0.007,
+        "latency_ms": 0.02
+      }
+    }
+  ],
+  "gates": [
+    {
+      "name": "overall",
+      "passed": true,
+      "detail": "Overall score >= 80%"
+    }
+  ],
+  "passed_gate": true
+}

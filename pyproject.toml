@@ -1,10 +1,26 @@
+[build-system]
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "practical-eval-lab"
-version = "0.1.0"
+version = "0.2.0"
 license = "MIT-0"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "eval_lab/data/response_quality/LICENSE.txt"]
 description = "Learn evaluation through runnable examples, transparent graders, and a local tuning webpage"
 requires-python = ">=3.10"
 dependencies = []
+readme = "README.md"
+
+[project.scripts]
+eval-lab = "eval_lab.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["eval_lab*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+eval_lab = ["data/*/*.jsonl", "data/*/*.json", "data/*/*.txt", "web/*"]
 
 [project.optional-dependencies]
 openai = ["openai>=2,<3"]

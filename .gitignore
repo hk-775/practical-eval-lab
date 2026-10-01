@@ -10,3 +10,5 @@ dist/
 !.env.example
 .DS_Store
 *.pyc
+build/
+*.egg-info/
