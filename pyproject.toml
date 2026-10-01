@@ -26,7 +26,11 @@ eval_lab = ["data/*/*.jsonl", "data/*/*.json", "data/*/*.txt", "web/*"]
 openai = ["openai>=2,<3"]
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "playwright>=1.50,<2"]
+dev = [
+    "pytest>=8,<10",
+    "playwright>=1.50,<2",
+    "markdown>=3.7,<4",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -4,13 +4,16 @@
 
 - Project: Practical Eval Lab
 - Repository: `hk-775/practical-eval-lab`
-- Distribution: source repository, buildable wheel/sdist, local Python webpage, command-line runner
+- Distribution: source repository, GitHub Pages documentation and recorded-results viewer,
+  buildable wheel/sdist, local Python webpage, command-line runner
 - License: MIT No Attribution (`MIT-0`), selected by the owner
 - Status: public source repository; publication approved by the owner
 - Default branch: `main`
 - Current visibility: public as of October 1, 2026
 - Publication channel: [GitHub source repository](https://github.com/hk-775/practical-eval-lab)
-- No public hosted application, package release, or cloud deployment is implied
+- Website: [GitHub Pages](https://hk-775.github.io/practical-eval-lab/)
+- The public website serves static documentation and recorded evidence. Candidate
+  execution and tuning run in the local Python application.
 
 ## Included artifacts
 
@@ -25,20 +28,23 @@
 - Six walkthroughs, recorded offline results, source-cited public incident case studies
 - Quickstart, contracts, integration/provenance guides, community documents
 - Logical architecture: editable draw.io source and rendered SVG
+- Static website generated from the canonical webpage and source guides, with
+  report downloads, mobile/browser checks, and a GitHub Pages deployment workflow
 
 ## Architecture decision
 
 **AWS services reference architecture: not applicable.**
 
-This project's intended platform is a local Python development environment with
-GitHub source distribution. There is no AWS integration, IaC, deployment target,
-or hosted execution service. Inventing cloud services would misrepresent the
+This project's platforms are a local Python development environment and a static
+GitHub Pages website. There is no AWS integration, IaC, deployment target, or
+hosted execution service. Inventing AWS services would misrepresent the
 implementation. Revisit this decision if a hosted runner is actually designed.
 
 The local HTTP server has no authentication or multi-user isolation. Publishing
-its source does not authorize exposing it as an internet service. A future static
-GitHub Pages preview would need an explicitly labeled demo mode; the current
-webpage requires its local Python API.
+its source does not authorize exposing it as an internet service. GitHub Pages
+uses a separate, explicitly labeled recorded-results mode of the same frontend.
+It loads only static published assets and does not execute or persist evals.
+See [hosting](hosting.md) for the build, network boundaries, and deployment.
 
 ## Provenance
 
@@ -63,8 +69,9 @@ styles are inherited from the starter. Dependencies are resolved in `uv.lock`.
 - Runtime profiles, reports, environment files, and caches are ignored by Git.
 - Private vulnerability reporting, secret scanning, and secret-scanning push
   protection are enabled.
-- CI uses GitHub-hosted runners and read-only workflow tokens. No deployment
-  environments, hosted Pages site, or release assets were present at publication.
+- CI uses GitHub-hosted runners and read-only workflow tokens. Only the Pages
+  deployment job gets Pages write and OIDC permissions, scoped to its
+  `github-pages` environment and `main` deployment branch.
 - The owner confirmed external approval and authorized public visibility on
   October 1, 2026. Approval receipts remain in ignored local state.
 

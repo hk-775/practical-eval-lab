@@ -10,7 +10,13 @@ uv run --locked playwright install chromium
 uv run --locked python -m scripts.browser_check
 uv run --locked python -m scripts.package_check
 uv run --locked python -m scripts.reproduce_portfolio
+uv run --locked python -m scripts.build_pages
+uv run --locked python -m scripts.pages_check --site site
 ```
+
+The website is generated from the source guides and the canonical frontend.
+Keep public recordings clearly labeled, retain data notices, and verify the
+public mode makes only static requests. See [hosting](docs/hosting.md).
 
 Cases live in `eval_lab/data/<suite>/dev.jsonl`. Each case needs a unique `id`,
 an `input`, an `expected` answer matching the suite contract, and a list of tags.

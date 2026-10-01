@@ -8,6 +8,13 @@ results reproducible. Every example works without an API key.
 data use [MIT-0](LICENSE).
 The human-preference sample retains its [upstream MIT notice](THIRD_PARTY_NOTICES.md).
 
+[Explore recorded results](https://hk-775.github.io/practical-eval-lab/) ·
+[Read the six walkthroughs](https://hk-775.github.io/practical-eval-lab/guides.html) ·
+[Learn from public incidents](https://hk-775.github.io/practical-eval-lab/incidents.html)
+
+The GitHub Pages site lets you inspect actual offline runs and download evidence.
+Run the local lab below to edit cases, execute candidates, and save experiments.
+
 ## Start in a source checkout
 
 Use Python 3.10+ and [uv](https://docs.astral.sh/uv/):
@@ -143,6 +150,8 @@ been used to substantiate the bundled results.
 ![Dataset, candidate, grader, report, and local tuning profile](docs/architecture/pipeline.svg)
 
 [Contracts and extension points](docs/contracts.md) · [Data provenance](docs/data-provenance.md) ·
+[Website build and hosting](docs/hosting.md) ·
+[Architecture page](https://hk-775.github.io/practical-eval-lab/architecture.html) ·
 [Publication inventory](docs/publication.md) · [Contributing](CONTRIBUTING.md) ·
 [Support](SUPPORT.md) · [Security](SECURITY.md) · [Community conduct](CODE_OF_CONDUCT.md)
 

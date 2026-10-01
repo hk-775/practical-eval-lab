@@ -1,5 +1,10 @@
 # Security
 
+The GitHub Pages website is a viewer for bundled recorded results and source
+documentation. It accepts no credentials, performs no candidate execution, and
+uses no browser storage, private APIs, or WebSockets. The public build serves an
+explicit file allowlist; local profiles and arbitrary source files are excluded.
+
 The local server binds to `127.0.0.1` and has no user authentication or multi-user
 isolation. It validates loopback Host headers and same-origin JSON writes. Do not
 expose it as a public service. Bundled tools are in-memory simulations.
