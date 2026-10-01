@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram id="pipeline" name="Logical architecture">
+    <mxGraphModel page="1" pageWidth="960" pageHeight="300">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n0" value="Dataset&#10;Inputs + expected answers" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="76" width="200" height="90" />
+        </mxCell>
+        <mxCell id="n1" value="Candidate&#10;Baseline, improved, or live" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="264" y="76" width="200" height="90" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="n0" target="n1" style="endArrow=block;strokeColor=#214e3b;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n2" value="Grader&#10;Rules + reference answers" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="496" y="76" width="200" height="90" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="n1" target="n2" style="endArrow=block;strokeColor=#214e3b;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n3" value="Report&#10;Cases, slices, and gate" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fffdf7;strokeColor=#214e3b;fontColor=#19221d;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="728" y="76" width="200" height="90" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="n2" target="n3" style="endArrow=block;strokeColor=#214e3b;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="profile" value="Local tuning profile&#10;Editable development cases · grader settings · passing threshold · saved history" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dfe9df;strokeColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="201" width="896" height="65" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

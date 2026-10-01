@@ -1,0 +1,10 @@
+{"id": "tool-holdout-01", "input": "Track order B-205 please.", "expected": {"tool": "lookup_order", "arguments": {"order_id": "B-205"}}, "tags": ["lookup", "typical"]}
+{"id": "tool-holdout-02", "input": "What is the status of Z-999?", "expected": {"tool": "lookup_order", "arguments": {"order_id": "Z-999"}}, "tags": ["lookup", "not-found"]}
+{"id": "tool-holdout-03", "input": "Do not create a ticket: Excel crashes.", "expected": {"tool": "no_action", "arguments": {}}, "tags": ["boundary", "negation"]}
+{"id": "tool-holdout-04", "input": "Open a support ticket: The screen is cracked.", "expected": {"tool": "create_ticket", "arguments": {"category": "Hardware", "summary": "The screen is cracked."}}, "tags": ["ticket", "typical"]}
+{"id": "tool-holdout-05", "input": "Create a ticket: My headphones have no sound.", "expected": {"tool": "create_ticket", "arguments": {"category": "Hardware", "summary": "My headphones have no sound."}}, "tags": ["ticket", "vocabulary"]}
+{"id": "tool-holdout-06", "input": "Could you locate A-104?", "expected": {"tool": "lookup_order", "arguments": {"order_id": "A-104"}}, "tags": ["lookup", "vocabulary"]}
+{"id": "tool-holdout-07", "input": "Cancel C-306 please.", "expected": {"tool": "no_action", "arguments": {}}, "tags": ["boundary", "cancellation"]}
+{"id": "tool-holdout-08", "input": "Track my order please.", "expected": {"tool": "no_action", "arguments": {}}, "tags": ["missing", "lookup"]}
+{"id": "tool-holdout-09", "input": "A-104 appears in a sample screenshot.", "expected": {"tool": "no_action", "arguments": {}}, "tags": ["boundary", "reference"]}
+{"id": "tool-holdout-10", "input": "File a ticket: Mi teclado no responde.", "expected": {"tool": "create_ticket", "arguments": {"category": "Hardware", "summary": "Mi teclado no responde."}}, "tags": ["ticket", "multilingual"]}

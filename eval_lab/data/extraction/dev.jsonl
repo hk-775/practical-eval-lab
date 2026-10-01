@@ -1,0 +1,20 @@
+{"id": "extract-dev-01", "input": "Order A-104: 3 keyboards.", "expected": {"order_id": "A-104", "quantity": 3, "item": "keyboard", "priority": "normal"}, "tags": ["typical"]}
+{"id": "extract-dev-02", "input": "Order B-205: 2 monitors, high priority.", "expected": {"order_id": "B-205", "quantity": 2, "item": "monitor", "priority": "high"}, "tags": ["typical", "priority"]}
+{"id": "extract-dev-03", "input": "Order C-306: 1 mouse.", "expected": {"order_id": "C-306", "quantity": 1, "item": "mouse", "priority": "normal"}, "tags": ["typical"]}
+{"id": "extract-dev-04", "input": "Order D-407: 5 cables.", "expected": {"order_id": "D-407", "quantity": 5, "item": "cable", "priority": "normal"}, "tags": ["typical"]}
+{"id": "extract-dev-05", "input": "Order E-508: 4 headsets, urgent.", "expected": {"order_id": "E-508", "quantity": 4, "item": "headset", "priority": "high"}, "tags": ["typical", "priority"]}
+{"id": "extract-dev-06", "input": "Order F-609: 2 webcams.", "expected": {"order_id": "F-609", "quantity": 2, "item": "webcam", "priority": "normal"}, "tags": ["typical"]}
+{"id": "extract-dev-07", "input": "Order G-710: three keyboards.", "expected": {"order_id": "G-710", "quantity": 3, "item": "keyboard", "priority": "normal"}, "tags": ["word-number"]}
+{"id": "extract-dev-08", "input": "Order H-811: two mice.", "expected": {"order_id": "H-811", "quantity": 2, "item": "mouse", "priority": "normal"}, "tags": ["word-number", "plural"]}
+{"id": "extract-dev-09", "input": "Order i-912: 1 monitor.", "expected": {"order_id": "I-912", "quantity": 1, "item": "monitor", "priority": "normal"}, "tags": ["case"]}
+{"id": "extract-dev-10", "input": "Order J-013: 2 KEYBOARDS.", "expected": {"order_id": "J-013", "quantity": 2, "item": "keyboard", "priority": "normal"}, "tags": ["case"]}
+{"id": "extract-dev-11", "input": "Order K-114: 4 cables, no rush.", "expected": {"order_id": "K-114", "quantity": 4, "item": "cable", "priority": "low"}, "tags": ["priority", "negation"]}
+{"id": "extract-dev-12", "input": "Order L-215: 2 headsets, not urgent.", "expected": {"order_id": "L-215", "quantity": 2, "item": "headset", "priority": "low"}, "tags": ["priority", "negation"]}
+{"id": "extract-dev-13", "input": "Order M-316: 1 webcam, ASAP.", "expected": {"order_id": "M-316", "quantity": 1, "item": "webcam", "priority": "high"}, "tags": ["priority"]}
+{"id": "extract-dev-14", "input": "Order N-417: 3 mice, priority low.", "expected": {"order_id": "N-417", "quantity": 3, "item": "mouse", "priority": "low"}, "tags": ["priority", "plural"]}
+{"id": "extract-dev-15", "input": "Order O-518: one keyboard.", "expected": {"order_id": "O-518", "quantity": 1, "item": "keyboard", "priority": "normal"}, "tags": ["word-number"]}
+{"id": "extract-dev-16", "input": "Please send 2 monitors.", "expected": {"order_id": null, "quantity": 2, "item": "monitor", "priority": "normal"}, "tags": ["missing"]}
+{"id": "extract-dev-17", "input": "Order P-619 needs review.", "expected": {"order_id": "P-619", "quantity": null, "item": null, "priority": "normal"}, "tags": ["missing"]}
+{"id": "extract-dev-18", "input": "No order has been placed.", "expected": {"order_id": null, "quantity": null, "item": null, "priority": "normal"}, "tags": ["missing"]}
+{"id": "extract-dev-19", "input": "Order Q-720: five cables, low priority.", "expected": {"order_id": "Q-720", "quantity": 5, "item": "cable", "priority": "low"}, "tags": ["word-number", "priority"]}
+{"id": "extract-dev-20", "input": "Order R-821: 12 headsets, priority high.", "expected": {"order_id": "R-821", "quantity": 12, "item": "headset", "priority": "high"}, "tags": ["typical", "priority"]}

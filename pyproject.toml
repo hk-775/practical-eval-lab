@@ -1,0 +1,17 @@
+[project]
+name = "practical-eval-lab"
+version = "0.1.0"
+license = "MIT-0"
+description = "Learn evaluation through runnable examples, transparent graders, and a local tuning webpage"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai>=2,<3"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "playwright>=1.50,<2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

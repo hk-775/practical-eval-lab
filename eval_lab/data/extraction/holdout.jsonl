@@ -1,0 +1,10 @@
+{"id": "extract-holdout-01", "input": "Order S-922: 6 monitors.", "expected": {"order_id": "S-922", "quantity": 6, "item": "monitor", "priority": "normal"}, "tags": ["typical"]}
+{"id": "extract-holdout-02", "input": "Order T-023: four webcams, no rush.", "expected": {"order_id": "T-023", "quantity": 4, "item": "webcam", "priority": "low"}, "tags": ["word-number", "priority"]}
+{"id": "extract-holdout-03", "input": "Order U-124: six mice.", "expected": {"order_id": "U-124", "quantity": 6, "item": "mouse", "priority": "normal"}, "tags": ["word-number", "plural"]}
+{"id": "extract-holdout-04", "input": "Order v-225: 8 CABLES, urgent.", "expected": {"order_id": "V-225", "quantity": 8, "item": "cable", "priority": "high"}, "tags": ["case", "priority"]}
+{"id": "extract-holdout-05", "input": "Order W-326: 2 printers.", "expected": {"order_id": "W-326", "quantity": 2, "item": "printer", "priority": "normal"}, "tags": ["vocabulary"]}
+{"id": "extract-holdout-06", "input": "Order X-427: 3 keyboards, low priority.", "expected": {"order_id": "X-427", "quantity": 3, "item": "keyboard", "priority": "low"}, "tags": ["priority"]}
+{"id": "extract-holdout-07", "input": "Order Y-528: 1 headset, not urgent.", "expected": {"order_id": "Y-528", "quantity": 1, "item": "headset", "priority": "low"}, "tags": ["negation", "priority"]}
+{"id": "extract-holdout-08", "input": "Please send five monitors ASAP.", "expected": {"order_id": null, "quantity": 5, "item": "monitor", "priority": "high"}, "tags": ["missing", "word-number"]}
+{"id": "extract-holdout-09", "input": "Order Z-629 was recorded.", "expected": {"order_id": "Z-629", "quantity": null, "item": null, "priority": "normal"}, "tags": ["missing"]}
+{"id": "extract-holdout-10", "input": "Order A-730: 7 webcams, normal priority.", "expected": {"order_id": "A-730", "quantity": 7, "item": "webcam", "priority": "normal"}, "tags": ["typical"]}

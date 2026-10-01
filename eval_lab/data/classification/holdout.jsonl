@@ -1,0 +1,10 @@
+{"id": "class-holdout-01", "input": "My headset cable is visibly broken.", "expected": "Hardware", "tags": ["hardware", "typical"]}
+{"id": "class-holdout-02", "input": "The browser freezes on every page.", "expected": "Software", "tags": ["software", "typical"]}
+{"id": "class-holdout-03", "input": "Please procure a monitor for the new hire.", "expected": "Other", "tags": ["other", "business-rule"]}
+{"id": "class-holdout-04", "input": "La pantalla está rota.", "expected": "Hardware", "tags": ["hardware", "multilingual"]}
+{"id": "class-holdout-05", "input": "My headphones only play through one ear.", "expected": "Hardware", "tags": ["hardware", "vocabulary"]}
+{"id": "class-holdout-06", "input": "The operating system cannot boot.", "expected": "Software", "tags": ["software", "vocabulary"]}
+{"id": "class-holdout-07", "input": "What is the visitor parking policy?", "expected": "Other", "tags": ["other", "typical"]}
+{"id": "class-holdout-08", "input": "The VPN cannot authenticate my account.", "expected": "Software", "tags": ["software", "account"]}
+{"id": "class-holdout-09", "input": "I want to donate my old laptop.", "expected": "Other", "tags": ["other", "business-rule"]}
+{"id": "class-holdout-10", "input": "Le clavier ne fonctionne plus.", "expected": "Hardware", "tags": ["hardware", "multilingual"]}
