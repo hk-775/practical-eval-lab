@@ -6,10 +6,10 @@
 - Repository: `hk-775/practical-eval-lab`
 - Distribution: source repository, buildable wheel/sdist, local Python webpage, command-line runner
 - License: MIT No Attribution (`MIT-0`), selected by the owner
-- Status: private GitHub staging; public publication awaits external repository approval
+- Status: public source repository; publication approved by the owner
 - Default branch: `main`
-- Current visibility: private; keep the repository private until approval
-- Intended publication channel: public GitHub source repository after approval
+- Current visibility: public as of October 1, 2026
+- Publication channel: [GitHub source repository](https://github.com/hk-775/practical-eval-lab)
 - No public hosted application, package release, or cloud deployment is implied
 
 ## Included artifacts
@@ -52,16 +52,20 @@ styles are inherited from the starter. Dependencies are resolved in `uv.lock`.
 ## Publication checks
 
 - License selected by the owner: MIT-0; canonical text sourced from SPDX.
-- Public author identity: the repository owner’s GitHub handle and noreply email.
+- Public author identity: the repository owner’s public GitHub identity and noreply email.
 - Locked installation, core/API tests, CLI checks, and six-suite browser checks
   are automated. Wheel/sdist checks install outside the source checkout.
 - CI targets Python 3.10 and 3.14 on Ubuntu and Python 3.13 on Ubuntu, Windows, and macOS;
   Chromium checks run on Ubuntu. Review each actual run before claiming success.
-- Gitleaks scanned the staged source and complete local Git history before push.
-  No pre-existing history was imported from another repository.
+- Gitleaks scanned the staged source, all reachable Git history, and existing
+  GitHub workflow logs before publication. No secrets were detected. No
+  pre-existing history was imported from another repository.
 - Runtime profiles, reports, environment files, and caches are ignored by Git.
-- Enable private vulnerability reporting when the repository is made public.
-- External repository approval was submitted with reason `1` and is awaiting
-  manager action. The submission receipt is kept in ignored local state.
+- Private vulnerability reporting, secret scanning, and secret-scanning push
+  protection are enabled.
+- CI uses GitHub-hosted runners and read-only workflow tokens. No deployment
+  environments, hosted Pages site, or release assets were present at publication.
+- The owner confirmed external approval and authorized public visibility on
+  October 1, 2026. Approval receipts remain in ignored local state.
 
 No GitHub Release, registry upload, or paid service is part of this milestone.

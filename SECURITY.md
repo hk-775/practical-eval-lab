@@ -25,7 +25,7 @@ write tools merely to run a teaching example. The runner is sequential, Python
 candidates have no forced timeout, and no runtime sandbox is promised for trusted
 application code.
 
-For a public repository, use GitHub's private vulnerability reporting feature.
-The maintainer must enable it before publication. If unavailable, request a private
-reporting channel without posting exploit details or secrets. Do not report exposed
+Report vulnerabilities through [GitHub's private reporting form](https://github.com/hk-775/practical-eval-lab/security/advisories/new),
+which is enabled for this repository. If unavailable, request a private reporting
+channel without posting exploit details or secrets. Do not report exposed
 credentials in a public issue; revoke them and contact the maintainer privately.

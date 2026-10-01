@@ -4,8 +4,8 @@ Six runnable evaluation examples with a local tuning webpage. Learn how to choos
 success criteria, inspect failures, compare application versions, and keep the
 results reproducible. Every example works without an API key.
 
-**Status:** an educational portfolio, staged in a private GitHub repository pending
-publication approval. Original code and synthetic data use [MIT-0](LICENSE).
+**Status:** a public, open-source educational toolkit. Original code and synthetic
+data use [MIT-0](LICENSE).
 The human-preference sample retains its [upstream MIT notice](THIRD_PARTY_NOTICES.md).
 
 ## Start in a source checkout
@@ -13,6 +13,8 @@ The human-preference sample retains its [upstream MIT notice](THIRD_PARTY_NOTICE
 Use Python 3.10+ and [uv](https://docs.astral.sh/uv/):
 
 ```bash
+git clone https://github.com/hk-775/practical-eval-lab.git
+cd practical-eval-lab
 uv sync --locked
 uv run --locked eval-lab serve
 ```
