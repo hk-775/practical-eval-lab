@@ -1,4 +1,6 @@
 const $ = (id) => document.getElementById(id);
+const isPublicPage = document.documentElement.dataset.mode === "public";
+const publicViewer = window.EvalLabPublic || null;
 const state = {suite: "classification", split: "dev", config: null, revision: null, dirty: false, editorDirty: false, busy: false, report: null, catalog: {}, index: 0};
 const settingLabels = {
   normalize_labels: ["Normalize labels", "Ignore letter case and outer whitespace. Extra explanations still fail."],
@@ -11,6 +13,8 @@ const percent = (n) => `${(n * 100).toFixed(1).replace(/\.0$/, "")}%`;
 const pretty = (x) => typeof x === "string" ? x : JSON.stringify(x, null, 2);
 function status(text, error = false) { $("status").textContent = text; $("status").classList.toggle("error", error); }
 async function api(path, data) {
+  if (publicViewer) return publicViewer.request(path, data);
+  if (isPublicPage) throw new Error("The recorded-results viewer could not load. Please reload the page.");
   const response = await fetch(`./api/${path}`, data === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data)});
   const payload = await response.json();
   if (!response.ok) throw new Error(payload.error || `Request failed (${response.status})`);
@@ -20,10 +24,10 @@ function controls() {
   document.querySelectorAll("[data-lock]").forEach(el => { el.disabled = state.busy; });
   $("editor-fields").disabled = state.busy || state.split === "holdout";
   $("editor-fields").hidden = state.split === "holdout";
-  $("threshold").disabled = state.busy || state.split === "holdout";
+  $("threshold").disabled = Boolean(publicViewer) || state.busy || state.split === "holdout";
   $("download-report").disabled = !state.report || state.busy;
   $("download-html").disabled = !state.report || state.busy;
-  $("holdout-note").hidden = state.split !== "holdout";
+  $("holdout-note").hidden = Boolean(publicViewer) || state.split !== "holdout";
 }
 async function task(action) {
   if (state.busy) return;
@@ -86,7 +90,9 @@ function drawSplit() {
   const holdout = state.split === "holdout";
   $("threshold").value = holdout ? .8 : state.config.threshold;
   $("threshold-value").value = percent(Number($("threshold").value));
-  $("dataset-note").textContent = holdout ? `${state.catalog[state.suite].holdout_count} reserved examples · original settings · use after development tuning` : `${state.config.cases.length} development cases · edits are included in your next run`;
+  $("dataset-note").textContent = publicViewer
+    ? `${holdout ? state.catalog[state.suite].holdout_count : state.config.cases.length} recorded ${holdout ? "holdout" : "development"} cases · original grader and threshold`
+    : holdout ? `${state.catalog[state.suite].holdout_count} reserved examples · original settings · use after development tuning` : `${state.config.cases.length} development cases · edits are included in your next run`;
   controls();
 }
 async function loadSuite() {
@@ -102,7 +108,7 @@ async function loadSuite() {
     }
   }
   $("candidate").value = "improved"; $("before-candidate").value = "baseline";
-  status("Ready. Compare both candidates on the same dataset, or tune the eval below.");
+  status(publicViewer ? "Ready. Open a recorded comparison or inspect one candidate. No new evaluation runs here." : "Ready. Compare both candidates on the same dataset, or tune the eval below.");
 }
 function badge(text, kind) { const el = document.createElement("span"); el.className = `result-badge ${kind}`; el.textContent = text; return el; }
 function cell(text, className = "") { const el = document.createElement("td"); el.textContent = text; el.className = className; return el; }
@@ -147,8 +153,10 @@ function renderReport(payload) {
   $("gate-detail").textContent = (payload.gates || report.gates).map(g => `${g.name}: ${g.passed ? "pass" : "fail"}`).join(" · ");
   $("report-context").textContent = `${report.suite} · ${report.split} · ${report.candidate.kind} · ${new Date(report.created_at).toLocaleString()} · ${report.trials} trial(s)`;
   $("before-heading").textContent = comparison ? `${payload.before.candidate.name} output` : "Candidate output";
-  $("report-origin").hidden = !payload.imported;
-  $("report-origin").textContent = "Imported report: contents and measurements are user-supplied and not authenticated.";
+  $("report-origin").hidden = !publicViewer && !payload.imported;
+  $("report-origin").textContent = publicViewer
+    ? "Recorded offline experiment: these outputs, scores, and timings come from the bundled Python runs. This page does not execute candidates or call models."
+    : "Imported report: contents and measurements are user-supplied and not authenticated.";
   $("slice-grid").replaceChildren();
   for (const [tag, scores] of Object.entries(report.slices)) {
     const item = document.createElement("div"); item.className = "slice-item"; const label = document.createElement("div"); label.textContent = `${tag} · ${scores.passed}/${scores.total} · ${percent(scores.accuracy)}`; const meter = document.createElement("meter"); meter.min = 0; meter.max = scores.total; meter.value = scores.passed; meter.setAttribute("aria-label", `${tag} pass rate`); item.append(label, meter); $("slice-grid").append(item);
@@ -175,7 +183,9 @@ function renderReport(payload) {
     const wrap = document.createElement("div"); wrap.className = "table-wrap"; wrap.append(table); measurements.append(wrap);
   }
   renderRows(); $("results-area").hidden = false;
-  status(comparison ? `Comparison finished on ${report.total} identical cases. Both candidates used the same grader and threshold.` : `Finished: ${report.passed}/${report.total} cases passed.`);
+  status(publicViewer
+    ? `Loaded recorded ${comparison ? "comparison" : "run"}: ${report.passed}/${report.total} cases passed. Open the walkthrough to understand the failures.`
+    : comparison ? `Comparison finished on ${report.total} identical cases. Both candidates used the same grader and threshold.` : `Finished: ${report.passed}/${report.total} cases passed.`);
 }
 function download(name, data, type = "application/json") {
   const url = URL.createObjectURL(new Blob([type === "application/json" ? JSON.stringify(data, null, 2) + "\n" : data], {type}));
@@ -213,7 +223,7 @@ $("suite").addEventListener("change", () => task(async () => {
 $("split").addEventListener("change", () => task(async () => {
   try { applyEditor(); } catch (e) { $("split").value = state.split; throw e; }
   state.split = $("split").value; state.report = null; $("results-area").hidden = true; drawSplit();
-  status(state.split === "holdout" ? "Holdout uses the bundled cases and original settings. Your development draft is preserved." : "Development draft restored.");
+  status(publicViewer ? "Dataset selected. Open its recorded comparison to inspect the results." : state.split === "holdout" ? "Holdout uses the bundled cases and original settings. Your development draft is preserved." : "Development draft restored.");
 }));
 $("threshold").addEventListener("input", () => { state.config.threshold = Number($("threshold").value); $("threshold-value").value = percent(state.config.threshold); markDirty(); });
 ["case-input", "case-expected", "case-tags"].forEach(id => $(id).addEventListener("input", () => { state.editorDirty = true; markDirty(); }));
@@ -261,7 +271,9 @@ window.addEventListener("beforeunload", (event) => { if (state.dirty || state.ed
 task(async () => {
   const catalog = await api("suites"); state.catalog = Object.fromEntries(catalog.suites.map(s => [s.id, s]));
   for (const s of catalog.suites) { const option = document.createElement("option"); option.value = s.id; option.textContent = s.title; $("suite").append(option); }
-  const requestedSuite = new URLSearchParams(location.search).get("suite");
+  const params = new URLSearchParams(location.search);
+  const requestedSuite = params.get("suite");
   if (Object.hasOwn(state.catalog, requestedSuite)) { state.suite = requestedSuite; $("suite").value = requestedSuite; }
+  if (params.get("split") === "holdout") { state.split = "holdout"; $("split").value = "holdout"; }
   await loadSuite(); await refreshHistory();
 });
