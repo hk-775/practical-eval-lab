@@ -1,19 +1,22 @@
 :root {
-  color-scheme: light;
-  --ink: #0f172a;
-  --muted: #475569;
-  --paper: #edf2f9;
-  --panel: #ffffff;
-  --surface: #f0f4fc;
-  --line: #bccbe0;
-  --accent: #1d4ed8;
-  --accent-hover: #1e40af;
-  --accent-soft: #e5edff;
-  --success: #087443;
-  --success-soft: #dcfce7;
-  --danger: #b42337;
-  --danger-soft: #ffe4e9;
-  --shadow: 0 14px 38px rgba(15, 23, 42, 0.09);
+  color-scheme: dark;
+  --navy: #0D1B2A;
+  --cream: #F8F5F0;
+  --text-on-light: #1A1A1A;
+  --ink: #EAEAEA;
+  --muted: rgba(234, 234, 234, 0.74);
+  --paper: var(--navy);
+  --panel: var(--navy);
+  --surface: rgba(234, 234, 234, 0.045);
+  --line: rgba(234, 234, 234, 0.22);
+  --accent: #00B4D8;
+  --accent-hover: var(--cream);
+  --accent-soft: rgba(0, 180, 216, 0.12);
+  --success: #10B981;
+  --success-soft: rgba(16, 185, 129, 0.12);
+  --danger: #FF93A6;
+  --danger-soft: rgba(255, 147, 166, 0.08);
+  --shadow: 0 14px 38px rgba(0, 0, 0, 0.18);
 }
 
 * {
@@ -32,6 +35,11 @@ body {
     Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
 }
 
 button,
@@ -62,7 +70,7 @@ a:focus-visible {
 }
 
 .hero::after {
-  border: 1px solid rgba(29, 78, 216, 0.28);
+  border: 1px solid rgba(0, 180, 216, 0.28);
   border-radius: 50%;
   content: "";
   height: 410px;
@@ -73,7 +81,7 @@ a:focus-visible {
 }
 
 .hero::before {
-  border: 1px solid rgba(29, 78, 216, 0.16);
+  border: 1px solid rgba(0, 180, 216, 0.16);
   border-radius: 50%;
   content: "";
   height: 280px;
@@ -107,7 +115,7 @@ a:focus-visible {
   align-items: center;
   background: var(--accent);
   border-radius: 9px;
-  color: white;
+  color: var(--navy);
   display: inline-flex;
   height: 34px;
   justify-content: center;
@@ -128,9 +136,9 @@ a:focus-visible {
 }
 
 .status-dot {
-  background: var(--success);
+  background: var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(8, 116, 67, 0.14);
+  box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.14);
   height: 7px;
   width: 7px;
 }
@@ -160,7 +168,7 @@ p {
 }
 
 h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: inherit;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 500;
   letter-spacing: -0.055em;
@@ -229,7 +237,7 @@ h1 {
 
 .section-heading h2,
 .lesson-panel h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: inherit;
   font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 500;
   letter-spacing: -0.035em;
@@ -290,8 +298,8 @@ output {
 
 .primary-button {
   background: var(--accent);
-  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.2);
-  color: white;
+  box-shadow: 0 8px 18px rgba(0, 180, 216, 0.2);
+  color: var(--navy);
   gap: 24px;
   min-width: 175px;
   padding: 14px 17px;
@@ -299,14 +307,14 @@ output {
 
 .secondary-button {
   background: var(--accent);
-  color: white;
+  color: var(--navy);
   min-height: 48px;
   padding: 12px 20px;
 }
 
 .primary-button:hover,
 .secondary-button:hover {
-  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.25);
+  box-shadow: 0 10px 24px rgba(0, 180, 216, 0.25);
   transform: translateY(-1px);
 }
 
@@ -345,7 +353,7 @@ output {
 .metric-card.score-card {
   background: var(--accent);
   border-color: var(--accent);
-  color: white;
+  color: var(--navy);
 }
 
 .metric-card p {
@@ -358,7 +366,7 @@ output {
 }
 
 .metric-card strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: inherit;
   font-size: 2.7rem;
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -447,11 +455,11 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: #edf3ff;
+  background: var(--accent-soft);
 }
 
 tbody tr.failed-row {
-  background: #fff0f3;
+  background: var(--danger-soft);
 }
 
 .result-badge,
@@ -540,7 +548,7 @@ tbody tr.failed-row {
 }
 
 .slice-bar span {
-  background: var(--success);
+  background: var(--accent);
   border-radius: inherit;
   display: block;
   height: 100%;
@@ -614,12 +622,12 @@ select {
 
 .single-result.pass {
   background: var(--success-soft);
-  border-color: #69ba91;
+  border-color: var(--success);
 }
 
 .single-result.fail {
   background: var(--danger-soft);
-  border-color: #dc8795;
+  border-color: var(--danger);
 }
 
 .single-result strong {
@@ -633,12 +641,12 @@ select {
 }
 
 .lesson-panel {
-  background: var(--ink);
-  color: white;
+  background: var(--cream);
+  color: var(--text-on-light);
 }
 
 .lesson-panel .section-number {
-  color: #93c5fd;
+  color: var(--accent);
 }
 
 .lesson-panel h2 {
@@ -802,7 +810,7 @@ button:disabled { opacity:.5; cursor:default; }
 .muted { color:var(--muted); font-size:.86rem; }
 .small { font-size:.76rem; margin:18px 0 0; }
 .error,.danger { color:var(--danger); }
-.good { color:var(--success); }
+.good { color:var(--ink); }
 .tune-panel { margin-top:24px; padding:clamp(24px,4vw,48px); }
 .tuning-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:36px; margin:20px 0; }
 fieldset { border:0; padding:0; margin:0; min-width:0; }
@@ -813,7 +821,7 @@ fieldset:disabled { opacity:.6; }
 .grader-editor { padding:24px; border-radius:16px; background:var(--surface); align-self:start; margin-top:16px; }
 .grader-editor p { font-size:.87rem; }
 .check-control { display:flex; align-items:start; gap:12px; color:var(--ink); }
-.check-control input { accent-color:var(--success); width:18px; height:18px; flex:none; }
+.check-control input { accent-color:var(--accent); width:18px; height:18px; flex:none; }
 .check-control small { display:block; font-weight:400; color:var(--muted); margin-top:8px; }
 .notice { background:var(--accent-soft); border-left:3px solid var(--accent); padding:15px; margin-top:22px; font-size:.84rem; }
 .save-bar { border-top:1px solid var(--line); padding-top:22px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
@@ -832,7 +840,12 @@ pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.75rem; font-famil
 .result-badge { margin:0 4px 4px 0; }
 summary { cursor:pointer; color:var(--accent); font-size:.78rem; margin-top:8px; }
 details p { font-size:.74rem; margin:8px 0; }
-.slice-item meter { width:100%; height:12px; accent-color:var(--success); }
+.slice-item meter { appearance:none; width:100%; height:6px; border:0; border-radius:999px; background:var(--line); }
+.slice-item meter::-webkit-meter-bar { height:6px; border:0; border-radius:999px; background:var(--line); box-shadow:none; }
+.slice-item meter::-webkit-meter-optimum-value,
+.slice-item meter::-webkit-meter-suboptimum-value,
+.slice-item meter::-webkit-meter-even-less-good-value { background:var(--accent); border-radius:999px; }
+.slice-item meter::-moz-meter-bar { background:var(--accent); border-radius:999px; }
 .slice-item div { display:block; overflow-wrap:anywhere; }
 footer { padding:32px 0 0; }
 footer p+p { margin-top:7px; }
@@ -840,12 +853,12 @@ footer p+p { margin-top:7px; }
 @media(max-width:1000px) { .control-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:700px) { .tuning-grid { grid-template-columns:1fr; gap:8px; } .hero { min-height:390px; } .hero-copy { margin-top:48px; } .control-grid { grid-template-columns:1fr; } .action-row .primary-button { width:100%; } .tune-panel .section-heading { gap:16px; } .status-pill { font-size:.65rem; max-width:135px; } .brand { font-size:.8rem; } .metric-card strong { font-size:2.3rem; } .save-bar>* { flex:1 1 45%; justify-content:center; text-align:center; } }
 
-/* Crisp white surfaces with strong blue actions and readable result states. */
+/* Navy canvas, cyan actions, and restrained semantic result colors. */
 .hero { background:var(--panel); border-top:6px solid var(--accent); }
 h1 span { color:var(--accent); }
 .primary-button:hover,.secondary-button:hover { background:var(--accent-hover); }
 .metric-card p,.metric-card span { color:var(--muted); }
-.metric-card.score-card p,.metric-card.score-card span { color:#ffffff; }
+.metric-card.score-card p,.metric-card.score-card span { color:var(--navy); }
 .tag { color:var(--accent-hover); }
 .status-pill { color:var(--ink); border-color:var(--line); }
 select:hover,textarea:hover,input[type=text]:hover { border-color:var(--accent); }
@@ -856,11 +869,11 @@ select:hover,textarea:hover,input[type=text]:hover { border-color:var(--accent);
 .measurement-panel p { font-size:.85rem; overflow-wrap:anywhere; }
 .history-panel select { max-width:100%; }
 .history-panel { padding:clamp(22px,3.4vw,48px); margin-top:24px; }
-input[type=number],input:not([type]) { font:inherit; color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:12px; width:100%; background:#fff; }
+input[type=number],input:not([type]) { font:inherit; color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:12px; width:100%; background:var(--panel); }
 #case-input { font-family:ui-monospace,SFMono-Regular,monospace; font-size:.86rem; }
 .ticket-cell details { max-width:300px; }
 caption { text-align:left; margin:12px 0; font-weight:700; }
-.case-study-hero { background:#fff; border-top:6px solid var(--accent); padding:26px clamp(22px,6vw,88px) 48px; }
+.case-study-hero { background:var(--panel); border-top:6px solid var(--accent); padding:26px clamp(22px,6vw,88px) 48px; }
 .case-study-page { margin-top:28px; }
 .incident-card { padding:clamp(22px,3.4vw,48px); margin-bottom:24px; scroll-margin-top:20px; }
 .incident-card h3 { font-size:1.05rem; margin-top:28px; }
@@ -869,3 +882,12 @@ caption { text-align:left; margin:12px 0; font-weight:700; }
 .incident-card a { overflow-wrap:anywhere; }
 .incident-card .outline-button { display:inline-block; margin-top:20px; text-decoration:none; }
 .incident-card .notice { max-width:none; }
+
+/* Keep emerald reserved for compact PASS badges, not controls or charts. */
+.result-badge.improved { background:var(--accent-soft); color:var(--accent); }
+h1 { font-weight:700; line-height:1.04; color:var(--cream); }
+.section-heading h2,.lesson-panel h2,.metric-card strong { font-weight:650; }
+.single-result.pass { background:var(--surface); border-color:var(--line); }
+.lesson-panel .section-number { color:var(--text-on-light); }
+.lesson-list li,.lesson-list li>span { border-color:rgba(13,27,42,.22); }
+.lesson-list p { color:rgba(26,26,26,.74); }
