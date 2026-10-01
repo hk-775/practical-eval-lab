@@ -6,9 +6,9 @@
 - Repository: `hk-775/practical-eval-lab`
 - Distribution: source repository with a local Python webpage and command-line runner
 - License: MIT No Attribution (`MIT-0`), selected by the owner
-- Status: private remote created; source remains local pending external repository approval
+- Status: private GitHub staging; public publication awaits external repository approval
 - Default branch: `main`
-- Current remote: private and empty
+- Current visibility: private; keep the repository private until approval
 - Intended publication channel: public GitHub source repository after approval
 - No public hosted application, package release, or cloud deployment is implied
 
@@ -46,12 +46,11 @@ styles are inherited from the starter. Dependencies are resolved in `uv.lock`.
 ## Publication checks
 
 - License selected by the owner: MIT-0; canonical text sourced from SPDX.
-- Planned public author identity: the repository owner’s GitHub handle and noreply email.
+- Public author identity: the repository owner’s GitHub handle and noreply email.
 - Clean locked installation, 34 core/API tests, CLI checks, and automated browser
   checks passed locally. GitHub Actions runs the same checks after each push.
-- Gitleaks scanned all staged source before the initial commit; no previous commit
-  history exists in this new repository. The initial commit is scanned again
-  before push.
+- Gitleaks scanned the staged source and complete local Git history before push.
+  No pre-existing history was imported from another repository.
 - Runtime profiles, reports, environment files, and caches are ignored by Git.
 - Enable private vulnerability reporting when the repository is made public.
 - External repository approval was submitted with reason `1` and is awaiting
