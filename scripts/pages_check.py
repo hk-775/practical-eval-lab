@@ -245,7 +245,7 @@ def check_browser(base, screenshots=None):
             download.value.save_as(diagram)
             assert "<mxfile" in diagram.read_text(encoding="utf-8")
             page.goto(base + "guides.html")
-            page.get_by_role("link", name="Decision model benchmark", exact=True).click()
+            page.get_by_role("link", name="Earlier decision-model diagnostic", exact=True).click()
             expect(page.locator("article.prose")).to_contain_text("Choice only")
             page.get_by_role("link", name="Recorded results: 2 October 2026", exact=True).click()
             expect(page.locator("article.prose")).to_contain_text("64 unique decisions")
@@ -256,12 +256,20 @@ def check_browser(base, screenshots=None):
                 page.screenshot(path=str(screenshots / "decision-model-results-desktop.png"), full_page=True)
             page.get_by_role("link", name="design review", exact=True).click()
             expect(page.locator("article.prose")).to_contain_text("Calibration misses important classes")
+            page.goto(base + "guides.html")
+            page.get_by_role("link", name="Executed support workflow", exact=True).click()
+            page.get_by_role("link", name="Read the recorded workflow results", exact=True).click()
+            expect(page.locator("article.prose")).to_contain_text("144 episodes")
+            expect(page.locator("article.prose")).to_contain_text("100% fallback demand")
+            expect(page.locator("article.prose")).to_contain_text("rules-only paths")
+            if screenshots:
+                page.screenshot(path=str(screenshots / "tool-workflow-results-desktop.png"), full_page=True)
             page.set_viewport_size({"width": 390, "height": 844})
-            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html"):
+            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html", "tool-workflow.html", "tool-workflow-protocol.html", "tool-workflow-results.html"):
                 page.goto(base + route)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), f"Mobile overflow: {route}"
             if screenshots:
-                page.screenshot(path=str(screenshots / "decision-model-results-mobile.png"), full_page=True)
+                page.screenshot(path=str(screenshots / "tool-workflow-results-mobile.png"), full_page=True)
             page.goto(base)
             expect(page.locator("#status")).to_contain_text("Ready.")
             page.locator("#compare").click()

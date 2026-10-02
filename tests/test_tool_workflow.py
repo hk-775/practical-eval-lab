@@ -1,4 +1,6 @@
 import copy
+import json
+from datetime import datetime
 
 import pytest
 
@@ -198,3 +200,26 @@ def test_family_resampling_keeps_correlated_counterparts_and_pairs():
     assert paired["lower"] == paired["upper"] == 0
     with pytest.raises(ValueError):
         interval(episodes, reference=episodes[:-1])
+
+
+@pytest.mark.parametrize("configuration", [
+    "rules-direct", "majority-direct", "random-direct",
+    "naive_bayes-direct", "naive_bayes-gated_rules",
+    "strands-direct", "strands-gated_rules", "laya-direct", "laya-gated_rules",
+])
+def test_frozen_recordings_replay_after_freeze_and_gates_reproduce(configuration):
+    from scripts.audit_workflow_recordings import audit
+    directory = ROOT / "recordings/2026-10-02"
+    freeze = json.loads((ROOT / "freeze.json").read_text(encoding="utf-8"))
+    report = json.loads((directory / f"{configuration}.json").read_text(encoding="utf-8"))
+    assert datetime.fromisoformat(report["created_at"]) > datetime.fromisoformat(freeze["frozen_at"])
+    assert audit(report)["episodes_replayed"] == 144
+    if report["strategy"] == "gated_rules":
+        name = report["candidate"]["name"]
+        calibration = json.loads((directory / f"{name}-calibration.json").read_text(encoding="utf-8"))
+        gate = json.loads((directory / f"{name}-gate.json").read_text(encoding="utf-8"))
+        assert runner.fit_gate(calibration) == gate
+        assert gate["candidate_hash"] == report["candidate_hash"]
+        assert gate["report_hash"] == report["gate_hash"]
+        assert report["metrics"]["primary_calls"] == 0
+        assert report["metrics"]["fallback_step_rate"] == 1

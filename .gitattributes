@@ -3,3 +3,4 @@ examples/results/*.html linguist-generated=true
 eval_lab/web/incidents.html linguist-generated=true
 benchmarks/** text eol=lf
 benchmarks/decision_models/recordings/2026-10-02/*.json linguist-generated=true
+benchmarks/tool_workflow/recordings/2026-10-02/*.json linguist-generated=true

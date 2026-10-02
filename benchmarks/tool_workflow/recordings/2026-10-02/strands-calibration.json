@@ -1,0 +1,5541 @@
+{
+  "kind": "workflow-calibration",
+  "schema_version": 1,
+  "protocol": "executed-support-workflow-v2",
+  "protocol_hash": "1d4d4634fcef0ebfcdd1e8e68ce7e400181c0fe8897dc9bc6a0e69641e10389e",
+  "created_at": "2026-10-02T18:52:36.181325+00:00",
+  "candidate": {
+    "name": "strands",
+    "kind": "local",
+    "model": "StrandsAgents/strands-decider-2B-hobson-v19",
+    "revision": "bb282d786bc251fd4e3068de3ada9ddbb38127cd",
+    "code_revision": "ddd11994bc451ffc78fa30f43037c291fd4d44b6",
+    "base_model": "Qwen/Qwen3.5-2B-Base",
+    "base_revision": "b1485b2fa6dfa1287294f269f5fb618e03d52d7c",
+    "base_revision_note": "Upstream provenance inferred this revision from training time; this benchmark explicitly pins it for inference.",
+    "context_tokens": 4096,
+    "license": "Apache-2.0",
+    "device": "mps",
+    "packages": {
+      "torch": "2.14.1",
+      "transformers": "5.18.0",
+      "huggingface-hub": "1.33.0",
+      "strands-decider": "0.0.1.dev4+gddd11994b",
+      "laya": "0.3.24"
+    },
+    "runtime_lock_sha256": "80154011efeecd69b09846fb8105e2da160347204d250155086ad3c1635f8c5a",
+    "compile": false,
+    "dtype": "torch.bfloat16",
+    "strict_window": true,
+    "shared_prefix_cache": true,
+    "effective_temperatures": {
+      "default": 0.9627721607677362,
+      "by_kind": {
+        "noul": 0.9107136998460428,
+        "choice": 0.734189596436441,
+        "score": 1.32780942142348
+      }
+    }
+  },
+  "candidate_hash": "8d2194ed7430613ac452aafdcfb98943d0dbbfe27b371c33b03b0662bb0abcce",
+  "dataset_version": "support-tool-workflow-v2",
+  "split": "calibration",
+  "dataset_sha256": "99712dc88c512288296c3ddb1ee955b85dac9172508f3c634ebcee5ac9f8278c",
+  "development_sha256": "606a22ebee19916f47ce9525223ddca2f29bd3a0fdcc6c9069c4dc6b63a746b8",
+  "hardware": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "python": "3.13.12",
+  "setup_ms_including_download_if_needed": 4625.732290995074,
+  "warmup_ms": [
+    563.0810410002596,
+    421.7463749955641,
+    419.95112499716925
+  ],
+  "warmup_excluded": true,
+  "cost_usd": null,
+  "notice": "Synthetic in-memory support workflow. Scripted user replies have no human wait. No external service, Jev, or general-model fallback is executed. Costs unknown. Timing is simulator wall time, not an enterprise service SLO.",
+  "states": [
+    {
+      "case_id": "locked_update-11-0",
+      "family": "write-11",
+      "condition": "locked_update",
+      "observation_hash": "a0a6865e734381f572de4eecbd239f8d4d434e7a5d23914687f94343017a02bd",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-30939",
+          "priority": "high"
+        },
+        "confidence": 0.5122,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1299,
+              "set_priority": 0.5122,
+              "ask_user": 0.2099,
+              "handoff": 0.148
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3496
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6972697269726973,
+              "ticket_2": 0.1792179217921792,
+              "unspecified": 0.12351235123512351
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5459
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.07329267073292671,
+              "normal": 0.0410958904109589,
+              "high": 0.8386161383861614,
+              "unspecified": 0.046995300469953004
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7849
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5122,
+      "error": null,
+      "latency_ms": 437.40879200049676
+    },
+    {
+      "case_id": "locked_update-04-1",
+      "family": "write-04",
+      "condition": "locked_update",
+      "observation_hash": "0b5af857efa2a842c1041ede30e7469cf37d84d030c913e42b8a81069be986ae",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-10824",
+          "priority": "high"
+        },
+        "confidence": 0.6084,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1299,
+              "set_priority": 0.6084,
+              "ask_user": 0.1101,
+              "handoff": 0.1516
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4779
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1638,
+              "ticket_2": 0.7725,
+              "unspecified": 0.0637
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6588
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0179,
+              "normal": 0.0584,
+              "high": 0.8855,
+              "unspecified": 0.0382
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8473
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.6084,
+      "error": null,
+      "latency_ms": 450.6975410040468
+    },
+    {
+      "case_id": "contrast_read-08-0",
+      "family": "contrast_read-08",
+      "condition": "contrast_read",
+      "observation_hash": "093db97e8367c3fd8bf6f14dedcaf2469c8a27b06c2b474175cf3b4a39941f71",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-90202"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-90202"
+        },
+        "confidence": 0.5176,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5176,
+              "set_priority": 0.2731,
+              "ask_user": 0.1761,
+              "handoff": 0.0332
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3568
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7715,
+              "ticket_2": 0.1401,
+              "unspecified": 0.0884
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6573
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.6412,
+              "normal": 0.0465,
+              "high": 0.0237,
+              "unspecified": 0.2886
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5216
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5176,
+      "error": null,
+      "latency_ms": 555.7489170023473
+    },
+    {
+      "case_id": "missing_priority-08-0",
+      "family": "missing_priority-08",
+      "condition": "missing_priority",
+      "observation_hash": "7f5cdb6ee5ab8a5fece6a104e98750b32cb0d6e2719d35ec735d454b776a5941",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-72632",
+          "priority": "low"
+        },
+        "confidence": 0.4979,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1257,
+              "set_priority": 0.593,
+              "ask_user": 0.1933,
+              "handoff": 0.088
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4574
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7338266173382662,
+              "ticket_2": 0.1725827417258274,
+              "unspecified": 0.09359064093590641
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6008
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.4979,
+              "normal": 0.2478,
+              "high": 0.0397,
+              "unspecified": 0.2146
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3305
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4979,
+      "error": null,
+      "latency_ms": 465.39599999960046
+    },
+    {
+      "case_id": "missing_priority-08-0",
+      "family": "missing_priority-08",
+      "condition": "missing_priority",
+      "observation_hash": "e614aee61a6583943ca9b92d903e2f8122b14764fbeb2f68245f7f18df09cbee",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-72632",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-72632",
+          "priority": "high"
+        },
+        "confidence": 0.5891589158915892,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.07720772077207722,
+              "set_priority": 0.5891589158915892,
+              "ask_user": 0.299029902990299,
+              "handoff": 0.034603460346034606
+            },
+            "provider_probability_sum": 0.9998999999999999,
+            "provider_confidence": 0.4522
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6998,
+              "ticket_2": 0.1871,
+              "unspecified": 0.1131
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5497
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.1024,
+              "normal": 0.0657,
+              "high": 0.7351,
+              "unspecified": 0.0968
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6468
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5891589158915892,
+      "error": null,
+      "latency_ms": 464.1654160004691
+    },
+    {
+      "case_id": "denied_update-01-0",
+      "family": "write-01",
+      "condition": "denied_update",
+      "observation_hash": "d1ded7aff165e17fe26ca6979eccca2e70b4c0aa3faa5ab770d73cb3130c932a",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-59564",
+          "priority": "low"
+        },
+        "confidence": 0.47624762476247623,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1226122612261226,
+              "set_priority": 0.47624762476247623,
+              "ask_user": 0.15541554155415543,
+              "handoff": 0.24572457245724572
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.3016
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.661033896610339,
+              "ticket_2": 0.21517848215178484,
+              "unspecified": 0.1237876212378762
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4916
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8507,
+              "normal": 0.0314,
+              "high": 0.0653,
+              "unspecified": 0.0526
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8009
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.47624762476247623,
+      "error": null,
+      "latency_ms": 450.1347499972326
+    },
+    {
+      "case_id": "missing_priority-01-1",
+      "family": "missing_priority-01",
+      "condition": "missing_priority",
+      "observation_hash": "d8bc206ac5557aac4bf38d81ec88116fad23ccfd72f8582290e4e09d116cd893",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-34004",
+          "priority": "normal"
+        },
+        "confidence": 0.4337,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.10018998100189981,
+              "set_priority": 0.6803319668033196,
+              "ask_user": 0.1136886311368863,
+              "handoff": 0.10578942105789421
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5738
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2649,
+              "ticket_2": 0.6547,
+              "unspecified": 0.0804
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4821
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0647,
+              "normal": 0.4337,
+              "high": 0.33,
+              "unspecified": 0.1716
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.245
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4337,
+      "error": null,
+      "latency_ms": 452.12104100210126
+    },
+    {
+      "case_id": "missing_priority-01-1",
+      "family": "missing_priority-01",
+      "condition": "missing_priority",
+      "observation_hash": "7d7f1ee5aff8f1960e72708e92a428926f95f580094c2aef577efcf9125cb045",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-34004",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-34004",
+          "priority": "high"
+        },
+        "confidence": 0.644,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0662,
+              "set_priority": 0.644,
+              "ask_user": 0.2473,
+              "handoff": 0.0425
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5253
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1788178817881788,
+              "ticket_2": 0.7207720772077207,
+              "unspecified": 0.1004100410041004
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5811
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0318,
+              "normal": 0.0856,
+              "high": 0.7961,
+              "unspecified": 0.0865
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7282
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.644,
+      "error": null,
+      "latency_ms": 492.26104200351983
+    },
+    {
+      "case_id": "missing_ticket_write-10-0",
+      "family": "missing_ticket_write-10",
+      "condition": "missing_ticket_write",
+      "observation_hash": "91f2f7778bc654151356ee04467c1bae7dfa9d4f5064d3b89f8b282a035faa20",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-45934",
+          "priority": "low"
+        },
+        "confidence": 0.6457,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.102,
+              "set_priority": 0.6457,
+              "ask_user": 0.1551,
+              "handoff": 0.0972
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5276
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6853314668533147,
+              "ticket_2": 0.19218078192180782,
+              "unspecified": 0.12248775122487751
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5281
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8835883588358836,
+              "normal": 0.026302630263026306,
+              "high": 0.04980498049804981,
+              "unspecified": 0.04030403040304031
+            },
+            "provider_probability_sum": 0.9998999999999999,
+            "provider_confidence": 0.8447
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.6457,
+      "error": null,
+      "latency_ms": 436.96525000268593
+    },
+    {
+      "case_id": "missing_ticket_write-10-0",
+      "family": "missing_ticket_write-10",
+      "condition": "missing_ticket_write",
+      "observation_hash": "5499a8e96d1ffbafc1026c1fb8e7051f3e1644c531efc1df074e9087f1254e2b",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-45934",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-45934",
+          "priority": "low"
+        },
+        "confidence": 0.5918,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0827,
+              "set_priority": 0.5918,
+              "ask_user": 0.2857,
+              "handoff": 0.0398
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4557
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6577,
+              "ticket_2": 0.2129,
+              "unspecified": 0.1294
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4866
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8826,
+              "normal": 0.0251,
+              "high": 0.0344,
+              "unspecified": 0.0579
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8435
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5918,
+      "error": null,
+      "latency_ms": 517.7327919955133
+    },
+    {
+      "case_id": "missing_ticket_write-11-0",
+      "family": "missing_ticket_write-11",
+      "condition": "missing_ticket_write",
+      "observation_hash": "21f6f964500f4d01115952db1973e2f55b6dda1642108cb7e8c279f152a69917",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71483",
+          "priority": "normal"
+        },
+        "confidence": 0.457,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1535,
+              "set_priority": 0.457,
+              "ask_user": 0.2878,
+              "handoff": 0.1017
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.276
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6048,
+              "ticket_2": 0.2288,
+              "unspecified": 0.1664
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4072
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.15888411158884114,
+              "normal": 0.7747225277472253,
+              "high": 0.018698130186981302,
+              "unspecified": 0.0476952304769523
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6997
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.457,
+      "error": null,
+      "latency_ms": 436.632583005121
+    },
+    {
+      "case_id": "missing_ticket_write-11-0",
+      "family": "missing_ticket_write-11",
+      "condition": "missing_ticket_write",
+      "observation_hash": "e729436f958faf89e01af80287274e270bacd90a111f153d50b3642d929e3802",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71483",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71483",
+          "priority": "normal"
+        },
+        "confidence": 0.5664,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.078,
+              "set_priority": 0.5664,
+              "ask_user": 0.3255,
+              "handoff": 0.0301
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4219
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6861313868613139,
+              "ticket_2": 0.2273772622737726,
+              "unspecified": 0.0864913508649135
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5293
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1086,
+              "normal": 0.8437,
+              "high": 0.0138,
+              "unspecified": 0.0339
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7916
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5664,
+      "error": null,
+      "latency_ms": 475.01637499954086
+    },
+    {
+      "case_id": "read_negated_write-01-1",
+      "family": "read_negated_write-01",
+      "condition": "read_negated_write",
+      "observation_hash": "ea1383517d15aba94cb259365700d5b0df11500c2439dcd231976e54a5550e33",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-88404"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-88404"
+        },
+        "confidence": 0.6375637563756376,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.7294,
+              "set_priority": 0.1606,
+              "ask_user": 0.0499,
+              "handoff": 0.0601
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6392
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.21162116211621163,
+              "ticket_2": 0.6375637563756376,
+              "unspecified": 0.15081508150815082
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4563
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.5542,
+              "normal": 0.0506,
+              "high": 0.1481,
+              "unspecified": 0.2471
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4056
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6375637563756376,
+      "error": null,
+      "latency_ms": 443.7935000023572
+    },
+    {
+      "case_id": "missing_priority-08-1",
+      "family": "missing_priority-08",
+      "condition": "missing_priority",
+      "observation_hash": "623730942deab65964bf1d466cc0488fb78b6a9967ffd1f0330e9c36e77145f0",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-66363",
+          "priority": "high"
+        },
+        "confidence": 0.4096,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1318,
+              "set_priority": 0.5903,
+              "ask_user": 0.1533,
+              "handoff": 0.1246
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4537
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2079,
+              "ticket_2": 0.6568,
+              "unspecified": 0.1353
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4852
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.2819,
+              "normal": 0.0741,
+              "high": 0.4096,
+              "unspecified": 0.2344
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2129
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4096,
+      "error": null,
+      "latency_ms": 450.5947079960606
+    },
+    {
+      "case_id": "missing_priority-08-1",
+      "family": "missing_priority-08",
+      "condition": "missing_priority",
+      "observation_hash": "de4ef0ae958f2a0c699ee4ea4f1ffa3ab5d42528371f31f0832e2a0bdecd0ba9",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-66363",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-66363",
+          "priority": "low"
+        },
+        "confidence": 0.6556,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0828,
+              "set_priority": 0.6556,
+              "ask_user": 0.2228,
+              "handoff": 0.0388
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5407
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1923,
+              "ticket_2": 0.6764,
+              "unspecified": 0.1313
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5146
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8346,
+              "normal": 0.0244,
+              "high": 0.0674,
+              "unspecified": 0.0736
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7795
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6556,
+      "error": null,
+      "latency_ms": 441.7523340016487
+    },
+    {
+      "case_id": "missing_ticket_read-10-0",
+      "family": "missing_ticket_read-10",
+      "condition": "missing_ticket_read",
+      "observation_hash": "6b8bcc7a39380541c13ddc2658a932e12b06e5887b334079f1f6331fd5cfa2db",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-84715"
+        },
+        "confidence": 0.49144914491449143,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.49144914491449143,
+              "set_priority": 0.34513451345134516,
+              "ask_user": 0.10331033103310332,
+              "handoff": 0.060106010601060106
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.3219
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6508,
+              "ticket_2": 0.2303,
+              "unspecified": 0.1189
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4763
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0518,
+              "normal": 0.3961,
+              "high": 0.3172,
+              "unspecified": 0.2349
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1948
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.49144914491449143,
+      "error": null,
+      "latency_ms": 439.9642499993206
+    },
+    {
+      "case_id": "missing_ticket_read-10-0",
+      "family": "missing_ticket_read-10",
+      "condition": "missing_ticket_read",
+      "observation_hash": "289a7e014607dc779ce3f429dd348e275fcf30aec0182843adc81acc067c3dc3",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-84715"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-84715"
+        },
+        "confidence": 0.6838316168383162,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.826,
+              "set_priority": 0.0914,
+              "ask_user": 0.0667,
+              "handoff": 0.0159
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7679
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6838316168383162,
+              "ticket_2": 0.1845815418458154,
+              "unspecified": 0.1315868413158684
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5258
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.0702,
+              "normal": 0.3283,
+              "high": 0.2649,
+              "unspecified": 0.3366
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1154
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6838316168383162,
+      "error": null,
+      "latency_ms": 439.3987500006915
+    },
+    {
+      "case_id": "write-01-1",
+      "family": "write-01",
+      "condition": "write",
+      "observation_hash": "f9bb2ba812cbb2d35653b25f6f3003c5a76ee60fb9150cd6689b57383f711935",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-35684",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-35684",
+          "priority": "normal"
+        },
+        "confidence": 0.5764,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0796,
+              "set_priority": 0.7735,
+              "ask_user": 0.0762,
+              "handoff": 0.0707
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.698
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.3239,
+              "ticket_2": 0.5764,
+              "unspecified": 0.0997
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3646
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1091,
+              "normal": 0.8051,
+              "high": 0.0477,
+              "unspecified": 0.0381
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7402
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5764,
+      "error": null,
+      "latency_ms": 453.221667004982
+    },
+    {
+      "case_id": "denied_update-01-1",
+      "family": "write-01",
+      "condition": "denied_update",
+      "observation_hash": "a1d6073e1c3aba131d0ab0d07e025e1393083b6277799f148eb07b888cd80245",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73590",
+          "priority": "normal"
+        },
+        "confidence": 0.5043,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1246,
+              "set_priority": 0.5043,
+              "ask_user": 0.1122,
+              "handoff": 0.2589
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3391
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.33186681331866813,
+              "ticket_2": 0.5332466753324667,
+              "unspecified": 0.13488651134886512
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.2999
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1341,
+              "normal": 0.7793,
+              "high": 0.0429,
+              "unspecified": 0.0437
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7057
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5043,
+      "error": null,
+      "latency_ms": 425.8108750000247
+    },
+    {
+      "case_id": "missing_ticket_read-10-1",
+      "family": "missing_ticket_read-10",
+      "condition": "missing_ticket_read",
+      "observation_hash": "9d48b2ac8929a29a1731ad09cc37044043eca2a5ed260177dda8eda12e726807",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-97844"
+        },
+        "confidence": 0.5021,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5021,
+              "set_priority": 0.2821,
+              "ask_user": 0.1092,
+              "handoff": 0.1066
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3361
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6313,
+              "ticket_2": 0.2852,
+              "unspecified": 0.0835
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4469
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0421,
+              "normal": 0.0659,
+              "high": 0.6203,
+              "unspecified": 0.2717
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4937
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5021,
+      "error": null,
+      "latency_ms": 423.5185830038972
+    },
+    {
+      "case_id": "missing_ticket_read-10-1",
+      "family": "missing_ticket_read-10",
+      "condition": "missing_ticket_read",
+      "observation_hash": "ea200a8ca8ab57ea79ef0ab3a8818859e203fe0d97b708296fe51dd266c2b426",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-54404"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-54404"
+        },
+        "confidence": 0.5348,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.7948,
+              "set_priority": 0.0985,
+              "ask_user": 0.0839,
+              "handoff": 0.0228
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7263
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.3505,
+              "ticket_2": 0.5348,
+              "unspecified": 0.1147
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3022
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0488,
+              "normal": 0.063,
+              "high": 0.549,
+              "unspecified": 0.3392
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3987
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5348,
+      "error": null,
+      "latency_ms": 459.6369169958052
+    },
+    {
+      "case_id": "contrast_read-03-1",
+      "family": "contrast_read-03",
+      "condition": "contrast_read",
+      "observation_hash": "3a1bfc9d55c3a9311d8e8d26c09ca24d84a0b4e78044ee871b0ceee9836f1f61",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-20545"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-20545",
+          "priority": "high"
+        },
+        "confidence": 0.6687,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1347,
+              "set_priority": 0.6687,
+              "ask_user": 0.1243,
+              "handoff": 0.0723
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5582
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.0697,
+              "ticket_2": 0.812,
+              "unspecified": 0.1183
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7179
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.027497250274972504,
+              "normal": 0.0653934606539346,
+              "high": 0.8286171382861713,
+              "unspecified": 0.07849215078492151
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7716
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.6687,
+      "error": null,
+      "latency_ms": 446.2398329997086
+    },
+    {
+      "case_id": "read-09-0",
+      "family": "read-09",
+      "condition": "read",
+      "observation_hash": "686ff4c72a77bf53bbba4d966d5d4c75cac20f3363ea79ea5162f6aa4935df65",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-29093"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-29093"
+        },
+        "confidence": 0.5851,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5851,
+              "set_priority": 0.2571,
+              "ask_user": 0.1104,
+              "handoff": 0.0474
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4468
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7588758875887589,
+              "ticket_2": 0.17531753175317533,
+              "unspecified": 0.0658065806580658
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.6383
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0632,
+              "normal": 0.4022,
+              "high": 0.2955,
+              "unspecified": 0.2391
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.203
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5851,
+      "error": null,
+      "latency_ms": 461.4505419958732
+    },
+    {
+      "case_id": "read_negated_write-11-0",
+      "family": "read_negated_write-11",
+      "condition": "read_negated_write",
+      "observation_hash": "64e1c37a286058a086e06a57788c491c7f03f450418ccbf2001584597efbef0c",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-61366"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-61366"
+        },
+        "confidence": 0.4161,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.4161,
+              "set_priority": 0.2909,
+              "ask_user": 0.2254,
+              "handoff": 0.0676
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2215
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6965,
+              "ticket_2": 0.143,
+              "unspecified": 0.1605
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5447
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.25822582258225824,
+              "normal": 0.054005400540054004,
+              "high": 0.2218221822182218,
+              "unspecified": 0.4659465946594659
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.2879
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4161,
+      "error": null,
+      "latency_ms": 430.231874997844
+    },
+    {
+      "case_id": "unsupported-08-1",
+      "family": "unsupported-08",
+      "condition": "unsupported",
+      "observation_hash": "1000456a1b38aba38d8a18dc60e1fdec835ae76afb8a9e3b6c72778767e07ebe",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-61294",
+          "priority": "low"
+        },
+        "confidence": 0.4072,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.2324,
+              "set_priority": 0.4072,
+              "ask_user": 0.1602,
+              "handoff": 0.2002
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2096
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1392,
+              "ticket_2": 0.6925,
+              "unspecified": 0.1683
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5388
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.6786678667866787,
+              "normal": 0.05670567056705671,
+              "high": 0.0331033103310331,
+              "unspecified": 0.23152315231523155
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5715
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4072,
+      "error": null,
+      "latency_ms": 441.1588330040104
+    },
+    {
+      "case_id": "read-12-0",
+      "family": "read-12",
+      "condition": "read",
+      "observation_hash": "adb1366d9778a2d6f32ee09a2c1ef70e74cb7c3b16bda34aff714670be0c8d5a",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-49978"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-49978"
+        },
+        "confidence": 0.4497,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.4497,
+              "set_priority": 0.3741,
+              "ask_user": 0.1288,
+              "handoff": 0.0474
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2663
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7663766376637664,
+              "ticket_2": 0.1619161916191619,
+              "unspecified": 0.07170717071707171
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.6495
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0658065806580658,
+              "normal": 0.24742474247424742,
+              "high": 0.42024202420242024,
+              "unspecified": 0.26652665266526654
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.227
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4497,
+      "error": null,
+      "latency_ms": 425.19991600420326
+    },
+    {
+      "case_id": "write-01-0",
+      "family": "write-01",
+      "condition": "write",
+      "observation_hash": "9e13894c9bf8a6b4a3249934e12d62eebfda7a72b1bd81214ba6b70d7d4f80c3",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-18069",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-18069",
+          "priority": "low"
+        },
+        "confidence": 0.6931306869313069,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.06899310068993102,
+              "set_priority": 0.8018198180181981,
+              "ask_user": 0.0830916908309169,
+              "handoff": 0.04609539046095391
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7358
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6931306869313069,
+              "ticket_2": 0.21657834216578342,
+              "unspecified": 0.09029097090290972
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5398
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.867,
+              "normal": 0.0275,
+              "high": 0.0667,
+              "unspecified": 0.0388
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8227
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6931306869313069,
+      "error": null,
+      "latency_ms": 444.70266599819297
+    },
+    {
+      "case_id": "contrast_read-08-1",
+      "family": "contrast_read-08",
+      "condition": "contrast_read",
+      "observation_hash": "7766a5260dda32f9ac88dfddd20b5a7e1b2c6990a05808a113fff06b9c84d681",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-14545"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-14545"
+        },
+        "confidence": 0.5222,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5222,
+              "set_priority": 0.2751,
+              "ask_user": 0.1521,
+              "handoff": 0.0506
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3629
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1133,
+              "ticket_2": 0.7677,
+              "unspecified": 0.119
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6515
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1774,
+              "normal": 0.5625,
+              "high": 0.0225,
+              "unspecified": 0.2376
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4166
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5222,
+      "error": null,
+      "latency_ms": 430.1135420028004
+    },
+    {
+      "case_id": "denied_update-04-0",
+      "family": "write-04",
+      "condition": "denied_update",
+      "observation_hash": "c36ae68ebbc09fa4c9e37b2a879b32987dad804a64dff3008e2ac0f849c13ac9",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-63904",
+          "priority": "low"
+        },
+        "confidence": 0.4735,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1415,
+              "set_priority": 0.4735,
+              "ask_user": 0.159,
+              "handoff": 0.226
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.298
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7025,
+              "ticket_2": 0.2092,
+              "unspecified": 0.0883
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5538
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8724,
+              "normal": 0.0255,
+              "high": 0.0592,
+              "unspecified": 0.0429
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8299
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4735,
+      "error": null,
+      "latency_ms": 444.00170799781336
+    },
+    {
+      "case_id": "write-04-0",
+      "family": "write-04",
+      "condition": "write",
+      "observation_hash": "c2cb95b76a383dcdda45bf5f54a5a11d60fef4cd8831bad2ac54f6d2d3d628ec",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-10249",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-10249",
+          "priority": "low"
+        },
+        "confidence": 0.7033,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0725,
+              "set_priority": 0.7916,
+              "ask_user": 0.084,
+              "handoff": 0.0519
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7222
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7033,
+              "ticket_2": 0.2166,
+              "unspecified": 0.0801
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5549
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8723,
+              "normal": 0.0244,
+              "high": 0.0664,
+              "unspecified": 0.0369
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8298
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.7033,
+      "error": null,
+      "latency_ms": 426.29454100097064
+    },
+    {
+      "case_id": "unsupported-03-0",
+      "family": "unsupported-03",
+      "condition": "unsupported",
+      "observation_hash": "f536574fb38252720d8a2c114fe14d8d2f23cd4fe823afb6c6d53925fc82720d",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-51170",
+          "priority": "normal"
+        },
+        "confidence": 0.5198480151984802,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.19848015198480154,
+              "set_priority": 0.5198480151984802,
+              "ask_user": 0.1857814218578142,
+              "handoff": 0.0958904109589041
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.3598
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2143,
+              "ticket_2": 0.6353,
+              "unspecified": 0.1504
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4529
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.2465,
+              "normal": 0.5331,
+              "high": 0.0372,
+              "unspecified": 0.1832
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3774
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5198480151984802,
+      "error": null,
+      "latency_ms": 428.1567910002195
+    },
+    {
+      "case_id": "read_negated_write-11-1",
+      "family": "read_negated_write-11",
+      "condition": "read_negated_write",
+      "observation_hash": "8d13c08919aaf1ddd15f9a3d254481761e9ae367b5a7bba29d77faf7bd12f89a",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-80712"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-80712"
+        },
+        "confidence": 0.4047,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.4047,
+              "set_priority": 0.281,
+              "ask_user": 0.2054,
+              "handoff": 0.1089
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2063
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1544,
+              "ticket_2": 0.6247,
+              "unspecified": 0.2209
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.437
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.6003,
+              "normal": 0.0517,
+              "high": 0.0296,
+              "unspecified": 0.3184
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.467
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4047,
+      "error": null,
+      "latency_ms": 426.47274999762885
+    },
+    {
+      "case_id": "write_correction-04-1",
+      "family": "write_correction-04",
+      "condition": "write_correction",
+      "observation_hash": "a91d04018985642756c220729eb8e2e95d895bd30f23d93e04885afee0cfff39",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-42373",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-42373",
+          "priority": "high"
+        },
+        "confidence": 0.582141785821418,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.056,
+              "set_priority": 0.8237,
+              "ask_user": 0.0689,
+              "handoff": 0.0514
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7649
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.34896510348965104,
+              "ticket_2": 0.582141785821418,
+              "unspecified": 0.06889311068893111
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.3732
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.028,
+              "normal": 0.0675,
+              "high": 0.8093,
+              "unspecified": 0.0952
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7457
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.582141785821418,
+      "error": null,
+      "latency_ms": 426.8912499974249
+    },
+    {
+      "case_id": "contrast_read-09-0",
+      "family": "contrast_read-09",
+      "condition": "contrast_read",
+      "observation_hash": "a67014fb394ca80d827b410a69cdd93e095eba25e796b87ede43f9ae6c8701cc",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-90233"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-90233",
+          "priority": "normal"
+        },
+        "confidence": 0.44285571442855715,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1491,
+              "set_priority": 0.6822,
+              "ask_user": 0.1071,
+              "handoff": 0.0616
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5763
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.77,
+              "ticket_2": 0.1445,
+              "unspecified": 0.0855
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.655
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.12068793120687932,
+              "normal": 0.44285571442855715,
+              "high": 0.07779222077792221,
+              "unspecified": 0.35866413358664134
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.2571
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.44285571442855715,
+      "error": null,
+      "latency_ms": 446.43845799873816
+    },
+    {
+      "case_id": "ambiguous_intent-12-1",
+      "family": "ambiguous_intent-12",
+      "condition": "ambiguous_intent",
+      "observation_hash": "c93c53f3d2896611ab2302bf0aea21fa52329cc0420398b45cc5ccb1723dbd2a",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-32683"
+        },
+        "confidence": 0.345,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.345,
+              "set_priority": 0.299,
+              "ask_user": 0.1826,
+              "handoff": 0.1734
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1266
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.3666,
+              "ticket_2": 0.4285,
+              "unspecified": 0.2049
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1427
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.05879412058794121,
+              "normal": 0.1725827417258274,
+              "high": 0.5151484851514848,
+              "unspecified": 0.25347465253474655
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.3536
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.345,
+      "error": null,
+      "latency_ms": 428.2562920052442
+    },
+    {
+      "case_id": "ambiguous_intent-12-1",
+      "family": "ambiguous_intent-12",
+      "condition": "ambiguous_intent",
+      "observation_hash": "2a7c1a951fb0dce2a9cf551461a1ffa1f425693bc6523c266fd9f9a87c84f314",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-32683",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-32683",
+          "priority": "high"
+        },
+        "confidence": 0.5233,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1454,
+              "set_priority": 0.5233,
+              "ask_user": 0.2866,
+              "handoff": 0.0447
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3643
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1936,
+              "ticket_2": 0.6789,
+              "unspecified": 0.1275
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5183
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0264,
+              "normal": 0.0679,
+              "high": 0.8334,
+              "unspecified": 0.0723
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7779
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5233,
+      "error": null,
+      "latency_ms": 468.05441699689254
+    },
+    {
+      "case_id": "missing_ticket_read-05-1",
+      "family": "missing_ticket_read-05",
+      "condition": "missing_ticket_read",
+      "observation_hash": "de29fc40264211ff4266ac7b317da21fe8b1e809c7ca080c9548157c67dfa237",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71285",
+          "priority": "low"
+        },
+        "confidence": 0.34313431343134315,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.2603260326032603,
+              "set_priority": 0.34313431343134315,
+              "ask_user": 0.222022202220222,
+              "handoff": 0.1745174517451745
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.1242
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5824,
+              "ticket_2": 0.2644,
+              "unspecified": 0.1532
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3737
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.7512,
+              "normal": 0.046,
+              "high": 0.0296,
+              "unspecified": 0.1732
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6682
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.34313431343134315,
+      "error": null,
+      "latency_ms": 432.44583300111117
+    },
+    {
+      "case_id": "missing_ticket_read-05-1",
+      "family": "missing_ticket_read-05",
+      "condition": "missing_ticket_read",
+      "observation_hash": "3d105f989e5cf8d3d6d6e809fb5cb8e7b45d6bda05df17c76bebc125b9cd1259",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-48598"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-48598"
+        },
+        "confidence": 0.4747,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.6802,
+              "set_priority": 0.1503,
+              "ask_user": 0.1379,
+              "handoff": 0.0316
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5736
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.3649,
+              "ticket_2": 0.4747,
+              "unspecified": 0.1604
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.212
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.7259,
+              "normal": 0.0374,
+              "high": 0.0244,
+              "unspecified": 0.2123
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6345
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4747,
+      "error": null,
+      "latency_ms": 466.6865839972161
+    },
+    {
+      "case_id": "locked_update-01-0",
+      "family": "write-01",
+      "condition": "locked_update",
+      "observation_hash": "13afe2c15e459fcb1efcb8a584a4a2d8b8e5c9b8d61c859b7e6581f5c588aca1",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-76461",
+          "priority": "normal"
+        },
+        "confidence": 0.5477,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1043,
+              "set_priority": 0.6955,
+              "ask_user": 0.1083,
+              "handoff": 0.0919
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5939
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5477,
+              "ticket_2": 0.3365,
+              "unspecified": 0.1158
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3215
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0928092809280928,
+              "normal": 0.795979597959796,
+              "high": 0.07040704070407042,
+              "unspecified": 0.04080408040804081
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7279
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5477,
+      "error": null,
+      "latency_ms": 427.8702500014333
+    },
+    {
+      "case_id": "missing_priority-09-0",
+      "family": "missing_priority-09",
+      "condition": "missing_priority",
+      "observation_hash": "b05c464a290cfecd846144bcfa2b7b539ad76ca582803543accb27c4f2002fe4",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73202",
+          "priority": "normal"
+        },
+        "confidence": 0.378,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0701,
+              "set_priority": 0.7543,
+              "ask_user": 0.1173,
+              "handoff": 0.0583
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6724
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7495,
+              "ticket_2": 0.1721,
+              "unspecified": 0.0784
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6242
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0808,
+              "normal": 0.378,
+              "high": 0.3731,
+              "unspecified": 0.1681
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1706
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.378,
+      "error": null,
+      "latency_ms": 445.32120900112204
+    },
+    {
+      "case_id": "missing_priority-09-0",
+      "family": "missing_priority-09",
+      "condition": "missing_priority",
+      "observation_hash": "c7e859405c90e4a8604d617a409f0b92020283d99bb68c3c9feeef088f28a622",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73202",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73202",
+          "priority": "low"
+        },
+        "confidence": 0.6737326267373263,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.05019498050194981,
+              "set_priority": 0.6737326267373263,
+              "ask_user": 0.24967503249675033,
+              "handoff": 0.0263973602639736
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.565
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7088,
+              "ticket_2": 0.1762,
+              "unspecified": 0.115
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5632
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.7777,
+              "normal": 0.1126,
+              "high": 0.0448,
+              "unspecified": 0.0649
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7035
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6737326267373263,
+      "error": null,
+      "latency_ms": 440.35879100556485
+    },
+    {
+      "case_id": "missing_ticket_read-04-1",
+      "family": "missing_ticket_read-04",
+      "condition": "missing_ticket_read",
+      "observation_hash": "a26313d82e0c48b24ad8822e40d560a0c70bc03049b9c57d98ffa8fd21738e74",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-88427"
+        },
+        "confidence": 0.5291,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5291,
+              "set_priority": 0.1846,
+              "ask_user": 0.2011,
+              "handoff": 0.0852
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3722
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5967,
+              "ticket_2": 0.2723,
+              "unspecified": 0.131
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3951
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.0368036803680368,
+              "normal": 0.056305630563056305,
+              "high": 0.4497449744974497,
+              "unspecified": 0.45714571457145714
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.2761
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5291,
+      "error": null,
+      "latency_ms": 439.7471670017694
+    },
+    {
+      "case_id": "missing_ticket_read-04-1",
+      "family": "missing_ticket_read-04",
+      "condition": "missing_ticket_read",
+      "observation_hash": "e6558fec8cc22acf7e2c41b0bf7f70e741fb0f1afd399187f3356a6fb619cc22",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-22909"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-22909"
+        },
+        "confidence": 0.4303,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.7234276572342766,
+              "set_priority": 0.09699030096990302,
+              "ask_user": 0.15328467153284672,
+              "handoff": 0.026297370262973702
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6313
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.395,
+              "ticket_2": 0.4303,
+              "unspecified": 0.1747
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1454
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.043704370437043706,
+              "normal": 0.05050505050505051,
+              "high": 0.38203820382038206,
+              "unspecified": 0.5237523752375238
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.365
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4303,
+      "error": null,
+      "latency_ms": 448.10950000101
+    },
+    {
+      "case_id": "ambiguous_intent-12-0",
+      "family": "ambiguous_intent-12",
+      "condition": "ambiguous_intent",
+      "observation_hash": "b8769ef69bb2211a90d2bf1a943e23db630780e1778a60089e241454ffe9b88b",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-35549"
+        },
+        "confidence": 0.3557,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.3557,
+              "set_priority": 0.3452,
+              "ask_user": 0.2032,
+              "handoff": 0.0959
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1409
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6273,
+              "ticket_2": 0.204,
+              "unspecified": 0.1687
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4409
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.18781878187818782,
+              "normal": 0.5691569156915692,
+              "high": 0.0317031703170317,
+              "unspecified": 0.2113211321132113
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4255
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.3557,
+      "error": null,
+      "latency_ms": 443.4972919989377
+    },
+    {
+      "case_id": "ambiguous_intent-12-0",
+      "family": "ambiguous_intent-12",
+      "condition": "ambiguous_intent",
+      "observation_hash": "49a1b4ce5d84e56394007b943b38cac9360aac2a6f7aa399c41e9ff2ab8d9748",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-35549"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-35549"
+        },
+        "confidence": 0.6155384461553846,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.8068193180681932,
+              "set_priority": 0.09149085091490851,
+              "ask_user": 0.08389161083891611,
+              "handoff": 0.017798220177982202
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7425
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6155384461553846,
+              "ticket_2": 0.203979602039796,
+              "unspecified": 0.18048195180481952
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4233
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.2066,
+              "normal": 0.4458,
+              "high": 0.0299,
+              "unspecified": 0.3177
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2611
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6155384461553846,
+      "error": null,
+      "latency_ms": 444.22533299803035
+    },
+    {
+      "case_id": "write_correction-08-0",
+      "family": "write_correction-08",
+      "condition": "write_correction",
+      "observation_hash": "70e1ed6c2073190bcb66c5c4564258882332a38e9532d626812fdb2f3309d7a8",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-22339",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-22339",
+          "priority": "high"
+        },
+        "confidence": 0.6997,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0586,
+              "set_priority": 0.8217,
+              "ask_user": 0.0763,
+              "handoff": 0.0434
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7622
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6997,
+              "ticket_2": 0.2093,
+              "unspecified": 0.091
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5496
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.05049495050494951,
+              "normal": 0.039196080391960805,
+              "high": 0.8653134686531346,
+              "unspecified": 0.044995500449955005
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.8205
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6997,
+      "error": null,
+      "latency_ms": 444.61695800418966
+    },
+    {
+      "case_id": "read_negated_write-05-0",
+      "family": "read_negated_write-05",
+      "condition": "read_negated_write",
+      "observation_hash": "cfbd0f916268fba86070b06fa8ee4a3b170bcabdfd14fa01d3458c1d8ab630d8",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-84664"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-84664"
+        },
+        "confidence": 0.5253,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5253,
+              "set_priority": 0.3682,
+              "ask_user": 0.0604,
+              "handoff": 0.0461
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.367
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.8078,
+              "ticket_2": 0.125,
+              "unspecified": 0.0672
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7117
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.4427557244275573,
+              "normal": 0.04509549045095491,
+              "high": 0.103989601039896,
+              "unspecified": 0.40815918408159185
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.257
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5253,
+      "error": null,
+      "latency_ms": 437.1151249943068
+    },
+    {
+      "case_id": "write_correction-08-1",
+      "family": "write_correction-08",
+      "condition": "write_correction",
+      "observation_hash": "2afcbac3105ad3df1c21db3081a0267b44de626a5d5a8b67e00fced907632921",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-91864",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-91864",
+          "priority": "low"
+        },
+        "confidence": 0.601060106010601,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0632,
+              "set_priority": 0.8182,
+              "ask_user": 0.0598,
+              "handoff": 0.0588
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7576
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2842284228422842,
+              "ticket_2": 0.601060106010601,
+              "unspecified": 0.1147114711471147
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4015
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.9124,
+              "normal": 0.0204,
+              "high": 0.0265,
+              "unspecified": 0.0407
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8833
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.601060106010601,
+      "error": null,
+      "latency_ms": 440.7447499979753
+    },
+    {
+      "case_id": "unsupported-12-1",
+      "family": "unsupported-12",
+      "condition": "unsupported",
+      "observation_hash": "e88a17a1bde592c15e736d3ea1aa033453f4da84a6111a6ddd95f19db9f02668",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-49302",
+          "priority": "normal"
+        },
+        "confidence": 0.4599,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1793,
+              "set_priority": 0.4599,
+              "ask_user": 0.1679,
+              "handoff": 0.1929
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2798
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.0899,
+              "ticket_2": 0.8243,
+              "unspecified": 0.0858
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7364
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.08039196080391961,
+              "normal": 0.6565343465653435,
+              "high": 0.055594440555944404,
+              "unspecified": 0.2074792520747925
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5421
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4599,
+      "error": null,
+      "latency_ms": 427.21924999932526
+    },
+    {
+      "case_id": "missing_ticket_read-05-0",
+      "family": "missing_ticket_read-05",
+      "condition": "missing_ticket_read",
+      "observation_hash": "0bdb09ffc9dbaeddeddb2d89cd4a5d3b78083568edf319eae7197897700e364e",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-94644",
+          "priority": "high"
+        },
+        "confidence": 0.39903990399039907,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.23147685231476853,
+              "set_priority": 0.424957504249575,
+              "ask_user": 0.24057594240575944,
+              "handoff": 0.102989701029897
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.2333
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7173,
+              "ticket_2": 0.1658,
+              "unspecified": 0.1169
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5759
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.34863486348634865,
+              "normal": 0.04610461046104611,
+              "high": 0.39903990399039907,
+              "unspecified": 0.2062206220622062
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.1987
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.39903990399039907,
+      "error": null,
+      "latency_ms": 441.46220900438493
+    },
+    {
+      "case_id": "missing_ticket_read-05-0",
+      "family": "missing_ticket_read-05",
+      "condition": "missing_ticket_read",
+      "observation_hash": "e8df9380cad909122076585394b3735e5a1c62a0a490a47211987bc11b93da6a",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-94644"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-94644"
+        },
+        "confidence": 0.6858685868586859,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.6858685868586859,
+              "set_priority": 0.16291629162916293,
+              "ask_user": 0.12931293129312932,
+              "handoff": 0.021902190219021903
+            },
+            "provider_probability_sum": 0.9998999999999999,
+            "provider_confidence": 0.5811
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7169,
+              "ticket_2": 0.1538,
+              "unspecified": 0.1293
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5754
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.3852614738526147,
+              "normal": 0.035596440355964404,
+              "high": 0.30986901309869014,
+              "unspecified": 0.2692730726927307
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.1804
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6858685868586859,
+      "error": null,
+      "latency_ms": 438.13229199440684
+    },
+    {
+      "case_id": "ambiguous_intent-02-1",
+      "family": "ambiguous_intent-02",
+      "condition": "ambiguous_intent",
+      "observation_hash": "6b64e649942fba1bb72ad391952eaa4ba75726a628b404f699a7f35fd1c20434",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-25053",
+          "priority": "normal"
+        },
+        "confidence": 0.3237,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.3231,
+              "set_priority": 0.3237,
+              "ask_user": 0.1848,
+              "handoff": 0.1684
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.0983
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.3355,
+              "ticket_2": 0.4009,
+              "unspecified": 0.2636
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1013
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.3214,
+              "normal": 0.5448,
+              "high": 0.0189,
+              "unspecified": 0.1149
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.393
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.3237,
+      "error": null,
+      "latency_ms": 435.3001249983208
+    },
+    {
+      "case_id": "ambiguous_intent-02-1",
+      "family": "ambiguous_intent-02",
+      "condition": "ambiguous_intent",
+      "observation_hash": "006b27bd81ff705568c083c1b2e5c26a1f5971bd55a0e538c42cb51e63332286",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-25053",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-25053",
+          "priority": "normal"
+        },
+        "confidence": 0.6384,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1044,
+              "set_priority": 0.6384,
+              "ask_user": 0.2232,
+              "handoff": 0.034
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5178
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1702,
+              "ticket_2": 0.7028,
+              "unspecified": 0.127
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5542
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0929,
+              "normal": 0.8519,
+              "high": 0.0135,
+              "unspecified": 0.0417
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8025
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6384,
+      "error": null,
+      "latency_ms": 441.11720799992327
+    },
+    {
+      "case_id": "write_correction-04-0",
+      "family": "write_correction-04",
+      "condition": "write_correction",
+      "observation_hash": "bccf868ebd2fc8f226a7bdf067cb61f549b03aad788b3b8afe5448f839ee1517",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-44369",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-44369",
+          "priority": "normal"
+        },
+        "confidence": 0.7101,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0517,
+              "set_priority": 0.8411,
+              "ask_user": 0.0791,
+              "handoff": 0.0281
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7882
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7101,
+              "ticket_2": 0.2118,
+              "unspecified": 0.0781
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5651
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.08450845084508452,
+              "normal": 0.8052805280528053,
+              "high": 0.071007100710071,
+              "unspecified": 0.0392039203920392
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7403
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.7101,
+      "error": null,
+      "latency_ms": 442.2079170035431
+    },
+    {
+      "case_id": "read-09-1",
+      "family": "read-09",
+      "condition": "read",
+      "observation_hash": "50464b68b8a7fc32b26eabe9513c61be914d6af1306fc43395013dc59294f7fc",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-59663"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-59663"
+        },
+        "confidence": 0.5485451454854514,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5485451454854514,
+              "set_priority": 0.2822717728227177,
+              "ask_user": 0.1050894910508949,
+              "handoff": 0.06409359064093591
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.3981
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.0903,
+              "ticket_2": 0.8329,
+              "unspecified": 0.0768
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7494
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.7568,
+              "normal": 0.1097,
+              "high": 0.0191,
+              "unspecified": 0.1144
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6757
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5485451454854514,
+      "error": null,
+      "latency_ms": 430.88929200166604
+    },
+    {
+      "case_id": "locked_update-04-0",
+      "family": "write-04",
+      "condition": "locked_update",
+      "observation_hash": "68744ef76eb8841619b1a3dd40a1b21947387962965fd79644089dfec15e8f66",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73376",
+          "priority": "normal"
+        },
+        "confidence": 0.5676,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0746,
+              "set_priority": 0.8085,
+              "ask_user": 0.0583,
+              "handoff": 0.0586
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7446
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5676,
+              "ticket_2": 0.3432,
+              "unspecified": 0.0892
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3514
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0957,
+              "normal": 0.8228,
+              "high": 0.0558,
+              "unspecified": 0.0257
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7637
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5676,
+      "error": null,
+      "latency_ms": 444.8968749929918
+    },
+    {
+      "case_id": "write-11-0",
+      "family": "write-11",
+      "condition": "write",
+      "observation_hash": "9abbe46bf87d5c49ae3c97c96db978a9d5d42a6694cd8ef8ccb9afdd3cf6b453",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-50605",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-50605",
+          "priority": "normal"
+        },
+        "confidence": 0.5520552055205521,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1272127212721272,
+              "set_priority": 0.5520552055205521,
+              "ask_user": 0.23482348234823483,
+              "handoff": 0.0859085908590859
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4027
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6977697769776977,
+              "ticket_2": 0.1923192319231923,
+              "unspecified": 0.10991099109910991
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5466
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0948,
+              "normal": 0.867,
+              "high": 0.0125,
+              "unspecified": 0.0257
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8226
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5520552055205521,
+      "error": null,
+      "latency_ms": 428.3697920036502
+    },
+    {
+      "case_id": "ambiguous_intent-09-0",
+      "family": "ambiguous_intent-09",
+      "condition": "ambiguous_intent",
+      "observation_hash": "6c4ac0f884438181dce68a3c5280fc17427ecc568d92f3377da760cea71cfd5f",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-18404",
+          "priority": "normal"
+        },
+        "confidence": 0.3725,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.3657,
+              "set_priority": 0.3725,
+              "ask_user": 0.1763,
+              "handoff": 0.0855
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1634
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.4308430843084309,
+              "ticket_2": 0.2683268326832683,
+              "unspecified": 0.30083008300830083
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.1462
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.2073,
+              "normal": 0.3967,
+              "high": 0.0422,
+              "unspecified": 0.3538
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1956
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.3725,
+      "error": null,
+      "latency_ms": 442.09179199970094
+    },
+    {
+      "case_id": "ambiguous_intent-09-0",
+      "family": "ambiguous_intent-09",
+      "condition": "ambiguous_intent",
+      "observation_hash": "287525b8247587b87315f654409823c09ff07e8efd3a622daccb79c48c57417c",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-18404"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-18404"
+        },
+        "confidence": 0.5486451354864513,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.834016598340166,
+              "set_priority": 0.09269073092690731,
+              "ask_user": 0.05679432056794321,
+              "handoff": 0.0164983501649835
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7788
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5486451354864513,
+              "ticket_2": 0.22667733226677333,
+              "unspecified": 0.22467753224677534
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.323
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.2178,
+              "normal": 0.3454,
+              "high": 0.0305,
+              "unspecified": 0.4063
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2085
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5486451354864513,
+      "error": null,
+      "latency_ms": 445.51241699809907
+    },
+    {
+      "case_id": "ambiguous_intent-02-0",
+      "family": "ambiguous_intent-02",
+      "condition": "ambiguous_intent",
+      "observation_hash": "ffa49c79920a897f34d7e86940f783a9f4902f642d56dec86729d6700992b21b",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-50853",
+          "priority": "low"
+        },
+        "confidence": 0.36,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.2859,
+              "set_priority": 0.36,
+              "ask_user": 0.2356,
+              "handoff": 0.1185
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1466
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.678,
+              "ticket_2": 0.1651,
+              "unspecified": 0.1569
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.517
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.5262,
+              "normal": 0.0434,
+              "high": 0.2039,
+              "unspecified": 0.2265
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3683
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.36,
+      "error": null,
+      "latency_ms": 443.16137499845354
+    },
+    {
+      "case_id": "ambiguous_intent-02-0",
+      "family": "ambiguous_intent-02",
+      "condition": "ambiguous_intent",
+      "observation_hash": "cb3490c03d8152d868cf7ec740693d52494cd2c76bab93959c07e1c113699f0c",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-50853"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-50853"
+        },
+        "confidence": 0.688,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.761076107610761,
+              "set_priority": 0.1054105410541054,
+              "ask_user": 0.11021102110211022,
+              "handoff": 0.0233023302330233
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.6814
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.688,
+              "ticket_2": 0.1481,
+              "unspecified": 0.1639
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.532
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.527,
+              "normal": 0.0391,
+              "high": 0.1248,
+              "unspecified": 0.3091
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3693
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.688,
+      "error": null,
+      "latency_ms": 442.94479199743364
+    },
+    {
+      "case_id": "denied_update-11-1",
+      "family": "write-11",
+      "condition": "denied_update",
+      "observation_hash": "0265aa843d82b2f955bd131da4d583f9571bf72afbd2e70d808e8a20aed0169b",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "handoff",
+        "arguments": {},
+        "confidence": 0.3409,
+        "answers": {
+          "action": {
+            "choice": "handoff",
+            "probabilities": {
+              "read_ticket": 0.147,
+              "set_priority": 0.3215,
+              "ask_user": 0.1906,
+              "handoff": 0.3409
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1212
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.17221722172217221,
+              "ticket_2": 0.677967796779678,
+              "unspecified": 0.1498149814981498
+            },
+            "provider_probability_sum": 0.9998999999999999,
+            "provider_confidence": 0.5169
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.04760476047604761,
+              "normal": 0.0576057605760576,
+              "high": 0.8376837683768377,
+              "unspecified": 0.0571057105710571
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7835
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.3409,
+      "error": null,
+      "latency_ms": 444.8083749957732
+    },
+    {
+      "case_id": "missing_priority-01-0",
+      "family": "missing_priority-01",
+      "condition": "missing_priority",
+      "observation_hash": "c919bdfb7b957de483f182b5c3e125ff6ca8cb3c65ddd7aa7ce7925d1f34969d",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-75782",
+          "priority": "low"
+        },
+        "confidence": 0.4114,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.09449055094490551,
+              "set_priority": 0.7316268373162684,
+              "ask_user": 0.11598840115988401,
+              "handoff": 0.057894210578942104
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6422
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6678,
+              "ticket_2": 0.2333,
+              "unspecified": 0.0989
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5017
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.4114,
+              "normal": 0.046,
+              "high": 0.4015,
+              "unspecified": 0.1411
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2152
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4114,
+      "error": null,
+      "latency_ms": 423.0127499977243
+    },
+    {
+      "case_id": "missing_priority-01-0",
+      "family": "missing_priority-01",
+      "condition": "missing_priority",
+      "observation_hash": "88b80a3c8431c7d54217a8b38f4a4576dcf06741cf53c9fe4debaa1af6d0885e",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-75782",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-75782",
+          "priority": "normal"
+        },
+        "confidence": 0.6129612961296129,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0726072607260726,
+              "set_priority": 0.6129612961296129,
+              "ask_user": 0.2798279827982798,
+              "handoff": 0.0346034603460346
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4839
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6607,
+              "ticket_2": 0.2189,
+              "unspecified": 0.1204
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4911
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.103989601039896,
+              "normal": 0.7208279172082792,
+              "high": 0.10438956104389562,
+              "unspecified": 0.07079292070792921
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6278
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6129612961296129,
+      "error": null,
+      "latency_ms": 455.7869589989423
+    },
+    {
+      "case_id": "denied_update-11-0",
+      "family": "write-11",
+      "condition": "denied_update",
+      "observation_hash": "4a7ae60b6c9719a5b862272bbe1ad8501c499d6be5067684613f68358cc35745",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "handoff",
+        "arguments": {},
+        "confidence": 0.2967703229677032,
+        "answers": {
+          "action": {
+            "choice": "handoff",
+            "probabilities": {
+              "read_ticket": 0.1472852714728527,
+              "set_priority": 0.2713728627137286,
+              "ask_user": 0.28457154284571545,
+              "handoff": 0.2967703229677032
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.0624
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6931,
+              "ticket_2": 0.1687,
+              "unspecified": 0.1382
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5396
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0942,
+              "normal": 0.8538,
+              "high": 0.0157,
+              "unspecified": 0.0363
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8051
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.2967703229677032,
+      "error": null,
+      "latency_ms": 428.4571250027511
+    },
+    {
+      "case_id": "write-04-1",
+      "family": "write-04",
+      "condition": "write",
+      "observation_hash": "b54a7ae663158f4fd63c1259b80d9f8ad1acf0486fbdd4d5ceef001012c5385a",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-16680",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-16680",
+          "priority": "normal"
+        },
+        "confidence": 0.4816,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.07769223077692232,
+              "set_priority": 0.8038196180381961,
+              "ask_user": 0.05599440055994401,
+              "handoff": 0.062493750624937505
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7385
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.4357,
+              "ticket_2": 0.4816,
+              "unspecified": 0.0827
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2225
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.114,
+              "normal": 0.8025,
+              "high": 0.0577,
+              "unspecified": 0.0258
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7367
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4816,
+      "error": null,
+      "latency_ms": 445.6561250044615
+    },
+    {
+      "case_id": "unsupported-12-0",
+      "family": "unsupported-12",
+      "condition": "unsupported",
+      "observation_hash": "de960565bd818a486b57beffdabe2570331a2c583eb153f4fd52e532fa07648f",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-75473",
+          "priority": "low"
+        },
+        "confidence": 0.48925107489251074,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.19458054194580543,
+              "set_priority": 0.48925107489251074,
+              "ask_user": 0.19738026197380262,
+              "handoff": 0.11878812118788122
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.319
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7338,
+              "ticket_2": 0.1836,
+              "unspecified": 0.0826
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6007
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.6412641264126413,
+              "normal": 0.2231223122312231,
+              "high": 0.0219021902190219,
+              "unspecified": 0.1137113711371137
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5216
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.48925107489251074,
+      "error": null,
+      "latency_ms": 428.2432499967399
+    },
+    {
+      "case_id": "locked_update-01-1",
+      "family": "write-01",
+      "condition": "locked_update",
+      "observation_hash": "efb044aad8f867abc3fd52ca0288b324d48b4303330731c56f88e142344c4863",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-69246",
+          "priority": "high"
+        },
+        "confidence": 0.5021,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.12341234123412341,
+              "set_priority": 0.5647564756475647,
+              "ask_user": 0.13711371137113712,
+              "handoff": 0.1747174717471747
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.4196
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.4119,
+              "ticket_2": 0.5021,
+              "unspecified": 0.086
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2532
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.030896910308969103,
+              "normal": 0.0661933806619338,
+              "high": 0.8417158284171583,
+              "unspecified": 0.061193880611938804
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7891
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5021,
+      "error": null,
+      "latency_ms": 443.99737500498304
+    },
+    {
+      "case_id": "missing_ticket_read-04-0",
+      "family": "missing_ticket_read-04",
+      "condition": "missing_ticket_read",
+      "observation_hash": "a9aed39f2a5e4c511f6f8c5b7484756670c562e53c881e82edbaef2cfe4428e1",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-25301"
+        },
+        "confidence": 0.5351,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5474,
+              "set_priority": 0.2072,
+              "ask_user": 0.1987,
+              "handoff": 0.0467
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3966
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.5351,
+              "ticket_2": 0.2868,
+              "unspecified": 0.1781
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3026
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.0489,
+              "normal": 0.26,
+              "high": 0.2702,
+              "unspecified": 0.4209
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2279
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5351,
+      "error": null,
+      "latency_ms": 422.68720799620496
+    },
+    {
+      "case_id": "missing_ticket_read-04-0",
+      "family": "missing_ticket_read-04",
+      "condition": "missing_ticket_read",
+      "observation_hash": "fe50e008d45947300042e59a21d9fe13e688b26025687504c423bd7400438913",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-25301"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-25301"
+        },
+        "confidence": 0.6012,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.7564756475647564,
+              "set_priority": 0.09420942094209421,
+              "ask_user": 0.13221322132213223,
+              "handoff": 0.017101710171017102
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.6753
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6012,
+              "ticket_2": 0.1938,
+              "unspecified": 0.205
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4018
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.0518,
+              "normal": 0.223,
+              "high": 0.2213,
+              "unspecified": 0.5039
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3386
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6012,
+      "error": null,
+      "latency_ms": 452.33008400100516
+    },
+    {
+      "case_id": "read_negated_write-01-0",
+      "family": "read_negated_write-01",
+      "condition": "read_negated_write",
+      "observation_hash": "7b7d714b619f9fea3efe3a89c396a386bc52478edc2546f5508e7728cbb3fd97",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-44464"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-44464"
+        },
+        "confidence": 0.6748325167483252,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.7119,
+              "set_priority": 0.2073,
+              "ask_user": 0.0465,
+              "handoff": 0.0343
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6159
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6748325167483252,
+              "ticket_2": 0.18348165183481652,
+              "unspecified": 0.1416858314168583
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5123
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0561,
+              "normal": 0.261,
+              "high": 0.3843,
+              "unspecified": 0.2986
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.179
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6748325167483252,
+      "error": null,
+      "latency_ms": 428.7820419995114
+    },
+    {
+      "case_id": "missing_ticket_write-01-0",
+      "family": "missing_ticket_write-01",
+      "condition": "missing_ticket_write",
+      "observation_hash": "a2ae49e0c0f4eacf1185aa07ebc2e6f31e1666c8a03191a1d50f82ec6845c361",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-98608",
+          "priority": "low"
+        },
+        "confidence": 0.6007,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0611,
+              "set_priority": 0.8042,
+              "ask_user": 0.0829,
+              "handoff": 0.0518
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7389
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6007,
+              "ticket_2": 0.2692,
+              "unspecified": 0.1301
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.401
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8544,
+              "normal": 0.0303,
+              "high": 0.074,
+              "unspecified": 0.0413
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8059
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.6007,
+      "error": null,
+      "latency_ms": 445.944540995697
+    },
+    {
+      "case_id": "missing_ticket_write-01-0",
+      "family": "missing_ticket_write-01",
+      "condition": "missing_ticket_write",
+      "observation_hash": "4af2634e49c8d0612a6f0b5eac766b87dcd2386251f7139f3d09db95da849326",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-98608",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-98608",
+          "priority": "low"
+        },
+        "confidence": 0.6368363163683632,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.061,
+              "set_priority": 0.6693,
+              "ask_user": 0.2371,
+              "handoff": 0.0326
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.559
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6368363163683632,
+              "ticket_2": 0.22717728227177283,
+              "unspecified": 0.13598640135986403
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4553
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8673867386738673,
+              "normal": 0.0242024202420242,
+              "high": 0.05310531053105311,
+              "unspecified": 0.05530553055305531
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.8231
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6368363163683632,
+      "error": null,
+      "latency_ms": 500.87641600111965
+    },
+    {
+      "case_id": "contrast_read-09-1",
+      "family": "contrast_read-09",
+      "condition": "contrast_read",
+      "observation_hash": "1402d4465477af334f8c5860a2050fce3c44ce9a6027f4f6bbd87dc536b6a31b",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-40227"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-40227",
+          "priority": "high"
+        },
+        "confidence": 0.5860413958604139,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.18818118188181182,
+              "set_priority": 0.5860413958604139,
+              "ask_user": 0.09799020097990202,
+              "handoff": 0.1277872212778722
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4481
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1764,
+              "ticket_2": 0.7046,
+              "unspecified": 0.119
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5569
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0582,
+              "normal": 0.1295,
+              "high": 0.592,
+              "unspecified": 0.2203
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.456
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5860413958604139,
+      "error": null,
+      "latency_ms": 451.3425420009298
+    },
+    {
+      "case_id": "write_correction-02-0",
+      "family": "write_correction-02",
+      "condition": "write_correction",
+      "observation_hash": "05122dff3fabd36831ba2f213d34676c39a616e46f50588b93bb3e41b1ac0788",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-82385",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-82385",
+          "priority": "high"
+        },
+        "confidence": 0.7805780578057805,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.06660666066606662,
+              "set_priority": 0.7805780578057805,
+              "ask_user": 0.10171017101710171,
+              "handoff": 0.051105110511051106
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7073
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7818,
+              "ticket_2": 0.1415,
+              "unspecified": 0.0767
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6728
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.03660366036603661,
+              "normal": 0.029902990299029902,
+              "high": 0.87998799879988,
+              "unspecified": 0.0535053505350535
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.8399
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.7805780578057805,
+      "error": null,
+      "latency_ms": 439.57891700119944
+    },
+    {
+      "case_id": "read_negated_write-05-1",
+      "family": "read_negated_write-05",
+      "condition": "read_negated_write",
+      "observation_hash": "01583293a60c6c75e6e7490c06b44d9b3f2421c76e3102ff95f91a2b5128947d",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-92214"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-92214"
+        },
+        "confidence": 0.5204,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.5204,
+              "set_priority": 0.3233,
+              "ask_user": 0.0696,
+              "handoff": 0.0867
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3605
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.0711,
+              "ticket_2": 0.8517,
+              "unspecified": 0.0772
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7776
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.3761,
+              "normal": 0.3784,
+              "high": 0.0201,
+              "unspecified": 0.2254
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1712
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.5204,
+      "error": null,
+      "latency_ms": 443.88350000372157
+    },
+    {
+      "case_id": "read-11-0",
+      "family": "read-11",
+      "condition": "read",
+      "observation_hash": "2bd92cc8e44e7b606a738e110b01334f64989990daa87ba2e87840655eb02c48",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-54862"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-54862"
+        },
+        "confidence": 0.512,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.512,
+              "set_priority": 0.3045,
+              "ask_user": 0.136,
+              "handoff": 0.0475
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3493
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7362,
+              "ticket_2": 0.1718,
+              "unspecified": 0.092
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6043
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.32793279327932795,
+              "normal": 0.20372037203720372,
+              "high": 0.03860386038603861,
+              "unspecified": 0.42974297429742975
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.2397
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.512,
+      "error": null,
+      "latency_ms": 429.65891700441716
+    },
+    {
+      "case_id": "contrast_read-03-0",
+      "family": "contrast_read-03",
+      "condition": "contrast_read",
+      "observation_hash": "977f570fe92aa717a0933aa011dd41b5bd4839f8d4df5f54ee93a1dc07d82d9c",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-34739"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-34739",
+          "priority": "normal"
+        },
+        "confidence": 0.5608439156084392,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1328132813281328,
+              "set_priority": 0.6524652465246524,
+              "ask_user": 0.1636163616361636,
+              "handoff": 0.051105110511051106
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5366
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7818,
+              "ticket_2": 0.1281,
+              "unspecified": 0.0901
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6727
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.08299170082991701,
+              "normal": 0.5608439156084392,
+              "high": 0.0861913808619138,
+              "unspecified": 0.26997300269973007
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4145
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5608439156084392,
+      "error": null,
+      "latency_ms": 450.2661669976078
+    },
+    {
+      "case_id": "read-11-1",
+      "family": "read-11",
+      "condition": "read",
+      "observation_hash": "d29839b7a64256cdce89be10be07d5cf4c0a5ad984a32b53cbb06b40a15a21fe",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-40658"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-40658"
+        },
+        "confidence": 0.4283,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.4283,
+              "set_priority": 0.3991,
+              "ask_user": 0.122,
+              "handoff": 0.0506
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2377
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.0832,
+              "ticket_2": 0.8425,
+              "unspecified": 0.0743
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7637
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.147,
+              "normal": 0.0461,
+              "high": 0.4739,
+              "unspecified": 0.333
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2985
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4283,
+      "error": null,
+      "latency_ms": 428.6941249956726
+    },
+    {
+      "case_id": "missing_ticket_write-01-1",
+      "family": "missing_ticket_write-01",
+      "condition": "missing_ticket_write",
+      "observation_hash": "7a1ef3bdc1e5cd6ee175bba3e8e5492d1054c7a223bd0f9d2019da63ee40d7f2",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-31484",
+          "priority": "normal"
+        },
+        "confidence": 0.6538,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0973,
+              "set_priority": 0.6832,
+              "ask_user": 0.1049,
+              "handoff": 0.1146
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5776
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6538,
+              "ticket_2": 0.2355,
+              "unspecified": 0.1107
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4806
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1017,
+              "normal": 0.7977,
+              "high": 0.0593,
+              "unspecified": 0.0413
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7302
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.6538,
+      "error": null,
+      "latency_ms": 435.82783300371375
+    },
+    {
+      "case_id": "missing_ticket_write-01-1",
+      "family": "missing_ticket_write-01",
+      "condition": "missing_ticket_write",
+      "observation_hash": "6db9a9f6064a2e79633a136e1a91dd336ebbf347e2b4229584975c0151ba73aa",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-81125",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-81125",
+          "priority": "normal"
+        },
+        "confidence": 0.422957704229577,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0706,
+              "set_priority": 0.642,
+              "ask_user": 0.244,
+              "handoff": 0.0434
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5226
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.4078592140785921,
+              "ticket_2": 0.422957704229577,
+              "unspecified": 0.1691830816918308
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.1344
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.2037,
+              "normal": 0.6962,
+              "high": 0.049,
+              "unspecified": 0.0511
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5949
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.422957704229577,
+      "error": null,
+      "latency_ms": 437.5107919986476
+    },
+    {
+      "case_id": "locked_update-11-1",
+      "family": "write-11",
+      "condition": "locked_update",
+      "observation_hash": "dbae28cbc4b7b8a4a8ba310a3aeb323d036479c4d9b766e85da6724d11489fde",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-82509",
+          "priority": "low"
+        },
+        "confidence": 0.42115788421157885,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.12488751124887511,
+              "set_priority": 0.42115788421157885,
+              "ask_user": 0.22947705229477053,
+              "handoff": 0.22447755224477553
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.2282
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2599,
+              "ticket_2": 0.5639,
+              "unspecified": 0.1762
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3459
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8714128587141287,
+              "normal": 0.0213978602139786,
+              "high": 0.05549445055494451,
+              "unspecified": 0.05169483051694831
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.8286
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.42115788421157885,
+      "error": null,
+      "latency_ms": 443.550291005522
+    },
+    {
+      "case_id": "ambiguous_intent-09-1",
+      "family": "ambiguous_intent-09",
+      "condition": "ambiguous_intent",
+      "observation_hash": "dd7d8ae578e595a77463bb51d922d2b6226ff1e745d5a0fc3975b6a2fe2408a2",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-24371",
+          "priority": null
+        },
+        "confidence": 0.3699,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.3029,
+              "set_priority": 0.3784,
+              "ask_user": 0.1441,
+              "handoff": 0.1746
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1713
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2773277327732773,
+              "ticket_2": 0.5007500750075008,
+              "unspecified": 0.2219221922192219
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.2511
+          },
+          "priority": {
+            "choice": "unspecified",
+            "probabilities": {
+              "low": 0.0893,
+              "normal": 0.3194,
+              "high": 0.2214,
+              "unspecified": 0.3699
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1599
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.3699,
+      "error": null,
+      "latency_ms": 427.7775830050814
+    },
+    {
+      "case_id": "ambiguous_intent-09-1",
+      "family": "ambiguous_intent-09",
+      "condition": "ambiguous_intent",
+      "observation_hash": "c83da25e7d0fd9620aacb8450d6adc67fc9ba36d6f8b6a86b380ec1ba9f0ffc4",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-24371",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-24371",
+          "priority": "high"
+        },
+        "confidence": 0.6667,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1091,
+              "set_priority": 0.6667,
+              "ask_user": 0.1819,
+              "handoff": 0.0423
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5556
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1527,
+              "ticket_2": 0.726,
+              "unspecified": 0.1213
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5891
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0249024902490249,
+              "normal": 0.07160716071607161,
+              "high": 0.8397839783978398,
+              "unspecified": 0.0637063706370637
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7863
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6667,
+      "error": null,
+      "latency_ms": 460.3800000040792
+    },
+    {
+      "case_id": "missing_priority-09-1",
+      "family": "missing_priority-09",
+      "condition": "missing_priority",
+      "observation_hash": "7bf8c7d9af3a257a811671812eb0f981d2b7ca9e2fb9591ae0e9c6858db2b99b",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-17718",
+          "priority": "low"
+        },
+        "confidence": 0.5228522852285229,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0901,
+              "set_priority": 0.7008,
+              "ask_user": 0.1112,
+              "handoff": 0.0979
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6011
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.297970202979702,
+              "ticket_2": 0.6084391560843916,
+              "unspecified": 0.09359064093590641
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4127
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.5228522852285229,
+              "normal": 0.3363336333633363,
+              "high": 0.0276027602760276,
+              "unspecified": 0.1132113211321132
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.3638
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5228522852285229,
+      "error": null,
+      "latency_ms": 424.6633330039913
+    },
+    {
+      "case_id": "missing_priority-09-1",
+      "family": "missing_priority-09",
+      "condition": "missing_priority",
+      "observation_hash": "30ef61d2956b1820f697f6e9e2ffa0152a3f24f20d873c2141fef9921d186d63",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-17718",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-17718",
+          "priority": "normal"
+        },
+        "confidence": 0.6820682068206821,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.059605960596059604,
+              "set_priority": 0.6820682068206821,
+              "ask_user": 0.2281228122812281,
+              "handoff": 0.030203020302030203
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.576
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.20887911208879112,
+              "ticket_2": 0.6953304669533047,
+              "unspecified": 0.0957904209579042
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.5431
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.11961196119611961,
+              "normal": 0.8242824282428243,
+              "high": 0.014301430143014302,
+              "unspecified": 0.0418041804180418
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7656
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6820682068206821,
+      "error": null,
+      "latency_ms": 452.637832997425
+    },
+    {
+      "case_id": "unsupported-03-1",
+      "family": "unsupported-03",
+      "condition": "unsupported",
+      "observation_hash": "87d0cb258a09331f878d0f9153d72eca8902209934d5216e177325f2ce4d902e",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-37473",
+          "priority": "normal"
+        },
+        "confidence": 0.4155,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.227,
+              "set_priority": 0.4155,
+              "ask_user": 0.1905,
+              "handoff": 0.167
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2206
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.6922692269226923,
+              "ticket_2": 0.19051905190519053,
+              "unspecified": 0.11721172117211721
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.5383
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.0943,
+              "normal": 0.5707,
+              "high": 0.0653,
+              "unspecified": 0.2697
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4276
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4155,
+      "error": null,
+      "latency_ms": 427.8500000000349
+    },
+    {
+      "case_id": "read-12-1",
+      "family": "read-12",
+      "condition": "read",
+      "observation_hash": "de175a6a2061c2a10c33866ed88d9ddf3d47f88a3b130e6c33e442fb22bf824f",
+      "reference": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-32531"
+        }
+      },
+      "proposal": {
+        "action": "read_ticket",
+        "arguments": {
+          "ticket_id": "SYN-32531"
+        },
+        "confidence": 0.4638,
+        "answers": {
+          "action": {
+            "choice": "read_ticket",
+            "probabilities": {
+              "read_ticket": 0.4638,
+              "set_priority": 0.3635,
+              "ask_user": 0.1139,
+              "handoff": 0.0588
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.285
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2046,
+              "ticket_2": 0.6825,
+              "unspecified": 0.1129
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.5238
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.6116388361163884,
+              "normal": 0.1887811218878112,
+              "high": 0.028397160283971604,
+              "unspecified": 0.1711828817118288
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4823
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.4638,
+      "error": null,
+      "latency_ms": 440.03416699706577
+    },
+    {
+      "case_id": "missing_ticket_write-10-1",
+      "family": "missing_ticket_write-10",
+      "condition": "missing_ticket_write",
+      "observation_hash": "90a2b47897e98dcddda1cfe2eaa4ef3aacab5df5f607c492f5cd6c6a39ce77e5",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73822",
+          "priority": "normal"
+        },
+        "confidence": 0.5396,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.133,
+              "set_priority": 0.5396,
+              "ask_user": 0.164,
+              "handoff": 0.1634
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3861
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7173,
+              "ticket_2": 0.1769,
+              "unspecified": 0.1058
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.576
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.142,
+              "normal": 0.7883,
+              "high": 0.0377,
+              "unspecified": 0.032
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7177
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5396,
+      "error": null,
+      "latency_ms": 422.2714160059695
+    },
+    {
+      "case_id": "missing_ticket_write-10-1",
+      "family": "missing_ticket_write-10",
+      "condition": "missing_ticket_write",
+      "observation_hash": "1152b2e0fd188ed29ab7dbaad7c28a01be49f74d4378f31d9c321b58a79f3cb6",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-31772",
+          "priority": "normal"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-73822",
+          "priority": "normal"
+        },
+        "confidence": 0.4982498249824982,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.0905,
+              "set_priority": 0.6207,
+              "ask_user": 0.2386,
+              "handoff": 0.0502
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4943
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.4982498249824982,
+              "ticket_2": 0.3475347534753475,
+              "unspecified": 0.15421542154215423
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.2473
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.1561156115611561,
+              "normal": 0.7554755475547555,
+              "high": 0.043604360436043606,
+              "unspecified": 0.04480448044804481
+            },
+            "provider_probability_sum": 0.9998999999999999,
+            "provider_confidence": 0.6739
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4982498249824982,
+      "error": null,
+      "latency_ms": 450.7054169953335
+    },
+    {
+      "case_id": "missing_ticket_write-11-1",
+      "family": "missing_ticket_write-11",
+      "condition": "missing_ticket_write",
+      "observation_hash": "bdbc8f31454d7f22bddb1bec1488e07b6e773ff6f52e0b5321254a885c76b09b",
+      "reference": {
+        "action": "ask_user",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71008",
+          "priority": "high"
+        },
+        "confidence": 0.4771522847715229,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.13828617138286173,
+              "set_priority": 0.4771522847715229,
+              "ask_user": 0.20857914208579142,
+              "handoff": 0.17598240175982402
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.3029
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.509,
+              "ticket_2": 0.292,
+              "unspecified": 0.199
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.2635
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0625,
+              "normal": 0.08,
+              "high": 0.7804,
+              "unspecified": 0.0771
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7072
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.4771522847715229,
+      "error": null,
+      "latency_ms": 423.7080840030103
+    },
+    {
+      "case_id": "missing_ticket_write-11-1",
+      "family": "missing_ticket_write-11",
+      "condition": "missing_ticket_write",
+      "observation_hash": "7848a99f39c2b192ebc2e62c1d7c6c165d753b23a73d547f50c389ff42e2863c",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-88595",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-88595",
+          "priority": "high"
+        },
+        "confidence": 0.6386000000000001,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.06870000000000001,
+              "set_priority": 0.6386000000000001,
+              "ask_user": 0.25670000000000004,
+              "handoff": 0.036000000000000004
+            },
+            "provider_probability_sum": 0.9999999999999999,
+            "provider_confidence": 0.5182
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1421,
+              "ticket_2": 0.753,
+              "unspecified": 0.1049
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6295
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.0483,
+              "normal": 0.0616,
+              "high": 0.8229,
+              "unspecified": 0.0672
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.7638
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6386000000000001,
+      "error": null,
+      "latency_ms": 456.22808299958706
+    },
+    {
+      "case_id": "denied_update-04-1",
+      "family": "write-04",
+      "condition": "denied_update",
+      "observation_hash": "8a792a05773ea0ff6fb45f07f4bd5caceb135ccaf39c82b49f9386834bf848ab",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-56774",
+          "priority": "normal"
+        },
+        "confidence": 0.5457,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1354,
+              "set_priority": 0.5457,
+              "ask_user": 0.0945,
+              "handoff": 0.2244
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3942
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.1569,
+              "ticket_2": 0.7541,
+              "unspecified": 0.089
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.6312
+          },
+          "priority": {
+            "choice": "normal",
+            "probabilities": {
+              "low": 0.14520000000000002,
+              "normal": 0.7797000000000001,
+              "high": 0.046400000000000004,
+              "unspecified": 0.028700000000000003
+            },
+            "provider_probability_sum": 0.9999999999999999,
+            "provider_confidence": 0.7063
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.5457,
+      "error": null,
+      "latency_ms": 427.19591700006276
+    },
+    {
+      "case_id": "write_correction-02-1",
+      "family": "write_correction-02",
+      "condition": "write_correction",
+      "observation_hash": "101378048053765ad0f19df52927a311ae930e10c4c7555b16b99a80f0e07eb5",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-87636",
+          "priority": "low"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-87636",
+          "priority": "low"
+        },
+        "confidence": 0.602,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.064993500649935,
+              "set_priority": 0.8081191880811919,
+              "ask_user": 0.0662933706629337,
+              "handoff": 0.06059394060593941
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.7443
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.2643,
+              "ticket_2": 0.602,
+              "unspecified": 0.1337
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.403
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.8768,
+              "normal": 0.0246,
+              "high": 0.0409,
+              "unspecified": 0.0577
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.8357
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.602,
+      "error": null,
+      "latency_ms": 442.4106669976027
+    },
+    {
+      "case_id": "write-11-1",
+      "family": "write-11",
+      "condition": "write",
+      "observation_hash": "ee22506b0bfdcea42140411224aaf325f4e4ff3364421ed8931787f3b6ce377c",
+      "reference": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71241",
+          "priority": "high"
+        }
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-71241",
+          "priority": "high"
+        },
+        "confidence": 0.6088,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.1081,
+              "set_priority": 0.6088,
+              "ask_user": 0.1689,
+              "handoff": 0.1142
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.4784
+          },
+          "ticket": {
+            "choice": "ticket_2",
+            "probabilities": {
+              "ticket_1": 0.20617938206179381,
+              "ticket_2": 0.6362363763623637,
+              "unspecified": 0.15758424157584242
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.4544
+          },
+          "priority": {
+            "choice": "high",
+            "probabilities": {
+              "low": 0.050705070507050705,
+              "normal": 0.052605260526052605,
+              "high": 0.8471847184718472,
+              "unspecified": 0.04950495049504951
+            },
+            "provider_probability_sum": 0.9999,
+            "provider_confidence": 0.7961
+          }
+        }
+      },
+      "correct": true,
+      "confidence": 0.6088,
+      "error": null,
+      "latency_ms": 427.81645800278056
+    },
+    {
+      "case_id": "unsupported-08-0",
+      "family": "unsupported-08",
+      "condition": "unsupported",
+      "observation_hash": "8b8ffd4db5e3afaf4c4e945ff994e12930b94cc02843e899ceee08d9883b957e",
+      "reference": {
+        "action": "handoff",
+        "arguments": {}
+      },
+      "proposal": {
+        "action": "set_priority",
+        "arguments": {
+          "ticket_id": "SYN-58291",
+          "priority": "low"
+        },
+        "confidence": 0.3555,
+        "answers": {
+          "action": {
+            "choice": "set_priority",
+            "probabilities": {
+              "read_ticket": 0.2123,
+              "set_priority": 0.4885,
+              "ask_user": 0.1872,
+              "handoff": 0.112
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.3181
+          },
+          "ticket": {
+            "choice": "ticket_1",
+            "probabilities": {
+              "ticket_1": 0.7371262873712628,
+              "ticket_2": 0.14508549145085492,
+              "unspecified": 0.11778822117788222
+            },
+            "provider_probability_sum": 1.0001,
+            "provider_confidence": 0.6057
+          },
+          "priority": {
+            "choice": "low",
+            "probabilities": {
+              "low": 0.3555,
+              "normal": 0.0784,
+              "high": 0.2212,
+              "unspecified": 0.3449
+            },
+            "provider_probability_sum": 1.0,
+            "provider_confidence": 0.1407
+          }
+        }
+      },
+      "correct": false,
+      "confidence": 0.3555,
+      "error": null,
+      "latency_ms": 438.37287499627564
+    }
+  ],
+  "errors": 0,
+  "episodes": 72,
+  "families": 30,
+  "report_hash": "9670f902795654418c670482e3509841c34e26b09db0941a5482d79dd742aa51"
+}

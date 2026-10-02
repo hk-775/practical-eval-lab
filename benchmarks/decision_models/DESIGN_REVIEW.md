@@ -126,5 +126,7 @@ the required resource or API measurements exist.
 Keep the first run labeled as a diagnostic with this design review attached.
 Do not promote its 75.0% versus 37.5% scores as a general model ranking, Jev
 replacement assessment, production readiness result, or enterprise benchmark.
-The repository PR is held as a draft while the evaluation objective and
-replacement design are reviewed.
+The [executed support-workflow evaluation](../tool_workflow/README.md) implements
+the bounded tool-selection question with a separate frozen protocol, grouped
+partitions, simulator, baselines, and tool-trace replay. It does not retroactively
+validate or replace the first run's measurements.

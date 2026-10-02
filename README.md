@@ -60,19 +60,18 @@ results. Its response-quality holdout score actually regresses.
 [Learning guide](docs/learning-guide.md) ·
 [Public incidents and proposed evals](docs/incident-case-studies.md)
 
-## Inspect a decision model diagnostic
+## Evaluate an executed support workflow
 
-The separate [decision-model benchmark](benchmarks/decision_models/README.md)
-compares pinned Strands Decider and Laya checkpoints on frozen synthetic routing,
-tool-selection, and policy cases. It records calibration, accuracy, abstention,
-failures, latency, and explicit cost assumptions. Model dependencies have a
-separate uv lockfile. Jev is optional and requires an API key; an unexecuted
-adapter contributes no performance results.
+The [support-workflow evaluation](benchmarks/tool_workflow/README.md) asks whether
+pinned Strands and Laya checkpoints can select tools and arguments, request
+missing information, and complete an executable synthetic workflow. It compares
+them with rules and fitted baselines, calibrates on separate wording families,
+and records actual tool outcomes, fallback demand, and simulator-episode latency.
+Model dependencies have a separate uv lockfile; no API key is needed.
 
-[Read the recorded model results](benchmarks/decision_models/recordings/README.md),
-including failure slices and the raw calibration and holdout evidence.
-The [design review](benchmarks/decision_models/DESIGN_REVIEW.md) explains why
-this initial fixture cannot support a general Strands-versus-Laya ranking.
+The [earlier decision-model diagnostic](benchmarks/decision_models/README.md)
+and its [design review](benchmarks/decision_models/DESIGN_REVIEW.md) are retained
+as a separate experiment. Jev has not been evaluated.
 
 ## Evaluate your application
 

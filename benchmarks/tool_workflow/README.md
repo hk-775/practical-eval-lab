@@ -9,6 +9,9 @@ against an executable synthetic ticket-support simulator. It measures tool
 execution and state changes, clarification, authorization failures, fallback,
 and complete simulator-episode latency.
 
+[Read the recorded workflow results](recordings/README.md), including condition
+slices, actual tool outcomes, calibration grids, and replayable traces.
+
 Read the [frozen protocol](PROTOCOL.md) for the engineering question, workload,
 grouped partitions, calibration procedure, metrics, baselines, reproduction
 commands, and limitations. The protocol and implementation are hashed before
