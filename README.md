@@ -60,7 +60,7 @@ results. Its response-quality holdout score actually regresses.
 [Learning guide](docs/learning-guide.md) ·
 [Public incidents and proposed evals](docs/incident-case-studies.md)
 
-## Benchmark local decision models
+## Inspect a decision model diagnostic
 
 The separate [decision-model benchmark](benchmarks/decision_models/README.md)
 compares pinned Strands Decider and Laya checkpoints on frozen synthetic routing,
@@ -71,6 +71,8 @@ adapter contributes no performance results.
 
 [Read the recorded model results](benchmarks/decision_models/recordings/README.md),
 including failure slices and the raw calibration and holdout evidence.
+The [design review](benchmarks/decision_models/DESIGN_REVIEW.md) explains why
+this initial fixture cannot support a general Strands-versus-Laya ranking.
 
 ## Evaluate your application
 

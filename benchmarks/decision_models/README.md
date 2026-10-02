@@ -1,10 +1,17 @@
-# Decision model benchmark: Strands and Laya
+# Decision model diagnostic: Strands and Laya
+
+**Design review: exploratory fixture, not a model-selection benchmark.**
+The first run has only 12 holdout scenario groups, incomplete calibration class
+coverage, and policy option wording that exercises a documented Laya limitation.
+Read the [design review and replacement plan](DESIGN_REVIEW.md) before interpreting
+the scores. The raw recordings are preserved; their aggregate accuracy does not
+establish a general model ranking.
 
 Compare pinned local decision models on the same frozen English cases, with a
 lexical reference and an optional Jev adapter. This source-checkout benchmark is
 separate from the lab's six teaching suites and their recorded rule-based results.
 
-**Initial comparison:** Strands Decider 2B v19 and Laya's English checkpoint.
+**Initial diagnostic:** Strands Decider 2B v19 and Laya's English checkpoint.
 Both run locally without a model API key. The first download requires access to
 their public Hugging Face repositories. Jev remains **not run** unless an actual
 authenticated report is supplied; its adapter is not evidence of its performance.

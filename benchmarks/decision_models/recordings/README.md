@@ -1,4 +1,10 @@
-# Strands and Laya: recorded decision model results
+# Strands and Laya: exploratory diagnostic results
+
+**Interpretation corrected after design review.** These scores do not support
+a model-selection recommendation. The fixture is small, the calibration classes
+are incomplete, and the policy probes use boolean Choice labels that Laya's
+pinned documentation warns against. See the [design review](../DESIGN_REVIEW.md).
+The recordings below are unchanged and remain evidence of the tested inputs only.
 
 **Recorded 2 October 2026.** These are local measurements on an original synthetic
 fixture. No customer data, production traces, or enterprise adoption claims are
@@ -80,6 +86,11 @@ their variants. Its policy answers exposed a question-sensitivity failure:
 it returned the **same answer to opposite compliance and violation questions in
 14 of 16 policy requests** per trial. All policy decisions fell below its fitted
 gate. High aggregate accuracy would have hidden that failure family.
+
+The paired policy questions are a representation and question-sensitivity probe,
+not a representative policy workload. Their generic `yes`/`no` options contribute
+half of the overall score. The aggregate therefore cannot distinguish general
+task quality from sensitivity to this particular representation.
 
 Laya was faster in this configuration, but selected incorrect routes and tools
 and lost accuracy with added text. Original and reversed-option variants each

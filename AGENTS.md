@@ -17,6 +17,8 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   synthetic data, optional Jev, and separate `runtime/uv.lock`. Keep its model
   results distinct from the six teaching suites. Never rewrite recorded results
   or tune on holdout while presenting it as an untouched evaluation.
+  Read its `DESIGN_REVIEW.md`: v1 is an exploratory diagnostic, not evidence for
+  model selection or production readiness.
 
 ## Commands
 

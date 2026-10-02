@@ -42,6 +42,7 @@ DOCUMENTS = {
     "docs/hosting.md": "hosting.html",
     "benchmarks/decision_models/README.md": "decision-models.html",
     "benchmarks/decision_models/recordings/README.md": "decision-model-results.html",
+    "benchmarks/decision_models/DESIGN_REVIEW.md": "decision-model-design-review.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -271,9 +272,11 @@ class Site:
         elif source == "examples/results/README.md":
             intro = "Twelve actual offline comparisons, including holdout failures and regressions."
         elif source == "benchmarks/decision_models/README.md":
-            intro = "Compare pinned local models on frozen synthetic cases. Inspect calibration, failures, abstention, and latency."
+            intro = "An exploratory fixture with documented design limitations. Inspect the inputs, failures, and scope of the evidence."
         elif source == "benchmarks/decision_models/recordings/README.md":
-            intro = "Measured on a local Mac GPU: accuracy, request latency, calibration gates, and the failures behind the averages."
+            intro = "Local Mac measurements on a small diagnostic fixture. These scores do not establish a model ranking."
+        elif source == "benchmarks/decision_models/DESIGN_REVIEW.md":
+            intro = "What the initial fixture can establish, where its design falls short, and how to build a deployment-oriented evaluation."
         self.page(route, title, intro,
                   f'<section class="panel docs-panel"><div class="docs-layout{" no-toc" if not toc else ""}">'
                   f'{toc}'
@@ -456,6 +459,7 @@ class Site:
                          ("Recorded evidence", "results.md", "Twelve comparisons with JSON and standalone HTML."),
                          ("Decision model benchmark", "decision-models.md", "Pinned Strands and Laya comparison; Jev optional."),
                          ("Decision model results", "decision-model-results.md", "Local measurements on a frozen synthetic fixture; raw evidence and limits."),
+                         ("Decision model design review", "decision-model-design-review.md", "Why the first diagnostic cannot support a general model ranking."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
                          ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
                          ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),
