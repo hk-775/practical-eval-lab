@@ -43,6 +43,8 @@ DOCUMENTS = {
     "benchmarks/decision_models/README.md": "decision-models.html",
     "benchmarks/decision_models/recordings/README.md": "decision-model-results.html",
     "benchmarks/decision_models/DESIGN_REVIEW.md": "decision-model-design-review.html",
+    "benchmarks/tool_workflow/README.md": "tool-workflow.html",
+    "benchmarks/tool_workflow/PROTOCOL.md": "tool-workflow-protocol.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -277,6 +279,8 @@ class Site:
             intro = "Local Mac measurements on a small diagnostic fixture. These scores do not establish a model ranking."
         elif source == "benchmarks/decision_models/DESIGN_REVIEW.md":
             intro = "What the initial fixture can establish, where its design falls short, and how to build a deployment-oriented evaluation."
+        elif source == "benchmarks/tool_workflow/README.md":
+            intro = "An executable support simulation: tool choice, arguments, clarification, authorization, fallback, and measured outcomes."
         self.page(route, title, intro,
                   f'<section class="panel docs-panel"><div class="docs-layout{" no-toc" if not toc else ""}">'
                   f'{toc}'

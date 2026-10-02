@@ -13,3 +13,8 @@ recursive-include benchmarks/decision_models/data *.json *.jsonl
 recursive-include benchmarks/decision_models/recordings *.json *.md
 include benchmarks/decision_models/runtime/pyproject.toml
 include benchmarks/decision_models/runtime/uv.lock
+include benchmarks/tool_workflow/*.py
+include benchmarks/tool_workflow/*.md
+include benchmarks/tool_workflow/*.json
+recursive-include benchmarks/tool_workflow/data *.json *.jsonl
+recursive-include benchmarks/tool_workflow/recordings *.json *.md

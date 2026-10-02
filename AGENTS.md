@@ -19,6 +19,11 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   or tune on holdout while presenting it as an untouched evaluation.
   Read its `DESIGN_REVIEW.md`: v1 is an exploratory diagnostic, not evidence for
   model selection or production readiness.
+- `benchmarks/tool_workflow/`: executed synthetic support workflow with grouped
+  development/calibration/test partitions, public-input baselines, tool feedback,
+  and private task references. Preserve `freeze.json` and recorded protocol
+  hashes. Never tune against recorded final-test failures while calling the same
+  test an untouched evaluation.
 
 ## Commands
 
