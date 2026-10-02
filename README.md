@@ -12,6 +12,10 @@ The human-preference sample retains its [upstream MIT notice](THIRD_PARTY_NOTICE
 [Read the six walkthroughs](https://hk-775.github.io/practical-eval-lab/guides.html) ·
 [Learn from public incidents](https://hk-775.github.io/practical-eval-lab/incidents.html)
 
+[Agent guide](https://hk-775.github.io/practical-eval-lab/llms.txt) ·
+[Download documentation context](https://hk-775.github.io/practical-eval-lab/agent-context.txt) ·
+[Read code with GitIngest](https://gitingest.com/hk-775/practical-eval-lab)
+
 The GitHub Pages site lets you inspect actual offline runs and download evidence.
 Run the local lab below to edit cases, execute candidates, and save experiments.
 

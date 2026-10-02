@@ -9,6 +9,7 @@ import json
 import shutil
 import tempfile
 import threading
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -16,21 +17,85 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 from playwright.sync_api import expect, sync_playwright
 
-from .build_pages import DEFAULT_BASE, GUIDES, normalize_base
+import markdown
+
+from .build_pages import DEFAULT_BASE, DOCUMENTS, GUIDES, ORIGIN, ROOT, normalize_base
 
 
 class Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.links, self.ids = [], set()
+        self.link_tags, self.structured_data, self.json_parts = {}, [], None
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         if "id" in values:
             self.ids.add(values["id"])
+        if tag == "link" and values.get("rel"):
+            self.link_tags.setdefault(values["rel"], []).append(values)
+        if tag == "script" and values.get("type") == "application/ld+json":
+            self.json_parts = []
         key = {"a": "href", "link": "href", "script": "src", "img": "src"}.get(tag)
         if key and values.get(key):
             self.links.append(values[key])
+
+    def handle_data(self, data):
+        if self.json_parts is not None:
+            self.json_parts.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "script" and self.json_parts is not None:
+            self.structured_data.append(json.loads("".join(self.json_parts)))
+            self.json_parts = None
+
+
+def verify_discovery(site, base_path, parsed):
+    public = ORIGIN + base_path
+    discovery = json.loads((site / "discovery.json").read_text(encoding="utf-8"))
+    assert discovery["website"] == public
+    allowed = {*DOCUMENTS, "AGENTS.md", "docs/incident-case-studies.md", "scripts/build_pages.py"}
+    documents = set()
+    for record in discovery["documents"]:
+        assert record["source"] in allowed
+        assert record["source_sha256"] == hashlib.sha256((ROOT / record["source"]).read_bytes()).hexdigest()
+        assert record["markdown_url"].startswith(public)
+        name = record["markdown_url"][len(public):]
+        content = (site / name).read_bytes()
+        assert hashlib.sha256(content).hexdigest() == record["sha256"], name
+        assert len(content) == record["bytes"]
+        documents.add(name)
+    assert len(documents) >= len(DOCUMENTS) + 5
+    for name in documents | {"llms.txt"}:
+        parser = Links()
+        parser.feed(markdown.markdown((site / name).read_text(encoding="utf-8"),
+                                     extensions=["fenced_code", "tables"]))
+        for target in parser.links:
+            if target.startswith(public):
+                relative = unquote(urlsplit(target).path[len(base_path):]) or "index.html"
+                assert (site / relative).is_file(), f"Broken Markdown link in {name}: {target}"
+    entries = {element.text for element in ET.parse(site / "sitemap.xml").iter(
+        "{http://www.sitemaps.org/schemas/sitemap/0.9}loc")}
+    expected = set()
+    for name, parser in parsed.items():
+        if name == "404.html" or name.startswith("reports/"):
+            continue
+        canonical = public + ("" if name == "index.html" else name)
+        expected.add(canonical)
+        assert [link["href"] for link in parser.link_tags["canonical"]] == [canonical]
+        alternate = parser.link_tags["alternate"][0]
+        assert alternate["type"] == "text/markdown"
+        assert alternate["href"] == base_path + name.removesuffix(".html") + ".md"
+        assert name.removesuffix(".html") + ".md" in documents
+        assert parser.link_tags["describedby"][0]["href"] == base_path + "llms.txt"
+        data, = parser.structured_data
+        assert data["@type"] == "WebPage" and data["url"] == canonical
+        assert data["about"]["codeRepository"] == discovery["repository"]
+        assert data["about"]["author"]["name"] == "Harleen Kaur"
+    assert entries == expected
+    digest = (site / "agent-context.txt").read_text(encoding="utf-8")
+    assert "Anthropic" in digest and "not production model quality" in digest
+    assert len(digest.encode("utf-8")) < 200_000
 
 
 def verify_artifact(site, base_path):
@@ -58,6 +123,7 @@ def verify_artifact(site, base_path):
             assert (site / relative).is_file(), f"Broken static link in {name}: {target}"
             if url.fragment and relative in parsed:
                 assert unquote(url.fragment) in parsed[relative].ids, f"Broken anchor in {name}: {target}"
+    verify_discovery(site, base_path, parsed)
     print(f"Static artifact verified: {len(manifest['files'])} files; internal links and anchors resolve.")
 
 
@@ -86,6 +152,14 @@ def check_browser(base, screenshots=None):
         try:
             page.goto(base)
             expect(page.locator("#status")).to_contain_text("Ready.")
+            expect(page.locator('link[rel="canonical"]')).to_have_attribute(
+                "href", ORIGIN + base_url.path)
+            # Agents can retrieve complete text and provenance without running the UI.
+            for filename in ("llms.txt", "agent-context.txt", "discovery.json", "sitemap.xml", "guides/rag.md"):
+                response = page.request.get(base + filename)
+                assert response.status == 200, filename
+                assert len(response.body()) > 100, filename
+            assert "not production model quality" in page.request.get(base + "index.md").text()
             expect(page.locator("#viewer-heading")).to_contain_text("Explore evidence.")
             expect(page.locator("#threshold")).to_be_disabled()
             expect(page.locator(".tune-panel")).to_be_hidden()

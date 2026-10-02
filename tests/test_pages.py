@@ -35,3 +35,26 @@ def test_build_preserves_unrelated_output_and_rejects_invalid_base_paths(tmp_pat
             normalize_base(value)
     with pytest.raises(ValueError, match="source tree"):
         Site(Path(__file__).resolve().parent.parent)
+
+
+def test_markdown_mirrors_preserve_fenced_examples_and_rewrite_document_links(tmp_path, monkeypatch):
+    site = Site(tmp_path / "site")
+    source = tmp_path / "source"
+    source.mkdir()
+    text = """# Example
+
+````markdown
+```
+[Example placeholder](not-a-published-file.md)
+```
+````
+
+[Read the contracts](docs/contracts.md#grading)
+"""
+    (source / "README.md").write_text(text, encoding="utf-8")
+    monkeypatch.setattr("scripts.build_pages.ROOT", source)
+    site.markdown_document("README.md", "getting-started.md")
+    output = (site.output / "getting-started.md").read_text(encoding="utf-8")
+    assert "[Example placeholder](not-a-published-file.md)" in output
+    assert "https://hk-775.github.io/practical-eval-lab/contracts.md#grading" in output
+    assert "Source SHA-256:" in output

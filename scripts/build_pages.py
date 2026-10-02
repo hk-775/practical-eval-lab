@@ -20,6 +20,7 @@ from eval_lab.suites import CATALOG
 
 ROOT = Path(__file__).resolve().parent.parent
 REPO = "https://github.com/hk-775/practical-eval-lab"
+ORIGIN = "https://hk-775.github.io"
 DEFAULT_BASE = "/practical-eval-lab/"
 CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; "
        "connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'")
@@ -72,6 +73,9 @@ class Site:
         self.write(".nojekyll", "")
         self.routes = dict(DOCUMENTS)
         self.routes["docs/incident-case-studies.md"] = "incidents.html"
+        self.routes["AGENTS.md"] = "coding-agents.md"
+        self.pages = {}
+        self.markdown_records = {}
         self.styles = [self.fingerprint(ROOT / "eval_lab/web" / name, "assets")
                        for name in ("styles.css", "site.css")]
         self.favicon = self.fingerprint(ROOT / "eval_lab/web/favicon.svg", "assets")
@@ -82,7 +86,7 @@ class Site:
         if isinstance(content, bytes):
             target.write_bytes(content)
         else:
-            target.write_text(content, encoding="utf-8")
+            target.write_bytes(content.encode("utf-8"))
         return name
 
     def fingerprint(self, source, directory):
@@ -92,6 +96,38 @@ class Site:
 
     def url(self, target=""):
         return self.base + target
+
+    def absolute(self, target=""):
+        return ORIGIN + self.url(target)
+
+    def metadata(self, route, title, description):
+        if route == "404.html":
+            return '<meta name="robots" content="noindex">'
+        self.pages[route] = {"title": title, "description": description}
+        canonical = self.absolute("" if route == "index.html" else route)
+        project = {
+            "@type": "SoftwareSourceCode", "@id": self.absolute() + "#project",
+            "name": "Practical Eval Lab", "codeRepository": REPO, "url": self.absolute(),
+            "programmingLanguage": "Python", "license": REPO + "/blob/main/LICENSE",
+            "description": "An educational toolkit with six runnable evaluation examples, transparent graders, and a local tuning webpage.",
+            "author": {"@type": "Person", "name": "Harleen Kaur",
+                       "url": ORIGIN + "/hk-775/", "@id": ORIGIN + "/hk-775/#harleen-kaur"},
+        }
+        data = {"@context": "https://schema.org", "@type": "WebPage",
+                "url": canonical, "name": title, "description": description,
+                "isPartOf": {"@type": "WebSite", "name": "Practical Eval Lab", "url": self.absolute()},
+                "about": project}
+        encoded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")
+        return (f'<link rel="canonical" href="{canonical}">'
+                f'<link rel="alternate" type="text/markdown" href="{self.url(route.removesuffix(".html") + ".md")}">'
+                f'<link rel="describedby" type="text/plain" href="{self.url("llms.txt")}">'
+                f'<link rel="sitemap" type="application/xml" href="{self.url("sitemap.xml")}">'
+                f'<meta property="og:type" content="website"><meta property="og:url" content="{canonical}">'
+                f'<meta property="og:title" content="{html.escape(title, quote=True)} · Practical Eval Lab">'
+                f'<meta property="og:description" content="{html.escape(description, quote=True)}">'
+                f'<meta property="og:image" content="{self.absolute("assets/tuning-lab.png")}">'
+                '<meta name="twitter:card" content="summary_large_image">'
+                f'<script type="application/ld+json">{encoded}</script>')
 
     def nav(self, current=""):
         if current.startswith("guides/"):
@@ -108,30 +144,73 @@ class Site:
 
     def footer(self):
         links = [("Data provenance", "data-provenance.html"), ("Licenses", "notices.html"),
-                 ("Security", "security.html"), ("Hosting", "hosting.html")]
+                 ("Security", "security.html"), ("Hosting", "hosting.html"),
+                 ("Agent guide", "llms.txt"), ("Download context", "agent-context.txt")]
         return ('<footer><p>Learn from the result. Keep the evidence.</p>'
                 '<p>Original code and synthetic cases: MIT-0. Human-preference sample: Anthropic MIT.</p>'
                 '<div class="docs-footer">' + "".join(
                     f'<a href="{self.url(target)}">{label}</a>' for label, target in links)
-                + "</div></footer>")
+                + f'</div><p class="small">Created by <a href="{ORIGIN}/hk-775/">Harleen Kaur</a> · '
+                '<a href="https://gitingest.com/hk-775/practical-eval-lab">Read code with GitIngest ↗</a></p></footer>')
 
-    def head(self, title, description):
+    def head(self, title, description, route):
         return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 f'<meta http-equiv="Content-Security-Policy" content="{html.escape(CSP, quote=True)}">'
                 f'<title>{html.escape(title)} · Practical Eval Lab</title>'
                 f'<meta name="description" content="{html.escape(description, quote=True)}">'
-                f'<link rel="icon" href="{self.url(self.favicon)}" type="image/svg+xml">'
+                + self.metadata(route, title, description)
+                + f'<link rel="icon" href="{self.url(self.favicon)}" type="image/svg+xml">'
                 + "".join(f'<link rel="stylesheet" href="{self.url(path)}">' for path in self.styles)
                 + "</head><body>")
 
     def page(self, route, title, description, body, eyebrow="An evaluation workshop"):
-        content = (self.head(title, description) + '<a class="skip-link" href="#main">Skip to content</a>'
+        content = (self.head(title, description, route) + '<a class="skip-link" href="#main">Skip to content</a>'
                    + f'<header class="docs-hero">{self.nav(route)}<div class="hero-copy">'
                    + f'<p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(title)}</h1>'
                    + f'<p class="hero-description">{html.escape(description)}</p></div></header>'
                    + f'<main id="main" class="page-shell docs-shell">{body}{self.footer()}</main></body></html>\n')
         self.write(route, content)
+
+    def write_markdown(self, route, text, source):
+        digest = hashlib.sha256((ROOT / source).read_bytes()).hexdigest()
+        source_url = REPO + "/blob/main/" + source
+        content = (text.rstrip() + f"\n\n---\nSource: [{source}]({source_url})\n\n"
+                   f"Source SHA-256: `{digest}`\n")
+        self.write(route, content)
+        self.markdown_records[route] = {
+            "source": source, "source_url": source_url, "source_sha256": digest,
+            "markdown_url": self.absolute(route),
+            "sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
+            "bytes": len(content.encode("utf-8")),
+        }
+
+    def markdown_document(self, source, route):
+        text = (ROOT / source).read_text(encoding="utf-8")
+        mirrors = {self.url(target): self.url(target.removesuffix(".html") + ".md")
+                   for target in DOCUMENTS.values()}
+        mirrors[self.url("incidents.html")] = self.url("incidents.md")
+
+        def link(match):
+            target = self.rewrite_link(match[2], source)
+            parsed = urlsplit(target)
+            if not parsed.scheme and not parsed.netloc and parsed.path.startswith(self.base):
+                path = mirrors.get(parsed.path, parsed.path)
+                target = urlunsplit(("https", "hk-775.github.io", path, parsed.query, parsed.fragment))
+            return match[1] + target + match[3]
+
+        lines, fence = [], None
+        for line in text.splitlines():
+            marker = re.match(r"\s*(`{3,}|~{3,})", line)
+            if marker:
+                if fence is None:
+                    fence = marker[1]
+                elif marker[1][0] == fence[0] and len(marker[1]) >= len(fence) and not line[marker.end():].strip():
+                    fence = None
+                lines.append(line)
+            else:
+                lines.append(line if fence else re.sub(r"(!?\[[^\]]*\]\()([^\s)]+)(\))", link, line))
+        self.write_markdown(route, "\n".join(lines), source)
 
     def rewrite_link(self, target, source):
         parsed = urlsplit(target)
@@ -148,6 +227,7 @@ class Site:
         return urlunsplit(("", "", destination, parsed.query, parsed.fragment))
 
     def document(self, source, route):
+        self.markdown_document(source, route.removesuffix(".html") + ".md")
         text = (ROOT / source).read_text(encoding="utf-8")
         title = text.splitlines()[0].removeprefix("# ").strip()
         site = self
@@ -252,6 +332,12 @@ class Site:
                                 "Explore six kinds of evals through recorded experiments. Inspect the grader, compare candidates, and see where a change improves—or fails.")
         source = source.replace("Learn how to evaluate AI behavior. Tune datasets, inspect graders, and compare local baselines.",
                                 "Learn AI evaluation with six walkthroughs, recorded experiments, transparent graders, and public incident case studies.")
+        source = re.sub(r"<title>.*?</title>",
+                        "<title>Practical Eval Lab · AI evaluation examples and recorded results</title>",
+                        source, count=1)
+        source = source.replace("</head>", self.metadata(
+            "index.html", "AI evaluation examples and recorded results",
+            "Learn AI evaluation with six walkthroughs, recorded experiments, transparent graders, and public incident case studies.") + "</head>")
         source = source.replace("<label>Candidate<select", "<label>Candidate to inspect<select")
         source = source.replace('id="compare" data-lock>Compare candidates', 'id="compare" data-lock>Open recorded comparison')
         source = source.replace('id="run" data-lock>Run selected candidate', 'id="run" data-lock>View candidate results')
@@ -308,6 +394,7 @@ class Site:
                   "See how datasets, candidates, graders, and reports fit together.", body)
 
     def incidents(self):
+        self.markdown_document("docs/incident-case-studies.md", "incidents.md")
         content = (ROOT / "eval_lab/web/incidents.html").read_text(encoding="utf-8")
         content = content.replace("<head>", f'<head><meta http-equiv="Content-Security-Policy" content="{html.escape(CSP, quote=True)}">')
         content = content.replace('href="./styles.css"', f'href="{self.url(self.styles[0])}"')
@@ -317,8 +404,77 @@ class Site:
         content = content.replace("<body>", '<body><a class="skip-link" href="#main">Skip to content</a>')
         content = content.replace('<main class="page-shell', '<main id="main" class="page-shell')
         content = content.replace("Open related eval →", "Explore related recording →")
+        content = content.replace("</head>", self.metadata(
+            "incidents.html", "Public AI incidents and evaluation lessons",
+            "Six documented public AI incidents, their sources, and evaluation checks that could expose related failure modes.") + "</head>")
         content = re.sub(r"<footer>.*?</footer>", self.footer(), content, flags=re.S)
         self.write("incidents.html", content)
+
+    def discovery(self):
+        self.markdown_document("AGENTS.md", "coding-agents.md")
+        lessons = "\n".join(
+            f"- [{CATALOG[suite]['title']}]({self.absolute(f'guides/{slug}.md')}): {CATALOG[suite]['lesson']}"
+            for suite, slug in GUIDES.items())
+        overview = ("# Practical Eval Lab\n\n"
+                    "> Six runnable AI evaluation examples, transparent graders, and a local tuning webpage.\n\n"
+                    "This website displays recorded offline results. Candidate execution and tuning run locally. "
+                    "Five suites use synthetic cases; response quality uses a small attributed Anthropic human-preference sample. "
+                    "Bundled candidates are local rules. Results demonstrate evaluation methods, not production model quality or safety certification.\n\n"
+                    f"Created by [Harleen Kaur]({ORIGIN}/hk-775/). "
+                    f"[Source repository]({REPO}) · [Local setup]({self.absolute('getting-started.md')}).\n\n"
+                    "## Walkthroughs\n" + lessons + "\n\n"
+                    f"[Recorded JSON and HTML evidence]({self.absolute('results.md')}) · "
+                    f"[Data provenance and attribution]({self.absolute('data-provenance.md')}).")
+        self.write_markdown("index.md", overview, "scripts/build_pages.py")
+        self.write_markdown("guides.md", "# Six evaluation walkthroughs\n\n" + lessons,
+                            "scripts/build_pages.py")
+        architecture = ("# The local evaluation loop\n\n"
+                        "Dataset inputs go to a named candidate. Reference answers go directly to the grader. "
+                        "Outputs, checks, gates, and metrics form a saved report. The CLI and local tuning webpage share this runner.\n\n"
+                        "The public Pages site serves static documents and recorded JSON/HTML reports. It has no execution backend, "
+                        "model credentials, private API, WebSockets, or cloud integration.\n\n"
+                        f"[Rendered diagram]({self.absolute('architecture/pipeline.svg')}) · "
+                        f"[Editable draw.io source]({self.absolute('architecture/pipeline.drawio')}) · "
+                        f"[Contracts]({self.absolute('contracts.md')}) · [Hosting]({self.absolute('hosting.md')}).")
+        self.write_markdown("architecture.md", architecture, "scripts/build_pages.py")
+        index = (overview.split("## Walkthroughs")[0] + "## Walkthroughs\n" + lessons + "\n\n"
+                 "## Setup, contracts, and evidence\n" + "\n".join(
+                     f"- [{title}]({self.absolute(route)}): {description}"
+                     for title, route, description in (
+                         ("Local setup", "getting-started.md", "Install, run, and tune the toolkit."),
+                         ("Evaluation fundamentals", "learning-guide.md", "How to choose cases, graders, and gates."),
+                         ("Application adapters", "integrations.md", "Connect Python or HTTP applications."),
+                         ("Contracts", "contracts.md", "Input/output, grading, reporting, and extension boundaries."),
+                         ("Recorded evidence", "results.md", "Twelve comparisons with JSON and standalone HTML."),
+                         ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
+                         ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
+                         ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),
+                         ("Combined context", "agent-context.txt", "A bounded bundle of the principal guides with source fingerprints."),
+                         ("Source manifest", "discovery.json", "Document URLs and SHA-256 fingerprints."),
+                     )) + "\n\n## Optional\n"
+                 f"- [Coding-agent instructions]({self.absolute('coding-agents.md')}): Setup, tests, repository map, and conventions.\n"
+                 f"- [Licenses]({self.absolute('notices.md')}): MIT-0 code and retained third-party MIT notice.\n"
+                 f"- [Security]({self.absolute('security.md')}): Reporting and local/public trust boundaries.\n")
+        self.write("llms.txt", index)
+        selected = ["index.md", "getting-started.md", "learning-guide.md", "contracts.md",
+                    "integrations.md", "data-provenance.md", "notices.md", "architecture.md",
+                    *[f"guides/{slug}.md" for slug in GUIDES.values()]]
+        digest = "Practical Eval Lab — public documentation context\n\n"
+        digest += ("Generated from allowlisted source documents. Source fingerprints describe the documentation; "
+                   "recorded experiments retain their own dates and implementation fingerprints.\n\n")
+        for route in selected:
+            digest += f"===== FILE: {route} =====\nPublished Markdown: {self.absolute(route)}\n\n"
+            digest += (self.output / route).read_text(encoding="utf-8") + "\n"
+        self.write("agent-context.txt", digest)
+        self.write("discovery.json", json.dumps({
+            "schema_version": 1, "name": "Practical Eval Lab", "website": self.absolute(),
+            "repository": REPO, "mode": "recorded-results",
+            "documents": [self.markdown_records[key] for key in sorted(self.markdown_records)],
+        }, indent=2) + "\n")
+        entries = "".join(f"<url><loc>{html.escape(self.absolute('' if route == 'index.html' else route))}</loc></url>"
+                          for route in sorted(self.pages))
+        self.write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
+                   f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{entries}</urlset>\n')
 
     def build(self):
         self.downloads()
@@ -329,6 +485,7 @@ class Site:
         self.incidents()
         for source, target in DOCUMENTS.items():
             self.document(source, target)
+        self.discovery()
         self.page("404.html", "That page is missing.",
                   "Choose a walkthrough or return to the recorded-results explorer.",
                   f'<section class="panel docs-panel"><a class="primary-button" href="{self.url()}">Open the explorer</a></section>')
