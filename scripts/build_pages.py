@@ -335,7 +335,8 @@ class Site:
         source = re.sub(r"<title>.*?</title>",
                         "<title>Practical Eval Lab · AI evaluation examples and recorded results</title>",
                         source, count=1)
-        source = source.replace("</head>", self.metadata(
+        source = source.replace("</head>",
+            '<meta name="google-site-verification" content="9nISDaQy5eE9PBFKrqdFtGNagNvYHEF2jDr-KnHWMKc" />' + self.metadata(
             "index.html", "AI evaluation examples and recorded results",
             "Learn AI evaluation with six walkthroughs, recorded experiments, transparent graders, and public incident case studies.") + "</head>")
         source = source.replace("<label>Candidate<select", "<label>Candidate to inspect<select")
