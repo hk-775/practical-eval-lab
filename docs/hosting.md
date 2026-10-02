@@ -6,6 +6,32 @@ result-rendering components as the Python tuning webpage.
 
 [Open the website](https://hk-775.github.io/practical-eval-lab/).
 
+## Agent and search discovery
+
+The build also publishes `llms.txt`, Markdown alternatives for the documentation,
+`agent-context.txt`, and `discovery.json` with source and output fingerprints.
+These files use the same explicit source allowlist as the site; local profiles,
+credentials, dependencies, and arbitrary checkout files are not ingested.
+Edit the canonical source docs and rebuild to update them.
+
+Each content page links its Markdown alternative, agent index, and canonical
+public URL. Structured metadata identifies the toolkit and its creator using
+facts also visible on the site. `sitemap.xml` lists the canonical HTML content
+pages; it excludes the error page and duplicate report variants.
+
+For Google Search Console, verify the URL-prefix property
+`https://hk-775.github.io/practical-eval-lab/`, submit its `sitemap.xml`, and inspect
+the homepage and principal guides. Ownership verification requires the exact
+HTML file or meta value supplied by Google. No verification or ranking change
+is claimed by this build. A project-path `robots.txt` would not control the
+GitHub Pages host's root crawler policy.
+
+`llms.txt` helps agents find context; it is not a search-ranking instruction.
+Ordinary crawlability, useful content, and accurate identity matter for both
+search and agent discovery. Read the
+[portfolio measurement guide](https://github.com/hk-775/hk-775/blob/main/DISCOVERABILITY.md)
+for the distinction between traffic, search visibility, and recruiting outcomes.
+
 ## What you can do on the website
 
 - Choose any of the six suites and its development or holdout recording.
