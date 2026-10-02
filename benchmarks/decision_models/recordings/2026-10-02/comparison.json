@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "kind": "decision-model-comparison",
+  "protocol": "decision-choice-v1",
+  "protocol_hash": "3feb1616dd4c928c53a0eeac17ebc49215ad267f3fc6fd4f93d034b6e507d658",
+  "dataset_version": "enterprise-decisions-synthetic-v1",
+  "dataset_hash": "2ba7abb769140abd12824e44557a01571f97039944e5e427b2b06a6a7e06ea7c",
+  "split": "holdout",
+  "trials": 3,
+  "unique_requests": 48,
+  "unique_decisions": 64,
+  "groups": [
+    "policy-03",
+    "policy-04",
+    "policy-05",
+    "policy-06",
+    "routing-03",
+    "routing-04",
+    "routing-05",
+    "routing-06",
+    "tool_selection-03",
+    "tool_selection-04",
+    "tool_selection-05",
+    "tool_selection-06"
+  ],
+  "candidates": {
+    "baseline": {
+      "status": "completed",
+      "report_hash": "327044966a0af0affde30dee35021e38eece4d46dd876edef0bfd0a4d6d412c1",
+      "model": "lexical-overlap-v1",
+      "revision": null,
+      "device": "cpu",
+      "dtype": null,
+      "threshold": null,
+      "metrics": {
+        "decisions": 192,
+        "valid_decisions": 192,
+        "errors": 0,
+        "correct": 90,
+        "accuracy": 0.46875,
+        "brier_multiclass": 0.591838101168806,
+        "nll": 0.9473451917058826,
+        "ece_10_equal_width": 0.08337576549337068,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 12,
+            "mean_p_max": 0.28062987741989803,
+            "accuracy": 0.75
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 57,
+            "mean_p_max": 0.3631379698721262,
+            "accuracy": 0.3684210526315789
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 15,
+            "mean_p_max": 0.45106294096430527,
+            "accuracy": 0
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 108,
+            "mean_p_max": 0.5249201326665504,
+            "accuracy": 0.5555555555555556
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          }
+        ],
+        "accepted": 0,
+        "coverage": 0.0,
+        "accepted_errors": 0,
+        "accepted_error_rate": null,
+        "fallback_required": 192,
+        "unsafe_eligible": 60,
+        "unsafe_predictions": 48,
+        "accepted_unsafe_predictions": 0,
+        "accepted_unsafe_rate": 0.0
+      },
+      "latency": {
+        "unit": "request",
+        "concurrency": 1,
+        "p50_ms": 0.012250498912180774,
+        "p95_ms": 0.017612400006328244,
+        "sum_seconds": 0.0019515819767548237,
+        "requests": 144,
+        "by_trial": {
+          "1": {
+            "p50_ms": 0.012499500371632166,
+            "p95_ms": 0.01752665230014827
+          },
+          "2": {
+            "p50_ms": 0.012145999789936468,
+            "p95_ms": 0.01914549902721774
+          },
+          "3": {
+            "p50_ms": 0.011875001291627996,
+            "p95_ms": 0.016650000725348946
+          }
+        }
+      },
+      "cost": {
+        "input_usd_per_million_assumption": null,
+        "compute_usd_per_hour_assumption": null,
+        "reported_input_tokens": null,
+        "estimated_input_charge_usd": null,
+        "estimated_measured_compute_usd": null,
+        "scope": "Measured requests only. Warmup, setup, idle time, output charges, operations and fallback excluded. Null means unknown, not free."
+      },
+      "gate_report_hash": "d63c35fed25efb731129671dda43012dfa43a9873c6d114316b514002b46872c"
+    },
+    "strands": {
+      "status": "completed",
+      "report_hash": "282d9cceb34d7427fbb62a3a1f31eb47059ff740f2b7471ced621c6757d9205b",
+      "model": "StrandsAgents/strands-decider-2B-hobson-v19",
+      "revision": "bb282d786bc251fd4e3068de3ada9ddbb38127cd",
+      "device": "mps",
+      "dtype": "torch.bfloat16",
+      "threshold": 0.9,
+      "metrics": {
+        "decisions": 192,
+        "valid_decisions": 192,
+        "errors": 0,
+        "correct": 144,
+        "accuracy": 0.75,
+        "brier_multiclass": 0.25724370231674554,
+        "nll": 0.40590830615205076,
+        "ece_10_equal_width": 0.17335783956204717,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 36,
+            "mean_p_max": 0.543975,
+            "accuracy": 0.3333333333333333
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 33,
+            "mean_p_max": 0.656430099717301,
+            "accuracy": 0.36363636363636365
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 39,
+            "mean_p_max": 0.7499982182833668,
+            "accuracy": 0.9230769230769231
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 51,
+            "mean_p_max": 0.8507208598496792,
+            "accuracy": 1
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 33,
+            "mean_p_max": 0.949208900890089,
+            "accuracy": 1
+          }
+        ],
+        "accepted": 33,
+        "coverage": 0.171875,
+        "accepted_errors": 0,
+        "accepted_error_rate": 0.0,
+        "fallback_required": 159,
+        "unsafe_eligible": 60,
+        "unsafe_predictions": 0,
+        "accepted_unsafe_predictions": 0,
+        "accepted_unsafe_rate": 0.0
+      },
+      "latency": {
+        "unit": "request",
+        "concurrency": 1,
+        "p50_ms": 131.55437499881373,
+        "p95_ms": 269.082512499699,
+        "sum_seconds": 24.65370412899938,
+        "requests": 144,
+        "by_trial": {
+          "1": {
+            "p50_ms": 192.225729000711,
+            "p95_ms": 336.18474824797875
+          },
+          "2": {
+            "p50_ms": 127.43041700014146,
+            "p95_ms": 204.15230220114609
+          },
+          "3": {
+            "p50_ms": 127.67410450214811,
+            "p95_ms": 203.0678754499604
+          }
+        }
+      },
+      "cost": {
+        "input_usd_per_million_assumption": null,
+        "compute_usd_per_hour_assumption": null,
+        "reported_input_tokens": 23412,
+        "estimated_input_charge_usd": null,
+        "estimated_measured_compute_usd": null,
+        "scope": "Measured requests only. Warmup, setup, idle time, output charges, operations and fallback excluded. Null means unknown, not free."
+      },
+      "gate_report_hash": "35be857a966d7e8168b63ce8528397b6212b2db2211988b5a8dddeacd2e50966"
+    },
+    "laya": {
+      "status": "completed",
+      "report_hash": "cdf9826375cc27d2cd96fcb5daaf4b5559f6078f5ad77fdc43cee6f8140149e5",
+      "model": "convaiinnovations/laya",
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+      "device": "mps",
+      "dtype": "torch.float32",
+      "threshold": null,
+      "metrics": {
+        "decisions": 192,
+        "valid_decisions": 192,
+        "errors": 0,
+        "correct": 72,
+        "accuracy": 0.375,
+        "brier_multiclass": 0.6663878875489607,
+        "nll": 1.0591548631450953,
+        "ece_10_equal_width": 0.28060286829662245,
+        "calibration_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 0,
+            "mean_p_max": null,
+            "accuracy": null
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 18,
+            "mean_p_max": 0.3701565206520652,
+            "accuracy": 0.16666666666666666
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 30,
+            "mean_p_max": 0.450464699469947,
+            "accuracy": 0.1
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 42,
+            "mean_p_max": 0.5522142857142858,
+            "accuracy": 0.21428571428571427
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 21,
+            "mean_p_max": 0.6430372265798008,
+            "accuracy": 0.42857142857142855
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 24,
+            "mean_p_max": 0.7447157334266573,
+            "accuracy": 0.375
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 33,
+            "mean_p_max": 0.8581828180818282,
+            "accuracy": 0.6363636363636364
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 24,
+            "mean_p_max": 0.950375,
+            "accuracy": 0.75
+          }
+        ],
+        "accepted": 0,
+        "coverage": 0.0,
+        "accepted_errors": 0,
+        "accepted_error_rate": null,
+        "fallback_required": 192,
+        "unsafe_eligible": 60,
+        "unsafe_predictions": 24,
+        "accepted_unsafe_predictions": 0,
+        "accepted_unsafe_rate": 0.0
+      },
+      "latency": {
+        "unit": "request",
+        "concurrency": 1,
+        "p50_ms": 31.712666499515763,
+        "p95_ms": 45.01371249789372,
+        "sum_seconds": 4.931933929998195,
+        "requests": 144,
+        "by_trial": {
+          "1": {
+            "p50_ms": 33.58550000120886,
+            "p95_ms": 45.87277445025393
+          },
+          "2": {
+            "p50_ms": 30.121750500256894,
+            "p95_ms": 44.14856294861238
+          },
+          "3": {
+            "p50_ms": 30.576291999750538,
+            "p95_ms": 43.98049999908835
+          }
+        }
+      },
+      "cost": {
+        "input_usd_per_million_assumption": null,
+        "compute_usd_per_hour_assumption": null,
+        "reported_input_tokens": 18600,
+        "estimated_input_charge_usd": null,
+        "estimated_measured_compute_usd": null,
+        "scope": "Measured requests only. Warmup, setup, idle time, output charges, operations and fallback excluded. Null means unknown, not free."
+      },
+      "gate_report_hash": "3d4b5d3e9175cf93546e250eb08a6816adea9c0ac76e6212353f3dc440dc3e91"
+    },
+    "jev": {
+      "status": "not_run",
+      "reason": "No matching recorded run supplied."
+    }
+  },
+  "notice": "18 scenario groups. Variants are correlated. Calibration and holdout use related task families. This is an English starter benchmark, not production evidence. Repeated trials and variants are not independent samples. No production or safety certification. Hardware, dtype and runtime differ unless explicitly matched. No fallback was executed.",
+  "report_hash": "7e550f946a4ffe5cc5f3b2645c4ce7aaea4b850a3ef3ce169a81795ab38a8dd8"
+}

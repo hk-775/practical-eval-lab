@@ -244,10 +244,21 @@ def check_browser(base, screenshots=None):
             diagram = Path(downloads) / "pipeline.drawio"
             download.value.save_as(diagram)
             assert "<mxfile" in diagram.read_text(encoding="utf-8")
+            page.goto(base + "guides.html")
+            page.get_by_role("link", name="Decision model benchmark", exact=True).click()
+            expect(page.locator("article.prose")).to_contain_text("Choice only")
+            page.get_by_role("link", name="Recorded results: 2 October 2026", exact=True).click()
+            expect(page.locator("article.prose")).to_contain_text("64 unique decisions")
+            expect(page.locator("article.prose")).to_contain_text("Jev")
+            expect(page.locator("article.prose")).to_contain_text("Not run")
+            if screenshots:
+                page.screenshot(path=str(screenshots / "decision-model-results-desktop.png"), full_page=True)
             page.set_viewport_size({"width": 390, "height": 844})
-            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html"):
+            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-results.html"):
                 page.goto(base + route)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), f"Mobile overflow: {route}"
+            if screenshots:
+                page.screenshot(path=str(screenshots / "decision-model-results-mobile.png"), full_page=True)
             page.goto(base)
             expect(page.locator("#status")).to_contain_text("Ready.")
             page.locator("#compare").click()
@@ -270,7 +281,7 @@ def check_browser(base, screenshots=None):
             assert not violations, violations
             assert not await_errors, await_errors
             blocked.close()
-            print("Pages browser checks passed: six recordings, guides, exports, incidents, architecture, mobile, and no APIs or external requests.")
+            print("Pages browser checks passed: six teaching recordings, decision model results, guides, exports, incidents, architecture, mobile, and no APIs or external requests.")
         finally:
             browser.close()
 

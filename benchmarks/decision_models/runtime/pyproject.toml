@@ -1,0 +1,15 @@
+[project]
+name = "decision-model-benchmark-runtime"
+version = "0.1.0"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "strands-decider",
+    "laya",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+strands-decider = { git = "https://github.com/strands-labs/strands-decider.git", rev = "ddd11994bc451ffc78fa30f43037c291fd4d44b6" }
+laya = { git = "https://github.com/NandhaKishorM/laya.git", rev = "fa9a2a7070b1789912a49ae24603bbfb1a78b001" }

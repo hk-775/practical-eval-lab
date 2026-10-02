@@ -33,6 +33,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: uv sync --locked
       - run: uv run --locked pytest -q
+      - run: uv run --locked python -m benchmarks.decision_models.build_cases --check
+      - run: uv run --locked python -m benchmarks.decision_models validate
       - run: uv run --locked python -m scripts.package_check
       - run: uv run --locked playwright install --with-deps chromium
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.13'

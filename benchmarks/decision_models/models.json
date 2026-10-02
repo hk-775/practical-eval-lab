@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "kind": "lexical",
+    "model": "lexical-overlap-v1",
+    "description": "Untrained lexical overlap; a reference, not a decision model."
+  },
+  "strands": {
+    "kind": "local",
+    "model": "StrandsAgents/strands-decider-2B-hobson-v19",
+    "revision": "bb282d786bc251fd4e3068de3ada9ddbb38127cd",
+    "code_revision": "ddd11994bc451ffc78fa30f43037c291fd4d44b6",
+    "base_model": "Qwen/Qwen3.5-2B-Base",
+    "base_revision": "b1485b2fa6dfa1287294f269f5fb618e03d52d7c",
+    "base_revision_note": "Upstream provenance inferred this revision from training time; this benchmark explicitly pins it for inference.",
+    "context_tokens": 4096,
+    "license": "Apache-2.0"
+  },
+  "laya": {
+    "kind": "local",
+    "model": "convaiinnovations/laya",
+    "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+    "code_revision": "fa9a2a7070b1789912a49ae24603bbfb1a78b001",
+    "checkpoint": "english",
+    "context_tokens": 512,
+    "head_tokens": 192,
+    "license": "Apache-2.0"
+  },
+  "jev": {
+    "kind": "hosted",
+    "model": "jev-1.13.0",
+    "url": "https://api.typesafe.ai/v1/systemone",
+    "token_env": "TYPESAFE_API_KEY",
+    "description": "Optional. No Jev performance is claimed until an authenticated run is recorded."
+  }
+}

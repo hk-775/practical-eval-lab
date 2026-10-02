@@ -5,3 +5,11 @@ recursive-include docs *.md *.svg *.drawio *.png
 recursive-include examples *.json *.html *.md
 recursive-include scripts *.py
 recursive-include tests *.py
+include benchmarks/__init__.py
+include benchmarks/decision_models/*.py
+include benchmarks/decision_models/*.json
+include benchmarks/decision_models/*.md
+recursive-include benchmarks/decision_models/data *.json *.jsonl
+recursive-include benchmarks/decision_models/recordings *.json *.md
+include benchmarks/decision_models/runtime/pyproject.toml
+include benchmarks/decision_models/runtime/uv.lock

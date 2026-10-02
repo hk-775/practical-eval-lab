@@ -60,6 +60,18 @@ results. Its response-quality holdout score actually regresses.
 [Learning guide](docs/learning-guide.md) ·
 [Public incidents and proposed evals](docs/incident-case-studies.md)
 
+## Benchmark local decision models
+
+The separate [decision-model benchmark](benchmarks/decision_models/README.md)
+compares pinned Strands Decider and Laya checkpoints on frozen synthetic routing,
+tool-selection, and policy cases. It records calibration, accuracy, abstention,
+failures, latency, and explicit cost assumptions. Model dependencies have a
+separate uv lockfile. Jev is optional and requires an API key; an unexecuted
+adapter contributes no performance results.
+
+[Read the recorded model results](benchmarks/decision_models/recordings/README.md),
+including failure slices and the raw calibration and holdout evidence.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:
