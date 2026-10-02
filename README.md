@@ -60,6 +60,19 @@ results. Its response-quality holdout score actually regresses.
 [Learning guide](docs/learning-guide.md) ·
 [Public incidents and proposed evals](docs/incident-case-studies.md)
 
+## Evaluate an executed support workflow
+
+The [support-workflow evaluation](benchmarks/tool_workflow/README.md) asks whether
+pinned Strands and Laya checkpoints can select tools and arguments, request
+missing information, and complete an executable synthetic workflow. It compares
+them with rules and fitted baselines, calibrates on separate wording families,
+and records actual tool outcomes, fallback demand, and simulator-episode latency.
+Model dependencies have a separate uv lockfile; no API key is needed.
+
+The [earlier decision-model diagnostic](benchmarks/decision_models/README.md)
+and its [design review](benchmarks/decision_models/DESIGN_REVIEW.md) are retained
+as a separate experiment. Jev has not been evaluated.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:

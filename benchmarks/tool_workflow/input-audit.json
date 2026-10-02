@@ -1,0 +1,17 @@
+{
+  "model": "convaiinnovations/laya",
+  "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "max_len": 512,
+  "head_max_len": 192,
+  "states": 384,
+  "questions": 1152,
+  "maximum_head_tokens": 143,
+  "maximum_sequence_tokens": 252,
+  "maximum_option_tokens": 25,
+  "errors": [],
+  "datasets": {
+    "development": "606a22ebee19916f47ce9525223ddca2f29bd3a0fdcc6c9069c4dc6b63a746b8",
+    "calibration": "99712dc88c512288296c3ddb1ee955b85dac9172508f3c634ebcee5ac9f8278c",
+    "test": "daf32015f9135d3b465af5d49933ddd73a3de773df7a21405677220ca1c1ec1b"
+  }
+}

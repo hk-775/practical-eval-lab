@@ -30,6 +30,16 @@
 - Logical architecture: editable draw.io source and rendered SVG
 - Static website generated from the canonical webpage and source guides, with
   report downloads, mobile/browser checks, and a GitHub Pages deployment workflow
+- A separate source-checkout decision-model benchmark with frozen synthetic
+  calibration/holdout groups, pinned Strands and Laya adapters, and optional Jev.
+  Its heavyweight runtime has a separate uv lockfile. The website publishes its
+  methodology and reviewed local model recordings; it does not download weights
+  or execute models in the browser.
+- An executed synthetic support-workflow evaluation with development/calibration/
+  test wording-family splits, frozen protocol, deterministic tools and guards,
+  clarification turns, rules and fitted baselines, and replayable tool traces.
+  Simulator outcomes remain distinct from production evidence and from the
+  earlier exploratory diagnostic.
 
 ## Architecture decision
 

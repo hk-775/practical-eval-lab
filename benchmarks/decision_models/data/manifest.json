@@ -1,0 +1,41 @@
+{
+  "version": "enterprise-decisions-synthetic-v1",
+  "license": "MIT-0",
+  "created": "2026-10-02",
+  "provenance": "Original synthetic cases authored for this repository; no customer data or JevBench items.",
+  "limitations": "18 scenario groups. Variants are correlated. Calibration and holdout use related task families. This is an English starter benchmark, not production evidence.",
+  "files": {
+    "calibration": {
+      "sha256": "6235b52789f9344e642df40e9f823caecd0fcf2c0d51d3519e19548b76749291",
+      "requests": 24,
+      "decisions": 32,
+      "groups": [
+        "policy-01",
+        "policy-02",
+        "routing-01",
+        "routing-02",
+        "tool_selection-01",
+        "tool_selection-02"
+      ]
+    },
+    "holdout": {
+      "sha256": "2ba7abb769140abd12824e44557a01571f97039944e5e427b2b06a6a7e06ea7c",
+      "requests": 48,
+      "decisions": 64,
+      "groups": [
+        "policy-03",
+        "policy-04",
+        "policy-05",
+        "policy-06",
+        "routing-03",
+        "routing-04",
+        "routing-05",
+        "routing-06",
+        "tool_selection-03",
+        "tool_selection-04",
+        "tool_selection-05",
+        "tool_selection-06"
+      ]
+    }
+  }
+}

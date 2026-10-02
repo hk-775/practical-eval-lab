@@ -1,0 +1,57 @@
+{
+  "frozen_at": "2026-10-02T18:51:22.400838+00:00",
+  "protocol_hash": "1d4d4634fcef0ebfcdd1e8e68ce7e400181c0fe8897dc9bc6a0e69641e10389e",
+  "dataset_version": "support-tool-workflow-v2",
+  "datasets": {
+    "development": {
+      "sha256": "606a22ebee19916f47ce9525223ddca2f29bd3a0fdcc6c9069c4dc6b63a746b8",
+      "episodes": 72,
+      "wording_families": 30
+    },
+    "calibration": {
+      "sha256": "99712dc88c512288296c3ddb1ee955b85dac9172508f3c634ebcee5ac9f8278c",
+      "episodes": 72,
+      "wording_families": 30
+    },
+    "test": {
+      "sha256": "daf32015f9135d3b465af5d49933ddd73a3de773df7a21405677220ca1c1ec1b",
+      "episodes": 144,
+      "wording_families": 60
+    }
+  },
+  "test_configurations": [
+    "rules/direct",
+    "majority/direct",
+    "random/direct",
+    "naive_bayes/direct",
+    "naive_bayes/gated_rules",
+    "strands/direct",
+    "strands/gated_rules",
+    "laya/direct",
+    "laya/gated_rules"
+  ],
+  "gate": {
+    "max_empirical_plan_error": 0.05,
+    "min_accepted_wording_families": 20,
+    "grid": [
+      0,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      0.99,
+      1
+    ]
+  },
+  "primary_outcome": "strict episode contract success",
+  "criterion": "Positive lower bound of paired 95% wording-family bootstrap improvement over rules; zero unsafe updates executed; zero inference failures. Simulator evidence only.",
+  "development_notes": [
+    "Initial implementation returned no blocked-tool feedback; corrected and regression-tested before final calibration/test.",
+    "Removed self-announcements of missing information and randomized opaque ticket identifiers before final calibration/test.",
+    "Pinned Laya renderer audited: 384 reference states, no head, option, or state truncation.",
+    "All candidate development runs completed without inference errors. No final-test candidate run preceded this freeze."
+  ],
+  "publication_limits": "Designed synthetic support workflow; not enterprise traffic, independent human annotation, Jev evidence, or production validation."
+}

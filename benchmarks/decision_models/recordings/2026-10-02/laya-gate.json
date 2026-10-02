@@ -1,0 +1,114 @@
+{
+  "kind": "decision-model-gate",
+  "schema_version": 1,
+  "candidate_hash": "17fe4380c01ce916ce0a053b49deb5898f4a34eba9af5a97fa55d7bc407e5eb3",
+  "protocol_hash": "3feb1616dd4c928c53a0eeac17ebc49215ad267f3fc6fd4f93d034b6e507d658",
+  "dataset_version": "enterprise-decisions-synthetic-v1",
+  "calibration_hash": "6235b52789f9344e642df40e9f823caecd0fcf2c0d51d3519e19548b76749291",
+  "source_report_hash": "eaff392be30713f0aa323ecd0a37cc040fe979f4c9126d27e872c4e8b38bf249",
+  "groups": [
+    "policy-01",
+    "policy-02",
+    "routing-01",
+    "routing-02",
+    "tool_selection-01",
+    "tool_selection-02"
+  ],
+  "threshold": null,
+  "threshold_statistic": "top_probability",
+  "max_empirical_error": 0.05,
+  "min_accepted": 10,
+  "calibration_metrics": {
+    "decisions": 32,
+    "valid_decisions": 32,
+    "errors": 0,
+    "correct": 19,
+    "accuracy": 0.59375,
+    "brier_multiclass": 0.62499286382403,
+    "nll": 1.026908355478201,
+    "ece_10_equal_width": 0.27370531784983443,
+    "calibration_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 0,
+        "mean_p_max": null,
+        "accuracy": null
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 0,
+        "mean_p_max": null,
+        "accuracy": null
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 0,
+        "mean_p_max": null,
+        "accuracy": null
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 1,
+        "mean_p_max": 0.338,
+        "accuracy": 0
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 2,
+        "mean_p_max": 0.4545272672732727,
+        "accuracy": 0
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 7,
+        "mean_p_max": 0.5592298486991556,
+        "accuracy": 0.8571428571428571
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 7,
+        "mean_p_max": 0.6295428571428572,
+        "accuracy": 0.7142857142857143
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 4,
+        "mean_p_max": 0.7705811443855615,
+        "accuracy": 0.5
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 6,
+        "mean_p_max": 0.8406,
+        "accuracy": 0.5
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "count": 5,
+        "mean_p_max": 0.9414,
+        "accuracy": 0.6
+      }
+    ],
+    "accepted": 0,
+    "coverage": 0.0,
+    "accepted_errors": 0,
+    "accepted_error_rate": null,
+    "fallback_required": 32,
+    "unsafe_eligible": 8,
+    "unsafe_predictions": 6,
+    "accepted_unsafe_predictions": 0,
+    "accepted_unsafe_rate": 0.0
+  },
+  "notice": "Empirical threshold selection on a small calibration split; no guaranteed population error bound. Null threshold accepts nothing.",
+  "report_hash": "3d4b5d3e9175cf93546e250eb08a6816adea9c0ac76e6212353f3dc440dc3e91"
+}

@@ -1,0 +1,120 @@
+{
+  "kind": "workflow-gate",
+  "protocol_hash": "1d4d4634fcef0ebfcdd1e8e68ce7e400181c0fe8897dc9bc6a0e69641e10389e",
+  "candidate_hash": "8d2194ed7430613ac452aafdcfb98943d0dbbfe27b371c33b03b0662bb0abcce",
+  "source_report_hash": "9670f902795654418c670482e3509841c34e26b09db0941a5482d79dd742aa51",
+  "calibration_sha256": "99712dc88c512288296c3ddb1ee955b85dac9172508f3c634ebcee5ac9f8278c",
+  "development_sha256": "606a22ebee19916f47ce9525223ddca2f29bd3a0fdcc6c9069c4dc6b63a746b8",
+  "families": [
+    "ambiguous_intent-02",
+    "ambiguous_intent-09",
+    "ambiguous_intent-12",
+    "contrast_read-03",
+    "contrast_read-08",
+    "contrast_read-09",
+    "missing_priority-01",
+    "missing_priority-08",
+    "missing_priority-09",
+    "missing_ticket_read-04",
+    "missing_ticket_read-05",
+    "missing_ticket_read-10",
+    "missing_ticket_write-01",
+    "missing_ticket_write-10",
+    "missing_ticket_write-11",
+    "read-09",
+    "read-11",
+    "read-12",
+    "read_negated_write-01",
+    "read_negated_write-05",
+    "read_negated_write-11",
+    "unsupported-03",
+    "unsupported-08",
+    "unsupported-12",
+    "write-01",
+    "write-04",
+    "write-11",
+    "write_correction-02",
+    "write_correction-04",
+    "write_correction-08"
+  ],
+  "threshold": null,
+  "statistic": "minimum selected-option probability across action and required arguments",
+  "max_empirical_error": 0.05,
+  "min_accepted_families": 20,
+  "grid": [
+    {
+      "threshold": 0.0,
+      "accepted_states": 96,
+      "accepted_families": 30,
+      "errors": 45,
+      "empirical_error": 0.46875,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.5,
+      "accepted_states": 59,
+      "accepted_families": 26,
+      "errors": 19,
+      "empirical_error": 0.3220338983050847,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.6,
+      "accepted_states": 29,
+      "accepted_families": 20,
+      "errors": 5,
+      "empirical_error": 0.1724137931034483,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.7,
+      "accepted_states": 3,
+      "accepted_families": 3,
+      "errors": 0,
+      "empirical_error": 0.0,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.8,
+      "accepted_states": 0,
+      "accepted_families": 0,
+      "errors": 0,
+      "empirical_error": null,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.9,
+      "accepted_states": 0,
+      "accepted_families": 0,
+      "errors": 0,
+      "empirical_error": null,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.95,
+      "accepted_states": 0,
+      "accepted_families": 0,
+      "errors": 0,
+      "empirical_error": null,
+      "qualifies": false
+    },
+    {
+      "threshold": 0.99,
+      "accepted_states": 0,
+      "accepted_families": 0,
+      "errors": 0,
+      "empirical_error": null,
+      "qualifies": false
+    },
+    {
+      "threshold": 1.0,
+      "accepted_states": 0,
+      "accepted_families": 0,
+      "errors": 0,
+      "empirical_error": null,
+      "qualifies": false
+    }
+  ],
+  "notice": "Development-frozen grid fitted to calibration reference states. The error criterion is empirical, not a population bound. Final test executes candidate-selected trajectories. A null gate bypasses the primary and runs the rules fallback.",
+  "report_hash": "e16e9400ec62af304bd54ffa3e636142d25422424e40945a44eaa57a5d16fbb5"
+}

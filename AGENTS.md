@@ -13,6 +13,17 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
 - `scripts/build_pages.py`: an allowlisted static build, including Markdown,
   agent context, search metadata, and source fingerprints.
 - `tests/` and `scripts/*check.py`: core, integration, packaging, and browser checks.
+- `benchmarks/decision_models/`: source-checkout Strands/Laya benchmark, frozen
+  synthetic data, optional Jev, and separate `runtime/uv.lock`. Keep its model
+  results distinct from the six teaching suites. Never rewrite recorded results
+  or tune on holdout while presenting it as an untouched evaluation.
+  Read its `DESIGN_REVIEW.md`: v1 is an exploratory diagnostic, not evidence for
+  model selection or production readiness.
+- `benchmarks/tool_workflow/`: executed synthetic support workflow with grouped
+  development/calibration/test partitions, public-input baselines, tool feedback,
+  and private task references. Preserve `freeze.json` and recorded protocol
+  hashes. Never tune against recorded final-test failures while calling the same
+  test an untouched evaluation.
 
 ## Commands
 

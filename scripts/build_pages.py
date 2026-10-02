@@ -40,6 +40,12 @@ DOCUMENTS = {
     "docs/data-provenance.md": "data-provenance.html",
     "docs/publication.md": "publication.html",
     "docs/hosting.md": "hosting.html",
+    "benchmarks/decision_models/README.md": "decision-models.html",
+    "benchmarks/decision_models/recordings/README.md": "decision-model-results.html",
+    "benchmarks/decision_models/DESIGN_REVIEW.md": "decision-model-design-review.html",
+    "benchmarks/tool_workflow/README.md": "tool-workflow.html",
+    "benchmarks/tool_workflow/PROTOCOL.md": "tool-workflow-protocol.html",
+    "benchmarks/tool_workflow/recordings/README.md": "tool-workflow-results.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -268,6 +274,16 @@ class Site:
             intro = "Explore the recorded runs here. Clone the toolkit to run candidates and tune your own evals."
         elif source == "examples/results/README.md":
             intro = "Twelve actual offline comparisons, including holdout failures and regressions."
+        elif source == "benchmarks/decision_models/README.md":
+            intro = "An exploratory fixture with documented design limitations. Inspect the inputs, failures, and scope of the evidence."
+        elif source == "benchmarks/decision_models/recordings/README.md":
+            intro = "Local Mac measurements on a small diagnostic fixture. These scores do not establish a model ranking."
+        elif source == "benchmarks/decision_models/DESIGN_REVIEW.md":
+            intro = "What the initial fixture can establish, where its design falls short, and how to build a deployment-oriented evaluation."
+        elif source == "benchmarks/tool_workflow/README.md":
+            intro = "An executable support simulation: tool choice, arguments, clarification, authorization, fallback, and measured outcomes."
+        elif source == "benchmarks/tool_workflow/recordings/README.md":
+            intro = "Actual simulator outcomes from 144 held-out episodes. Inspect the failures, executed fallback, and evidence limits."
         self.page(route, title, intro,
                   f'<section class="panel docs-panel"><div class="docs-layout{" no-toc" if not toc else ""}">'
                   f'{toc}'
@@ -370,7 +386,9 @@ class Site:
                 'Each walkthrough explains a failure you can reproduce and what its score cannot establish.</p>'
                 f'<div class="site-links"><a class="outline-button" href="{self.url("learning-guide.html")}">Start with eval fundamentals</a>'
                 f'<a class="outline-button" href="{self.url("integrations.html")}">Connect your application</a>'
-                f'<a class="outline-button" href="{self.url("results.html")}">All recorded experiments</a></div></section>'
+                f'<a class="outline-button" href="{self.url("results.html")}">Teaching experiments</a>'
+                f'<a class="outline-button" href="{self.url("tool-workflow.html")}">Executed support workflow</a>'
+                f'<a class="outline-button" href="{self.url("decision-models.html")}">Earlier decision-model diagnostic</a></div></section>'
                 + '<section class="lesson-cards" aria-label="Six eval walkthroughs">' + "".join(cards) + "</section>")
         self.page("guides.html", "Six ways to ask: does it work?",
                   "Small datasets. Transparent graders. Changes that sometimes make things worse.", body)
@@ -447,6 +465,12 @@ class Site:
                          ("Application adapters", "integrations.md", "Connect Python or HTTP applications."),
                          ("Contracts", "contracts.md", "Input/output, grading, reporting, and extension boundaries."),
                          ("Recorded evidence", "results.md", "Twelve comparisons with JSON and standalone HTML."),
+                         ("Decision model benchmark", "decision-models.md", "Pinned Strands and Laya comparison; Jev optional."),
+                         ("Decision model results", "decision-model-results.md", "Local measurements on a frozen synthetic fixture; raw evidence and limits."),
+                         ("Decision model design review", "decision-model-design-review.md", "Why the first diagnostic cannot support a general model ranking."),
+                         ("Executed support workflow", "tool-workflow.md", "Tool and argument selection, clarification, actual simulator outcomes, and baselines."),
+                         ("Support-workflow protocol", "tool-workflow-protocol.md", "Frozen partitions, calibration, outcome definitions, and limitations."),
+                         ("Support-workflow results", "tool-workflow-results.md", "Recorded tool outcomes and replayable traces; model stages compared with rules."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
                          ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
                          ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),
