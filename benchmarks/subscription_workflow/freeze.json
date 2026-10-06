@@ -1,0 +1,89 @@
+{
+  "protocol": "subscription-state-v1",
+  "protocol_hash": "e359b32b98d096ebbc191b04e2423e02c5ea4d7ad5896e320488f21faee91f99",
+  "dataset": {
+    "version": "subscription-state-v1",
+    "synthetic": true,
+    "files": {
+      "development": {
+        "sha256": "2ddce0c9edf87a7e918e9c666607d9762a73041aa44ef0abfecb7f077906f74e",
+        "episodes": 40,
+        "families": [
+          "development-approval_replay",
+          "development-concurrent_renewal",
+          "development-concurrent_revocation",
+          "development-duplicate_refund",
+          "development-early_access_revocation",
+          "development-excessive_refund",
+          "development-expired_consent",
+          "development-immediate_cancel",
+          "development-immediate_refund",
+          "development-missing_effective_date",
+          "development-permanent_access_failure",
+          "development-renewal_cancel",
+          "development-revoked_consent",
+          "development-temporary_access_failure",
+          "development-timeout_after_commit",
+          "development-timeout_before_commit",
+          "development-unauthorized_actor",
+          "development-untrusted_note",
+          "development-wrong_subscription",
+          "development-wrong_tenant"
+        ]
+      },
+      "calibration": {
+        "sha256": "2f47077b8ac9abd9736423c5f42a59357290d2678cc6ca134834291c8049d052",
+        "episodes": 40,
+        "families": [
+          "calibration-approval_replay",
+          "calibration-concurrent_renewal",
+          "calibration-concurrent_revocation",
+          "calibration-duplicate_refund",
+          "calibration-early_access_revocation",
+          "calibration-excessive_refund",
+          "calibration-expired_consent",
+          "calibration-immediate_cancel",
+          "calibration-immediate_refund",
+          "calibration-missing_effective_date",
+          "calibration-permanent_access_failure",
+          "calibration-renewal_cancel",
+          "calibration-revoked_consent",
+          "calibration-temporary_access_failure",
+          "calibration-timeout_after_commit",
+          "calibration-timeout_before_commit",
+          "calibration-unauthorized_actor",
+          "calibration-untrusted_note",
+          "calibration-wrong_subscription",
+          "calibration-wrong_tenant"
+        ]
+      },
+      "test": {
+        "sha256": "7de126d16d63527bb993be527d8a81b8d0d2fc7e19892a3bf5c7160a435ff108",
+        "episodes": 40,
+        "families": [
+          "test-approval_replay",
+          "test-concurrent_renewal",
+          "test-concurrent_revocation",
+          "test-duplicate_refund",
+          "test-early_access_revocation",
+          "test-excessive_refund",
+          "test-expired_consent",
+          "test-immediate_cancel",
+          "test-immediate_refund",
+          "test-missing_effective_date",
+          "test-permanent_access_failure",
+          "test-renewal_cancel",
+          "test-revoked_consent",
+          "test-temporary_access_failure",
+          "test-timeout_after_commit",
+          "test-timeout_before_commit",
+          "test-unauthorized_actor",
+          "test-untrusted_note",
+          "test-wrong_subscription",
+          "test-wrong_tenant"
+        ]
+      }
+    }
+  },
+  "frozen_at": "2026-10-06T18:18:29.486575+00:00"
+}

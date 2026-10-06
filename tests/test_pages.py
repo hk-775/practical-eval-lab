@@ -13,6 +13,9 @@ def test_static_site_links_evidence_and_allowlisted_files(tmp_path):
     catalog = json.loads(next((site / "samples").glob("catalog-*.json")).read_text(encoding="utf-8"))
     assert len(catalog["recordings"]) == 6
     assert len(list((site / "reports").glob("*.json"))) == 12
+    assert (site / "reports/subscription/comparison.html").is_file()
+    assert (site / "reports/subscription/comparison.json").is_file()
+    assert (site / "subscription-workflow.html").is_file()
     assert (site / "downloads/anthropic-MIT.txt").read_text(encoding="utf-8").startswith("MIT License")
     assert (site / "architecture/pipeline.drawio").is_file()
     assert not (site / "api").exists()

@@ -24,6 +24,11 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   and private task references. Preserve `freeze.json` and recorded protocol
   hashes. Never tune against recorded final-test failures while calling the same
   test an untouched evaluation.
+- `benchmarks/subscription_workflow/`: synthetic billing/access state benchmark.
+  Four control profiles share one scripted candidate. Preserve the frozen protocol
+  and recordings. Its parameterized partitions share scenario templates; do not
+  describe them as independent production samples or claim an LLM was evaluated.
+  `scripts/subscription_browser_check.py` verifies its offline animated trace viewer.
 
 ## Commands
 

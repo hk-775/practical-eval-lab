@@ -40,6 +40,10 @@
   clarification turns, rules and fitted baselines, and replayable tool traces.
   Simulator outcomes remain distinct from production evidence and from the
   earlier exploratory diagnostic.
+- A subscription-state regression benchmark with synthetic billing/access
+  execution, consent and invariant controls, fault injection, effect-level grading,
+  replayable evidence, and an offline animated trace viewer. No model or external
+  billing provider is executed by its built-in profiles.
 
 ## Architecture decision
 
