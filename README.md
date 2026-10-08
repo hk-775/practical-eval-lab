@@ -73,6 +73,19 @@ The [earlier decision-model diagnostic](benchmarks/decision_models/README.md)
 and its [design review](benchmarks/decision_models/DESIGN_REVIEW.md) are retained
 as a separate experiment. Jev has not been evaluated.
 
+## Preserve business state across agent actions
+
+The [subscription-state evaluation](benchmarks/subscription_workflow/README.md)
+executes cancellations, refunds, and access changes under four control profiles.
+It tests incorrect collaborator proposals, consent scope and replay, timeouts,
+concurrent changes, and provider failure. Inspect actual mutations and final state,
+compare legitimate completion with unsafe effects, and replay the evidence.
+
+The [recorded results](benchmarks/subscription_workflow/recordings/README.md)
+include a self-contained animated HTML viewer. All cases are synthetic; candidates
+are deterministic scripts. These are control-system regression results, separate
+from model-quality measurements and production evidence.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:

@@ -40,6 +40,13 @@
   clarification turns, rules and fitted baselines, and replayable tool traces.
   Simulator outcomes remain distinct from production evidence and from the
   earlier exploratory diagnostic.
+- A subscription-state regression benchmark with synthetic billing/access
+  execution, consent and invariant controls, fault injection, effect-level grading,
+  replayable evidence, and an offline animated trace viewer. No model or external
+  billing provider is executed by its built-in profiles.
+- Editable subscription-workflow draw.io, SVG, and PNG companions; the published
+  report's connector movement, keyboard pause/resume, and reduced-motion behavior
+  are verified on the built artifact and can be checked at its public URL.
 
 ## Architecture decision
 

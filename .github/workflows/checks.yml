@@ -37,10 +37,14 @@ jobs:
       - run: uv run --locked python -m benchmarks.decision_models validate
       - run: uv run --locked python -m benchmarks.tool_workflow.data --check
       - run: uv run --locked python -m benchmarks.tool_workflow validate
+      - run: uv run --locked python -m benchmarks.subscription_workflow validate
+      - run: uv run --locked python -m benchmarks.subscription_workflow audit benchmarks/subscription_workflow/recordings/2026-10-06/comparison.json
       - run: uv run --locked python -m scripts.package_check
       - run: uv run --locked playwright install --with-deps chromium
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.13'
       - run: uv run --locked python -m scripts.browser_check
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.13'
+      - run: uv run --locked python -m scripts.subscription_browser_check
         if: matrix.os == 'ubuntu-latest' && matrix.python == '3.13'
       - run: uv run --locked python -m scripts.reproduce_portfolio
       - run: uv run --locked python -m scripts.render_incidents --check

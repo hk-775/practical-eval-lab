@@ -46,6 +46,9 @@ DOCUMENTS = {
     "benchmarks/tool_workflow/README.md": "tool-workflow.html",
     "benchmarks/tool_workflow/PROTOCOL.md": "tool-workflow-protocol.html",
     "benchmarks/tool_workflow/recordings/README.md": "tool-workflow-results.html",
+    "benchmarks/subscription_workflow/README.md": "subscription-workflow.html",
+    "benchmarks/subscription_workflow/PROTOCOL.md": "subscription-workflow-protocol.html",
+    "benchmarks/subscription_workflow/recordings/README.md": "subscription-workflow-results.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -297,7 +300,12 @@ class Site:
             "examples/incidents/rag-profile.json": "downloads/incident-rag-profile.json",
             "docs/architecture/pipeline.drawio": "architecture/pipeline.drawio",
             "docs/architecture/pipeline.svg": "architecture/pipeline.svg",
+            "docs/architecture/subscription-action-boundary.drawio": "architecture/subscription-action-boundary.drawio",
+            "docs/architecture/subscription-action-boundary.svg": "architecture/subscription-action-boundary.svg",
+            "docs/architecture/subscription-action-boundary.png": "architecture/subscription-action-boundary.png",
             "docs/images/tuning-lab.png": "assets/tuning-lab.png",
+            "benchmarks/subscription_workflow/recordings/2026-10-06/comparison.json": "reports/subscription/comparison.json",
+            "benchmarks/subscription_workflow/recordings/2026-10-06/comparison.html": "reports/subscription/comparison.html",
         }
         for source, target in sources.items():
             self.write(target, (ROOT / source).read_bytes())
@@ -388,6 +396,7 @@ class Site:
                 f'<a class="outline-button" href="{self.url("integrations.html")}">Connect your application</a>'
                 f'<a class="outline-button" href="{self.url("results.html")}">Teaching experiments</a>'
                 f'<a class="outline-button" href="{self.url("tool-workflow.html")}">Executed support workflow</a>'
+                f'<a class="outline-button" href="{self.url("subscription-workflow.html")}">Subscription state evaluation</a>'
                 f'<a class="outline-button" href="{self.url("decision-models.html")}">Earlier decision-model diagnostic</a></div></section>'
                 + '<section class="lesson-cards" aria-label="Six eval walkthroughs">' + "".join(cards) + "</section>")
         self.page("guides.html", "Six ways to ask: does it work?",
@@ -471,6 +480,9 @@ class Site:
                          ("Executed support workflow", "tool-workflow.md", "Tool and argument selection, clarification, actual simulator outcomes, and baselines."),
                          ("Support-workflow protocol", "tool-workflow-protocol.md", "Frozen partitions, calibration, outcome definitions, and limitations."),
                          ("Support-workflow results", "tool-workflow-results.md", "Recorded tool outcomes and replayable traces; model stages compared with rules."),
+                         ("Subscription state evaluation", "subscription-workflow.md", "Synthetic cancellations, refunds, consent, retries, and final-state verification."),
+                         ("Subscription protocol", "subscription-workflow-protocol.md", "Control profiles, parameterized regression coverage, independent grading, and limits."),
+                         ("Subscription results", "subscription-workflow-results.md", "Executed effects, legitimate completion, unsafe changes, and an offline animated trace viewer."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
                          ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
                          ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),

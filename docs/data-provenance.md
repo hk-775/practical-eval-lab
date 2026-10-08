@@ -59,3 +59,17 @@ The optional `examples/incidents/rag-profile.json` adds four explicitly fictiona
 MIT-0 exercises outside the six-suite case counts. Incident documentation paraphrases
 public primary sources and links the original accounts; it does not redistribute
 full articles, customer transcripts, or the affected systems.
+
+## Subscription workflow regression cases
+
+`benchmarks/subscription_workflow/data/` contains 120 original MIT-0 synthetic
+episodes outside the six teaching suites: 40 development, 40 calibration, and 40
+frozen test episodes. Each partition covers 20 engineering conditions, with two
+parameter variants. No customer, employer, production, or incident transcript was
+used. The IDs, approvals, money, and provider faults are invented.
+
+Partitions have different parameters and wording but share authored scenario
+templates. The recordings compare deterministic control profiles, with no model
+or production service executed. Counts describe regression coverage, not model
+generalization or real-world incident rates. See the
+[subscription protocol](../benchmarks/subscription_workflow/PROTOCOL.md).
