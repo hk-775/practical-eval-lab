@@ -19,6 +19,14 @@ The built-in run needs no API key, network connection, or new dependency.
 All requests, organizations, agents, subscriptions, approvals, and financial
 values are invented. Code and synthetic data use MIT-0.
 
+[Static workflow SVG](../../docs/architecture/subscription-action-boundary.svg) ·
+[PNG](../../docs/architecture/subscription-action-boundary.png) ·
+[Editable draw.io source](../../docs/architecture/subscription-action-boundary.drawio)
+
+The static companions show the mutation checks, tool feedback, and independent
+grading boundary. The recorded report above provides moving dashes with
+pause/resume controls and actual trace playback.
+
 ## Reproduce
 
 From the repository root:

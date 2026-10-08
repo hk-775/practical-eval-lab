@@ -11,16 +11,24 @@ from benchmarks.subscription_workflow.reporting import render_html
 from benchmarks.subscription_workflow.runner import evaluate
 
 
-def check(html_path, screenshots=None):
+def check(html_path=None, screenshots=None, *, url=None):
+    target = url or html_path.resolve().as_uri()
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
         errors, requests = [], []
         try:
             page = browser.new_page(viewport={"width": 1440, "height": 1050})
             page.on("pageerror", lambda error: errors.append(str(error)))
-            page.on("request", lambda request: requests.append(request.url)
-                    if request.url.startswith(("http:", "https:", "ws:", "wss:")) else None)
-            page.goto(html_path.resolve().as_uri())
+            def inspect(request):
+                if request.url.startswith(("http:", "https:", "ws:", "wss:")) and (
+                    request.url != target or request.method != "GET"
+                ):
+                    requests.append(f"{request.method} {request.url}")
+            page.on("request", inspect)
+            page.on("websocket", lambda socket: requests.append(socket.url))
+            response = page.goto(target)
+            if url:
+                assert response.status == 200, "Published report failed to load"
             expect(page.locator("#controls")).to_be_visible()
             expect(page.locator("#outcome")).to_contain_text("Unsafe effects: 1.")
             page.locator("#profile").select_option("invariants")
@@ -64,7 +72,8 @@ def check(html_path, screenshots=None):
                 page.screenshot(path=str(screenshots / "subscription-mobile.png"), full_page=True)
             no_js = browser.new_context(java_script_enabled=False)
             static = no_js.new_page()
-            static.goto(html_path.resolve().as_uri())
+            static.on("request", inspect)
+            static.goto(target)
             expect(static.locator("table tbody tr")).to_have_count(4)
             expect(static.locator("body")).to_contain_text("Business invariants")
             expect(static.locator("#controls")).to_be_hidden()
@@ -80,11 +89,13 @@ def check(html_path, screenshots=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--html", type=Path)
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--html", type=Path)
+    source.add_argument("--url", help="Verify the same controls on a published report")
     parser.add_argument("--screenshots", type=Path)
     args = parser.parse_args()
-    if args.html:
-        check(args.html, args.screenshots)
+    if args.html or args.url:
+        check(args.html, args.screenshots, url=args.url)
     else:
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "subscription.html"
