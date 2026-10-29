@@ -82,8 +82,8 @@ def evidence():
 
 def svg(vertical=False):
     width, height = (320, 530) if vertical else (1000, 150)
-    nodes = [(20, 20 + i * 135) for i in range(4)] if vertical else [(i * 255, 20) for i in range(4)]
-    node_width = 280 if vertical else 235
+    nodes = [(20, 20 + i * 135) for i in range(4)] if vertical else [(i * 260, 20) for i in range(4)]
+    node_width = 280 if vertical else 220
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" class="recovery-flow" '
         f'viewBox="0 0 {width} {height}" role="img" aria-label="Refund committed, '
@@ -105,8 +105,8 @@ def svg(vertical=False):
                 parts += [f'<path class="recovery-connector" d="M160 {y+104}v24"/>',
                           f'<path class="arrow" d="M155 {y+124}l5 7 5-7Z"/>']
             else:
-                parts += [f'<path class="recovery-connector" d="M{x+239} 70h10"/>',
-                          f'<path class="arrow" d="M{x+245} 65l7 5-7 5Z"/>']
+                parts += [f'<path class="recovery-connector" d="M{x+224} 70h29"/>',
+                          f'<path class="arrow" d="M{x+249} 65l7 5-7 5Z"/>']
     return "".join(parts) + "</svg>"
 
 
@@ -123,7 +123,7 @@ def drawio():
                              value=f"{i+1}. {step[0]}\n{step[1]}",
                              style="rounded=1;fillColor=#0D1B2A;strokeColor=none;"
                                    "fontColor=#F8F5F0;fontFamily=Arial;fontSize=18;")
-        ET.SubElement(node, "mxGeometry", x=str(i*255), y="20", width="235",
+        ET.SubElement(node, "mxGeometry", x=str(i*260), y="20", width="220",
                       height="100", attrib={"as": "geometry"})
         if i:
             edge = ET.SubElement(root, "mxCell", id=f"edge-{i}", edge="1", parent="1",
