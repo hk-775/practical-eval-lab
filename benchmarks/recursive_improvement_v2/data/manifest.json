@@ -1,0 +1,32 @@
+{
+  "protocol": "bounded-rsi-v2",
+  "synthetic": true,
+  "total_families": 636,
+  "v1_exposed_families": 31,
+  "split_unit": "semantic fault composition; all monetary variants stay together",
+  "variants": {
+    "development": 2,
+    "validation": 2,
+    "test": 4
+  },
+  "files": {
+    "development": {
+      "families": 180,
+      "episodes": 360,
+      "spec_sha256": "a1878704316bbbae5be9c4023cb7fc18a87d8190074c68f8912ef6d3bc8f2641",
+      "case_sha256": "88e238e57d97f4aa7e53186aa7b6a9133526c8acae1b3848b6f29c323cbeffd2"
+    },
+    "validation": {
+      "families": 153,
+      "episodes": 306,
+      "spec_sha256": "d4eb4f2edd0db4c2b8116a7dcc36b3d47b237cbf444a3f7328bc8ceefde1062d",
+      "case_sha256": "c3d430cf88735389ec824c10495cae2fcdf4c271fc7e6a754d53b9dd88d295c1"
+    },
+    "test": {
+      "families": 303,
+      "episodes": 1212,
+      "spec_sha256": "98b09353bd95e7bd58b3ead2a6e84b5cbca5f93432760695c28b19ef9918a868",
+      "case_sha256": "864f5af95df7b4f5b225963df7c55e207cf9d2787e7ca2230475174c2ee0d856"
+    }
+  }
+}

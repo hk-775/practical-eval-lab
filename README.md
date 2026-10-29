@@ -86,6 +86,36 @@ include a self-contained animated HTML viewer. All cases are synthetic; candidat
 are deterministic scripts. These are control-system regression results, separate
 from model-quality measurements and production evidence.
 
+## Test recursive improvement
+
+**Latest finding:** [What a Larger Fault Corpus Revealed About Recursive Optimization](benchmarks/recursive_improvement_v3/README.md).
+Across 4,428 synthetic final cases and 30 paired seeds, random search handled
+72.75% correctly and recursive optimization handled 65.97%. The paired-seed
+interval includes zero; this comparison did not establish a recursive advantage.
+[Inspect the animated report](benchmarks/recursive_improvement_v3/recordings/2026-10-29/comparison.html)
+or reproduce the frozen experiment from the source checkout.
+
+The [bounded RSI experiment](benchmarks/recursive_improvement/README.md) compares
+a fixed workflow, a fixed optimizer, and an optimizer allowed to evolve its
+failure-attribution and proposal strategy. All arms receive the same candidate
+evaluation allowance. Inspect proposed changes, accepted lineages, separately
+selected final candidates, and paired results across seeds.
+
+This is synthetic, finite configuration search with no model calls or deployment.
+The [recorded evidence](benchmarks/recursive_improvement/recordings/README.md)
+retains all results, including any absent recursive advantage.
+
+The [expanded v2 comparison](benchmarks/recursive_improvement_v2/README.md) adds
+1,212 final cases across 303 composition families, 30 paired search seeds,
+a random-search baseline, full-proposal validation and paired-seed uncertainty.
+Logical evaluation requests and physical cached execution are reported separately.
+
+The [v3 stage fault corpus](benchmarks/recursive_improvement_v3/README.md) expands
+final testing to 4,428 cases in 1,107 new composition families. It adds interruptions
+across cancellation, refund and access, delayed receipts, and authority/version
+races during execution. It retains v2's search rules and budgets, and reports
+results by failure class as well as against random search.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:

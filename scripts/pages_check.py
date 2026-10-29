@@ -264,8 +264,18 @@ def check_browser(base, screenshots=None):
             expect(page.locator("article.prose")).to_contain_text("rules-only paths")
             if screenshots:
                 page.screenshot(path=str(screenshots / "tool-workflow-results-desktop.png"), full_page=True)
+            page.goto(base + "guides.html")
+            page.get_by_role("link", name="Stage fault corpus", exact=True).click()
+            expect(page.locator("article.prose")).to_contain_text("did not establish a recursive advantage")
+            expect(page.locator("article.prose")).to_contain_text("4,428")
+            for suffix in ("svg", "png", "drawio"):
+                response = page.request.get(base + "architecture/rsi-improvement-loop." + suffix)
+                assert response.status == 200 and len(response.body()) > 100, suffix
+            page.get_by_role("link", name="Open the animated report", exact=True).click()
+            expect(page.locator("#results tbody tr")).to_have_count(4)
+            expect(page.locator("#summary")).to_contain_text("No clear advantage over random search")
             page.set_viewport_size({"width": 390, "height": 844})
-            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html", "tool-workflow.html", "tool-workflow-protocol.html", "tool-workflow-results.html"):
+            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html", "tool-workflow.html", "tool-workflow-protocol.html", "tool-workflow-results.html", "recursive-improvement-v3.html", "recursive-improvement-v3-results.html", "recursive-improvement-v3-protocol.html"):
                 page.goto(base + route)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), f"Mobile overflow: {route}"
             if screenshots:

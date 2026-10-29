@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram id="rsi-improvement-loop" name="Bounded improvement loop">
+    <mxGraphModel page="1" pageScale="1" pageWidth="960" pageHeight="150" background="#F8F5F0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node-0" value="Observe failures" vertex="1" parent="1" style="rounded=1;arcSize=15;fillColor=#0D1B2A;strokeColor=none;fontColor=#F8F5F0;fontFamily=Arial;fontSize=14;fontStyle=1;">
+          <mxGeometry as="geometry" x="20" y="35" width="160" height="54" />
+        </mxCell>
+        <mxCell id="node-1" value="Propose edits" vertex="1" parent="1" style="rounded=1;arcSize=15;fillColor=#0D1B2A;strokeColor=none;fontColor=#F8F5F0;fontFamily=Arial;fontSize=14;fontStyle=1;">
+          <mxGeometry as="geometry" x="210" y="35" width="160" height="54" />
+        </mxCell>
+        <mxCell id="node-2" value="Execute" vertex="1" parent="1" style="rounded=1;arcSize=15;fillColor=#0D1B2A;strokeColor=none;fontColor=#F8F5F0;fontFamily=Arial;fontSize=14;fontStyle=1;">
+          <mxGeometry as="geometry" x="400" y="35" width="160" height="54" />
+        </mxCell>
+        <mxCell id="node-3" value="Verify" vertex="1" parent="1" style="rounded=1;arcSize=15;fillColor=#0D1B2A;strokeColor=none;fontColor=#F8F5F0;fontFamily=Arial;fontSize=14;fontStyle=1;">
+          <mxGeometry as="geometry" x="590" y="35" width="160" height="54" />
+        </mxCell>
+        <mxCell id="node-4" value="Retain version" vertex="1" parent="1" style="rounded=1;arcSize=15;fillColor=#0D1B2A;strokeColor=none;fontColor=#F8F5F0;fontFamily=Arial;fontSize=14;fontStyle=1;">
+          <mxGeometry as="geometry" x="780" y="35" width="160" height="54" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="rounded=0;endArrow=block;endFill=1;strokeColor=#007B95;strokeWidth=2;dashed=1;dashPattern=5 5;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="183" y="62" />
+            <mxPoint as="targetPoint" x="206" y="62" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="rounded=0;endArrow=block;endFill=1;strokeColor=#007B95;strokeWidth=2;dashed=1;dashPattern=5 5;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="373" y="62" />
+            <mxPoint as="targetPoint" x="396" y="62" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="rounded=0;endArrow=block;endFill=1;strokeColor=#007B95;strokeWidth=2;dashed=1;dashPattern=5 5;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="563" y="62" />
+            <mxPoint as="targetPoint" x="586" y="62" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="rounded=0;endArrow=block;endFill=1;strokeColor=#007B95;strokeWidth=2;dashed=1;dashPattern=5 5;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="753" y="62" />
+            <mxPoint as="targetPoint" x="776" y="62" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="rounded=0;endArrow=block;endFill=1;strokeColor=#007B95;strokeWidth=2;dashed=1;dashPattern=5 5;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="860" y="94" />
+            <mxPoint as="targetPoint" x="100" y="96" />
+            <Array as="points">
+              <mxPoint x="860" y="120" />
+              <mxPoint x="100" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="caption" value="Accepted optimizer edits guide the next generation" vertex="1" parent="1" style="text;fillColor=none;strokeColor=none;fontColor=#546474;fontFamily=Arial;fontSize=12;align=center;">
+          <mxGeometry as="geometry" x="80" y="127" width="800" height="23" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

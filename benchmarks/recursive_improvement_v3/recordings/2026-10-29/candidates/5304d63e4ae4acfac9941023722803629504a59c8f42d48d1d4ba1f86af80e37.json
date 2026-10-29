@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "unknown": "lookup",
+    "missing_receipt": "retry",
+    "access_retries": 0,
+    "repair_scope": true,
+    "missing_info": "handoff"
+  },
+  "optimizer": {
+    "attribution": "all",
+    "ordering": "frequent",
+    "edit_width": 1
+  }
+}

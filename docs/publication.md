@@ -47,6 +47,24 @@
 - Editable subscription-workflow draw.io, SVG, and PNG companions; the published
   report's connector movement, keyboard pause/resume, and reduced-motion behavior
   are verified on the built artifact and can be checked at its public URL.
+- A bounded recursive-improvement experiment with typed configuration edits,
+  equal candidate-evaluation allowances, separate final testing, exact selected
+  artifacts, full search/effect replay, and a recorded animated lineage viewer.
+  This is local program search with no LLM calls or deployment. Its negative
+  aggregate comparison against the fixed optimizer is retained.
+- An expanded RSI comparison with 636 composition families, 30 paired seeds,
+  random-search control, full-proposal validation, compressed replayable evidence
+  and conditional paired-seed intervals. The exploratory random-search comparison
+  is labelled separately from the preregistered comparisons.
+- A v3 stage fault corpus with 6,171 synthetic cases, including 4,428 final
+  cases in 1,107 new composition families. It preserves v2's policies, search rules,
+  seeds and budgets, registers recursive-versus-random before the run, and retains
+  the result showing no established recursive advantage.
+- Complete v1/v2/v3 evidence, exact selected configurations, content-addressed
+  compressed batches and trace reconstruction commands. The v3 report includes
+  category denominators and conditional paired-seed uncertainty.
+- An editable draw.io improvement loop with static SVG/PNG companions, linked
+  from the v3 entry point. The recorded viewer supplies the animated workflow.
 
 ## Architecture decision
 
@@ -91,5 +109,27 @@ styles are inherited from the starter. Dependencies are resolved in `uv.lock`.
   `github-pages` environment and `main` deployment branch.
 - The owner confirmed external approval and authorized public visibility on
   October 1, 2026. Approval receipts remain in ignored local state.
+
+## RSI publication scope
+
+The October 29 update publishes the local v1, v2 and v3 experiments together.
+The v3 README is the entry point; prior methods and outcomes remain available.
+All newly added workflow data is invented. No private customer or employer
+material, credentials, production traces or internal infrastructure identifiers
+are part of this update.
+
+The history scan flagged the phrase “excessive/duplicate” in the subscription
+protocol's prose as a generic API key. Manual review confirmed ordinary scenario
+description text. `.gitleaksignore` records only that exact historical fingerprint;
+the frozen protocol and all credential detection rules remain intact.
+Scanning the final site, including compressed evidence, additionally matched two
+renderings of that prose and one v1 `SYN-OP` idempotency identifier. The identifier
+was checked against the deterministic synthetic case generator and its tool suffix;
+it is an operation identity, not an authentication credential. These artifact
+findings were reviewed without changing the frozen recordings.
+
+The existing AWS reference-architecture decision remains not applicable: execution
+is local and publication uses static GitHub Pages. The benchmark does not introduce
+a hosted runner, cloud infrastructure, model training or a live billing integration.
 
 No GitHub Release, registry upload, or paid service is part of this milestone.

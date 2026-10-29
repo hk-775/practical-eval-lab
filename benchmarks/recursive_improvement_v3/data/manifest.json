@@ -1,0 +1,60 @@
+{
+  "protocol": "bounded-rsi-v3",
+  "synthetic": true,
+  "total_families": 2850,
+  "legacy_v2_families": 636,
+  "split_unit": "canonical stage fault/proposal composition, including all parameter variants",
+  "variants": {
+    "development": 1,
+    "validation": 1,
+    "test": 4
+  },
+  "files": {
+    "development": {
+      "families": 1187,
+      "episodes": 1187,
+      "categories": {
+        "delayed_receipt": 175,
+        "late_authority": 8,
+        "legacy_regression": 636,
+        "multi_stage": 126,
+        "repeated_unknown": 117,
+        "stage_outage": 75,
+        "stage_timeout": 45,
+        "stale_version_race": 5
+      },
+      "spec_sha256": "c00ab2809c924841d07b5a5f0250043e41c7746ce07540ac9235f96430ffffb2",
+      "case_sha256": "81ab8adfa42dffa6f89cff305adeb00207295652335255393737e2871813d309"
+    },
+    "validation": {
+      "families": 556,
+      "episodes": 556,
+      "categories": {
+        "delayed_receipt": 176,
+        "late_authority": 10,
+        "multi_stage": 126,
+        "repeated_unknown": 117,
+        "stage_outage": 77,
+        "stage_timeout": 45,
+        "stale_version_race": 5
+      },
+      "spec_sha256": "e26d151e895360ae0770e9582d5e237fedae2338ae8fbd090d3e4cd60123986e",
+      "case_sha256": "306f27ed3e8a56967d62b1cabd442858e6cea37247e6d2212f6a81885aeacd89"
+    },
+    "test": {
+      "families": 1107,
+      "episodes": 4428,
+      "categories": {
+        "delayed_receipt": 351,
+        "late_authority": 18,
+        "multi_stage": 252,
+        "repeated_unknown": 234,
+        "stage_outage": 154,
+        "stage_timeout": 90,
+        "stale_version_race": 8
+      },
+      "spec_sha256": "36acdfd61ae6552cb22ace6e4e64c203230719182119be8e1ae12b069acf9f38",
+      "case_sha256": "6cbea1d177486522b8692ccf7aaa34a87ec940059f5d323064a02128e4720fab"
+    }
+  }
+}

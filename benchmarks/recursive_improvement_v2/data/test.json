@@ -1,0 +1,2729 @@
+[
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "grant_tenant"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "foreign_actor"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "race_renew"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "grant_tenant"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "race_renew"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "unconfirmed"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "missing"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "foreign_actor"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "expired"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "expired"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "race_revoke"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "grant_tenant"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "race_revoke"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "request_approval"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "request_operation"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "grant_actor"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 0,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "race_revoke"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 4,
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "period_end",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 4,
+    "cancel_proposal": "resource",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "foreign_actor"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": "resource",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 3,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": 2,
+    "cancel_proposal": null,
+    "refund_proposal": null,
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "immediate",
+    "timeout": null,
+    "access_failures": 1,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": null,
+    "access_failures": "always",
+    "cancel_proposal": null,
+    "refund_proposal": "amount",
+    "access_proposal": null,
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "after_commit",
+    "access_failures": 0,
+    "cancel_proposal": "date",
+    "refund_proposal": "amount",
+    "access_proposal": "resource",
+    "authority": "valid"
+  },
+  {
+    "intent": "refund",
+    "timeout": "before_commit",
+    "access_failures": 2,
+    "cancel_proposal": "date",
+    "refund_proposal": null,
+    "access_proposal": "date",
+    "authority": "valid"
+  }
+]

@@ -29,6 +29,24 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   and recordings. Its parameterized partitions share scenario templates; do not
   describe them as independent production samples or claim an LLM was evaluated.
   `scripts/subscription_browser_check.py` verifies its offline animated trace viewer.
+- `benchmarks/recursive_improvement/`: bounded configuration search comparing a
+  fixed agent, fixed optimizer and evolvable optimizer. Preserve frozen kernels,
+  data and recorded search/test evidence. Search gets development only; validation
+  selection finishes before the separate test command. Public composed cases
+  share a simulator and author; do not call them independent production samples.
+  No LLM runs and no weights or arbitrary source code are changed. Retain null and
+  negative results. `scripts/rsi_browser_check.py` checks its recorded viewer.
+- `benchmarks/recursive_improvement_v2/`: broader composition-grouped corpus,
+  30 search seeds, random-search control and all-proposal validation. Keep v1 intact.
+  Previously exposed v1 families are development-only. Report physical cache
+  executions separately from logical requests. Paired-seed intervals are conditional
+  on the fixed synthetic corpus, not production or independent-family uncertainty.
+  Compressed batches retain per-case outcomes and full-trace commitments.
+- `benchmarks/recursive_improvement_v3/`: stage outages, repeated unknown outcomes,
+  receipt visibility delays and authority/version races during a workflow. Preserve
+  v1/v2 and the v3 freeze. All exposed v2 families are development-only. V2 search
+  rules, policies, seeds and query budgets are reused unchanged. Category slices
+  and the registered comparison against random search are part of the evidence.
 
 ## Commands
 

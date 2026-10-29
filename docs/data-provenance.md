@@ -73,3 +73,38 @@ templates. The recordings compare deterministic control profiles, with no model
 or production service executed. Counts describe regression coverage, not model
 generalization or real-world incident rates. See the
 [subscription protocol](../benchmarks/subscription_workflow/PROTOCOL.md).
+
+## Bounded recursive improvement
+
+`benchmarks/recursive_improvement/data/` contains 66 original MIT-0 synthetic
+episodes: 24 development, 18 validation and 24 test. Each authored fault
+composition has two parameter variants. No customer, employer, production or
+incident transcript was used.
+
+The three partitions have disjoint composed schedules and identifiers, while
+sharing an author, simulator and fault vocabulary. They are not independent
+enterprise samples. The final test is public and author-visible. Five search seeds
+reuse the same cases; repeated outcomes are not new scenario coverage.
+
+The recorded experiment evolves finite workflow/optimizer configurations. It uses
+no LLM, model training, external provider, or arbitrary executable agent patch.
+The recursive arm's lower aggregate result than the fixed optimizer is preserved.
+See the [protocol](../benchmarks/recursive_improvement/PROTOCOL.md) and
+[recorded evidence](../benchmarks/recursive_improvement/recordings/README.md).
+
+The [expanded RSI v2 corpus](../benchmarks/recursive_improvement_v2/README.md)
+contains 636 semantic families: 360 development cases, 306 validation cases and
+1,212 final cases. Exposed v1 compositions are development-only. All parameter
+variants stay within a family's split. Thirty paired seeds reuse the final corpus;
+logical episode counts are not independent sample counts. Compressed evidence
+batches contain generated outcomes and trace commitments. The data is entirely
+synthetic and uses MIT-0.
+
+The [RSI v3 stage fault corpus](../benchmarks/recursive_improvement_v3/README.md)
+contains 2,850 canonical composition families and 6,171 cases: 1,187 development,
+556 validation and 4,428 final cases. All 636 exposed v2 families are reserved for
+development. The final set contains 1,107 new families with four variants each.
+New faults include stage-specific unavailability, repeated ambiguity, delayed
+receipts, multi-stage interruptions and late authority/version races. Unreachable
+downstream variations are normalized away. This is authored synthetic coverage,
+with a shared provider model and correlated variants, not production evidence.

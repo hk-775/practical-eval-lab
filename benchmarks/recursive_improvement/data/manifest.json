@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "variants_per_family": 2,
+  "split_unit": "authored fault composition",
+  "limitations": "Common author, simulator, and fault vocabulary. Disjoint composed schedules, not independent production samples. Test is public and author-visible.",
+  "files": {
+    "development": {
+      "sha256": "d083e9ce03521c03eebd9a6d25add0e6df21f70467ea2532bc9a1a07dab4a0f3",
+      "episodes": 24,
+      "families": [
+        "ordinary-renewal",
+        "ordinary-refund",
+        "lost-refund-request",
+        "lost-refund-response",
+        "access-transient",
+        "access-persistent",
+        "incorrect-cancel-date",
+        "incorrect-refund",
+        "incorrect-resource",
+        "date-unspecified",
+        "actor-read-only",
+        "consent-withdrawn"
+      ]
+    },
+    "validation": {
+      "sha256": "caa7b1d60cb09e1eedabb378f35f0cf8094bf2417c0880d544a4ff22d6d3064c",
+      "episodes": 18,
+      "families": [
+        "request-loss-and-access-delay",
+        "response-loss-and-access-delay",
+        "date-repair-and-access-delay",
+        "refund-repair-and-response-loss",
+        "resource-repair-and-request-loss",
+        "longer-access-delay",
+        "withdrawn-refund-authority",
+        "ambiguous-refund-request",
+        "response-loss-permanent-access"
+      ]
+    },
+    "test": {
+      "sha256": "809481c5b236671eaa071384f2b8beec0d4db9c46fbc4ce1d52668bb06d05790",
+      "episodes": 24,
+      "families": [
+        "request-loss-date-repair-long-delay",
+        "response-loss-refund-repair-long-delay",
+        "request-loss-resource-repair-deeper-delay",
+        "request-loss-permanent-access",
+        "date-repair-deeper-delay",
+        "withdrawn-authority-resource-repair",
+        "request-loss-refund-repair-long-delay",
+        "ambiguous-date-with-response-loss",
+        "read-only-resource-with-delay",
+        "resource-repair-response-loss-long-delay",
+        "response-loss-date-repair-permanent-access",
+        "expired-consent-refund-repair"
+      ]
+    }
+  }
+}

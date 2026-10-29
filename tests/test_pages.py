@@ -16,6 +16,18 @@ def test_static_site_links_evidence_and_allowlisted_files(tmp_path):
     assert (site / "reports/subscription/comparison.html").is_file()
     assert (site / "reports/subscription/comparison.json").is_file()
     assert (site / "subscription-workflow.html").is_file()
+    assert (site / "recursive-improvement.html").is_file()
+    assert (site / "reports/rsi/comparison.html").is_file()
+    assert (site / "reports/rsi/comparison.json").is_file()
+    assert (site / "reports/rsi/candidates/11-recursive_optimizer.json").is_file()
+    assert (site / "recursive-improvement-v2.html").is_file()
+    assert (site / "reports/rsi-v2/comparison.html").is_file()
+    assert len(list((site / "reports/rsi-v2/batches").glob("*.json.gz"))) == 208
+    assert (site / "recursive-improvement-v3.html").is_file()
+    assert (site / "reports/rsi-v3/comparison.html").is_file()
+    stage_report = json.loads((site / "reports/rsi-v3/comparison.json").read_text(encoding="utf-8"))
+    assert {p.stem.removesuffix(".json") for p in (site / "reports/rsi-v3/batches").glob("*.json.gz")} == {
+        batch["sha256"] for batch in stage_report["batches"]}
     assert (site / "downloads/anthropic-MIT.txt").read_text(encoding="utf-8").startswith("MIT License")
     assert (site / "architecture/pipeline.drawio").is_file()
     assert not (site / "api").exists()
