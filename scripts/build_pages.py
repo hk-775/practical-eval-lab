@@ -56,6 +56,7 @@ DOCUMENTS = {
     "benchmarks/recursive_improvement_v2/PROTOCOL.md": "recursive-improvement-v2-protocol.html",
     "benchmarks/recursive_improvement_v2/recordings/README.md": "recursive-improvement-v2-results.html",
     "benchmarks/recursive_improvement_v3/README.md": "recursive-improvement-v3.html",
+    "benchmarks/recursive_improvement_v3/METHODOLOGY.md": "workflow-recovery-methods.html",
     "benchmarks/recursive_improvement_v3/PROTOCOL.md": "recursive-improvement-v3-protocol.html",
     "benchmarks/recursive_improvement_v3/recordings/README.md": "recursive-improvement-v3-results.html",
     "examples/results/README.md": "results.html",
@@ -172,6 +173,10 @@ class Site:
                 '<a href="https://gitingest.com/hk-775/practical-eval-lab">Read code with GitIngest ↗</a></p></footer>')
 
     def head(self, title, description, route):
+        study_style = ""
+        if route == "recursive-improvement-v3.html":
+            style = self.fingerprint(ROOT / "eval_lab/web/recovery-study.css", "assets")
+            study_style = f'<link rel="stylesheet" href="{self.url(style)}">'
         return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 f'<meta http-equiv="Content-Security-Policy" content="{html.escape(CSP, quote=True)}">'
@@ -180,14 +185,21 @@ class Site:
                 + self.metadata(route, title, description)
                 + f'<link rel="icon" href="{self.url(self.favicon)}" type="image/svg+xml">'
                 + "".join(f'<link rel="stylesheet" href="{self.url(path)}">' for path in self.styles)
+                + study_style
                 + "</head><body>")
 
     def page(self, route, title, description, body, eyebrow="An evaluation workshop"):
+        study = route == "recursive-improvement-v3.html"
+        script = ""
+        if study:
+            source = self.fingerprint(ROOT / "eval_lab/web/recovery-study.js", "assets")
+            script = f'<script src="{self.url(source)}" defer></script>'
         content = (self.head(title, description, route) + '<a class="skip-link" href="#main">Skip to content</a>'
                    + f'<header class="docs-hero">{self.nav(route)}<div class="hero-copy">'
                    + f'<p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(title)}</h1>'
                    + f'<p class="hero-description">{html.escape(description)}</p></div></header>'
-                   + f'<main id="main" class="page-shell docs-shell">{body}{self.footer()}</main></body></html>\n')
+                   + f'<main id="main" class="page-shell docs-shell{" study-shell" if study else ""}">'
+                   + f'{body}{self.footer()}</main>{script}</body></html>\n')
         self.write(route, content)
 
     def write_markdown(self, route, text, source):
@@ -296,10 +308,17 @@ class Site:
             intro = "An executable support simulation: tool choice, arguments, clarification, authorization, fallback, and measured outcomes."
         elif source == "benchmarks/tool_workflow/recordings/README.md":
             intro = "Actual simulator outcomes from 144 held-out episodes. Inspect the failures, executed fallback, and evidence limits."
+        elif source == "benchmarks/recursive_improvement_v3/README.md":
+            from .recovery_study import enhance
+            body = enhance(body)
+            toc = ""
+            intro = "One lost refund response. Four recovery approaches. What the recorded test actually showed."
         self.page(route, title, intro,
                   f'<section class="panel docs-panel"><div class="docs-layout{" no-toc" if not toc else ""}">'
                   f'{toc}'
-                  f'<article class="prose">{body}</article></div></section>')
+                  f'<article class="prose">{body}</article></div></section>',
+                  eyebrow="Workflow recovery study" if source == "benchmarks/recursive_improvement_v3/README.md"
+                  else "An evaluation workshop")
 
     def downloads(self):
         sources = {
@@ -315,6 +334,9 @@ class Site:
             "docs/architecture/rsi-improvement-loop.drawio": "architecture/rsi-improvement-loop.drawio",
             "docs/architecture/rsi-improvement-loop.svg": "architecture/rsi-improvement-loop.svg",
             "docs/architecture/rsi-improvement-loop.png": "architecture/rsi-improvement-loop.png",
+            **{f"docs/architecture/refund-recovery.{ext}": f"architecture/refund-recovery.{ext}"
+               for ext in ("svg", "png", "drawio")},
+            "benchmarks/recursive_improvement_v3/refund-recovery-trace.json": "reports/rsi-v3/refund-recovery-trace.json",
             "docs/images/tuning-lab.png": "assets/tuning-lab.png",
             "benchmarks/subscription_workflow/recordings/2026-10-06/comparison.json": "reports/subscription/comparison.json",
             "benchmarks/subscription_workflow/recordings/2026-10-06/comparison.html": "reports/subscription/comparison.html",
@@ -349,7 +371,11 @@ class Site:
                 name = f"candidates/{identity}.json"
                 sources[f"{expanded_root}/{name}"] = f"reports/rsi-{version}/{name}"
         for source, target in sources.items():
-            self.write(target, (ROOT / source).read_bytes())
+            content = (ROOT / source).read_bytes()
+            if target == "reports/rsi-v3/comparison.html":
+                from .recovery_study import report_html
+                content = report_html(content.decode("utf-8"), self.url("recursive-improvement-v3.html"))
+            self.write(target, content)
             self.routes[source] = target
 
     def recordings(self):
@@ -438,9 +464,7 @@ class Site:
                 f'<a class="outline-button" href="{self.url("results.html")}">Teaching experiments</a>'
                 f'<a class="outline-button" href="{self.url("tool-workflow.html")}">Executed support workflow</a>'
                 f'<a class="outline-button" href="{self.url("subscription-workflow.html")}">Subscription state evaluation</a>'
-                f'<a class="outline-button" href="{self.url("recursive-improvement.html")}">Bounded recursive improvement</a>'
-                f'<a class="outline-button" href="{self.url("recursive-improvement-v2.html")}">Expanded RSI comparison</a>'
-                f'<a class="outline-button" href="{self.url("recursive-improvement-v3.html")}">Stage fault corpus</a>'
+                f'<a class="outline-button" href="{self.url("recursive-improvement-v3.html")}">Workflow recovery study</a>'
                 f'<a class="outline-button" href="{self.url("decision-models.html")}">Earlier decision-model diagnostic</a></div></section>'
                 + '<section class="lesson-cards" aria-label="Six eval walkthroughs">' + "".join(cards) + "</section>")
         self.page("guides.html", "Six ways to ask: does it work?",
@@ -533,7 +557,8 @@ class Site:
                          ("Expanded RSI comparison", "recursive-improvement-v2.md", "Grouped fault compositions, 30 paired seeds, random-search baseline, and full-proposal validation."),
                          ("Expanded RSI protocol", "recursive-improvement-v2-protocol.md", "Frozen corpus, budget accounting, caching, uncertainty and evidence."),
                          ("Expanded RSI results", "recursive-improvement-v2-results.md", "Final comparisons, baseline attribution weakness and explicitly exploratory analysis."),
-                         ("Stage fault corpus", "recursive-improvement-v3.md", "4,428 final cases; outages, ambiguous outcomes, receipt delays and temporal races."),
+                         ("Workflow recovery study", "recursive-improvement-v3.md", "A lost refund response, four recovery approaches, and what 4,428 synthetic final cases showed."),
+                         ("Workflow recovery methods", "workflow-recovery-methods.md", "Corpus design, reproducible commands and the verified walkthrough trace."),
                          ("Stage fault protocol", "recursive-improvement-v3-protocol.md", "Unchanged v2 search rules, grouped new families and registered random-search comparison."),
                          ("Stage fault results", "recursive-improvement-v3-results.md", "Recorded overall and category results with trace commitments and paired seed intervals."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),

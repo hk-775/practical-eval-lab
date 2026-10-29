@@ -1,5 +1,9 @@
 # Recorded stage fault evaluation
 
+[Start with the workflow recovery study](../README.md) for a guided failure
+example and a completion / handoff / unresolved comparison. This page is the
+detailed evidence appendix.
+
 Recorded locally on 29 October 2026. These are synthetic serial subscription
 workflows and finite configuration searches, with no model calls, customer data
 or production integration.
@@ -62,5 +66,5 @@ The query allowance, policy language, search algorithms and seeds are unchanged
 from v2. The corpus and provider behavior changed, so score differences are not
 a pure sample-size effect. There was no post-test tuning or deployment.
 
-Use the [reproduction and audit commands](../README.md) to run a fresh experiment
+Use the [reproduction and audit commands](../METHODOLOGY.md) to run a fresh experiment
 or verify this recording. Original code and synthetic cases use MIT-0.
