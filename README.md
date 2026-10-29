@@ -88,6 +88,13 @@ from model-quality measurements and production evidence.
 
 ## Test recursive improvement
 
+**Latest finding:** [What a Larger Fault Corpus Revealed About Recursive Optimization](benchmarks/recursive_improvement_v3/README.md).
+Across 4,428 synthetic final cases and 30 paired seeds, random search handled
+72.75% correctly and recursive optimization handled 65.97%. The paired-seed
+interval includes zero; this comparison did not establish a recursive advantage.
+[Inspect the animated report](benchmarks/recursive_improvement_v3/recordings/2026-10-29/comparison.html)
+or reproduce the frozen experiment from the source checkout.
+
 The [bounded RSI experiment](benchmarks/recursive_improvement/README.md) compares
 a fixed workflow, a fixed optimizer, and an optimizer allowed to evolve its
 failure-attribution and proposal strategy. All arms receive the same candidate

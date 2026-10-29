@@ -2,20 +2,34 @@
 
 import argparse
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from playwright.sync_api import expect, sync_playwright
 
 
-def check(html_path, screenshots=None):
+def check(html_path=None, screenshots=None, url=None):
+    if (html_path is None) == (url is None):
+        raise ValueError("Choose exactly one local report or deployed URL")
+    if url is not None and urlsplit(url).scheme not in ("http", "https"):
+        raise ValueError("A deployed report must use HTTP or HTTPS")
+    target = url or html_path.resolve().as_uri()
+
+    def inspect_request(request):
+        if request.url.startswith(("http:", "https:", "ws:", "wss:")) and (
+                request.url != url or request.method != "GET"):
+            external.append(request.url)
+
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
         errors, external = [], []
         try:
             page = browser.new_page(viewport={"width": 1440, "height": 1000})
             page.on("pageerror", lambda error: errors.append(str(error)))
-            page.on("request", lambda request: external.append(request.url)
-                    if request.url.startswith(("http:", "https:", "ws:", "wss:")) else None)
-            page.goto(html_path.resolve().as_uri())
+            page.on("request", inspect_request)
+            page.on("websocket", lambda socket: external.append(socket.url))
+            response = page.goto(target)
+            if url:
+                assert response is not None and response.status == 200
             expanded = page.locator("#selected").count() > 0
             expect(page.locator("#results tbody tr")).to_have_count(4 if expanded else 3)
             expect(page.locator("#position")).to_have_text("Generation 0 of 8")
@@ -65,8 +79,10 @@ def check(html_path, screenshots=None):
             if screenshots:
                 page.screenshot(path=str(screenshots / "rsi-mobile.png"), full_page=True)
             no_js = browser.new_context(java_script_enabled=False)
+            no_js.on("request", inspect_request)
             static = no_js.new_page()
-            static.goto(html_path.resolve().as_uri())
+            static.on("websocket", lambda socket: external.append(socket.url))
+            static.goto(target)
             expect(static.locator("#results tbody tr")).to_have_count(4 if expanded else 3)
             expect(static.locator("#controls")).to_be_hidden()
             assert static.locator(".flow-line").first.evaluate("el => el.getAnimations().length") == 0
@@ -81,10 +97,12 @@ def check(html_path, screenshots=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--html", type=Path, required=True)
+    target = parser.add_mutually_exclusive_group(required=True)
+    target.add_argument("--html", type=Path)
+    target.add_argument("--url", help="Verify the deployed report, including actual connector motion")
     parser.add_argument("--screenshots", type=Path)
     args = parser.parse_args()
-    check(args.html, args.screenshots)
+    check(args.html, args.screenshots, args.url)
 
 
 if __name__ == "__main__":

@@ -1,9 +1,34 @@
-# Bounded RSI v3: stage fault corpus
+# What a Larger Fault Corpus Revealed About Recursive Optimization
 
 Test workflow recovery across cancellation, refund and access stages with the same
 policy language, optimizers, search rules, seeds and query budgets used in v2.
 This is finite configuration search against a deterministic synthetic simulator.
 No language model, external provider, customer data or real money is involved.
+
+## Finding
+
+Across **4,428 final cases in 1,107 new composition families** and 30 paired
+search seeds, random search achieved **72.75%** correct handling and recursive
+optimization achieved **65.97%**. The recursive-minus-random difference was
+**−6.78 percentage points**, with a 95% paired-seed interval of **−15.33 to +0.94**.
+This experiment did not establish a recursive advantage.
+
+Broader coverage exposed gaps in stale-version recovery, delayed receipts and
+repeated unknown outcomes. All four approaches recorded zero unsafe effects
+under the same fixed guard. The guard's protection was not learned.
+
+[Open the animated report](recordings/2026-10-29/comparison.html) ·
+[Read all results](recordings/README.md) ·
+[Inspect the protocol](PROTOCOL.md) ·
+[Download the evidence index](recordings/2026-10-29/comparison.json)
+
+![The bounded improvement loop: observe failures, propose edits, execute, verify and retain a version.](../../docs/architecture/rsi-improvement-loop.png)
+
+Static companion: [SVG](../../docs/architecture/rsi-improvement-loop.svg) ·
+[Editable draw.io](../../docs/architecture/rsi-improvement-loop.drawio).
+The report animates this flow with pause/resume and reduced-motion support.
+Motion illustrates direction, not measured timing. Authorization, grading and
+final evaluation remain outside the editable configuration.
 
 ## Coverage
 
