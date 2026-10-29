@@ -127,6 +127,93 @@ def verify_artifact(site, base_path):
     print(f"Static artifact verified: {len(manifest['files'])} files; internal links and anchors resolve.")
 
 
+def check_recovery_study(page, base, inspect, screenshots):
+    """Check the reader's path, source-derived outcomes, and actual connector motion."""
+    page.goto(base + "guides.html")
+    page.get_by_role("link", name="Workflow recovery study", exact=True).click()
+    expect(page.locator("h1")).to_have_text("Can automated tuning improve workflow recovery?")
+    expect(page.locator("article.prose")).to_contain_text("Scripted policies")
+    expect(page.locator("article.prose")).to_contain_text("4,428")
+    page.get_by_role("link", name="Explore one failure ↓", exact=True).click()
+    expect(page.locator("#recovery-position")).to_have_text("Step 1 of 4")
+    expect(page.locator("#recovery-previous")).to_be_disabled()
+    for i in range(2, 5):
+        page.locator("#recovery-next").focus()
+        page.keyboard.press("Enter")
+        expect(page.locator("#recovery-position")).to_have_text(f"Step {i} of 4")
+        expect(page.locator("#recovery-steps li:visible")).to_have_count(1)
+    expect(page.locator("#recovery-next")).to_be_disabled()
+    expect(page.locator("#recovery-steps li:visible")).to_contain_text("one refund effect")
+    page.locator("#recovery-previous").click()
+    expect(page.locator("#recovery-steps li:visible")).to_contain_text("no second refund")
+
+    line = page.locator(".flow-wide .recovery-connector").first
+    offset = lambda: line.evaluate("el => getComputedStyle(el).strokeDashoffset")
+    first = offset()
+    page.wait_for_timeout(180)
+    assert offset() != first, "Recovery connector did not move"
+    page.locator("#recovery-motion").focus()
+    page.keyboard.press("Enter")
+    expect(line).to_have_css("animation-play-state", "paused")
+    page.wait_for_timeout(60)
+    paused = offset()
+    page.wait_for_timeout(180)
+    assert offset() == paused, "Recovery pause did not hold"
+    page.keyboard.press("Enter")
+    page.wait_for_timeout(180)
+    assert offset() != paused, "Recovery resume did not restore motion"
+    if screenshots:
+        page.screenshot(path=str(screenshots / "workflow-recovery-desktop.png"), full_page=True)
+        page.locator("#recovery-example").screenshot(path=str(screenshots / "workflow-recovery-example.png"))
+    page.emulate_media(reduced_motion="reduce")
+    expect(page.locator("#recovery-motion")).to_be_disabled()
+    assert line.evaluate("el => el.getAnimations().length") == 0
+    page.emulate_media(media="print")
+    expect(page.locator("#recovery-steps li:visible")).to_have_count(4)
+    assert line.evaluate("el => el.getAnimations().length") == 0
+    page.emulate_media(media="screen", reduced_motion="no-preference")
+    page.set_viewport_size({"width": 390, "height": 844})
+    expect(page.locator(".flow-tall")).to_be_visible()
+    expect(page.locator(".flow-wide")).to_be_hidden()
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    mobile_line = page.locator(".flow-tall .recovery-connector").first
+    first = mobile_line.evaluate("el => getComputedStyle(el).strokeDashoffset")
+    page.wait_for_timeout(180)
+    assert mobile_line.evaluate("el => getComputedStyle(el).strokeDashoffset") != first
+    if screenshots:
+        page.screenshot(path=str(screenshots / "workflow-recovery-mobile.png"), full_page=True)
+    page.set_viewport_size({"width": 1440, "height": 1050})
+    expect(page.locator(".outcome-row")).to_have_count(4)
+    expect(page.locator('[data-arm="random_search"]')).to_contain_text("69.77%")
+    expect(page.locator('[data-arm="recursive_optimizer"]')).to_contain_text("34.03%")
+    expect(page.locator('[data-arm="fixed_agent"]')).to_be_hidden()
+    page.get_by_text("Show the two control approaches", exact=True).click()
+    expect(page.locator('[data-arm="fixed_agent"]')).to_be_visible()
+    expect(page.locator('[data-arm="fixed_optimizer"]')).to_contain_text("97.02%")
+    page.get_by_role("link", name="Inspect this trace and its source", exact=True).click()
+    trace_link = page.get_by_role("link", name="Download the complete verified trace").get_attribute("href")
+    response = page.request.get(urljoin(base, trace_link))
+    assert response.ok
+    trace = response.json()
+    assert trace["episode"]["outcome"]["business_completed"]
+    assert trace["episode"]["outcome"]["duplicate_refund_effects"] == 0
+    for suffix in ("svg", "png", "drawio"):
+        response = page.request.get(base + "architecture/refund-recovery." + suffix)
+        assert response.status == 200 and len(response.body()) > 100, suffix
+
+    no_js = page.context.browser.new_context(java_script_enabled=False)
+    no_js.on("request", inspect)
+    static = no_js.new_page()
+    try:
+        static.goto(base + "recursive-improvement-v3.html")
+        expect(static.locator("#recovery-steps li:visible")).to_have_count(4)
+        expect(static.locator("#recovery-controls")).to_be_hidden()
+        expect(static.locator(".outcome-row")).to_have_count(4)
+        assert static.locator(".recovery-connector").first.evaluate("el => el.getAnimations().length") == 0
+    finally:
+        no_js.close()
+
+
 def check_browser(base, screenshots=None):
     base_url = urlsplit(base)
     with tempfile.TemporaryDirectory() as downloads, sync_playwright() as playwright:
@@ -264,18 +351,17 @@ def check_browser(base, screenshots=None):
             expect(page.locator("article.prose")).to_contain_text("rules-only paths")
             if screenshots:
                 page.screenshot(path=str(screenshots / "tool-workflow-results-desktop.png"), full_page=True)
-            page.goto(base + "guides.html")
-            page.get_by_role("link", name="Stage fault corpus", exact=True).click()
-            expect(page.locator("article.prose")).to_contain_text("did not establish a recursive advantage")
-            expect(page.locator("article.prose")).to_contain_text("4,428")
+            check_recovery_study(page, base, inspect, screenshots)
             for suffix in ("svg", "png", "drawio"):
                 response = page.request.get(base + "architecture/rsi-improvement-loop." + suffix)
                 assert response.status == 200 and len(response.body()) > 100, suffix
-            page.get_by_role("link", name="Open the animated report", exact=True).click()
+            page.goto(base + "recursive-improvement-v3-results.html")
+            page.get_by_role("link", name="Open the interactive report", exact=True).click()
+            expect(page.get_by_role("link", name="Read the short study and explore one failure →")).to_be_visible()
             expect(page.locator("#results tbody tr")).to_have_count(4)
             expect(page.locator("#summary")).to_contain_text("No clear advantage over random search")
             page.set_viewport_size({"width": 390, "height": 844})
-            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html", "tool-workflow.html", "tool-workflow-protocol.html", "tool-workflow-results.html", "recursive-improvement-v3.html", "recursive-improvement-v3-results.html", "recursive-improvement-v3-protocol.html"):
+            for route in ("", "guides.html", "guides/rag.html", "getting-started.html", "incidents.html", "architecture.html", "results.html", "notices.html", "decision-models.html", "decision-model-design-review.html", "decision-model-results.html", "tool-workflow.html", "tool-workflow-protocol.html", "tool-workflow-results.html", "recursive-improvement-v3.html", "recursive-improvement-v3-results.html", "recursive-improvement-v3-protocol.html", "workflow-recovery-methods.html"):
                 page.goto(base + route)
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), f"Mobile overflow: {route}"
             if screenshots:

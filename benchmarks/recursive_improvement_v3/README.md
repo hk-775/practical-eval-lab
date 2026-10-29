@@ -1,145 +1,114 @@
-# What a Larger Fault Corpus Revealed About Recursive Optimization
+# Can automated tuning improve workflow recovery?
 
-Test workflow recovery across cancellation, refund and access stages with the same
-policy language, optimizers, search rules, seeds and query budgets used in v2.
-This is finite configuration search against a deterministic synthetic simulator.
-No language model, external provider, customer data or real money is involved.
+A refund can complete even when its response never arrives. Should the workflow
+retry, look for a receipt, or hand off? We tested ways to select recovery rules
+for a subscription workflow.
 
-## Finding
+**Finding:** Letting the tuning strategy change did not establish an advantage
+over random policy search. Broader testing exposed recovery gaps in every approach.
 
-Across **4,428 final cases in 1,107 new composition families** and 30 paired
-search seeds, random search achieved **72.75%** correct handling and recursive
-optimization achieved **65.97%**. The recursive-minus-random difference was
-**−6.78 percentage points**, with a 95% paired-seed interval of **−15.33 to +0.94**.
-This experiment did not establish a recursive advantage.
+**Scope:** Synthetic subscription simulation. Scripted policies. No language
+model training, production traffic, or real payments.
 
-Broader coverage exposed gaps in stale-version recovery, delayed receipts and
-repeated unknown outcomes. All four approaches recorded zero unsafe effects
-under the same fixed guard. The guard's protection was not learned.
+[Explore one failure ↓](#explore-one-failure)
 
-[Open the animated report](recordings/2026-10-29/comparison.html) ·
-[Read all results](recordings/README.md) ·
-[Inspect the protocol](PROTOCOL.md) ·
-[Download the evidence index](recordings/2026-10-29/comparison.json)
+## Explore one failure
 
-![The bounded improvement loop: observe failures, propose edits, execute, verify and retain a version.](../../docs/architecture/rsi-improvement-loop.png)
+The subscription has been cancelled. The workflow now needs to refund the
+approved amount and update access.
 
-Static companion: [SVG](../../docs/architecture/rsi-improvement-loop.svg) ·
-[Editable draw.io](../../docs/architecture/rsi-improvement-loop.drawio).
-The report animates this flow with pause/resume and reduced-motion support.
-Motion illustrates direction, not measured timing. Authorization, grading and
-final evaluation remain outside the editable configuration.
+<!-- recovery-example:start -->
+![A refund commits but its response is lost. Receipt lookup misses. An exact retry returns the existing receipt, then the workflow verifies final state.](../../docs/architecture/refund-recovery.png)
 
-## Coverage
+1. **Refund committed; response lost.** The provider changes its state but returns
+   an unknown outcome. A timeout alone cannot tell the workflow whether the refund happened.
+2. **Receipt lookup misses.** The lookup returns `not_found`, although the refund
+   exists. In this case the receipt lookup remains unavailable.
+3. **Exact retry finds the receipt.** Reusing the same request and idempotency key
+   returns the original receipt. It creates no second refund.
+4. **Final state verified.** The workflow updates access, reads state, and completes.
+   The recorded outcome has one refund effect and no unsafe effects.
+<!-- recovery-example:end -->
 
-| Partition | Composition families | Cases |
-|---|---:|---:|
-| Development | 1,187 | 1,187 |
-| Validation | 556 | 556 |
-| Final test | 1,107 | 4,428 |
-| Total | 2,850 | 6,171 |
+This is an excerpt from a recorded final-test case, chosen after the run to explain
+recovery; it is not evidence of typical success. Before this excerpt, the fixed
+guard rejected an excessive refund proposal and the policy corrected the amount.
+[Inspect this trace and its source](METHODOLOGY.md#the-walkthrough-trace).
 
-The final corpus has 3.65 times as many cases as v2. All 636 previously exposed v2
-families stay in development. New families are grouped by complete fault/proposal
-composition before partitioning; all four final parameter variants stay together.
+## What we compared
 
-New behavior includes:
+A **policy** is a set of recovery rules: when to retry, look up an operation,
+repair a rejected argument, or hand off. Tuning selects these rules before final
+testing; the workflow does not change them during the final run.
 
-- temporary and permanent outages at cancellation, refund and access stages;
-- repeated ambiguous responses before and after commit;
-- delayed or persistently unavailable receipt lookup, while exact retry remains possible;
-- paired and three-stage interruptions;
-- consent revocation or expiry after earlier changes have committed;
-- version conflicts between a read and a later write;
-- date, amount and resource proposal errors combined with those conditions.
+| Approach | How it selects a policy |
+|---|---|
+| Random policy search | Samples recovery configurations from the allowed settings. It does not take random billing actions. |
+| Adaptive policy search | Uses development failures to propose configurations and can also change its own proposal strategy. Called “recursive optimizer” in the evidence. |
+| Unchanged policy | Uses the original conservative configuration without tuning. |
+| Fixed-rule tuning | Uses one unchanging diagnostic heuristic to propose edits. That heuristic has a known weakness in attributing failures. |
 
-Unreachable downstream variations after a permanent failure are normalized away.
-The generator constructs expected state directly, without running a candidate.
-Correct handling distinguishes completion from truthful handoff with the correct
-committed prefix. Transient cases exceeding the retry cap and unsupported
-stale-version recovery remain in the denominator.
+The main comparison is **adaptive versus random policy search**, using the same
+search allowance. Every approach uses the same authorization guard.
 
-The shared simulator and authored compositions are limitations. More synthetic
-cases do not establish production readiness or independent external validity.
-Parameter variants and repeated seeds are correlated.
+## What happened
 
-## Reproduce
+**4,428 final scenarios**, evaluated with the selected policy from each of 30
+paired search runs. The outcomes below separate successful completion from cases
+where stopping was the correct action.
 
-From the source checkout, with the committed uv lockfile:
+<!-- recovery-outcomes:start -->
+| Approach | Completed | Correct handoff | Unresolved |
+|---|---:|---:|---:|
+| Random policy search | 69.77% | 2.98% | 27.25% |
+| Adaptive policy search | 63.04% | 2.93% | 34.03% |
+| Unchanged policy | 0.00% | 1.36% | 98.64% |
+| Fixed-rule tuning | 0.00% | 2.98% | 97.02% |
+<!-- recovery-outcomes:end -->
 
-```bash
-uv sync --locked
-uv run --locked python -m benchmarks.recursive_improvement_v3 validate
+**Completed:** the intended business changes were verified.
 
-uv run --locked python -m benchmarks.recursive_improvement_v3 search \
-  --out-dir reports/new-v3-search
+**Correct handoff:** a permanent outage or withdrawn authority required stopping,
+with the correct state preserved.
 
-uv run --locked python -m benchmarks.recursive_improvement_v3 evaluate \
-  --search-dir reports/new-v3-search --out-dir reports/new-v3-final
+**Unresolved:** the workflow did not meet the case's required outcome, including
+handoff when completion was required. A handoff is not automatically a success.
 
-uv run --locked python -m benchmarks.recursive_improvement_v3 audit \
-  reports/new-v3-final
-```
+Completed plus correct handoff gives **72.75% for random** and **65.97% for
+adaptive search**. The adaptive-minus-random difference is **−6.78 percentage
+points**, with a 95% paired-seed interval of **−15.33 to +0.94 points**.
+The interval crosses zero: this study does not establish an adaptive advantage
+or a conclusive random-search advantage.
 
-Use fresh output directories. Search consumes development/validation only;
-the separate evaluation verifies the committed selection before loading final
-cases. Exit 0 means the experiment completed, including negative/null outcomes.
-Exit 2 indicates an integrity or configuration error. Nothing is deployed.
+All four approaches recorded **zero unsafe effects** under the shared fixed guard.
+That protection was not learned.
 
-## Evidence and comparison
+## What we learned
 
-Read the [recorded results](recordings/README.md) and [frozen protocol](PROTOCOL.md).
-The four arms use the same 30 paired seeds, eight generations, two proposals per
-generation, 17 development queries and 17 validation queries per arm/seed.
-The original fixed heuristic remains intentionally unchanged, including its known
-credit-assignment weakness. The primary registered comparison is recursive versus
-uniform random search, with comparisons against the fixed heuristic secondary.
+- **Changing the search strategy was not enough.** The main comparison did not
+  establish a benefit from the extra adaptation.
+- **Some failures need a new recovery capability.** Every approach failed all 32
+  stale-version cases: the policy interpreter cannot refresh and retry a stale
+  write. Searching its existing settings cannot add that behavior.
+- **Safety and completion need separate measures.** The guard prevented unsafe
+  effects while many workflows still failed to complete.
 
-Reports include overall and category results, business completion, intervention,
-unsafe effects, duplicate refunds, false completion, provider calls, and paired
-seed intervals. These intervals are conditional on the fixed synthetic corpus.
-The aggregate follows the authored family distribution, not production traffic.
-The same v2 hand-written reference is evaluated outside the search allowance.
+These are authored scenarios from one simulator, not production reliability
+estimates. Repeated seeds and case variants are correlated. The interval describes
+search variation on this fixed corpus. Network latency, concurrency, and real
+provider behavior were not measured.
 
-The provider advances deterministic schedules per call; it does not simulate
-network latency, backoff, parallel requests or failure probabilities. Equal query
-allowances do not imply equal CPU time, model tokens or cost.
+## Inspect the evidence
 
-Every compressed batch contains per-case counts and full trace hashes.
-Exact selected configurations are exported. To reconstruct one trace:
+- [Methods and reproduction](METHODOLOGY.md) — case design, search allowance, exact commands, and the example trace.
+- [Full recorded results](recordings/README.md) — category breakdowns, uncertainty, and the configuration explorer.
+- [Frozen protocol](PROTOCOL.md) and [JSON evidence](recordings/2026-10-29/comparison.json).
 
-```bash
-uv run --locked python -m benchmarks.recursive_improvement_v3 inspect \
-  reports/new-v3-final \
-  --batch BATCH_SHA256 --case CASE_ID --out reports/new-v3-trace.json
-```
+### History
 
-Inspection verifies the original trace commitment. Audit reconstructs search,
-selection, distinct policy/case execution, category slices and registered
-comparisons. Hashes identify content; they are not external attestations.
+[Initial study](../recursive_improvement/README.md) ·
+[First expansion](../recursive_improvement_v2/README.md).
+Earlier results remain available. The latest run changed both the corpus and
+provider behavior, so differences between studies are not a pure sample-size effect.
 
-The standalone HTML report includes the animated improvement loop, keyboard
-pause/resume, reduced-motion support and a selected-configuration viewer. Static
-tables and charts remain available without JavaScript. Motion is illustrative.
-
-V1 and v2 evidence is retained unchanged. V2/v3 score differences are not a pure
-sample-size effect because provider behavior and corpus composition changed.
-Original code and all new synthetic cases use MIT-0.
-
-## Verification record
-
-Verified locally on 29 October 2026:
-
-- 273 repository tests passed, including 35 v3 checks.
-- All 636 legacy families retained baseline and reference outcomes under the
-  extended simulator.
-- Full audit reconstructed search, selection, all 264,744 distinct policy/case
-  executions, category slices and registered comparisons. Exported configurations
-  matched their selected identities.
-- The static build produced 82 HTML pages and 676 files; internal links and
-  anchors resolved.
-- Chromium verified selected-proposal navigation, moving connectors, keyboard
-  pause/resume, reduced motion, mobile layout, print, no-JavaScript fallback and
-  absence of external requests. Desktop and mobile screenshots were inspected.
-- Gitleaks reported no findings in the new source/recordings or in a separate
-  scan of all 214 decompressed evidence batches.
+Original code and synthetic cases: MIT-0.

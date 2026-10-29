@@ -63,8 +63,14 @@
 - Complete v1/v2/v3 evidence, exact selected configurations, content-addressed
   compressed batches and trace reconstruction commands. The v3 report includes
   category denominators and conditional paired-seed uncertainty.
-- An editable draw.io improvement loop with static SVG/PNG companions, linked
-  from the v3 entry point. The recorded viewer supplies the animated workflow.
+- A workflow recovery study with one verified refund trace, an outcome chart
+  separating completion, correct handoff and unresolved cases, a methods appendix,
+  and links to earlier studies under History. The original evidence is retained.
+- Editable draw.io, SVG and PNG refund-recovery companions. The study animates
+  actual action flow with keyboard step navigation, pause/resume, reduced motion,
+  and print/no-JavaScript fallbacks. Motion is illustrative, not measured timing.
+- The original improvement-loop companions and detailed configuration viewer
+  remain available with the experiment evidence.
 
 ## Architecture decision
 
