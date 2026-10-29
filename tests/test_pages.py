@@ -20,6 +20,9 @@ def test_static_site_links_evidence_and_allowlisted_files(tmp_path):
     assert (site / "reports/rsi/comparison.html").is_file()
     assert (site / "reports/rsi/comparison.json").is_file()
     assert (site / "reports/rsi/candidates/11-recursive_optimizer.json").is_file()
+    assert (site / "recursive-improvement-v2.html").is_file()
+    assert (site / "reports/rsi-v2/comparison.html").is_file()
+    assert len(list((site / "reports/rsi-v2/batches").glob("*.json.gz"))) == 208
     assert (site / "downloads/anthropic-MIT.txt").read_text(encoding="utf-8").startswith("MIT License")
     assert (site / "architecture/pipeline.drawio").is_file()
     assert not (site / "api").exists()

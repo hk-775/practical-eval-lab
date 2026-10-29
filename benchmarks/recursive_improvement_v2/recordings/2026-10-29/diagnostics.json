@@ -1,0 +1,15 @@
+{
+  "kind": "post-hoc-recursive-versus-random",
+  "source_report": "6b1b1b870ea7c018c1a796ccd52227718307cf36254dd156d7b730d0693ce1ff",
+  "preregistered": false,
+  "mean_success_rate_difference": 0.021122112211221112,
+  "paired_seed_percentile_95": [
+    -0.023102310231023097,
+    0.06248899889988994
+  ],
+  "wins": 13,
+  "ties": 10,
+  "losses": 7,
+  "notice": "Exploratory comparison added after inspecting results. Interval resamples paired seeds conditional on the fixed synthetic corpus; it is not production or independently sampled scenario-family uncertainty.",
+  "sha256": "907edd1be00c3362c309fe7e06b9428b933bdc2ba6a29333b1f49181705ac3b7"
+}

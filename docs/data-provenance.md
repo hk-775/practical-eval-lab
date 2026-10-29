@@ -91,3 +91,11 @@ no LLM, model training, external provider, or arbitrary executable agent patch.
 The recursive arm's lower aggregate result than the fixed optimizer is preserved.
 See the [protocol](../benchmarks/recursive_improvement/PROTOCOL.md) and
 [recorded evidence](../benchmarks/recursive_improvement/recordings/README.md).
+
+The [expanded RSI v2 corpus](../benchmarks/recursive_improvement_v2/README.md)
+contains 636 semantic families: 360 development cases, 306 validation cases and
+1,212 final cases. Exposed v1 compositions are development-only. All parameter
+variants stay within a family's split. Thirty paired seeds reuse the final corpus;
+logical episode counts are not independent sample counts. Compressed evidence
+batches contain generated outcomes and trace commitments. The data is entirely
+synthetic and uses MIT-0.

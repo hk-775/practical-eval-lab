@@ -36,6 +36,12 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   share a simulator and author; do not call them independent production samples.
   No LLM runs and no weights or arbitrary source code are changed. Retain null and
   negative results. `scripts/rsi_browser_check.py` checks its recorded viewer.
+- `benchmarks/recursive_improvement_v2/`: broader composition-grouped corpus,
+  30 search seeds, random-search control and all-proposal validation. Keep v1 intact.
+  Previously exposed v1 families are development-only. Report physical cache
+  executions separately from logical requests. Paired-seed intervals are conditional
+  on the fixed synthetic corpus, not production or independent-family uncertainty.
+  Compressed batches retain per-case outcomes and full-trace commitments.
 
 ## Commands
 

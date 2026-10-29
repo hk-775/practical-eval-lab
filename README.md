@@ -98,6 +98,11 @@ This is synthetic, finite configuration search with no model calls or deployment
 The [recorded evidence](benchmarks/recursive_improvement/recordings/README.md)
 retains all results, including any absent recursive advantage.
 
+The [expanded v2 comparison](benchmarks/recursive_improvement_v2/README.md) adds
+1,212 final cases across 303 composition families, 30 paired search seeds,
+a random-search baseline, full-proposal validation and paired-seed uncertainty.
+Logical evaluation requests and physical cached execution are reported separately.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:

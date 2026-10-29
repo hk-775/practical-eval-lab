@@ -52,6 +52,9 @@ DOCUMENTS = {
     "benchmarks/recursive_improvement/README.md": "recursive-improvement.html",
     "benchmarks/recursive_improvement/PROTOCOL.md": "recursive-improvement-protocol.html",
     "benchmarks/recursive_improvement/recordings/README.md": "recursive-improvement-results.html",
+    "benchmarks/recursive_improvement_v2/README.md": "recursive-improvement-v2.html",
+    "benchmarks/recursive_improvement_v2/PROTOCOL.md": "recursive-improvement-v2-protocol.html",
+    "benchmarks/recursive_improvement_v2/recordings/README.md": "recursive-improvement-v2-results.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -319,6 +322,22 @@ class Site:
                     name = f"{seed}-{arm}{suffix}"
                     sources[f"benchmarks/recursive_improvement/recordings/2026-10-29/candidates/{name}"] = (
                         f"reports/rsi/candidates/{name}")
+        expanded_root = "benchmarks/recursive_improvement_v2/recordings/2026-10-29"
+        expanded = json.loads((ROOT / expanded_root / "comparison.json").read_text(encoding="utf-8"))
+        for name in ("comparison.json", "comparison.html", "comparison.md", "diagnostics.json"):
+            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
+        for record in expanded["batches"]:
+            identity = record["sha256"]
+            if not re.fullmatch(r"[0-9a-f]{64}", identity):
+                raise ValueError("Invalid recorded batch identity")
+            name = f"batches/{identity}.json.gz"
+            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
+        for run in expanded["search"]["state"]["runs"]:
+            identity = run["selected_sha256"]
+            if not re.fullmatch(r"[0-9a-f]{64}", identity):
+                raise ValueError("Invalid recorded candidate identity")
+            name = f"candidates/{identity}.json"
+            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
         for source, target in sources.items():
             self.write(target, (ROOT / source).read_bytes())
             self.routes[source] = target
@@ -410,6 +429,7 @@ class Site:
                 f'<a class="outline-button" href="{self.url("tool-workflow.html")}">Executed support workflow</a>'
                 f'<a class="outline-button" href="{self.url("subscription-workflow.html")}">Subscription state evaluation</a>'
                 f'<a class="outline-button" href="{self.url("recursive-improvement.html")}">Bounded recursive improvement</a>'
+                f'<a class="outline-button" href="{self.url("recursive-improvement-v2.html")}">Expanded RSI comparison</a>'
                 f'<a class="outline-button" href="{self.url("decision-models.html")}">Earlier decision-model diagnostic</a></div></section>'
                 + '<section class="lesson-cards" aria-label="Six eval walkthroughs">' + "".join(cards) + "</section>")
         self.page("guides.html", "Six ways to ask: does it work?",
@@ -499,6 +519,9 @@ class Site:
                          ("Bounded recursive improvement", "recursive-improvement.md", "Fixed agent, fixed optimizer, and evolving optimizer under the same evaluation allowance."),
                          ("Recursive-improvement protocol", "recursive-improvement-protocol.md", "Protected graders, composed scenario partitions, selection commitment, budgets, and limitations."),
                          ("Recursive-improvement results", "recursive-improvement-results.md", "Recorded search lineage, selected configurations, final outcomes, and preserved negative results."),
+                         ("Expanded RSI comparison", "recursive-improvement-v2.md", "Grouped fault compositions, 30 paired seeds, random-search baseline, and full-proposal validation."),
+                         ("Expanded RSI protocol", "recursive-improvement-v2-protocol.md", "Frozen corpus, budget accounting, caching, uncertainty and evidence."),
+                         ("Expanded RSI results", "recursive-improvement-v2-results.md", "Final comparisons, baseline attribution weakness and explicitly exploratory analysis."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
                          ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
                          ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),

@@ -16,11 +16,16 @@ def check(html_path, screenshots=None):
             page.on("request", lambda request: external.append(request.url)
                     if request.url.startswith(("http:", "https:", "ws:", "wss:")) else None)
             page.goto(html_path.resolve().as_uri())
-            expect(page.locator("#results tbody tr")).to_have_count(3)
+            expanded = page.locator("#selected").count() > 0
+            expect(page.locator("#results tbody tr")).to_have_count(4 if expanded else 3)
             expect(page.locator("#position")).to_have_text("Generation 0 of 8")
             page.locator("#next").click()
             expect(page.locator("#position")).to_have_text("Generation 1 of 8")
-            expect(page.locator("#proposals")).to_contain_text("strategy_used")
+            expect(page.locator("#proposals")).to_contain_text(
+                "development_batch" if expanded else "strategy_used")
+            if expanded:
+                page.locator("#selected").click()
+                expect(page.locator("#position")).to_contain_text("Selected proposal")
             page.locator("#previous").focus()
             page.keyboard.press("Enter")
             expect(page.locator("#position")).to_have_text("Generation 0 of 8")
@@ -62,7 +67,7 @@ def check(html_path, screenshots=None):
             no_js = browser.new_context(java_script_enabled=False)
             static = no_js.new_page()
             static.goto(html_path.resolve().as_uri())
-            expect(static.locator("#results tbody tr")).to_have_count(3)
+            expect(static.locator("#results tbody tr")).to_have_count(4 if expanded else 3)
             expect(static.locator("#controls")).to_be_hidden()
             assert static.locator(".flow-line").first.evaluate("el => el.getAnimations().length") == 0
             no_js.close()

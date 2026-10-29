@@ -52,6 +52,10 @@
   artifacts, full search/effect replay, and a recorded animated lineage viewer.
   This is local program search with no LLM calls or deployment. Its negative
   aggregate comparison against the fixed optimizer is retained.
+- An expanded RSI comparison with 636 composition families, 30 paired seeds,
+  random-search control, full-proposal validation, compressed replayable evidence
+  and conditional paired-seed intervals. The exploratory random-search comparison
+  is labelled separately from the preregistered comparisons.
 
 ## Architecture decision
 
