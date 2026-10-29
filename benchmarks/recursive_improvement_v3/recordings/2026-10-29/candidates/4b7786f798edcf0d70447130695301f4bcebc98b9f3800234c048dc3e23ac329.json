@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "unknown": "retry",
+    "missing_receipt": "handoff",
+    "access_retries": 2,
+    "repair_scope": true,
+    "missing_info": "handoff"
+  },
+  "optimizer": {
+    "attribution": "last",
+    "ordering": "frequent",
+    "edit_width": 1
+  }
+}

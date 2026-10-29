@@ -42,6 +42,11 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   executions separately from logical requests. Paired-seed intervals are conditional
   on the fixed synthetic corpus, not production or independent-family uncertainty.
   Compressed batches retain per-case outcomes and full-trace commitments.
+- `benchmarks/recursive_improvement_v3/`: stage outages, repeated unknown outcomes,
+  receipt visibility delays and authority/version races during a workflow. Preserve
+  v1/v2 and the v3 freeze. All exposed v2 families are development-only. V2 search
+  rules, policies, seeds and query budgets are reused unchanged. Category slices
+  and the registered comparison against random search are part of the evidence.
 
 ## Commands
 

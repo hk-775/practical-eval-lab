@@ -99,3 +99,12 @@ variants stay within a family's split. Thirty paired seeds reuse the final corpu
 logical episode counts are not independent sample counts. Compressed evidence
 batches contain generated outcomes and trace commitments. The data is entirely
 synthetic and uses MIT-0.
+
+The [RSI v3 stage fault corpus](../benchmarks/recursive_improvement_v3/README.md)
+contains 2,850 canonical composition families and 6,171 cases: 1,187 development,
+556 validation and 4,428 final cases. All 636 exposed v2 families are reserved for
+development. The final set contains 1,107 new families with four variants each.
+New faults include stage-specific unavailability, repeated ambiguity, delayed
+receipts, multi-stage interruptions and late authority/version races. Unreachable
+downstream variations are normalized away. This is authored synthetic coverage,
+with a shared provider model and correlated variants, not production evidence.

@@ -55,6 +55,9 @@ DOCUMENTS = {
     "benchmarks/recursive_improvement_v2/README.md": "recursive-improvement-v2.html",
     "benchmarks/recursive_improvement_v2/PROTOCOL.md": "recursive-improvement-v2-protocol.html",
     "benchmarks/recursive_improvement_v2/recordings/README.md": "recursive-improvement-v2-results.html",
+    "benchmarks/recursive_improvement_v3/README.md": "recursive-improvement-v3.html",
+    "benchmarks/recursive_improvement_v3/PROTOCOL.md": "recursive-improvement-v3-protocol.html",
+    "benchmarks/recursive_improvement_v3/recordings/README.md": "recursive-improvement-v3-results.html",
     "examples/results/README.md": "results.html",
     "THIRD_PARTY_NOTICES.md": "notices.html",
     "SECURITY.md": "security.html",
@@ -322,22 +325,26 @@ class Site:
                     name = f"{seed}-{arm}{suffix}"
                     sources[f"benchmarks/recursive_improvement/recordings/2026-10-29/candidates/{name}"] = (
                         f"reports/rsi/candidates/{name}")
-        expanded_root = "benchmarks/recursive_improvement_v2/recordings/2026-10-29"
-        expanded = json.loads((ROOT / expanded_root / "comparison.json").read_text(encoding="utf-8"))
-        for name in ("comparison.json", "comparison.html", "comparison.md", "diagnostics.json"):
-            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
-        for record in expanded["batches"]:
-            identity = record["sha256"]
-            if not re.fullmatch(r"[0-9a-f]{64}", identity):
-                raise ValueError("Invalid recorded batch identity")
-            name = f"batches/{identity}.json.gz"
-            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
-        for run in expanded["search"]["state"]["runs"]:
-            identity = run["selected_sha256"]
-            if not re.fullmatch(r"[0-9a-f]{64}", identity):
-                raise ValueError("Invalid recorded candidate identity")
-            name = f"candidates/{identity}.json"
-            sources[f"{expanded_root}/{name}"] = f"reports/rsi-v2/{name}"
+        for version in ("v2", "v3"):
+            expanded_root = f"benchmarks/recursive_improvement_{version}/recordings/2026-10-29"
+            expanded = json.loads((ROOT / expanded_root / "comparison.json").read_text(encoding="utf-8"))
+            names = ("comparison.json", "comparison.html", "comparison.md")
+            if version == "v2":
+                names += ("diagnostics.json",)
+            for name in names:
+                sources[f"{expanded_root}/{name}"] = f"reports/rsi-{version}/{name}"
+            for record in expanded["batches"]:
+                identity = record["sha256"]
+                if not re.fullmatch(r"[0-9a-f]{64}", identity):
+                    raise ValueError("Invalid recorded batch identity")
+                name = f"batches/{identity}.json.gz"
+                sources[f"{expanded_root}/{name}"] = f"reports/rsi-{version}/{name}"
+            for run in expanded["search"]["state"]["runs"]:
+                identity = run["selected_sha256"]
+                if not re.fullmatch(r"[0-9a-f]{64}", identity):
+                    raise ValueError("Invalid recorded candidate identity")
+                name = f"candidates/{identity}.json"
+                sources[f"{expanded_root}/{name}"] = f"reports/rsi-{version}/{name}"
         for source, target in sources.items():
             self.write(target, (ROOT / source).read_bytes())
             self.routes[source] = target
@@ -430,6 +437,7 @@ class Site:
                 f'<a class="outline-button" href="{self.url("subscription-workflow.html")}">Subscription state evaluation</a>'
                 f'<a class="outline-button" href="{self.url("recursive-improvement.html")}">Bounded recursive improvement</a>'
                 f'<a class="outline-button" href="{self.url("recursive-improvement-v2.html")}">Expanded RSI comparison</a>'
+                f'<a class="outline-button" href="{self.url("recursive-improvement-v3.html")}">Stage fault corpus</a>'
                 f'<a class="outline-button" href="{self.url("decision-models.html")}">Earlier decision-model diagnostic</a></div></section>'
                 + '<section class="lesson-cards" aria-label="Six eval walkthroughs">' + "".join(cards) + "</section>")
         self.page("guides.html", "Six ways to ask: does it work?",
@@ -522,6 +530,9 @@ class Site:
                          ("Expanded RSI comparison", "recursive-improvement-v2.md", "Grouped fault compositions, 30 paired seeds, random-search baseline, and full-proposal validation."),
                          ("Expanded RSI protocol", "recursive-improvement-v2-protocol.md", "Frozen corpus, budget accounting, caching, uncertainty and evidence."),
                          ("Expanded RSI results", "recursive-improvement-v2-results.md", "Final comparisons, baseline attribution weakness and explicitly exploratory analysis."),
+                         ("Stage fault corpus", "recursive-improvement-v3.md", "4,428 final cases; outages, ambiguous outcomes, receipt delays and temporal races."),
+                         ("Stage fault protocol", "recursive-improvement-v3-protocol.md", "Unchanged v2 search rules, grouped new families and registered random-search comparison."),
+                         ("Stage fault results", "recursive-improvement-v3-results.md", "Recorded overall and category results with trace commitments and paired seed intervals."),
                          ("Public incidents", "incidents.md", "Documented incidents, sources, and proposed checks."),
                          ("Provenance", "data-provenance.md", "Synthetic cases and attributed human preferences."),
                          ("Architecture", "architecture.md", "Local runtime and static hosting boundaries."),

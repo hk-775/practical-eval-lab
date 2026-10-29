@@ -103,6 +103,12 @@ The [expanded v2 comparison](benchmarks/recursive_improvement_v2/README.md) adds
 a random-search baseline, full-proposal validation and paired-seed uncertainty.
 Logical evaluation requests and physical cached execution are reported separately.
 
+The [v3 stage fault corpus](benchmarks/recursive_improvement_v3/README.md) expands
+final testing to 4,428 cases in 1,107 new composition families. It adds interruptions
+across cancellation, refund and access, delayed receipts, and authority/version
+races during execution. It retains v2's search rules and budgets, and reports
+results by failure class as well as against random search.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:
