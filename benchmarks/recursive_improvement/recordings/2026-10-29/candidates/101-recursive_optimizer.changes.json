@@ -1,0 +1,22 @@
+[
+  {
+    "field": "policy.unknown",
+    "before": "handoff",
+    "after": "retry"
+  },
+  {
+    "field": "policy.access_retries",
+    "before": 0,
+    "after": 3
+  },
+  {
+    "field": "policy.repair_scope",
+    "before": false,
+    "after": true
+  },
+  {
+    "field": "policy.missing_info",
+    "before": "handoff",
+    "after": "ask_user"
+  }
+]

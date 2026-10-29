@@ -86,6 +86,18 @@ include a self-contained animated HTML viewer. All cases are synthetic; candidat
 are deterministic scripts. These are control-system regression results, separate
 from model-quality measurements and production evidence.
 
+## Test recursive improvement
+
+The [bounded RSI experiment](benchmarks/recursive_improvement/README.md) compares
+a fixed workflow, a fixed optimizer, and an optimizer allowed to evolve its
+failure-attribution and proposal strategy. All arms receive the same candidate
+evaluation allowance. Inspect proposed changes, accepted lineages, separately
+selected final candidates, and paired results across seeds.
+
+This is synthetic, finite configuration search with no model calls or deployment.
+The [recorded evidence](benchmarks/recursive_improvement/recordings/README.md)
+retains all results, including any absent recursive advantage.
+
 ## Evaluate your application
 
 Compare two named Python candidates without modifying the runner:

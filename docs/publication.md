@@ -47,6 +47,11 @@
 - Editable subscription-workflow draw.io, SVG, and PNG companions; the published
   report's connector movement, keyboard pause/resume, and reduced-motion behavior
   are verified on the built artifact and can be checked at its public URL.
+- A bounded recursive-improvement experiment with typed configuration edits,
+  equal candidate-evaluation allowances, separate final testing, exact selected
+  artifacts, full search/effect replay, and a recorded animated lineage viewer.
+  This is local program search with no LLM calls or deployment. Its negative
+  aggregate comparison against the fixed optimizer is retained.
 
 ## Architecture decision
 

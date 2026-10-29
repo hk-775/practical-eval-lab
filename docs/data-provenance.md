@@ -73,3 +73,21 @@ templates. The recordings compare deterministic control profiles, with no model
 or production service executed. Counts describe regression coverage, not model
 generalization or real-world incident rates. See the
 [subscription protocol](../benchmarks/subscription_workflow/PROTOCOL.md).
+
+## Bounded recursive improvement
+
+`benchmarks/recursive_improvement/data/` contains 66 original MIT-0 synthetic
+episodes: 24 development, 18 validation and 24 test. Each authored fault
+composition has two parameter variants. No customer, employer, production or
+incident transcript was used.
+
+The three partitions have disjoint composed schedules and identifiers, while
+sharing an author, simulator and fault vocabulary. They are not independent
+enterprise samples. The final test is public and author-visible. Five search seeds
+reuse the same cases; repeated outcomes are not new scenario coverage.
+
+The recorded experiment evolves finite workflow/optimizer configurations. It uses
+no LLM, model training, external provider, or arbitrary executable agent patch.
+The recursive arm's lower aggregate result than the fixed optimizer is preserved.
+See the [protocol](../benchmarks/recursive_improvement/PROTOCOL.md) and
+[recorded evidence](../benchmarks/recursive_improvement/recordings/README.md).

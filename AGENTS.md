@@ -29,6 +29,13 @@ website. The public site is `https://hk-775.github.io/practical-eval-lab/`.
   and recordings. Its parameterized partitions share scenario templates; do not
   describe them as independent production samples or claim an LLM was evaluated.
   `scripts/subscription_browser_check.py` verifies its offline animated trace viewer.
+- `benchmarks/recursive_improvement/`: bounded configuration search comparing a
+  fixed agent, fixed optimizer and evolvable optimizer. Preserve frozen kernels,
+  data and recorded search/test evidence. Search gets development only; validation
+  selection finishes before the separate test command. Public composed cases
+  share a simulator and author; do not call them independent production samples.
+  No LLM runs and no weights or arbitrary source code are changed. Retain null and
+  negative results. `scripts/rsi_browser_check.py` checks its recorded viewer.
 
 ## Commands
 
